@@ -10,6 +10,7 @@ namespace service
         public static DI Instance { get; } = new DI();
         
         public NvrService NvrService { get; set; }
+        public CameraService CameraService { get; set; }
         public IServerApi ServerApi { get; set; }
         
         
@@ -17,18 +18,13 @@ namespace service
         {
             ServerApi = new MockServerApi();
             NvrService = new NvrService();
-            //CameraService = new CameraService(NvrService, ServerApi.Cameras());
+            CameraService = new CameraService(NvrService, ServerApi.Cameras());
 
-            SetDllDirectory(ConfigurationManager.AppSettings["cms.dir"]);
-            NvrService.Init();
         }
 
         internal void Dispose()
         {
             NvrService.Dispose();
         }
-        
-        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        static extern bool SetDllDirectory(string lpPathName);
     }
 }

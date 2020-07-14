@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace SafeClient.gui
+namespace gui
 {
     public partial class SplashScreen : Form
     {

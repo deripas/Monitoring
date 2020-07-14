@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using service;
 
-namespace SafeClient.gui
+namespace gui
 {
     public partial class MainForm : Form
     {
@@ -9,12 +9,20 @@ namespace SafeClient.gui
         {
             DI.Instance.Init();
             InitializeComponent();
+            toolStripSplitButton1.SelectedIndex = 0;
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             DI.Instance.Dispose();
             Application.Exit();
+        }
+
+        private void toolStripSplitButton1_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            var index = toolStripSplitButton1.SelectedIndex;
+            var val = index + 1;
+            grid.Grid(val, val);
         }
     }
 }

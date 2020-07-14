@@ -1271,7 +1271,7 @@ namespace api
         public delegate void fLocalPlayFileCallBack(SDK_HANDLE lPlayHand, uint nUser);
         public delegate void InfoFramCallBack(SDK_HANDLE lPlayHand, uint nType, string pBuf, uint nSize, uint nUser);
         public delegate int fRealDataCallBack_V2(SDK_HANDLE lRealHandle, ref PACKET_INFO_EX pFrame, int dwUser);
-        public delegate int fRealDataCallBack(SDK_HANDLE lRealHandle, int dwDataType, IntPtr pBuffer, int lbufsize, int dwUser);
+        public delegate int fRealDataCallBack(SDK_HANDLE lRealHandle, int dwDataType, IntPtr pBuffer, int lbufsize, IntPtr dwUser);
         public delegate void fSubDisConnectCallBack (long SDK_HANDLE, SubConnType type, long nChannel, long dwUser);
 
         public static SDK_Config g_config = new SDK_Config();
@@ -1355,10 +1355,10 @@ namespace api
         public static extern SDK_HANDLE H264_DVR_RealPlay(SDK_HANDLE lLoginID, ref H264_DVR_CLIENTINFO lpClientInfo);
 
         [DllImport("NetSdk.dll")]
-        public static extern bool H264_DVR_SetRealDataCallBack(SDK_HANDLE lLoginID, fRealDataCallBack cbRealData, long dwUser);
+        public static extern bool H264_DVR_SetRealDataCallBack(SDK_HANDLE lLoginID, fRealDataCallBack cbRealData, IntPtr dwUser);
 
         [DllImport("NetSdk.dll")]
-        public static extern bool H264_DVR_DelRealDataCallBack(SDK_HANDLE lRealHandle, fRealDataCallBack cbRealData, long dwUser);
+        public static extern bool H264_DVR_DelRealDataCallBack(SDK_HANDLE lRealHandle, fRealDataCallBack cbRealData, IntPtr dwUser);
 
         [DllImport("NetSdk.dll")]
         public static extern SDK_HANDLE H264_DVR_Login(StringBuilder sDVRIP, ushort wDVRPort, StringBuilder sUserName, StringBuilder sPassword,
@@ -1469,6 +1469,20 @@ namespace api
         public static int ToInt(string text)
         {
             return ToInt(text, 0);
+        }
+
+        public static string GetLastErrorCode()
+        {
+            var error = NetSDK.H264_DVR_GetLastError();
+            try
+            {
+                var code = (SDK_RET_CODE)Enum.ToObject(typeof(SDK_RET_CODE), error);
+                return code.ToString();
+            }
+            catch (Exception)
+            {
+                return "UNKNOWN(" + error + ")";
+            }
         }
     }
 

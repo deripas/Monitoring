@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace SafeClient.gui
+namespace gui
 {
     partial class SplashScreen
     {

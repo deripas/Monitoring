@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net;
 
 namespace api.dto
 {
@@ -34,6 +35,12 @@ namespace api.dto
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Login);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Password);
             return hashCode;
+        }
+
+        public IPEndPoint GetAddress()
+        {
+            var ip = IPAddress.Parse(Ip);
+            return new IPEndPoint(ip, Port);
         }
     }
 }
