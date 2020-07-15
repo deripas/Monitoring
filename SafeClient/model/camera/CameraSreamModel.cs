@@ -13,8 +13,45 @@ namespace model.camera
         private NetSDK.fRealDataCallBack realDataCallBack;
         private H264_DVR_CLIENTINFO info;
         private SDK_HANDLE playHandleId;
-        private long ticks;
         private bool sound;
+        private long ticks;
+
+        public bool Sound
+        {
+            get
+            {
+                return sound;
+            }
+        }
+
+        public int Stream
+        {
+            get
+            {
+                return info.nStream;
+            }
+            set
+            {
+                info.nStream = value;
+            }
+        }
+
+        public bool Play
+        {
+            get
+            {
+                return playHandleId > 0;
+            }
+        }
+
+        public DateTime LastTime
+        {
+            get
+            {
+                var t = Interlocked.Read(ref ticks);
+                return new DateTime(t);
+            }
+        }
 
         public CameraSreamModel(CameraModel camera, IntPtr canvas)
         {
@@ -60,13 +97,31 @@ namespace model.camera
 
         public void StopPlay()
         {
-            Log.Debug("{0}: stop play live video", this);
+            camera.StopTalk();
             if (playHandleId > 0)
             {
+                Log.Debug("{0}: stop play live video", this);
                 Log.Info("{0}: H264_DVR_DelRealDataCallBack - {1}", this, NetSDK.H264_DVR_DelRealDataCallBack(playHandleId, realDataCallBack, IntPtr.Zero));
                 Log.Info("{0}: H264_DVR_StopRealPlay - {1}", this, NetSDK.H264_DVR_StopRealPlay(playHandleId, 0));
             }
             playHandleId = 0;
+        }
+
+        public void OpenSound()
+        {
+            Log.Debug("{0}: open sound", this);
+            Log.Info("{0}: H264_DVR_OpenSound - {1}", this, NetSDK.H264_DVR_OpenSound(playHandleId));
+            sound = true;
+        }
+
+        public void CloseSound()
+        {
+            if (sound)
+            {
+                Log.Debug("{0}: close sound", this);
+                Log.Info("{0}: H264_DVR_CloseSound - {1}", this, NetSDK.H264_DVR_CloseSound(playHandleId));
+                sound = false;
+            }
         }
 
         public override string ToString()

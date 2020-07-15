@@ -34,7 +34,12 @@
             this.soundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.talkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.streamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cameraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.subToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cameraToolStripMenuItem = new System.Windows.Forms.ToolStripComboBox();
+            this.ratioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,35 +61,80 @@
             this.soundToolStripMenuItem,
             this.talkToolStripMenuItem,
             this.streamToolStripMenuItem,
-            this.cameraToolStripMenuItem});
+            this.cameraToolStripMenuItem,
+            this.ratioToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(271, 186);
+            this.contextMenu.Size = new System.Drawing.Size(331, 232);
             this.contextMenu.VisibleChanged += new System.EventHandler(this.contextMenu_VisibleChanged);
             // 
             // soundToolStripMenuItem
             // 
+            this.soundToolStripMenuItem.CheckOnClick = true;
             this.soundToolStripMenuItem.Name = "soundToolStripMenuItem";
-            this.soundToolStripMenuItem.Size = new System.Drawing.Size(270, 36);
+            this.soundToolStripMenuItem.Size = new System.Drawing.Size(330, 36);
             this.soundToolStripMenuItem.Text = "sound";
             this.soundToolStripMenuItem.Click += new System.EventHandler(this.soundToolStripMenuItem_Click);
             // 
             // talkToolStripMenuItem
             // 
+            this.talkToolStripMenuItem.CheckOnClick = true;
             this.talkToolStripMenuItem.Name = "talkToolStripMenuItem";
-            this.talkToolStripMenuItem.Size = new System.Drawing.Size(270, 36);
+            this.talkToolStripMenuItem.Size = new System.Drawing.Size(330, 36);
             this.talkToolStripMenuItem.Text = "talk";
+            this.talkToolStripMenuItem.Click += new System.EventHandler(this.talkToolStripMenuItem_Click);
             // 
             // streamToolStripMenuItem
             // 
+            this.streamToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mainToolStripMenuItem,
+            this.subToolStripMenuItem});
             this.streamToolStripMenuItem.Name = "streamToolStripMenuItem";
-            this.streamToolStripMenuItem.Size = new System.Drawing.Size(270, 36);
+            this.streamToolStripMenuItem.Size = new System.Drawing.Size(330, 36);
             this.streamToolStripMenuItem.Text = "stream";
+            // 
+            // mainToolStripMenuItem
+            // 
+            this.mainToolStripMenuItem.Name = "mainToolStripMenuItem";
+            this.mainToolStripMenuItem.Size = new System.Drawing.Size(177, 40);
+            this.mainToolStripMenuItem.Text = "main";
+            this.mainToolStripMenuItem.Click += new System.EventHandler(this.mainToolStripMenuItem_Click);
+            // 
+            // subToolStripMenuItem
+            // 
+            this.subToolStripMenuItem.Name = "subToolStripMenuItem";
+            this.subToolStripMenuItem.Size = new System.Drawing.Size(177, 40);
+            this.subToolStripMenuItem.Text = "sub";
+            this.subToolStripMenuItem.Click += new System.EventHandler(this.subToolStripMenuItem_Click);
             // 
             // cameraToolStripMenuItem
             // 
+            this.cameraToolStripMenuItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cameraToolStripMenuItem.Name = "cameraToolStripMenuItem";
-            this.cameraToolStripMenuItem.Size = new System.Drawing.Size(270, 36);
-            this.cameraToolStripMenuItem.Text = "camera";
+            this.cameraToolStripMenuItem.Size = new System.Drawing.Size(270, 38);
+            this.cameraToolStripMenuItem.SelectedIndexChanged += new System.EventHandler(this.cameraToolStripMenuItem_SelectedIndexChanged);
+            // 
+            // ratioToolStripMenuItem
+            // 
+            this.ratioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3});
+            this.ratioToolStripMenuItem.Name = "ratioToolStripMenuItem";
+            this.ratioToolStripMenuItem.Size = new System.Drawing.Size(330, 36);
+            this.ratioToolStripMenuItem.Text = "ratio";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(169, 40);
+            this.toolStripMenuItem2.Text = "4:3";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(169, 40);
+            this.toolStripMenuItem3.Text = "16:9";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // CameraViewPanel
             // 
@@ -105,6 +155,11 @@
         private System.Windows.Forms.ToolStripMenuItem soundToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem talkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem streamToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cameraToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mainToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem subToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ratioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripComboBox cameraToolStripMenuItem;
     }
 }

@@ -33,7 +33,7 @@ namespace gui
             InitializeComponent();
         }
 
-        private void DoResize()
+        public void DoResize()
         {
             var size = ViewSize;
             var loc = new Point((this.Width - size.Width) / 2, (this.Height - size.Height) / 2);

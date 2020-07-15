@@ -1,4 +1,6 @@
 ﻿using model.camera;
+using Properties;
+using service;
 using System;
 using System.Windows.Forms;
 
@@ -11,6 +13,7 @@ namespace gui
         public CameraViewPanel()
         {
             InitializeComponent();
+            cameraToolStripMenuItem.Items.AddRange(DI.Instance.CameraService.CameraList.ToArray());
         }
 
         public IntPtr Canvas()
@@ -18,14 +21,43 @@ namespace gui
             return canvas.Canvas.Handle;
         }
 
+
+        public void Disconnect()
+        {
+            canvas.Canvas.Image = Resources.no_image;
+        }
+
+        public void Connect()
+        {
+            canvas.Canvas.Image = null;
+        }
+
         private void contextMenu_VisibleChanged(object sender, EventArgs e)
         {
-
+            var streamNum = camera?.GetStream(this);
+            var sound = camera?.Sound(this);
+            var talk = camera?.Talk();
+            mainToolStripMenuItem.Checked = streamNum == 0;
+            subToolStripMenuItem.Checked = streamNum == 1;
+            soundToolStripMenuItem.Checked = sound == true;
+            talkToolStripMenuItem.Checked = talk == true;
+            cameraToolStripMenuItem.SelectedItem = camera;
         }
 
         private void soundToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (soundToolStripMenuItem.Checked)
+                camera?.OpenSound(this);
+            else
+                camera?.CloseSound(this);
+        }
 
+        private void talkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (talkToolStripMenuItem.Checked)
+                camera?.StartTalk();
+            else
+                camera?.StopTalk();
         }
 
         internal void StartPlay(CameraController cameraController)
@@ -39,6 +71,38 @@ namespace gui
         {
             camera?.StopPlay(this);
             camera = null;
+            canvas.Canvas.Invalidate();
+        }
+
+        private void mainToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            camera?.SetStream(this, 0);
+        }
+
+        private void subToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            camera?.SetStream(this, 1);
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            canvas.Ratio = 3D / 4D;
+            canvas.DoResize();
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            canvas.Ratio = 9D / 16D;
+            canvas.DoResize();
+        }
+
+        private void cameraToolStripMenuItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CameraController cam = (CameraController)cameraToolStripMenuItem.SelectedItem;
+            if (cam != camera)
+                StartPlay(cam);
+
+            contextMenu.Hide();
         }
     }
 }

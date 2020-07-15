@@ -1,5 +1,6 @@
 ﻿using api.dto;
 using model.camera;
+using System;
 using System.Collections.Generic;
 
 namespace service

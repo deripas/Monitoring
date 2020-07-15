@@ -34,6 +34,14 @@ namespace model.nvr
             }
         }
 
+        public bool Talk
+        {
+            get
+            {
+                return talkId > 0;
+            }
+        }
+
         public NvrModel(NvrInfo nvrInfo)
         {
             this.info = nvrInfo;
@@ -73,6 +81,31 @@ namespace model.nvr
             Log.Info("{0}: H264_DVR_Logout - {1}", info, NetSDK.H264_DVR_Logout(loginId));
             loginId = 0;
             return true;
+        }
+
+        internal void StartTalk()
+        {
+            Log.Debug("{0}: start talk", this);
+            talkId = NetSDK.H264_DVR_StartLocalVoiceCom(loginId);
+            if (talkId > 0)
+            {
+                Log.Info("{0}: H264_DVR_StartLocalVoiceCom - OK", this);
+            }
+            else
+            {
+                Log.Info("{0}: H264_DVR_StartLocalVoiceCom -  FAIL {1}", this, NetSDK.GetLastErrorCode());
+                talkId = 0;
+            }
+        }
+
+        internal void StopTalk()
+        {
+            if (talkId > 0)
+            {
+                Log.Debug("{0}: stop talk", this);
+                Log.Info("{0}: H264_DVR_StopVoiceCom - {1}", this, NetSDK.H264_DVR_StopVoiceCom(talkId));
+                talkId = 0;
+            }
         }
 
         public override string ToString()

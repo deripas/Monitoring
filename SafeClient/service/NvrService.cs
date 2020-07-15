@@ -45,6 +45,19 @@ namespace service
             nvr?.Disconnect();
         }
 
+        internal void StopTalk()
+        {
+            foreach (var nvr in NvrMap.Values)
+                nvr.StopTalk();
+        }
+
+
+        internal void CloseSound()
+        {
+            foreach (var nvr in NvrMap.Values)
+                nvr.CloseSound();
+        }
+
         [MethodImpl(MethodImplOptions.Synchronized)]
         internal NvrController Login(NvrInfo nvr)
         {
