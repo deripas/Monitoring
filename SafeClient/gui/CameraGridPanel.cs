@@ -40,6 +40,7 @@ namespace gui
                 table.Controls.Add(viewControl);
                 views.Add(viewControl);
 
+                viewControl.Ratio = 9D / 16D;
                 viewControl.StartPlay(list[i]);
             }
         }

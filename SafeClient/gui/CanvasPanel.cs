@@ -7,8 +7,20 @@ namespace gui
     public partial class CanvasPanel : UserControl
     {
         private static readonly int borderSize = 10;
+        private double _ratio = 0.75D;
 
-        public double Ratio { get; set; }
+        public double Ratio
+        {
+            get
+            {
+                return _ratio;
+            }
+            set
+            {
+                _ratio = value;
+                DoResize();
+            }
+        }
 
         public bool Selected { get; set; }
 
@@ -18,7 +30,7 @@ namespace gui
         {
             get
             {
-                var ratio = Ratio;
+                var ratio = _ratio;
                 var w = Math.Min(this.Width, (int)Math.Round(this.Height / ratio));
                 var h = (int)Math.Round(w * ratio);
                 var b = Selected ? borderSize : 0;
@@ -28,16 +40,16 @@ namespace gui
 
         public CanvasPanel()
         {
-            Ratio = 0.75D;
+            _ratio = 0.75D;
             Selected = false;
             InitializeComponent();
         }
 
-        public void DoResize()
+        private void DoResize()
         {
             var size = ViewSize;
             var loc = new Point((this.Width - size.Width) / 2, (this.Height - size.Height) / 2);
-            pictureBox1.SetBounds(loc.X, loc.Y, size.Width, size.Height);
+            pictureBox1?.SetBounds(loc.X, loc.Y, size.Width, size.Height);
         }
 
         private void CanvasPanel_Resize(object sender, EventArgs e)

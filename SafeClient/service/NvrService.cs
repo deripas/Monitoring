@@ -21,7 +21,7 @@ namespace service
 
         public NvrService()
         {
-            SetDllDirectory(ConfigurationManager.AppSettings["cms.dir"]);
+            SetDllDirectory(ConfigurationManager.AppSettings["sdk.dir"]);
             disconnectCallback = new NetSDK.fDisConnect(FDisconnectCallback);
             GC.KeepAlive(disconnectCallback);
 

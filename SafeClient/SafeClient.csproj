@@ -29,7 +29,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -90,6 +90,12 @@
     <Compile Include="gui\CameraGridPanel.Designer.cs">
       <DependentUpon>CameraGridPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="gui\CameraPtzPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="gui\CameraPtzPanel.Designer.cs">
+      <DependentUpon>CameraPtzPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="gui\CameraViewPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -127,6 +133,9 @@
     <Compile Include="service\NvrService.cs" />
     <EmbeddedResource Include="gui\CameraGridPanel.resx">
       <DependentUpon>CameraGridPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\CameraPtzPanel.resx">
+      <DependentUpon>CameraPtzPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gui\CameraViewPanel.resx">
       <DependentUpon>CameraViewPanel.cs</DependentUpon>

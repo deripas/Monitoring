@@ -15,27 +15,28 @@ namespace model.nvr
 
         public NvrController(NvrInfo nvr)
         {
-            time = DateTime.Now;
+            time = DateTime.MinValue;
             this.model = new NvrModel(nvr);
             cameras = new List<CameraController>();
-            model.Login();
-            timer = new Timer(TimerCallback, this, 5000, 5000);
+            timer = new Timer(TimerCallback, this, 1000, 200);
         }
 
         private void TimerCallback(object state)
         {
-            if (model.LoginId > 0)
+            lock (model)
             {
-                time = DateTime.Now;
-                foreach (var cam in cameras)
-                    cam.Check();
-            }
-            else
-            {
-                if((DateTime.Now - time).TotalSeconds> 10)
+                if (model.LoginId > 0)
                 {
-                    time = DateTime.Now;
-                    model.Login();
+                    foreach (var cam in cameras)
+                        cam.Check();
+                }
+                else
+                {
+                    if ((DateTime.Now - time).TotalSeconds > 10)
+                    {
+                        model.Login();
+                        time = DateTime.Now;
+                    }
                 }
             }
         }
@@ -49,26 +50,35 @@ namespace model.nvr
 
         internal void StartTalk()
         {
-            model.StartTalk();
+            lock (model)
+                model.StartTalk();
         }
 
         internal void StopTalk()
         {
-            model.StopTalk();
+            lock (model)
+                model.StopTalk();
         }
 
         internal void CloseSound()
         {
-            foreach (var cam in cameras)
-                cam.CloseSound();
+            lock (model)
+            {
+                foreach (var cam in cameras)
+                    cam.CloseSound();
+            }
         }
 
         internal void Disconnect()
         {
-            foreach (var cam in cameras)
-                cam.Disconnect();
+            lock (model)
+            {
+                foreach (var cam in cameras)
+                    cam.Disconnect();
 
-            model.Logout();
+                model.Logout();
+                time = DateTime.Now;
+            }
         }
     }
 }

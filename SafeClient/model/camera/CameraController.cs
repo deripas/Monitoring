@@ -9,6 +9,8 @@ namespace model.camera
 {
     public class CameraController
     {
+        private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
+
         private CameraModel model;
         private Dictionary<ICameraView, CameraSreamModel> streams;
 
@@ -20,15 +22,27 @@ namespace model.camera
 
         internal void StartPlay(ICameraView view)
         {
-            CameraSreamModel stream = new CameraSreamModel(model, view.Canvas());
-            streams.Add(view, stream);
-            stream.StartPlay();
+            CameraSreamModel stream = new CameraSreamModel(model, view.Canvas);
+            Log.Debug("{0}: add stream view", stream);
+
+            lock (streams)
+                streams.Add(view, stream);
         }
 
         internal void StopPlay(ICameraView view)
         {
-            streams[view]?.StopPlay();
-            streams.Remove(view);
+            lock (streams)
+            {
+                if (streams.ContainsKey(view))
+                {
+                    var stream = streams[view];
+                    lock (stream)
+                        stream.StopPlay();
+
+                    streams.Remove(view);
+                    Log.Debug("{0}: remove stream view", stream);
+                }
+            }
         }
 
         internal bool Sound(CameraViewPanel view)
@@ -73,12 +87,16 @@ namespace model.camera
 
         internal void SetStream(CameraViewPanel view, int streamNum)
         {
-            if(streams.ContainsKey(view))
+            Log.Debug("{0}: change stream number to {1}", view, streamNum);
+            if (streams.ContainsKey(view))
             {
                 var stream = streams[view];
-                stream.StopPlay();
-                stream.Stream = streamNum;
-                stream.StartPlay();
+                lock (stream)
+                {
+                    stream.Stream = streamNum;
+                    stream.StopPlay();
+                    stream.StartPlay();
+                }
             }
         }
 
@@ -89,29 +107,36 @@ namespace model.camera
 
         internal void Disconnect()
         {
-            foreach (var kv in streams)
-                Disconnect(kv);
-        }
+            Log.Debug("{0}: disconnect", model);
 
-        private void Disconnect(KeyValuePair<ICameraView, CameraSreamModel> kv)
-        {
-            kv.Value.StopPlay();
-            kv.Key.Disconnect();
+            foreach (var kv in streams)
+                kv.Value.StopPlay();
         }
 
         internal void Check()
         {
-            foreach (var kv in streams)
+            lock (streams)
             {
-                if (!kv.Value.Play)
+                foreach (var kv in streams)
                 {
-                    if (kv.Value.StartPlay())
-                        kv.Key.Connect();
-                }
-                else
-                {
-                    if ((DateTime.Now - kv.Value.LastTime).TotalSeconds > 3)
-                        Disconnect(kv);
+                    lock (kv.Value)
+                    {
+                        if (!kv.Value.StartedPlay)
+                        {
+                            if ((DateTime.Now - kv.Value.LastUpdateTime).TotalSeconds > 10)
+                            {
+                                kv.Value.StartPlay();
+                            }
+                        }
+                        else
+                        {
+                            if ((DateTime.Now - kv.Value.LastUpdateTime).TotalSeconds > 5)
+                            {
+                                kv.Value.StopPlay();
+                                kv.Value.ResetTime();
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -4,10 +4,8 @@ namespace model.camera
 {
     interface ICameraView
     {
-        IntPtr Canvas();
+        double Ratio { get; set; }
 
-        void Disconnect();
-
-        void Connect();
+        IntPtr Canvas { get; }
     }
 }

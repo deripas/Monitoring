@@ -10,26 +10,31 @@ namespace gui
     {
         private CameraController camera;
 
+        public double Ratio
+        {
+            get
+            {
+                return canvas.Ratio;
+            }
+            set
+            {
+                canvas.Ratio = value;
+            }
+        }
+
+        public IntPtr Canvas
+        {
+            get
+            {
+                return canvas.Canvas.Handle;
+            }
+        }
+
         public CameraViewPanel()
         {
             InitializeComponent();
             cameraToolStripMenuItem.Items.AddRange(DI.Instance.CameraService.CameraList.ToArray());
-        }
-
-        public IntPtr Canvas()
-        {
-            return canvas.Canvas.Handle;
-        }
-
-
-        public void Disconnect()
-        {
             canvas.Canvas.Image = Resources.no_image;
-        }
-
-        public void Connect()
-        {
-            canvas.Canvas.Image = null;
         }
 
         private void contextMenu_VisibleChanged(object sender, EventArgs e)
@@ -87,13 +92,11 @@ namespace gui
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
             canvas.Ratio = 3D / 4D;
-            canvas.DoResize();
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
             canvas.Ratio = 9D / 16D;
-            canvas.DoResize();
         }
 
         private void cameraToolStripMenuItem_SelectedIndexChanged(object sender, EventArgs e)
