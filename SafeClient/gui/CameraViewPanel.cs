@@ -22,18 +22,17 @@ namespace gui
             }
         }
 
-        public IntPtr Canvas
+        public PictureBox Canvas
         {
             get
             {
-                return canvas.Canvas.Handle;
+                return canvas.Canvas;
             }
         }
 
         public CameraViewPanel()
         {
             InitializeComponent();
-            cameraToolStripMenuItem.Items.AddRange(DI.Instance.CameraService.CameraList.ToArray());
             canvas.Canvas.Image = Resources.no_image;
         }
 
@@ -106,6 +105,17 @@ namespace gui
                 StartPlay(cam);
 
             contextMenu.Hide();
+        }
+
+        private void pTZToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CameraPtzForm.Instance.Start(camera);
+        }
+
+        private void canvas_Load(object sender, EventArgs e)
+        {
+            cameraToolStripMenuItem.Items.Clear();
+            cameraToolStripMenuItem.Items.AddRange(DI.Instance.CameraService.CameraList.ToArray());
         }
     }
 }

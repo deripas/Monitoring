@@ -1,4 +1,5 @@
-﻿using gui;
+﻿using api;
+using gui;
 using model.nvr;
 using service;
 using System;
@@ -40,6 +41,7 @@ namespace model.camera
                         stream.StopPlay();
 
                     streams.Remove(view);
+                    view.Canvas.Invalidate();
                     Log.Debug("{0}: remove stream view", stream);
                 }
             }
@@ -110,7 +112,14 @@ namespace model.camera
             Log.Debug("{0}: disconnect", model);
 
             foreach (var kv in streams)
-                kv.Value.StopPlay();
+                StopPlay(kv);
+        }
+
+        private void StopPlay(KeyValuePair<ICameraView, CameraSreamModel> kv)
+        {
+            kv.Value.StopPlay();
+            kv.Value.ResetTime();
+            kv.Key.Canvas.Invalidate();
         }
 
         internal void Check()
@@ -132,13 +141,17 @@ namespace model.camera
                         {
                             if ((DateTime.Now - kv.Value.LastUpdateTime).TotalSeconds > 5)
                             {
-                                kv.Value.StopPlay();
-                                kv.Value.ResetTime();
+                                StopPlay(kv);
                             }
                         }
                     }
                 }
             }
+        }
+
+        internal void Ptz(PTZ_ControlType cmd, bool stop)
+        {
+            model.Ptz(cmd, stop, 4);
         }
 
         public override string ToString()

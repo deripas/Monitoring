@@ -1453,7 +1453,7 @@ namespace api
         public static extern bool H264_DVR_LocalCatchPic(SDK_HANDLE lHandle, string strPath);
 
         [DllImport("NetSdk.dll")]
-        public static extern bool H264_DVR_PTZControl(SDK_HANDLE lLoginID, int nChannelNo, int lPTZCommand, bool bStop, long lSpeed);
+        public static extern bool H264_DVR_PTZControl(SDK_HANDLE lLoginID, int nChannelNo, PTZ_ControlType lPTZCommand, bool bStop, long lSpeed);
 
         public static int ToInt(string text, int nDef)
         {

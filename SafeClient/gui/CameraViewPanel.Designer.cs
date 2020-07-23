@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.canvas = new gui.CanvasPanel();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.soundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.talkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,19 +39,10 @@
             this.ratioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.pTZToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.canvas = new gui.CanvasPanel();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // canvas
-            // 
-            this.canvas.ContextMenuStrip = this.contextMenu;
-            this.canvas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.canvas.Location = new System.Drawing.Point(0, 0);
-            this.canvas.Name = "canvas";
-            this.canvas.Ratio = 0.75D;
-            this.canvas.Selected = false;
-            this.canvas.Size = new System.Drawing.Size(679, 566);
-            this.canvas.TabIndex = 0;
             // 
             // contextMenu
             // 
@@ -62,9 +52,10 @@
             this.talkToolStripMenuItem,
             this.streamToolStripMenuItem,
             this.cameraToolStripMenuItem,
-            this.ratioToolStripMenuItem});
+            this.ratioToolStripMenuItem,
+            this.pTZToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(331, 232);
+            this.contextMenu.Size = new System.Drawing.Size(331, 230);
             this.contextMenu.VisibleChanged += new System.EventHandler(this.contextMenu_VisibleChanged);
             // 
             // soundToolStripMenuItem
@@ -136,6 +127,25 @@
             this.toolStripMenuItem3.Text = "16:9";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
+            // pTZToolStripMenuItem
+            // 
+            this.pTZToolStripMenuItem.Name = "pTZToolStripMenuItem";
+            this.pTZToolStripMenuItem.Size = new System.Drawing.Size(330, 36);
+            this.pTZToolStripMenuItem.Text = "PTZ";
+            this.pTZToolStripMenuItem.Click += new System.EventHandler(this.pTZToolStripMenuItem_Click);
+            // 
+            // canvas
+            // 
+            this.canvas.ContextMenuStrip = this.contextMenu;
+            this.canvas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.canvas.Location = new System.Drawing.Point(0, 0);
+            this.canvas.Name = "canvas";
+            this.canvas.Ratio = 0.75D;
+            this.canvas.Selected = false;
+            this.canvas.Size = new System.Drawing.Size(679, 566);
+            this.canvas.TabIndex = 0;
+            this.canvas.Load += new System.EventHandler(this.canvas_Load);
+            // 
             // CameraViewPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
@@ -161,5 +171,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripComboBox cameraToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pTZToolStripMenuItem;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace model.camera
 {
@@ -6,6 +7,6 @@ namespace model.camera
     {
         double Ratio { get; set; }
 
-        IntPtr Canvas { get; }
+        PictureBox Canvas { get; }
     }
 }

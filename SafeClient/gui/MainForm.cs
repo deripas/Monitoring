@@ -14,6 +14,7 @@ namespace gui
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            CameraPtzForm.Instance.Dispose();
             DI.Instance.Dispose();
             Application.Exit();
         }

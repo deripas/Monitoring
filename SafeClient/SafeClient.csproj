@@ -90,6 +90,12 @@
     <Compile Include="gui\CameraGridPanel.Designer.cs">
       <DependentUpon>CameraGridPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="gui\CameraPtzForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gui\CameraPtzForm.Designer.cs">
+      <DependentUpon>CameraPtzForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="gui\CameraPtzPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -133,6 +139,9 @@
     <Compile Include="service\NvrService.cs" />
     <EmbeddedResource Include="gui\CameraGridPanel.resx">
       <DependentUpon>CameraGridPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\CameraPtzForm.resx">
+      <DependentUpon>CameraPtzForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gui\CameraPtzPanel.resx">
       <DependentUpon>CameraPtzPanel.cs</DependentUpon>

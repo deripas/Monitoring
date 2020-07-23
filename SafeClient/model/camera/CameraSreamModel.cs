@@ -1,6 +1,7 @@
 ﻿using api;
 using System;
 using System.Threading;
+using System.Windows.Forms;
 using SDK_HANDLE = System.Int32;
 
 namespace model.camera
@@ -64,7 +65,7 @@ namespace model.camera
         }
 
 
-        public CameraSreamModel(CameraModel camera, IntPtr canvas)
+        public CameraSreamModel(CameraModel camera, PictureBox canvas)
         {
             this.camera = camera;
             ticks = DateTime.MinValue.Ticks;
@@ -74,7 +75,7 @@ namespace model.camera
                 nChannel = camera.Channel,
                 nStream = 1,
                 nMode = 0,
-                hWnd = canvas
+                hWnd = canvas.Handle
             };
         }
 

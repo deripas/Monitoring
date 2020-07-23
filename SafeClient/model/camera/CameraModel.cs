@@ -52,6 +52,11 @@ namespace model.camera
             nvr.StopTalk();
         }
 
+        internal void Ptz(PTZ_ControlType cmd, bool stop, int speed)
+        {
+            NetSDK.H264_DVR_PTZControl(LoginId, Channel, cmd, stop, speed);
+        }
+
         public override string ToString()
         {
             return "cam(" + nvr.Ip + " #" + (channel + 1) + ")";
