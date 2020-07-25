@@ -10,15 +10,8 @@ namespace model.camera
         private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
 
         private NvrModel nvr;
-        private int channel;
 
-        public int Channel
-        {
-            get
-            {
-                return channel;
-            }
-        }
+        public int Channel { get; }
 
         public SDK_HANDLE LoginId
         {
@@ -39,7 +32,7 @@ namespace model.camera
         public CameraModel(NvrModel nvr, int channel)
         {
             this.nvr = nvr;
-            this.channel = channel;
+            this.Channel = channel;
         }
 
         internal void StartTalk()
@@ -59,7 +52,7 @@ namespace model.camera
 
         public override string ToString()
         {
-            return "cam(" + nvr.Ip + " #" + (channel + 1) + ")";
+            return "cam(" + nvr.Ip + " #" + (Channel + 1) + ")";
         }
     }
 }

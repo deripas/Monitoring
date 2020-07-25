@@ -49,36 +49,36 @@ namespace model.nvr
 
         public bool Login()
         {
-            Log.Debug("{0}: begin login", info);
+            Log.Debug("{0}: begin login", this);
             if (loginId > 0)
             {
-                Log.Warn("{0}: already H264_DVR_Login", info);
+                Log.Warn("{0}: already H264_DVR_Login", this);
                 return true;
             }
 
             loginId = NetSDK.H264_DVR_Login(info.Ip, info.Port, info.Login, info.Password, ref deviceInfo, out error, SocketStyle.TCPSOCKET);
             if (loginId > 0)
             {
-                Log.Info("{0}: H264_DVR_Login - OK {1}", info, loginId);
-                Log.Info("{0}: H264_DVR_SetKeepLifeTime - {1}", info, NetSDK.H264_DVR_SetKeepLifeTime(loginId, KeepLifeTimeSec, DetectTimeSec));
+                Log.Info("{0}: H264_DVR_Login - OK {1}", this, loginId);
+                Log.Info("{0}: H264_DVR_SetKeepLifeTime - {1}", this, NetSDK.H264_DVR_SetKeepLifeTime(loginId, KeepLifeTimeSec, DetectTimeSec));
                 return true;
             }
             else
             {
-                Log.Info("{0}: H264_DVR_Login - FAIL {1}", info, NetSDK.GetLastErrorCode());
+                Log.Info("{0}: H264_DVR_Login - FAIL {1}", this, NetSDK.GetLastErrorCode());
                 return false;
             }
         }
 
         public bool Logout()
         {
-            Log.Debug("{0}: begin logout", info);
+            Log.Debug("{0}: begin logout", this);
             if (loginId <=  0)
             {
-                Log.Warn("{0}: already H264_DVR_Logout", info);
+                Log.Warn("{0}: already H264_DVR_Logout", this);
                 return true;
             }
-            Log.Info("{0}: H264_DVR_Logout - {1}", info, NetSDK.H264_DVR_Logout(loginId));
+            Log.Info("{0}: H264_DVR_Logout - {1}", this, NetSDK.H264_DVR_Logout(loginId));
             loginId = 0;
             return true;
         }

@@ -10,7 +10,6 @@ namespace model.nvr
     {
         private NvrModel model;
         private List<CameraController> cameras;
-        private Timer timer;
         private DateTime time;
 
         public NvrController(NvrInfo nvr)
@@ -18,10 +17,10 @@ namespace model.nvr
             time = DateTime.MinValue;
             this.model = new NvrModel(nvr);
             cameras = new List<CameraController>();
-            timer = new Timer(TimerCallback, this, 1000, 200);
         }
 
-        private void TimerCallback(object state)
+
+        internal void Check()
         {
             lock (model)
             {
@@ -63,10 +62,8 @@ namespace model.nvr
         internal void CloseSound()
         {
             lock (model)
-            {
                 foreach (var cam in cameras)
                     cam.CloseSound();
-            }
         }
 
         internal void Disconnect()

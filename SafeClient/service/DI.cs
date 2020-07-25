@@ -1,6 +1,4 @@
-﻿using System.Configuration;
-using System.Runtime.InteropServices;
-using api;
+﻿using api;
 using api.impl;
 
 namespace service
@@ -9,7 +7,6 @@ namespace service
     {
         public static DI Instance { get; } = new DI();
         
-        public NvrService NvrService { get; set; }
         public CameraService CameraService { get; set; }
         public IServerApi ServerApi { get; set; }
         
@@ -17,14 +14,12 @@ namespace service
         public void Init()
         {
             ServerApi = new MockServerApi();
-            NvrService = new NvrService();
-            CameraService = new CameraService(NvrService, ServerApi.Cameras());
-
+            CameraService = new CameraService(ServerApi.Cameras());
         }
 
         internal void Dispose()
         {
-            NvrService.Dispose();
+            CameraService.Dispose();
         }
     }
 }

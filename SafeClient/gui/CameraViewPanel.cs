@@ -75,7 +75,6 @@ namespace gui
         {
             camera?.StopPlay(this);
             camera = null;
-            canvas.Canvas.Invalidate();
         }
 
         private void mainToolStripMenuItem_Click(object sender, EventArgs e)

@@ -54,8 +54,8 @@ namespace model.camera
 
         internal void OpenSound(CameraViewPanel view)
         {
-            DI.Instance.NvrService.CloseSound();
-            DI.Instance.NvrService.StopTalk();
+            DI.Instance.CameraService.CloseSound();
+            DI.Instance.CameraService.StopTalk();
             streams[view]?.OpenSound();
         }
 
@@ -77,8 +77,8 @@ namespace model.camera
 
         internal void StartTalk()
         {
-            DI.Instance.NvrService.CloseSound();
-            DI.Instance.NvrService.StopTalk();
+            DI.Instance.CameraService.CloseSound();
+            DI.Instance.CameraService.StopTalk();
             model.StartTalk();
         }
 
