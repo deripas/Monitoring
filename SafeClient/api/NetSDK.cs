@@ -684,6 +684,15 @@ namespace api
         public IntPtr hWnd;
     };
 
+    public enum FileType
+    {
+        SDK_RECORD_ALL = 0,
+        SDK_RECORD_ALARM = 1, //外部报警录像
+        SDK_RECORD_DETECT,    //视频侦测录像
+        SDK_RECORD_REGULAR,   //普通录像
+        SDK_RECORD_MANUAL,    //手动录像
+    }
+
     //录像文件返回结构体
     [StructLayout(LayoutKind.Sequential)]
     public struct H264_DVR_FILE_DATA
@@ -1261,6 +1270,16 @@ namespace api
         public string version;					    //版本信息
     }
 
+    public enum PlayBackAction
+    {
+        SDK_PLAY_BACK_PAUSE,        /*<! 暂停回放 */
+        SDK_PLAY_BACK_CONTINUE,     /*<! 继续回放 */
+        SDK_PLAY_BACK_SEEK,         /*<! 回放定位，时间s为单位 */
+        SDK_PLAY_BACK_FAST,         /*<! 加速回放 */
+        SDK_PLAY_BACK_SLOW,         /*<! 减速回放 */
+        SDK_PLAY_BACK_SEEK_PERCENT, /*<! 回放定位百分比 */
+    };
+
     public class NetSDK
     {
         public delegate void fDisConnect(SDK_HANDLE lLoginID, string pchDVRIP, int nDVRPort, IntPtr dwUser);
@@ -1432,14 +1451,14 @@ namespace api
         public static extern int H264_DVR_GetFileByTime(SDK_HANDLE lLoginID, ref H264_DVR_FINDINFO lpFindInfo, string sSavedFileDIR, bool bMerge,
                                             fDownLoadPosCallBack cbDownLoadPos, int dwDataUser, fRealDataCallBack fDownLoadDataCallBack);
         [DllImport("NetSdk.dll")]
-        public static extern int H264_DVR_PlayBackByName_V2(SDK_HANDLE lLoginID, ref H264_DVR_FILE_DATA sPlayBackFile, fDownLoadPosCallBack cbDownLoadPos, fRealDataCallBack_V2 fDownLoadDataCallBack, int dwDataUser);
+        public static extern int H264_DVR_PlayBackByName_V2(SDK_HANDLE lLoginID, ref H264_DVR_FILE_DATA sPlayBackFile, fDownLoadPosCallBack cbDownLoadPos, fRealDataCallBack_V2 fDownLoadDataCallBack, IntPtr dwDataUser);
         [DllImport("NetSdk.dll")]
         public static extern int H264_DVR_PlayBackByTime(SDK_HANDLE lLoginID, ref H264_DVR_FINDINFO lpFindInfo, fRealDataCallBack fDownLoadDataCallBack, fDownLoadPosCallBack cbDownLoadPos, IntPtr dwPosUser);
         [DllImport("NetSdk.dll")]
         public static extern int H264_DVR_PlayBackByTimeEx(SDK_HANDLE lLoginID, ref H264_DVR_FINDINFO lpFindInfo, fRealDataCallBack fDownLoadDataCallBack, int dwDataUser,
                                             fDownLoadPosCallBack cbDownLoadPos, int dwPosUser);
         [DllImport("NetSdk.dll")]
-        public static extern bool H264_DVR_PlayBackControl(SDK_HANDLE lPlayHandle, int lControlCode, int lCtrlValue);
+        public static extern bool H264_DVR_PlayBackControl(SDK_HANDLE lPlayHandle, PlayBackAction lControlCode, int lCtrlValue);
         [DllImport("NetSdk.dll")]
         public static extern bool H264_DVR_StopGetFile(SDK_HANDLE lFileHandle);
 

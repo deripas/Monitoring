@@ -1,10 +1,11 @@
 ﻿using api;
 using gui;
 using model.nvr;
+using model.video;
 using service;
 using System;
 using System.Collections.Generic;
-using System.Xml;
+using System.Linq;
 
 namespace model.camera
 {
@@ -45,6 +46,52 @@ namespace model.camera
                     Log.Debug("{0}: remove stream view", stream);
                 }
             }
+        }
+
+        internal List<VideoFileModel> SearchVideo(DateTime date, FileAlertType type)
+        {
+            var result = new List<VideoFileModel>();
+            if (type.HasFlag(FileAlertType.Alarm))
+                result.AddRange(SearchVideo(date, FileType.SDK_RECORD_ALARM));
+            if (type.HasFlag(FileAlertType.Detect))
+                result.AddRange(SearchVideo(date, FileType.SDK_RECORD_DETECT));
+            if (type.HasFlag(FileAlertType.Regular))
+                result.AddRange(SearchVideo(date, FileType.SDK_RECORD_REGULAR));
+            if (type.HasFlag(FileAlertType.Manual))
+                result.AddRange(SearchVideo(date, FileType.SDK_RECORD_MANUAL));
+            
+            result.Sort((x, y) => DateTime.Compare(x.BeginTime, y.BeginTime)); 
+            return result;
+        }
+
+        internal List<VideoFileModel> SearchVideo(DateTime date, FileType type)
+        {
+            H264_DVR_TIME startTime = new H264_DVR_TIME();
+            startTime.dwYear = date.Year;
+            startTime.dwMonth = date.Month;
+            startTime.dwDay = date.Day;
+            startTime.dwHour = 0;
+            startTime.dwMinute = 0;
+            startTime.dwSecond = 0;
+
+            H264_DVR_TIME endTime = new H264_DVR_TIME();
+            endTime.dwYear = startTime.dwYear;
+            endTime.dwMonth = startTime.dwMonth;
+            endTime.dwDay = startTime.dwDay;
+            endTime.dwHour = 23;
+            endTime.dwMinute = 59;
+            endTime.dwSecond = 59;
+
+            var result = new List<VideoFileModel>();
+            List<VideoFileModel> sub;
+            do
+            {
+                sub = model.SearchVideo(startTime, endTime, type);
+                result.AddRange(sub);
+
+                if (sub.Count > 0) startTime = sub.Last().GetEndDvrTime();
+            } while (sub.Count == 64);
+            return result;
         }
 
         internal bool Sound(CameraViewPanel view)

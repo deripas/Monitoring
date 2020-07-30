@@ -25,6 +25,7 @@ namespace gui
         private void Tmr_Tick(object sender, EventArgs e)
         {
             timer.Stop();
+            timer.Dispose();
             Hide();
             mainForm?.Show();
         }

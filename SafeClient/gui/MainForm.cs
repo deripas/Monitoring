@@ -15,6 +15,7 @@ namespace gui
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             CameraPtzForm.Instance.Dispose();
+            VideoViewForm.Instance.Dispose();
             DI.Instance.Dispose();
             Application.Exit();
         }
@@ -24,6 +25,11 @@ namespace gui
             var index = toolStripSplitButton1.SelectedIndex;
             var val = index + 1;
             grid.Grid(val, val);
+        }
+
+        private void toolStripButton1_Click(object sender, System.EventArgs e)
+        {
+            VideoViewForm.Instance.Start();
         }
     }
 }

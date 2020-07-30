@@ -37,6 +37,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -46,6 +47,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -120,11 +122,29 @@
     <Compile Include="gui\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="gui\PlayerControlPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="gui\PlayerControlPanel.Designer.cs">
+      <DependentUpon>PlayerControlPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="gui\SplashScreen.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="gui\SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui\VideoPlayerPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="gui\VideoPlayerPanel.Designer.cs">
+      <DependentUpon>VideoPlayerPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui\VideoViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gui\VideoViewForm.Designer.cs">
+      <DependentUpon>VideoViewForm.cs</DependentUpon>
     </Compile>
     <Compile Include="model\camera\CameraController.cs" />
     <Compile Include="model\camera\CameraModel.cs" />
@@ -132,6 +152,10 @@
     <Compile Include="model\camera\ICameraView.cs" />
     <Compile Include="model\nvr\NvrController.cs" />
     <Compile Include="model\nvr\NvrModel.cs" />
+    <Compile Include="model\video\FileAlertType.cs" />
+    <Compile Include="model\video\IVideoPlayerView.cs" />
+    <Compile Include="model\video\VideoFileModel.cs" />
+    <Compile Include="model\video\VideoFileStreamModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="service\CameraService.cs" />
@@ -154,8 +178,17 @@
     <EmbeddedResource Include="gui\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="gui\PlayerControlPanel.resx">
+      <DependentUpon>PlayerControlPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="gui\SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\VideoPlayerPanel.resx">
+      <DependentUpon>VideoPlayerPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\VideoViewForm.resx">
+      <DependentUpon>VideoViewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
