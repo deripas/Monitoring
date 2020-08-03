@@ -28,33 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.canvasPanel1 = new gui.CanvasPanel();
-            this.playerControlPanel1 = new gui.PlayerControlPanel();
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.playerControlPanel1 = new gui.PlayerControlPanel();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.timerPlayBack = new System.Windows.Forms.Timer(this.components);
+            this.canvasPanel1 = new gui.CanvasPanel();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // canvasPanel1
-            // 
-            this.canvasPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.canvasPanel1.Location = new System.Drawing.Point(0, 0);
-            this.canvasPanel1.Name = "canvasPanel1";
-            this.canvasPanel1.Ratio = 0.75D;
-            this.canvasPanel1.Selected = false;
-            this.canvasPanel1.Size = new System.Drawing.Size(1226, 636);
-            this.canvasPanel1.TabIndex = 0;
-            // 
-            // playerControlPanel1
-            // 
-            this.playerControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.playerControlPanel1.Location = new System.Drawing.Point(3, 36);
-            this.playerControlPanel1.Name = "playerControlPanel1";
-            this.playerControlPanel1.Size = new System.Drawing.Size(1220, 71);
-            this.playerControlPanel1.TabIndex = 1;
             // 
             // tableLayoutPanel1
             // 
@@ -71,13 +55,24 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1226, 110);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // playerControlPanel1
+            // 
+            this.playerControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.playerControlPanel1.Location = new System.Drawing.Point(3, 36);
+            this.playerControlPanel1.Name = "playerControlPanel1";
+            this.playerControlPanel1.Size = new System.Drawing.Size(1220, 71);
+            this.playerControlPanel1.TabIndex = 1;
+            // 
             // trackBar1
             // 
             this.trackBar1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trackBar1.Location = new System.Drawing.Point(3, 3);
+            this.trackBar1.Maximum = 1000;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(1220, 27);
             this.trackBar1.TabIndex = 2;
+            this.trackBar1.TickFrequency = 10;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // panel1
             // 
@@ -87,6 +82,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1226, 110);
             this.panel1.TabIndex = 1;
+            // 
+            // timerPlayBack
+            // 
+            this.timerPlayBack.Tick += new System.EventHandler(this.timerPlayBack_Tick);
+            // 
+            // canvasPanel1
+            // 
+            this.canvasPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.canvasPanel1.Location = new System.Drawing.Point(0, 0);
+            this.canvasPanel1.Name = "canvasPanel1";
+            this.canvasPanel1.Ratio = 0.75D;
+            this.canvasPanel1.Selected = false;
+            this.canvasPanel1.Size = new System.Drawing.Size(1226, 636);
+            this.canvasPanel1.TabIndex = 0;
             // 
             // VideoPlayerPanel
             // 
@@ -111,5 +120,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Timer timerPlayBack;
     }
 }

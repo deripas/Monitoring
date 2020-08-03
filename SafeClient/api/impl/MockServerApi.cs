@@ -15,7 +15,10 @@ namespace api.impl
             {
                 return new List<CameraInfo>
                 {
-                    new CameraInfo(i++, "192.168.1.241", 34567, login, pwd, 0)
+                    new CameraInfo(i++, "192.168.1.99", 34567, login, pwd, 0),
+                    new CameraInfo(i++, "192.168.1.99", 34567, login, pwd, 1),
+                    new CameraInfo(i++, "192.168.1.99", 34567, login, pwd, 2),
+                    new CameraInfo(i++, "192.168.1.99", 34567, login, pwd, 3),
                 };
             }
             return new List<CameraInfo>

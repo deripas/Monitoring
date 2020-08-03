@@ -79,7 +79,7 @@ namespace model.camera
             };
         }
 
-        private int FRealDataCallBack(SDK_HANDLE lRealHandle, int dwDataType, IntPtr pBuffer, int lbufsize, IntPtr dwUser)
+        private int FRealDataCallBack(SDK_HANDLE lRealHandle, int dwDataType, IntPtr pBuffer, UInt32 lbufsize, IntPtr dwUser)
         {
             Interlocked.Exchange(ref ticks, DateTime.Now.Ticks);
             Interlocked.Increment(ref frames);

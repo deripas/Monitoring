@@ -83,6 +83,7 @@
   <ItemGroup>
     <Compile Include="api\dto\CameraInfo.cs" />
     <Compile Include="api\dto\NvrInfo.cs" />
+    <Compile Include="api\H264.cs" />
     <Compile Include="api\impl\MockServerApi.cs" />
     <Compile Include="api\IServerApi.cs" />
     <Compile Include="api\NetSDK.cs" />
@@ -115,6 +116,12 @@
     </Compile>
     <Compile Include="gui\CanvasPanel.Designer.cs">
       <DependentUpon>CanvasPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui\component\SelectedTrackBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="gui\component\VerticalProgressBar.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="gui\MainForm.cs">
       <SubType>Form</SubType>
@@ -155,7 +162,7 @@
     <Compile Include="model\video\FileAlertType.cs" />
     <Compile Include="model\video\IVideoPlayerView.cs" />
     <Compile Include="model\video\VideoFileModel.cs" />
-    <Compile Include="model\video\VideoFileStreamModel.cs" />
+    <Compile Include="model\video\VideoFilePlayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="service\CameraService.cs" />

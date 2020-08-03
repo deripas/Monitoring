@@ -7,6 +7,8 @@ namespace model.video
 {
     class VideoFileModel
     {
+        private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
+
         private CameraModel camera;
         private H264_DVR_FILE_DATA data;
         private FileType fileType;

@@ -7,15 +7,15 @@ namespace gui
     {
         public event Action<bool> Play;
         public event Action<bool> Pause;
-        public event Action<int> Speed;
-        private int speedValue = 0;
+        public event Action Slow;
+        public event Action Fast;
 
         public PlayerControlPanel()
         {
             InitializeComponent();
         }
 
-        public void Ready()
+        public void Reset()
         {
             UpdateButtons(false);
         }
@@ -26,9 +26,8 @@ namespace gui
             buttonPlay.Enabled = !running && Play != null;
             buttonStop.Enabled = running && Play != null;
             checkBoxPause.Enabled = running && Pause != null;
-            buttonFast.Enabled = running && Speed != null;
-            buttonSlow.Enabled = running && Speed != null;
-            speedValue = 0;
+            buttonFast.Enabled = running && Fast != null;
+            buttonSlow.Enabled = running && Slow != null;
         }
 
         private void buttonPlay_Click(object sender, EventArgs e)
@@ -45,14 +44,12 @@ namespace gui
 
         private void buttonSlow_Click(object sender, EventArgs e)
         {
-            speedValue = Math.Max(speedValue - 1, -4);
-            Speed?.Invoke(speedValue);
+            Slow?.Invoke();
         }
 
         private void buttonFast_Click(object sender, EventArgs e)
         {
-            speedValue = Math.Min(speedValue + 1, 4);
-            Speed?.Invoke(speedValue);
+            Fast?.Invoke();
         }
 
         private void buttonNext_Click(object sender, EventArgs e)

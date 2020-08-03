@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.videoPlayerPanel1 = new gui.VideoPlayerPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.alarmCheckBox = new System.Windows.Forms.CheckBox();
@@ -39,17 +38,10 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.cameraComboBox = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.videoPlayerPanel1 = new gui.VideoPlayerPanel();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // videoPlayerPanel1
-            // 
-            this.videoPlayerPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.videoPlayerPanel1.Location = new System.Drawing.Point(411, 0);
-            this.videoPlayerPanel1.Name = "videoPlayerPanel1";
-            this.videoPlayerPanel1.Size = new System.Drawing.Size(997, 684);
-            this.videoPlayerPanel1.TabIndex = 0;
             // 
             // panel1
             // 
@@ -159,6 +151,15 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(300, 29);
             this.dateTimePicker1.TabIndex = 6;
+            // 
+            // videoPlayerPanel1
+            // 
+            this.videoPlayerPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.videoPlayerPanel1.Location = new System.Drawing.Point(411, 0);
+            this.videoPlayerPanel1.Name = "videoPlayerPanel1";
+            this.videoPlayerPanel1.Ratio = 0.75D;
+            this.videoPlayerPanel1.Size = new System.Drawing.Size(997, 684);
+            this.videoPlayerPanel1.TabIndex = 0;
             // 
             // VideoViewForm
             // 

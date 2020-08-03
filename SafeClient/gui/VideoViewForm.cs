@@ -1,4 +1,5 @@
-﻿using model.camera;
+﻿using gui.component;
+using model.camera;
 using model.video;
 using service;
 using System;
