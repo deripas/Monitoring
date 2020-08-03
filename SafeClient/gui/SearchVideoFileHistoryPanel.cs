@@ -8,6 +8,8 @@ namespace gui
 {
     public partial class SearchVideoFileHistoryPanel : UserControl
     {
+        private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
+
         public event Action<VideoFileModel> SelectItem;
         public event Action PlayItem;
 
@@ -29,6 +31,7 @@ namespace gui
             var index = listBox1.SelectedIndex;
             if (index + 1 >= listBox1.Items.Count) return;
 
+            Log.Info("try play next file...", this);
             listBox1.SelectedIndex = index + 1;
             listBox1_DoubleClick(null, null);
         }

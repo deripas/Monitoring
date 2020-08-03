@@ -135,6 +135,12 @@
     <Compile Include="gui\PlayerControlPanel.Designer.cs">
       <DependentUpon>PlayerControlPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="gui\PlayerNavigationPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="gui\PlayerNavigationPanel.Designer.cs">
+      <DependentUpon>PlayerNavigationPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="gui\SearchVideoFileHistoryPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -193,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="gui\PlayerControlPanel.resx">
       <DependentUpon>PlayerControlPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\PlayerNavigationPanel.resx">
+      <DependentUpon>PlayerNavigationPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gui\SearchVideoFileHistoryPanel.resx">
       <DependentUpon>SearchVideoFileHistoryPanel.cs</DependentUpon>

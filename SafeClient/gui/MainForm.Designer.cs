@@ -42,9 +42,9 @@ namespace gui
             // grid
             // 
             this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grid.Location = new System.Drawing.Point(0, 38);
+            this.grid.Location = new System.Drawing.Point(0, 44);
             this.grid.Name = "grid";
-            this.grid.Size = new System.Drawing.Size(834, 493);
+            this.grid.Size = new System.Drawing.Size(834, 487);
             this.grid.TabIndex = 0;
             // 
             // toolStrip1
@@ -55,7 +55,7 @@ namespace gui
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(834, 38);
+            this.toolStrip1.Size = new System.Drawing.Size(834, 44);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -70,7 +70,7 @@ namespace gui
             "5x5",
             "6x6"});
             this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(75, 38);
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(75, 44);
             this.toolStripSplitButton1.SelectedIndexChanged += new System.EventHandler(this.toolStripSplitButton1_SelectedIndexChanged);
             // 
             // toolStripButton1
@@ -79,7 +79,7 @@ namespace gui
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(40, 32);
+            this.toolStripButton1.Size = new System.Drawing.Size(40, 38);
             this.toolStripButton1.Text = "historyButton";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 

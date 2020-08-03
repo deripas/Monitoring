@@ -33,6 +33,7 @@ namespace gui
 
         public void Reset()
         {
+            Enabled = true;
             UpdateButtons(false);
         }
 

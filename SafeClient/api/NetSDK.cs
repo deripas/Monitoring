@@ -1287,7 +1287,7 @@ namespace api
         public delegate void fTransComCallBack(SDK_HANDLE lLoginID, int lTransComType, StringBuilder pBuffer, uint dwBufSize, uint dwUser);
         public delegate void fDownLoadPosCallBack(SDK_HANDLE lPlayHandle, int lTotalSize, int lDownLoadSize, IntPtr dwUser);
         public delegate void fPlayDrawCallBack(SDK_HANDLE lPlayHand, IntPtr hDc, uint nUser);
-        public delegate void fLocalPlayFileCallBack(SDK_HANDLE lPlayHand, uint nUser);
+        public delegate void fLocalPlayFileCallBack(SDK_HANDLE lPlayHand, IntPtr nUser);
         public delegate void InfoFramCallBack(SDK_HANDLE lPlayHand, uint nType, string pBuf, uint nSize, uint nUser);
         public delegate int fRealDataCallBack_V2(SDK_HANDLE lRealHandle, ref PACKET_INFO_EX pFrame, int dwUser);
         public delegate int fRealDataCallBack(SDK_HANDLE lRealHandle, int dwDataType, IntPtr pBuffer, UInt32 lbufsize, IntPtr dwUser);

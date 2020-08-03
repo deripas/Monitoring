@@ -2,7 +2,7 @@
 
 namespace model.video
 {
-    interface IVideoPlayerView
+    public interface IVideoPlayerView
     {
         double Ratio { get; set; }
 

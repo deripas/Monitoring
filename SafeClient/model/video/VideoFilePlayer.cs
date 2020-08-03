@@ -5,7 +5,7 @@ using SDK_HANDLE = System.Int32;
 
 namespace model.video
 {
-    class VideoFilePlayer
+    public class VideoFilePlayer
     {
         private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
 
@@ -39,7 +39,7 @@ namespace model.video
             }
             set
             {
-                speed = (value > -4) && (value < 4) ? value : speed;
+                speed = (value > -8) && (value < 8) ? value : speed;
                 if (speed >= 0)
                     PlayBackControl(PlayBackAction.SDK_PLAY_BACK_FAST, speed);
                 else
