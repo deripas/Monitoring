@@ -30,6 +30,39 @@ namespace model.video
                 }
             }
         }
+
+        public int Speed
+        {
+            get
+            {
+                return speed;
+            }
+            set
+            {
+                speed = (value > -4) && (value < 4) ? value : speed;
+                if (speed >= 0)
+                    PlayBackControl(PlayBackAction.SDK_PLAY_BACK_FAST, speed);
+                else
+                    PlayBackControl(PlayBackAction.SDK_PLAY_BACK_SLOW, -speed);
+            }
+        }
+
+        public bool Sound
+        {
+            get
+            {
+                return sound;
+            }
+            set
+            {
+                sound = value;
+                if (sound)
+                    OpenSound();
+                else
+                    CloseSound();
+            }
+        }
+
         private IVideoPlayerView view;
         private VideoFileModel model;
 
@@ -79,7 +112,7 @@ namespace model.video
         {
             if (playHandleId >= 0)
                 Log.Info("{0}: H264_DVR_StopPlayBack - {1}", this, NetSDK.H264_DVR_StopPlayBack(playHandleId));
-            
+            sound = false;
             playHandleId = -1;
         }
 
@@ -91,46 +124,26 @@ namespace model.video
 
         public void Slow()
         {
-            if (speed > -4) speed--;
-            Speed(speed);
+            Speed--;
         }
 
         public void Fast()
         {
-            if (speed < 4) speed++;
-            Speed(speed);
-        }
-
-        private void Speed(int val)
-        {
-            if(val >= 0)
-                PlayBackControl(PlayBackAction.SDK_PLAY_BACK_FAST, val);
-            else
-                PlayBackControl(PlayBackAction.SDK_PLAY_BACK_SLOW, -val);
-        }
-
-        private void Refresh()
-        {
-            if (Pause)
-            {
-                Pause = false;
-                Thread.Sleep(200);
-                Pause = true;
-            }
+            Speed++;
         }
 
         public void NextFrame()
         {
             float pos = GetPlayPos();
             int p = Convert.ToInt32(pos * 100);
-            PlayBackControl(PlayBackAction.SDK_PLAY_BACK_SEEK_PERCENT, p + 1);
+            PlayBackControl(PlayBackAction.SDK_PLAY_BACK_SEEK_PERCENT, Math.Min(p + 1, 100));
         }
 
         public void PrevFrame()
         {
             float pos = GetPlayPos();
             int p = Convert.ToInt32(pos * 100);
-            PlayBackControl(PlayBackAction.SDK_PLAY_BACK_SEEK_PERCENT, p - 1);
+            PlayBackControl(PlayBackAction.SDK_PLAY_BACK_SEEK_PERCENT, Math.Max(p - 1, 0));
         }
 
         public void OpenSound()

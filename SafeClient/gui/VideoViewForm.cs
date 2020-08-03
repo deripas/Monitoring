@@ -1,8 +1,5 @@
-﻿using gui.component;
-using model.camera;
+﻿using model.camera;
 using model.video;
-using service;
-using System;
 using System.Windows.Forms;
 
 namespace gui
@@ -14,6 +11,24 @@ namespace gui
         public VideoViewForm()
         {
             InitializeComponent();
+            searchVideoFileHistoryPanel1.SelectItem += SearchVideoFileHistoryPanel1_SelectItem;
+            searchVideoFileHistoryPanel1.PlayItem += SearchVideoFileHistoryPanel1_PlayItem;
+            videoPlayerPanel1.NextFile += VideoPlayerPanel1_Next;
+        }
+
+        private void VideoPlayerPanel1_Next()
+        {
+            searchVideoFileHistoryPanel1.NextItem();
+        }
+
+        private void SearchVideoFileHistoryPanel1_PlayItem()
+        {
+            videoPlayerPanel1.Start();
+        }
+
+        private void SearchVideoFileHistoryPanel1_SelectItem(VideoFileModel video)
+        {
+            videoPlayerPanel1.SelectItem(video);
         }
 
         private void VideoViewForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -30,57 +45,11 @@ namespace gui
 
         internal void Start(CameraController cam)
         {
-            var cameras = DI.Instance.CameraService.CameraList;
-            cameraComboBox.Items.Clear();
-            cameraComboBox.Items.AddRange(cameras.ToArray());
-            cameraComboBox.SelectedItem = cam ?? cameras[0];
-
+            searchVideoFileHistoryPanel1.Start(cam);
             if (Visible)
                 Activate();
             else
                 Show();
-        }
-
-        private void findButton_Click(object sender, EventArgs e)
-        {
-            var cam = (CameraController) cameraComboBox.SelectedItem;
-            FileAlertType type = calcFileType();
-            var video = cam.SearchVideo(dateTimePicker1.Value.Date, type);
-            if(video.Count == 0)
-            {
-                MessageBox.Show("not found");
-                return;
-            }
-            listBox1.Items.Clear();
-            listBox1.Items.AddRange(video.ToArray());
-        }
-
-        private FileAlertType calcFileType()
-        {
-            FileAlertType type = FileAlertType.None;
-            if (alarmCheckBox.Checked)
-                type |= FileAlertType.Alarm;
-            if (regularCheckBox.Checked)
-                type |= FileAlertType.Regular;
-            if (detectCheckBox.Checked)
-                type |= FileAlertType.Detect;
-            if (manualCheckBox.Checked)
-                type |= FileAlertType.Manual;
-            return type;
-        }
-
-        private void VideoViewForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var select = listBox1.SelectedItem;
-            if(select != null)
-            {
-                videoPlayerPanel1.Start((VideoFileModel) select);
-            }
         }
     }
 }

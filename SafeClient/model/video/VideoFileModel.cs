@@ -5,7 +5,7 @@ using SDK_HANDLE = System.Int32;
 
 namespace model.video
 {
-    class VideoFileModel
+    public class VideoFileModel
     {
         private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
 

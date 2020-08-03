@@ -32,12 +32,15 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.playerControlPanel1 = new gui.PlayerControlPanel();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelControl = new System.Windows.Forms.Panel();
             this.timerPlayBack = new System.Windows.Forms.Timer(this.components);
             this.canvasPanel1 = new gui.CanvasPanel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.speedLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.panelControl.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -73,15 +76,16 @@
             this.trackBar1.TabIndex = 2;
             this.trackBar1.TickFrequency = 10;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            this.trackBar1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.trackBar1_MouseDown);
             // 
-            // panel1
+            // panelControl
             // 
-            this.panel1.Controls.Add(this.tableLayoutPanel1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 636);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1226, 110);
-            this.panel1.TabIndex = 1;
+            this.panelControl.Controls.Add(this.tableLayoutPanel1);
+            this.panelControl.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelControl.Location = new System.Drawing.Point(0, 597);
+            this.panelControl.Name = "panelControl";
+            this.panelControl.Size = new System.Drawing.Size(1226, 110);
+            this.panelControl.TabIndex = 1;
             // 
             // timerPlayBack
             // 
@@ -94,22 +98,43 @@
             this.canvasPanel1.Name = "canvasPanel1";
             this.canvasPanel1.Ratio = 0.75D;
             this.canvasPanel1.Selected = false;
-            this.canvasPanel1.Size = new System.Drawing.Size(1226, 636);
+            this.canvasPanel1.Size = new System.Drawing.Size(1226, 597);
             this.canvasPanel1.TabIndex = 0;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(28, 28);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.speedLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 707);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1226, 39);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // speedLabel
+            // 
+            this.speedLabel.Name = "speedLabel";
+            this.speedLabel.Size = new System.Drawing.Size(170, 30);
+            this.speedLabel.Text = "Файл не выбран";
             // 
             // VideoPlayerPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.canvasPanel1);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelControl);
+            this.Controls.Add(this.statusStrip1);
             this.Name = "VideoPlayerPanel";
             this.Size = new System.Drawing.Size(1226, 746);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.panelControl.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -119,7 +144,9 @@
         private PlayerControlPanel playerControlPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TrackBar trackBar1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelControl;
         private System.Windows.Forms.Timer timerPlayBack;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel speedLabel;
     }
 }
