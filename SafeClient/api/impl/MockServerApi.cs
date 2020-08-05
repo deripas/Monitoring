@@ -1,17 +1,25 @@
 ﻿using api.dto;
+using System;
 using System.Collections.Generic;
 
 namespace api.impl
 {
     public class MockServerApi : IServerApi
     {
+        public List<AlertInfo> Alerts(DateTime from, DateTime to)
+        {
+            var list = new List<AlertInfo>();
+            list.Add(new AlertInfo(0, 1, DateTime.Now.AddHours(-3), 100));
+            return list;
+        }
+
         public List<CameraInfo> Cameras()
         {
             const string login = "admin";
             const string pwd = "1qaz2wsx";
             var i = 0;
 
-            if (false)
+            if (!false)
             {
                 return new List<CameraInfo>
                 {

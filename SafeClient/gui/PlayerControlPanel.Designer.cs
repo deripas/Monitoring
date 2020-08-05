@@ -76,7 +76,7 @@
             this.checkBoxPause.Name = "checkBoxPause";
             this.checkBoxPause.Size = new System.Drawing.Size(81, 59);
             this.checkBoxPause.TabIndex = 8;
-            this.checkBoxPause.Text = "⏯";
+            this.checkBoxPause.Text = "⏸";
             this.checkBoxPause.UseVisualStyleBackColor = true;
             this.checkBoxPause.CheckedChanged += new System.EventHandler(this.checkBoxPause_CheckedChanged);
             // 
@@ -113,7 +113,7 @@
             this.buttonNext.Name = "buttonNext";
             this.buttonNext.Size = new System.Drawing.Size(81, 59);
             this.buttonNext.TabIndex = 11;
-            this.buttonNext.Text = "➥";
+            this.buttonNext.Text = "⏎";
             this.buttonNext.UseVisualStyleBackColor = true;
             this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
             // 

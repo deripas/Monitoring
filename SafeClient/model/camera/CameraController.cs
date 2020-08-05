@@ -6,6 +6,7 @@ using service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using SDK_HANDLE = System.Int32;
 
 namespace model.camera
 {
@@ -48,50 +49,32 @@ namespace model.camera
             }
         }
 
-        internal List<VideoFileModel> SearchVideo(DateTime date, FileAlertType type)
+        internal List<VideoFileModel> SearchVideoFiles(DateTime day, FileAlertType type)
         {
             var result = new List<VideoFileModel>();
             if (type.HasFlag(FileAlertType.Alarm))
-                result.AddRange(SearchVideo(date, FileType.SDK_RECORD_ALARM));
+                result.AddRange(SearchVideoFiles(day, FileType.SDK_RECORD_ALARM));
             if (type.HasFlag(FileAlertType.Detect))
-                result.AddRange(SearchVideo(date, FileType.SDK_RECORD_DETECT));
+                result.AddRange(SearchVideoFiles(day, FileType.SDK_RECORD_DETECT));
             if (type.HasFlag(FileAlertType.Regular))
-                result.AddRange(SearchVideo(date, FileType.SDK_RECORD_REGULAR));
+                result.AddRange(SearchVideoFiles(day, FileType.SDK_RECORD_REGULAR));
             if (type.HasFlag(FileAlertType.Manual))
-                result.AddRange(SearchVideo(date, FileType.SDK_RECORD_MANUAL));
+                result.AddRange(SearchVideoFiles(day, FileType.SDK_RECORD_MANUAL));
             
             result.Sort((x, y) => DateTime.Compare(x.BeginTime, y.BeginTime)); 
             return result;
         }
 
-        internal List<VideoFileModel> SearchVideo(DateTime date, FileType type)
+        internal List<VideoFileModel> SearchVideoFiles(DateTime date, FileType type)
         {
-            H264_DVR_TIME startTime = new H264_DVR_TIME();
-            startTime.dwYear = date.Year;
-            startTime.dwMonth = date.Month;
-            startTime.dwDay = date.Day;
-            startTime.dwHour = 0;
-            startTime.dwMinute = 0;
-            startTime.dwSecond = 0;
+            DateTime from = date.Date.AddSeconds(1);
+            DateTime to = date.Date.AddDays(1).AddSeconds(-1);
+            return model.SearchVideoFiles(from, to, type);
+        }
 
-            H264_DVR_TIME endTime = new H264_DVR_TIME();
-            endTime.dwYear = startTime.dwYear;
-            endTime.dwMonth = startTime.dwMonth;
-            endTime.dwDay = startTime.dwDay;
-            endTime.dwHour = 23;
-            endTime.dwMinute = 59;
-            endTime.dwSecond = 59;
-
-            var result = new List<VideoFileModel>();
-            List<VideoFileModel> sub;
-            do
-            {
-                sub = model.SearchVideo(startTime, endTime, type);
-                result.AddRange(sub);
-
-                if (sub.Count > 0) startTime = sub.Last().GetEndDvrTime();
-            } while (sub.Count == 64);
-            return result;
+        internal VideoTimeRangeModel SearchVideo(DateTime from, DateTime to)
+        {
+            return model.SearchVideo(from, to);
         }
 
         internal bool Sound(CameraViewPanel view)

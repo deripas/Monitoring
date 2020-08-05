@@ -8,18 +8,21 @@ namespace service
         public static DI Instance { get; } = new DI();
         
         public CameraService CameraService { get; set; }
+        public DeviceService DeviceService { get; set; }
         public IServerApi ServerApi { get; set; }
         
         
         public void Init()
         {
             ServerApi = new MockServerApi();
-            CameraService = new CameraService(ServerApi.Cameras());
+            CameraService = new CameraService(ServerApi);
+            DeviceService = new DeviceService(ServerApi);
         }
 
         internal void Dispose()
         {
             CameraService.Dispose();
+            DeviceService.Dispose();
         }
     }
 }

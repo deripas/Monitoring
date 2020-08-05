@@ -39,6 +39,7 @@ namespace gui
         }
 
         public event Action<string> StatusText;
+        public event Action<double> ProgressChange;
         private VideoFilePlayer player;
 
         private DateTime lastScrollTime;
@@ -149,7 +150,11 @@ namespace gui
             {
                 var max = trackBar1.Maximum;
                 int pos = Convert.ToInt32(player.GetPlayPos() * max);
-                if (pos < max) trackBar1.Value = pos;
+                if (pos < max)
+                {
+                    trackBar1.Value = pos;
+                    ProgressChange?.Invoke((double) trackBar1.Value / trackBar1.Maximum);
+                }
 
                 if (pos == 0 && (DateTime.Now - lastControlTime).TotalSeconds > 3)
                 {
@@ -186,6 +191,7 @@ namespace gui
         {
             var dX = (double)e.X / (double)trackBar1.Width;
             trackBar1.Value = Convert.ToInt32(dX * (trackBar1.Maximum - trackBar1.Minimum));
+            ProgressChange?.Invoke(dX);
             BeginScroll((float)dX);
         }
 

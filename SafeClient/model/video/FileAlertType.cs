@@ -6,6 +6,7 @@ namespace model.video
     enum FileAlertType
     {
         None = 0,
+        All = ~0,
         Alarm = 1,
         Detect = 2,
         Regular = 4,

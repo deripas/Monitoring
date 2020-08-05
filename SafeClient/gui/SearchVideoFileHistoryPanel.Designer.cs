@@ -33,11 +33,11 @@
             this.detectCheckBox = new System.Windows.Forms.CheckBox();
             this.manualCheckBox = new System.Windows.Forms.CheckBox();
             this.findButton = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.cameraComboBox = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.videoFileList1 = new gui.VideoFileList();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -106,18 +106,6 @@
             this.findButton.UseVisualStyleBackColor = true;
             this.findButton.Click += new System.EventHandler(this.findButton_Click);
             // 
-            // listBox1
-            // 
-            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 24;
-            this.listBox1.Location = new System.Drawing.Point(3, 143);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(346, 486);
-            this.listBox1.TabIndex = 13;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-            this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
-            // 
             // cameraComboBox
             // 
             this.cameraComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -145,8 +133,8 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.dateTimePicker1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.listBox1, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.cameraComboBox, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.videoFileList1, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -180,6 +168,14 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(346, 44);
             this.tableLayoutPanel2.TabIndex = 17;
             // 
+            // videoFileList1
+            // 
+            this.videoFileList1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.videoFileList1.Location = new System.Drawing.Point(3, 143);
+            this.videoFileList1.Name = "videoFileList1";
+            this.videoFileList1.Size = new System.Drawing.Size(346, 486);
+            this.videoFileList1.TabIndex = 18;
+            // 
             // SearchVideoFileHistoryPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
@@ -200,10 +196,10 @@
         private System.Windows.Forms.CheckBox detectCheckBox;
         private System.Windows.Forms.CheckBox manualCheckBox;
         private System.Windows.Forms.Button findButton;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ComboBox cameraComboBox;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private VideoFileList videoFileList1;
     }
 }

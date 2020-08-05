@@ -39,7 +39,7 @@ namespace model.video
             }
             set
             {
-                speed = (value > -8) && (value < 8) ? value : speed;
+                speed = (value >= -4) && (value <= 4) ? value : speed;
                 if (speed >= 0)
                     PlayBackControl(PlayBackAction.SDK_PLAY_BACK_FAST, speed);
                 else
@@ -64,48 +64,24 @@ namespace model.video
         }
 
         private IVideoPlayerView view;
-        private VideoFileModel model;
+        private VideoPlayBackSource source;
 
-        private NetSDK.fDownLoadPosCallBack downloadCallBack;
-        private NetSDK.fRealDataCallBack realDataCallBack;
         private SDK_HANDLE playHandleId;
         private bool sound;
         private bool pause;
         private int speed;
 
-        public VideoFilePlayer(IVideoPlayerView view, VideoFileModel model)
+        public VideoFilePlayer(IVideoPlayerView view, VideoPlayBackSource source)
         {
             this.view = view;
-            this.model = model;
-
-            downloadCallBack = new NetSDK.fDownLoadPosCallBack(DownLoadPosCallback);
-            realDataCallBack = new NetSDK.fRealDataCallBack(RealDataCallBack);
+            this.source = source;
             playHandleId = -1;
-        }
-
-        public int RealDataCallBack(SDK_HANDLE lRealHandle, int dwDataType, IntPtr pBuffer, UInt32 lbufsize, IntPtr dwUser)
-        {
-            return 1;
-        }
-
-        public void DownLoadPosCallback(SDK_HANDLE lPlayHandle, int lTotalSize, int lDownLoadSize, IntPtr dwUser)
-        {
         }
 
         public void Start()
         {
-            var data = model.Data;
-            data.hWnd = view.Canvas.Handle;
-            playHandleId = NetSDK.H264_DVR_PlayBackByName(model.LoginId, ref data, downloadCallBack, realDataCallBack, view.Canvas.Handle);
-            if (playHandleId >= 0)
-            {
-                Log.Info("{0}: H264_DVR_PlayBackByName - OK", this);
-            }
-            else
-            {
-                Log.Info("{0}: H264_DVR_PlayBackByName -  FAIL {1}", this, NetSDK.GetLastErrorCode());
-                Stop();
-            }
+            playHandleId = source.Play(view.Canvas.Handle);
+            if (playHandleId < 0) Stop();
         }
 
         public void Stop()
@@ -165,7 +141,13 @@ namespace model.video
         public void SetPlayPos(float pos)
         {
             if (playHandleId >= 0)
-                Log.Info("{0}: H264_DVR_SetPlayPos {1} - {2}", this, pos, NetSDK.H264_DVR_SetPlayPos(playHandleId, pos));
+            {
+                var result = NetSDK.H264_DVR_SetPlayPos(playHandleId, pos);
+                if(result)
+                    Log.Info("{0}: H264_DVR_SetPlayPos {1} - OK", this, pos);
+                else
+                    Log.Info("{0}: H264_DVR_SetPlayPos {1} - FAIL {2}", this, pos, NetSDK.GetLastErrorCode());
+            }
         }
 
         public float GetPlayPos()
@@ -177,7 +159,7 @@ namespace model.video
 
         public override string ToString()
         {
-            return model.ToString() + " player";
+            return source.ToString() + " player";
         }
     }
 }

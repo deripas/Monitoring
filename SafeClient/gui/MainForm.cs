@@ -16,6 +16,7 @@ namespace gui
         {
             CameraPtzForm.Instance.Dispose();
             VideoViewForm.Instance.Dispose();
+            AlertViewForm.Instance.Dispose();
             DI.Instance.Dispose();
             Application.Exit();
         }
@@ -30,6 +31,11 @@ namespace gui
         private void toolStripButton1_Click(object sender, System.EventArgs e)
         {
             VideoViewForm.Instance.Start();
+        }
+
+        private void toolStripButton2_Click(object sender, System.EventArgs e)
+        {
+            AlertViewForm.Instance.Start();
         }
     }
 }

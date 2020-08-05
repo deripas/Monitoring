@@ -3,6 +3,7 @@ using model.nvr;
 using model.video;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using SDK_HANDLE = System.Int32;
 
@@ -15,6 +16,8 @@ namespace model.camera
         private NvrModel nvr;
 
         public int Channel { get; }
+
+        public String Name { get; }
 
         public SDK_HANDLE LoginId
         {
@@ -36,6 +39,7 @@ namespace model.camera
         {
             this.nvr = nvr;
             this.Channel = channel;
+            Name = nvr.Ip + "#" + (Channel + 1);
         }
 
         internal void StartTalk()
@@ -59,13 +63,39 @@ namespace model.camera
             return "cam(" + nvr.Ip + " #" + (Channel + 1) + ")";
         }
 
-        internal List<VideoFileModel> SearchVideo(H264_DVR_TIME startTime, H264_DVR_TIME endTime, FileType fileType)
+        private H264_DVR_TIME ToDvrTime(DateTime t)
+        {
+            H264_DVR_TIME time = new H264_DVR_TIME();
+            time.dwYear = t.Year;
+            time.dwMonth = t.Month;
+            time.dwDay = t.Day;
+            time.dwHour = t.Hour;
+            time.dwMinute = t.Minute;
+            time.dwSecond = t.Second;
+            return time;
+        }
+
+        internal List<VideoFileModel> SearchVideoFiles(DateTime from, DateTime to, FileType type)
+        {
+            var result = new List<VideoFileModel>();
+            List<VideoFileModel> sub;
+            do
+            {
+                sub = SearchVideoFilesBatch(from, to, type);
+                result.AddRange(sub);
+
+                if (sub.Count > 0) from = sub.Last().EndTime;
+            } while (sub.Count == 64);
+            return result;
+        }
+
+        private List<VideoFileModel> SearchVideoFilesBatch(DateTime from, DateTime to, FileType fileType)
         {
             var info = new H264_DVR_FINDINFO();
             info.nChannelN0 = Channel;
             info.nFileType = (int)fileType;
-            info.startTime = startTime;
-            info.endTime = endTime;
+            info.startTime = ToDvrTime(from);
+            info.endTime = ToDvrTime(to);
 
             int nMaxLen = 64;
             int waitTime = 5000;
@@ -99,6 +129,15 @@ namespace model.camera
                 }
             }
             return result;
+        }
+
+        internal VideoTimeRangeModel SearchVideo(DateTime from, DateTime to)
+        {
+            var info = new H264_DVR_FINDINFO();
+            info.nChannelN0 = Channel;
+            info.startTime = ToDvrTime(from);
+            info.endTime = ToDvrTime(to);
+            return new VideoTimeRangeModel(this, info);
         }
     }
 }

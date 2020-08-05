@@ -24,20 +24,28 @@ namespace service
 
         public List<CameraController> CameraList { get; }
 
-        public CameraService(List<CameraInfo> list)
+        public CameraController this[long id]
+        {
+            get
+            {
+                return _cameraMap[id];
+            }
+        }
+
+        public CameraService(IServerApi serverApi)
         {
             _nvrMap = new Dictionary<IPEndPoint, NvrController>();
             _cameraMap = new Dictionary<long, CameraController>();
             CameraList = new List<CameraController>();
 
-            SetDllDirectory(ConfigurationManager.AppSettings["sdk.dir"]);
+            SetDllDirectory(ConfigurationManager.AppSettings["netsdk.dir"]);
             disconnectCallback = new NetSDK.fDisConnect(FDisconnectCallback);
             GC.KeepAlive(disconnectCallback);
 
             Log.Info("H264_DVR_Init {0}", NetSDK.H264_DVR_Init(disconnectCallback, IntPtr.Zero));
             Log.Info("H264_DVR_SetConnectTime {0}", NetSDK.H264_DVR_SetConnectTime(ConnectionTimeMs, 1));
 
-            foreach (CameraInfo camera in list)
+            foreach (CameraInfo camera in serverApi.Cameras())
             {
                 var nvr = Nvr(camera.NvrInfo);
                 var cam = nvr.Camera(camera.Chanel);

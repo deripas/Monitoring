@@ -1,5 +1,6 @@
 ﻿using model.camera;
 using model.video;
+using Properties;
 using System.Windows.Forms;
 
 namespace gui
@@ -11,8 +12,10 @@ namespace gui
         public VideoViewForm()
         {
             InitializeComponent();
+            Icon = Resources.AppIcon;
             searchVideoFileHistoryPanel1.SelectItem += SearchVideoFileHistoryPanel1_SelectItem;
             searchVideoFileHistoryPanel1.PlayItem += SearchVideoFileHistoryPanel1_PlayItem;
+            searchVideoFileHistoryPanel1.StopItem += SearchVideoFileHistoryPanel1_StopItem;
             videoPlayerPanel1.NextFile += VideoPlayerPanel1_Next;
         }
 
@@ -24,6 +27,11 @@ namespace gui
         private void SearchVideoFileHistoryPanel1_PlayItem()
         {
             videoPlayerPanel1.Start();
+        }
+
+        private void SearchVideoFileHistoryPanel1_StopItem()
+        {
+            videoPlayerPanel1.Stop();
         }
 
         private void SearchVideoFileHistoryPanel1_SelectItem(VideoFileModel video)

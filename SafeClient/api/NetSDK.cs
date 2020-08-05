@@ -1457,8 +1457,8 @@ namespace api
         [DllImport("NetSdk.dll")]
         public static extern SDK_HANDLE H264_DVR_PlayBackByTime(SDK_HANDLE lLoginID, ref H264_DVR_FINDINFO lpFindInfo, fRealDataCallBack fDownLoadDataCallBack, fDownLoadPosCallBack cbDownLoadPos, IntPtr dwPosUser);
         [DllImport("NetSdk.dll")]
-        public static extern SDK_HANDLE H264_DVR_PlayBackByTimeEx(SDK_HANDLE lLoginID, ref H264_DVR_FINDINFO lpFindInfo, fRealDataCallBack fDownLoadDataCallBack, int dwDataUser,
-                                            fDownLoadPosCallBack cbDownLoadPos, int dwPosUser);
+        public static extern SDK_HANDLE H264_DVR_PlayBackByTimeEx(SDK_HANDLE lLoginID, ref H264_DVR_FINDINFO lpFindInfo, fRealDataCallBack fDownLoadDataCallBack, IntPtr dwDataUser,
+                                            fDownLoadPosCallBack cbDownLoadPos, IntPtr dwPosUser);
         [DllImport("NetSdk.dll")]
         public static extern bool H264_DVR_PlayBackControl(SDK_HANDLE lPlayHandle, PlayBackAction lControlCode, int lCtrlValue);
         [DllImport("NetSdk.dll")]
