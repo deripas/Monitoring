@@ -66,7 +66,7 @@ namespace gui
             playerNavigationPanel1.ProgressChange += PlayerNavigationPanel1_ProgressChange;
         }
 
-        internal void SelectVideo(VideoTimeRangeModel video)
+        internal void SelectVideo(VideoPlayBackSource video)
         {
             playerNavigationPanel1.VideoPlayer = new VideoFilePlayer(this, video);
         }

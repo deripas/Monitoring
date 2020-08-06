@@ -73,12 +73,7 @@ namespace model.video
 
         public override string ToString()
         {
-            return string.Format("[{0}-{1}] {2}", time(BeginTime), time(EndTime), type(fileType));
-        }
-
-        private string time(DateTime dt)
-        {
-            return String.Format("{0:HH:mm:ss}", dt);
+            return string.Format("[{0:HH:mm:ss} - {1:HH:mm:ss}] {2}", BeginTime, EndTime, type(fileType));
         }
 
         private string type(FileType type)
@@ -89,7 +84,7 @@ namespace model.video
                 case FileType.SDK_RECORD_DETECT: return "D";
                 case FileType.SDK_RECORD_REGULAR: return "R";
                 case FileType.SDK_RECORD_MANUAL: return "M";
-                default: return "?";
+                default: return "";
             }
         }
     }

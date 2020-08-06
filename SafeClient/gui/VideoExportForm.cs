@@ -15,8 +15,11 @@ namespace gui
             InitializeComponent();
             downloader = new VideoFileDownloader();
             progressBar1.Maximum = 100;
-            saveFileDialog1.DefaultExt = ".h264";
-            saveFileDialog1.Filter = "H264|*.h264|Avi|*.avi";
+
+            var dir = Directory.CreateDirectory("save");
+            saveFileDialog1.InitialDirectory = dir.FullName;
+            saveFileDialog1.DefaultExt = ".avi";
+            saveFileDialog1.Filter = "Avi|*.avi|H264|*.h264";
         }
 
         private void UpdateButton()
@@ -25,6 +28,11 @@ namespace gui
                 buttonSelect.Text = "💾";
             else
                 buttonSelect.Text = "🗙";
+
+            dateTimeFromDate.Enabled = !timer1.Enabled;
+            dateTimeFromTime.Enabled = !timer1.Enabled;
+            dateTimeToDate.Enabled = !timer1.Enabled;
+            dateTimeToTime.Enabled = !timer1.Enabled;
         }
 
         private void buttonSelect_Click(object sender, System.EventArgs e)

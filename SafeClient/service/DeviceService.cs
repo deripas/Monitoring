@@ -30,8 +30,9 @@ namespace service
             foreach (AlertInfo info in alerts)
             {
                 var cam = DI.Instance.CameraService[info.CameraId];
-                result.Add(new AlertModel(cam));
+                result.Add(new AlertModel(cam, info));
             }
+            result.Sort((x, y) => DateTime.Compare(x.Time, y.Time));
             return result;
         }
     }

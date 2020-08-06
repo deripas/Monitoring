@@ -18,6 +18,30 @@ namespace gui
             }
         }
 
+        public VideoFileModel this[int index]
+        {
+            get
+            {
+                var o = listBox1.Items[index];
+                if (o is VideoFileModel)
+                    return (VideoFileModel)o;
+                else
+                    return null;
+            }
+        }
+
+        public event DrawItemEventHandler DrawItem
+        {
+            add
+            {
+                listBox1.DrawItem += value;
+            }
+            remove
+            {
+                listBox1.DrawItem -= value;
+            }
+        }
+
         public event Action<VideoFileModel> SelectItem;
         public event Action PlayItem;
         public event Action StopItem;
@@ -58,6 +82,20 @@ namespace gui
             return true;
         }
 
+        internal void SelectByTime(DateTime time)
+        {
+            for(int i = 0; i < listBox1.Items.Count; i ++)
+            {
+                VideoFileModel item = (VideoFileModel)listBox1.Items[i];
+                if (item.BeginTime <= time && time <= item.EndTime)
+                {
+                    listBox1.SelectedIndex = i;
+                    break;
+                }
+            }
+            SelectVideoFile();
+        }
+
         private void buttonExport_Click(object sender, EventArgs e)
         {
             StopItem?.Invoke();
@@ -65,10 +103,7 @@ namespace gui
             if (select == null) return;
 
             VideoExportForm export = new VideoExportForm();
-            if(export.ShowDialog((VideoFileModel)select) == DialogResult.OK)
-            {
-
-            }
+            export.ShowDialog((VideoFileModel)select);
         }
     }
 }

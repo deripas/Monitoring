@@ -14,6 +14,7 @@ namespace api
             process.StartInfo.WorkingDirectory = ConfigurationManager.AppSettings["ffmpeg.dir"] + "\\bin";
             process.StartInfo.Arguments = arg;
             process.Start();
+            process.WaitForExit();
         }
     }
 }

@@ -65,10 +65,15 @@ namespace model.camera
             return result;
         }
 
-        internal List<VideoFileModel> SearchVideoFiles(DateTime date, FileType type)
+        internal List<VideoFileModel> SearchVideoFiles(DateTime day, FileType type)
         {
-            DateTime from = date.Date.AddSeconds(1);
-            DateTime to = date.Date.AddDays(1).AddSeconds(-1);
+            DateTime from = day.Date.AddSeconds(1);
+            DateTime to = day.Date.AddDays(1).AddSeconds(-1);
+            return SearchVideoFiles(from, to, type);
+        }
+
+        internal List<VideoFileModel> SearchVideoFiles(DateTime from, DateTime to, FileType type)
+        {
             return model.SearchVideoFiles(from, to, type);
         }
 

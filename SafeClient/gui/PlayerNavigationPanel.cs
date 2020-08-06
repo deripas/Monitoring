@@ -43,14 +43,12 @@ namespace gui
         private VideoFilePlayer player;
 
         private DateTime lastScrollTime;
-        private DateTime lastControlTime;
         private float lastScrollVal;
 
         public PlayerNavigationPanel()
         {
             InitializeComponent();
             lastScrollTime = DateTime.MinValue;
-            lastControlTime = DateTime.MinValue;
             lastScrollVal = -1;
 
             trackBar1.SetRange(0, 1000);
@@ -122,7 +120,6 @@ namespace gui
             if (run)
             {
                 Log.Info("{0}: start play file", this);
-                lastControlTime = DateTime.Now;
                 player.Start();
                 timerPlayBack.Start();
             }
@@ -150,15 +147,10 @@ namespace gui
             {
                 var max = trackBar1.Maximum;
                 int pos = Convert.ToInt32(player.GetPlayPos() * max);
-                if (pos < max)
+                if (pos <= max)
                 {
                     trackBar1.Value = pos;
                     ProgressChange?.Invoke((double) trackBar1.Value / trackBar1.Maximum);
-                }
-
-                if (pos == 0 && (DateTime.Now - lastControlTime).TotalSeconds > 3)
-                {
-                    playerControlPanel1.DoNextFile();
                 }
             }
         }
@@ -177,7 +169,6 @@ namespace gui
         {
             lastScrollVal = val;
             lastScrollTime = DateTime.Now;
-            lastControlTime = DateTime.Now;
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)

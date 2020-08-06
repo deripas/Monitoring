@@ -8,21 +8,30 @@ namespace model.device
 {
     public class AlertModel
     {
-        public CameraController camera;
-
-        public AlertModel(CameraController camera)
+        public DateTime Time
         {
-            this.camera = camera;
+            get
+            {
+                return info.Time;
+            }
+        }
+        public CameraController Camera;
+        private AlertInfo info;
+
+        public AlertModel(CameraController camera, AlertInfo info)
+        {
+            this.Camera = camera;
+            this.info = info;
         }
 
         public override string ToString()
         {
-            return "alert";
+            return String.Format("alert [{0:HH:mm:ss}]", Time);
         }
 
         internal VideoTimeRangeModel Video(DateTime from, DateTime to)
         {
-            return camera.SearchVideo(from, to);
+            return Camera.SearchVideo(from, to);
         }
 
         internal ChartModel Chart(DateTime from, DateTime to)
@@ -34,7 +43,7 @@ namespace model.device
             for (int i = 0; i < n; i++)
             {
                 x[i] = from.AddMilliseconds(i * millis);
-                y[i] = i;
+                y[i] = Math.Sin((double)i * Math.PI * 2 / n);
             }
 
             var chart = new ChartModel();
@@ -42,7 +51,7 @@ namespace model.device
             chart.Y = y;
             chart.From = from;
             chart.To = to;
-            chart.Alert = from.AddMinutes(4);
+            chart.Alert = Time;
             return chart;
         }
     }
