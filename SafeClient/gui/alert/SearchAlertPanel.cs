@@ -4,6 +4,7 @@ using service;
 using model.device;
 using model.video;
 using System.Configuration;
+using System.Drawing;
 
 namespace gui
 {
@@ -74,10 +75,34 @@ namespace gui
             var alert = Alert;
             if (alert == null) return;
 
-                        var video = videoFileList1[e.Index];
+            var video = videoFileList1[e.Index];
             if (video == null) return;
 
-            //if(video.BeginTime <= alert.Time && alert.Time <= video.EndTime)
+            try
+            {
+                e.DrawBackground();
+                if (e.State.HasFlag(DrawItemState.Selected))
+                {
+                    e.Graphics.DrawString(video.ToString(), e.Font, Brushes.White, e.Bounds, StringFormat.GenericDefault);
+                }
+                else
+                {
+                    if (video.BeginTime <= alert.Time && alert.Time <= video.EndTime)
+                    {
+                        e.Graphics.FillRectangle(Brushes.Red, e.Bounds);
+                        e.Graphics.DrawString(video.ToString(), e.Font, Brushes.White, e.Bounds, StringFormat.GenericDefault);
+                    }
+                    else
+                    {
+                        e.Graphics.DrawString(video.ToString(), e.Font, Brushes.Black, e.Bounds, StringFormat.GenericDefault);
+                    }
+                }
+                e.DrawFocusRectangle();
+            }
+            catch
+            {
+
+            }
         }
 
         public void Search()

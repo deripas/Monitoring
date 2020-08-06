@@ -2,6 +2,7 @@
 using model.device;
 using model.video;
 using Properties;
+using service;
 using System;
 using System.Windows.Forms;
 
@@ -42,7 +43,7 @@ namespace gui
             if (alert == null) return;
 
             alertPlayerPanel1.SelectVideo(video);
-            alertPlayerPanel1.SelectChart(alert.Chart(video.BeginTime, video.EndTime));
+            alertPlayerPanel1.SelectChart(DI.Instance.DeviceService.Chart(alert, video.BeginTime, video.EndTime));
         }
 
         internal void Start()

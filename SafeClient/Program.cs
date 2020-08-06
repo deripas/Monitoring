@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using api;
 using gui;
+using service;
 
 namespace SafeClient
 {

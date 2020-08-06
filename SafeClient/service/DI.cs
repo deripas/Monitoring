@@ -10,6 +10,7 @@ namespace service
         public CameraService CameraService { get; set; }
         public DeviceService DeviceService { get; set; }
         public IServerApi ServerApi { get; set; }
+        public AlarmSoundService AlarmSoundService { get; set; }
         
         
         public void Init()
@@ -17,12 +18,14 @@ namespace service
             ServerApi = new MockServerApi();
             CameraService = new CameraService(ServerApi);
             DeviceService = new DeviceService(ServerApi);
+            AlarmSoundService = new AlarmSoundService();
         }
 
         internal void Dispose()
         {
             CameraService.Dispose();
             DeviceService.Dispose();
+            AlarmSoundService.Dispose();
         }
     }
 }

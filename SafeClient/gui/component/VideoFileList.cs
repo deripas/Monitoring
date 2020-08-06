@@ -34,6 +34,7 @@ namespace gui
         {
             add
             {
+                listBox1.DrawMode = DrawMode.OwnerDrawFixed;
                 listBox1.DrawItem += value;
             }
             remove

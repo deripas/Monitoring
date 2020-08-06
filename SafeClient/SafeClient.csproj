@@ -56,6 +56,9 @@
     <ApplicationIcon>AppIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NAudio, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.1.10.0\lib\net35\NAudio.dll</HintPath>
+    </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c">
       <HintPath>packages\NLog.4.7.2\lib\net40-client\NLog.dll</HintPath>
       <Private>True</Private>
@@ -64,6 +67,7 @@
       <HintPath>packages\NLog.Windows.Forms.4.3.0\lib\net35\NLog.Windows.Forms.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -90,46 +94,46 @@
     <Compile Include="api\impl\MockServerApi.cs" />
     <Compile Include="api\IServerApi.cs" />
     <Compile Include="api\NetSDK.cs" />
-    <Compile Include="gui\AlertPlayerPanel.cs">
+    <Compile Include="gui\alert\AlertPlayerPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="gui\AlertPlayerPanel.Designer.cs">
+    <Compile Include="gui\alert\AlertPlayerPanel.Designer.cs">
       <DependentUpon>AlertPlayerPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="gui\AlertViewForm.cs">
+    <Compile Include="gui\alert\AlertViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="gui\AlertViewForm.Designer.cs">
+    <Compile Include="gui\alert\AlertViewForm.Designer.cs">
       <DependentUpon>AlertViewForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="gui\CameraGridPanel.cs">
+    <Compile Include="gui\camera\CameraGridPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="gui\CameraGridPanel.Designer.cs">
+    <Compile Include="gui\camera\CameraGridPanel.Designer.cs">
       <DependentUpon>CameraGridPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="gui\CameraPtzForm.cs">
+    <Compile Include="gui\camera\CameraPtzForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="gui\CameraPtzForm.Designer.cs">
+    <Compile Include="gui\camera\CameraPtzForm.Designer.cs">
       <DependentUpon>CameraPtzForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="gui\CameraPtzPanel.cs">
+    <Compile Include="gui\camera\CameraPtzPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="gui\CameraPtzPanel.Designer.cs">
+    <Compile Include="gui\camera\CameraPtzPanel.Designer.cs">
       <DependentUpon>CameraPtzPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="gui\CameraViewPanel.cs">
+    <Compile Include="gui\camera\CameraViewPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="gui\CameraViewPanel.Designer.cs">
+    <Compile Include="gui\camera\CameraViewPanel.Designer.cs">
       <DependentUpon>CameraViewPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="gui\CanvasPanel.cs">
+    <Compile Include="gui\component\CanvasPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="gui\CanvasPanel.Designer.cs">
+    <Compile Include="gui\component\CanvasPanel.Designer.cs">
       <DependentUpon>CanvasPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="gui\component\SelectedTrackBar.cs">
@@ -144,28 +148,28 @@
     <Compile Include="gui\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="gui\PlayerControlPanel.cs">
+    <Compile Include="gui\component\PlayerControlPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="gui\PlayerControlPanel.Designer.cs">
+    <Compile Include="gui\component\PlayerControlPanel.Designer.cs">
       <DependentUpon>PlayerControlPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="gui\PlayerNavigationPanel.cs">
+    <Compile Include="gui\component\PlayerNavigationPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="gui\PlayerNavigationPanel.Designer.cs">
+    <Compile Include="gui\component\PlayerNavigationPanel.Designer.cs">
       <DependentUpon>PlayerNavigationPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="gui\SearchAlertPanel.cs">
+    <Compile Include="gui\alert\SearchAlertPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="gui\SearchAlertPanel.Designer.cs">
+    <Compile Include="gui\alert\SearchAlertPanel.Designer.cs">
       <DependentUpon>SearchAlertPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="gui\SearchVideoFileHistoryPanel.cs">
+    <Compile Include="gui\archive\SearchVideoFileHistoryPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="gui\SearchVideoFileHistoryPanel.Designer.cs">
+    <Compile Include="gui\archive\SearchVideoFileHistoryPanel.Designer.cs">
       <DependentUpon>SearchVideoFileHistoryPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="gui\SplashScreen.cs">
@@ -174,28 +178,28 @@
     <Compile Include="gui\SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="gui\VideoExportForm.cs">
+    <Compile Include="gui\commons\VideoExportForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="gui\VideoExportForm.Designer.cs">
+    <Compile Include="gui\commons\VideoExportForm.Designer.cs">
       <DependentUpon>VideoExportForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="gui\VideoFileList.cs">
+    <Compile Include="gui\component\VideoFileList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="gui\VideoFileList.Designer.cs">
+    <Compile Include="gui\component\VideoFileList.Designer.cs">
       <DependentUpon>VideoFileList.cs</DependentUpon>
     </Compile>
-    <Compile Include="gui\VideoPlayerPanel.cs">
+    <Compile Include="gui\archive\VideoPlayerPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="gui\VideoPlayerPanel.Designer.cs">
+    <Compile Include="gui\archive\VideoPlayerPanel.Designer.cs">
       <DependentUpon>VideoPlayerPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="gui\VideoViewForm.cs">
+    <Compile Include="gui\archive\VideoViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="gui\VideoViewForm.Designer.cs">
+    <Compile Include="gui\archive\VideoViewForm.Designer.cs">
       <DependentUpon>VideoViewForm.cs</DependentUpon>
     </Compile>
     <Compile Include="model\device\AlertModel.cs" />
@@ -215,58 +219,59 @@
     <Compile Include="model\video\VideoTimeRangeModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="service\AlarmSoundService.cs" />
     <Compile Include="service\DeviceService.cs" />
     <Compile Include="service\CameraService.cs" />
     <Compile Include="service\DI.cs" />
-    <EmbeddedResource Include="gui\AlertPlayerPanel.resx">
+    <EmbeddedResource Include="gui\alert\AlertPlayerPanel.resx">
       <DependentUpon>AlertPlayerPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="gui\AlertViewForm.resx">
+    <EmbeddedResource Include="gui\alert\AlertViewForm.resx">
       <DependentUpon>AlertViewForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="gui\CameraGridPanel.resx">
+    <EmbeddedResource Include="gui\camera\CameraGridPanel.resx">
       <DependentUpon>CameraGridPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="gui\CameraPtzForm.resx">
+    <EmbeddedResource Include="gui\camera\CameraPtzForm.resx">
       <DependentUpon>CameraPtzForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="gui\CameraPtzPanel.resx">
+    <EmbeddedResource Include="gui\camera\CameraPtzPanel.resx">
       <DependentUpon>CameraPtzPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="gui\CameraViewPanel.resx">
+    <EmbeddedResource Include="gui\camera\CameraViewPanel.resx">
       <DependentUpon>CameraViewPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="gui\CanvasPanel.resx">
+    <EmbeddedResource Include="gui\component\CanvasPanel.resx">
       <DependentUpon>CanvasPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gui\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="gui\PlayerControlPanel.resx">
+    <EmbeddedResource Include="gui\component\PlayerControlPanel.resx">
       <DependentUpon>PlayerControlPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="gui\PlayerNavigationPanel.resx">
+    <EmbeddedResource Include="gui\component\PlayerNavigationPanel.resx">
       <DependentUpon>PlayerNavigationPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="gui\SearchAlertPanel.resx">
+    <EmbeddedResource Include="gui\alert\SearchAlertPanel.resx">
       <DependentUpon>SearchAlertPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="gui\SearchVideoFileHistoryPanel.resx">
+    <EmbeddedResource Include="gui\archive\SearchVideoFileHistoryPanel.resx">
       <DependentUpon>SearchVideoFileHistoryPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gui\SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="gui\VideoExportForm.resx">
+    <EmbeddedResource Include="gui\commons\VideoExportForm.resx">
       <DependentUpon>VideoExportForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="gui\VideoFileList.resx">
+    <EmbeddedResource Include="gui\component\VideoFileList.resx">
       <DependentUpon>VideoFileList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="gui\VideoPlayerPanel.resx">
+    <EmbeddedResource Include="gui\archive\VideoPlayerPanel.resx">
       <DependentUpon>VideoPlayerPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="gui\VideoViewForm.resx">
+    <EmbeddedResource Include="gui\archive\VideoViewForm.resx">
       <DependentUpon>VideoViewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -307,6 +312,7 @@
     <Content Include="NLog.xsd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\sirena.wav" />
     <None Include="Resources\AppIcon.ico" />
     <None Include="Resources\temperature.png" />
     <None Include="Resources\no_image.png" />

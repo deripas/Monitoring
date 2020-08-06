@@ -116,5 +116,10 @@ namespace gui
             cameraToolStripMenuItem.Items.Clear();
             cameraToolStripMenuItem.Items.AddRange(DI.Instance.CameraService.CameraList.ToArray());
         }
+
+        private void canvas_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

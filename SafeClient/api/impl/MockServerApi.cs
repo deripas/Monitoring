@@ -24,13 +24,15 @@ namespace api.impl
             const string pwd = "1qaz2wsx";
             var i = 0;
 
-            if (false)
+            if (!false)
             {
                 return new List<CameraInfo>
                 {
                     new CameraInfo(i++, "192.168.1.99", 34567, login, pwd, 0),
                     new CameraInfo(i++, "192.168.1.99", 34567, login, pwd, 1),
                     new CameraInfo(i++, "192.168.1.99", 34567, login, pwd, 2),
+                    new CameraInfo(i++, "192.168.1.99", 34567, login, pwd, 3),
+                    new CameraInfo(i++, "192.168.1.99", 34567, login, pwd, 3),
                     new CameraInfo(i++, "192.168.1.99", 34567, login, pwd, 3),
                 };
             }

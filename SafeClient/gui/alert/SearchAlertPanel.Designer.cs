@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.videoFileList1 = new gui.VideoFileList();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.comboBoxDevice = new System.Windows.Forms.ComboBox();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.videoFileList1 = new gui.VideoFileList();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -59,6 +59,24 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(400, 690);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 93);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.listBox1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.videoFileList1);
+            this.splitContainer1.Size = new System.Drawing.Size(394, 594);
+            this.splitContainer1.SplitterDistance = 325;
+            this.splitContainer1.TabIndex = 1;
+            // 
             // listBox1
             // 
             this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -69,6 +87,14 @@
             this.listBox1.Size = new System.Drawing.Size(394, 325);
             this.listBox1.TabIndex = 14;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
+            // videoFileList1
+            // 
+            this.videoFileList1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.videoFileList1.Location = new System.Drawing.Point(0, 0);
+            this.videoFileList1.Name = "videoFileList1";
+            this.videoFileList1.Size = new System.Drawing.Size(394, 265);
+            this.videoFileList1.TabIndex = 0;
             // 
             // dateTimePicker1
             // 
@@ -94,32 +120,6 @@
             this.comboBoxDevice.Name = "comboBoxDevice";
             this.comboBoxDevice.Size = new System.Drawing.Size(394, 32);
             this.comboBoxDevice.TabIndex = 15;
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(3, 93);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.listBox1);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.videoFileList1);
-            this.splitContainer1.Size = new System.Drawing.Size(394, 594);
-            this.splitContainer1.SplitterDistance = 325;
-            this.splitContainer1.TabIndex = 1;
-            // 
-            // videoFileList1
-            // 
-            this.videoFileList1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.videoFileList1.Location = new System.Drawing.Point(0, 0);
-            this.videoFileList1.Name = "videoFileList1";
-            this.videoFileList1.Size = new System.Drawing.Size(394, 265);
-            this.videoFileList1.TabIndex = 0;
             // 
             // SearchAlertPanel
             // 
