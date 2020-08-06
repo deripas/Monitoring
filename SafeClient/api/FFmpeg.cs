@@ -7,7 +7,7 @@ namespace api
     {
         internal static void ToAvi(string h264, string avi, int rate)
         {
-            var arg = string.Format("-y -f h264 -i {0} -c:v copy -r {1} {2}", h264, rate, avi);
+            var arg = string.Format("-y -f h264 -r {0} -i {1} -c:v copy {2}", rate, h264, avi);
 
             Process process = new Process();
             process.StartInfo.FileName = "ffmpeg.exe";
