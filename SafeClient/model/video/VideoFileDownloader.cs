@@ -14,6 +14,7 @@ namespace model.video
 
         private SDK_HANDLE downloadHandleId;
         private string tmp;
+        private int fps;
 
         public VideoFileDownloader()
         {
@@ -24,8 +25,9 @@ namespace model.video
 
         public int Start(VideoFileModel video, DateTime from, DateTime to)
         {
+            fps = video.Camera.Fps;
             ClearDirectory();
-            var files = video.camera.SearchVideoFiles(from, to, FileType.SDK_RECORD_ALL);
+            var files = video.Camera.SearchVideoFiles(from, to, FileType.SDK_RECORD_ALL);
             var totalMilliseconds = files
                 .Select(v => v.EndTime - v.BeginTime)
                 .Select(t => t.TotalMilliseconds)
@@ -96,7 +98,7 @@ namespace model.video
             if (fileName.EndsWith(".avi", true, CultureInfo.CurrentCulture))
             {
                 Log.Info("{0}: ffmpeg code {1} to {2}", this, files[0], fileName);
-                FFmpeg.ToAvi(files[0], fileName);
+                FFmpeg.ToAvi(files[0], fileName, fps);
                 return true;
             }
             return false;

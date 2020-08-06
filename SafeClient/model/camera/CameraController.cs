@@ -191,6 +191,11 @@ namespace model.camera
             model.Ptz(cmd, stop, 4);
         }
 
+        internal void Preset(int val)
+        {
+            model.Ptz(PTZ_ControlType.EXTPTZ_POINT_MOVE_CONTROL, true, val);
+        }
+
         public override string ToString()
         {
             return model.ToString();

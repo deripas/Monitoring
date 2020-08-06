@@ -49,9 +49,14 @@ namespace gui
 
             DateTime from = dateTimeFromDate.Value.Date + dateTimeFromTime.Value.TimeOfDay;
             DateTime to = dateTimeToDate.Value.Date + dateTimeToTime.Value.TimeOfDay;
+            if(from > to)
+            {
+                MessageBox.Show("Ошибка в диапазоне времени");
+                return;
+            }
 
             saveFileDialog1.FileName = string.Format("{0}_{1}-{2}-{3}_{4}{5}{6}",
-                video.camera.Name, 
+                video.Camera.Name, 
                 from.Day, from.Month, from.Year,
                 from.Hour, from.Minute, from.Second);
 

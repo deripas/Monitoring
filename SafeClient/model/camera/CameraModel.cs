@@ -43,6 +43,14 @@ namespace model.camera
             }
         }
 
+        public int Fps
+        {
+            get
+            {
+                return 25;
+            }
+        }
+
         public CameraModel(NvrModel nvr, int channel)
         {
             this.nvr = nvr;
@@ -62,8 +70,8 @@ namespace model.camera
 
         internal void Ptz(PTZ_ControlType cmd, bool stop, int speed)
         {
-            NetSDK.H264_DVR_PTZControl(LoginId, Channel, cmd, stop, speed);
-            Log.Debug("{0}: H264_DVR_PTZControl cmd={1}", this, cmd);
+            var result = NetSDK.H264_DVR_PTZControl(LoginId, Channel, cmd, stop, speed);
+            Log.Debug("{0}: H264_DVR_PTZControl cmd={1} value={2} {3}", this, cmd, speed, result);
         }
 
         public override string ToString()

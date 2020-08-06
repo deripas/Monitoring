@@ -24,7 +24,7 @@ namespace api.impl
             const string pwd = "1qaz2wsx";
             var i = 0;
 
-            if (!false)
+            if (false)
             {
                 return new List<CameraInfo>
                 {

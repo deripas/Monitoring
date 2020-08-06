@@ -12,13 +12,13 @@ namespace model.video
         private H264_DVR_FILE_DATA data;
         private FileType fileType;
 
-        public CameraModel camera { get; }
+        public CameraModel Camera { get; }
         public DateTime BeginTime { get; }
         public DateTime EndTime { get; }
 
         public VideoFileModel(CameraModel camera, H264_DVR_FILE_DATA data, FileType fileType)
         {
-            this.camera = camera;
+            this.Camera = camera;
             this.data = data;
             this.fileType = fileType;
 
@@ -34,7 +34,7 @@ namespace model.video
         public SDK_HANDLE Play(IntPtr canvas)
         {
             data.hWnd = canvas;
-            var playHandleId = NetSDK.H264_DVR_PlayBackByName(camera.LoginId, ref data, null, null, canvas);
+            var playHandleId = NetSDK.H264_DVR_PlayBackByName(Camera.LoginId, ref data, null, null, canvas);
             if (playHandleId >= 0)
                 Log.Info("{0}: H264_DVR_PlayBackByName - OK", this);
             else
@@ -46,11 +46,11 @@ namespace model.video
         internal SDK_HANDLE Export(string file, DateTime from, DateTime to)
         {
             var info = new H264_DVR_FINDINFO();
-            info.nChannelN0 = camera.Channel;
+            info.nChannelN0 = Camera.Channel;
             info.startTime = ToDvrTime(from);
             info.endTime = ToDvrTime(to);
 
-            var downloadHandleId = NetSDK.H264_DVR_GetFileByTime(camera.LoginId, ref info, file, true, null, 0, null);
+            var downloadHandleId = NetSDK.H264_DVR_GetFileByTime(Camera.LoginId, ref info, file, true, null, 0, null);
             if (downloadHandleId >= 0)
                 Log.Info("{0}: H264_DVR_GetFileByTime - OK", this);
             else

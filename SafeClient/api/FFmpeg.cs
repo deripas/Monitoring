@@ -5,9 +5,9 @@ namespace api
 {
     public class FFmpeg
     {
-        internal static void ToAvi(string h264, string avi)
+        internal static void ToAvi(string h264, string avi, int rate)
         {
-            var arg = string.Format("-y -f h264 -i {0} -c:v copy {1}", h264, avi);
+            var arg = string.Format("-y -f h264 -i {0} -c:v copy -r {1} {2}", h264, rate, avi);
 
             Process process = new Process();
             process.StartInfo.FileName = "ffmpeg.exe";
