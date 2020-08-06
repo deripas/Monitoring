@@ -30,10 +30,18 @@ namespace gui
             }
         }
 
+        public event Action<CameraViewPanel> DoubleClick;
+
         public CameraViewPanel()
         {
             InitializeComponent();
             canvas.Canvas.Image = Resources.no_image;
+            canvas.Canvas.MouseDoubleClick += Canvas_MouseDoubleClick;
+        }
+
+        private void Canvas_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            DoubleClick?.Invoke(this);
         }
 
         private void contextMenu_VisibleChanged(object sender, EventArgs e)
@@ -115,11 +123,6 @@ namespace gui
         {
             cameraToolStripMenuItem.Items.Clear();
             cameraToolStripMenuItem.Items.AddRange(DI.Instance.CameraService.CameraList.ToArray());
-        }
-
-        private void canvas_DoubleClick(object sender, EventArgs e)
-        {
-
         }
     }
 }

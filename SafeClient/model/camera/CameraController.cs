@@ -17,6 +17,8 @@ namespace model.camera
         private CameraModel model;
         private Dictionary<ICameraView, CameraSreamModel> streams;
 
+        public double Ratio => model.Ratio;
+
         public CameraController(NvrModel model, int chanel)
         {
             this.model = new CameraModel(model, chanel);

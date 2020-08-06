@@ -56,5 +56,10 @@ namespace gui
         {
             DoResize();
         }
+
+        private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 }

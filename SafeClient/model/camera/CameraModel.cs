@@ -19,6 +19,14 @@ namespace model.camera
 
         public String Name { get; }
 
+        public double Ratio
+        {
+            get
+            {
+                return 9D / 16D;
+            }
+        }
+
         public SDK_HANDLE LoginId
         {
             get

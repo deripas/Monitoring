@@ -145,7 +145,6 @@
             this.canvas.Size = new System.Drawing.Size(679, 566);
             this.canvas.TabIndex = 0;
             this.canvas.Load += new System.EventHandler(this.canvas_Load);
-            this.canvas.DoubleClick += new System.EventHandler(this.canvas_DoubleClick);
             // 
             // CameraViewPanel
             // 
