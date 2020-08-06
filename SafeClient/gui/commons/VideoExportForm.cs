@@ -7,6 +7,8 @@ namespace gui
 {
     public partial class VideoExportForm : Form
     {
+        public static VideoExportForm Instance = new VideoExportForm();
+
         private VideoFileModel video;
         private VideoFileDownloader downloader;
 
@@ -78,16 +80,6 @@ namespace gui
             }
         }
 
-        internal DialogResult ShowDialog(VideoFileModel select)
-        {
-            video = select;
-            dateTimeFromDate.Value = select.BeginTime;
-            dateTimeFromTime.Value = select.BeginTime;
-            dateTimeToDate.Value = select.EndTime;
-            dateTimeToTime.Value = select.EndTime;
-            return ShowDialog();
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             var pos = downloader.GetPos();
@@ -117,10 +109,10 @@ namespace gui
             }
         }
 
-        private void VideoExportForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void VideoExportForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Cancel();
-            downloader.Dispose();
+            e.Cancel = true;
+            Hide();
         }
 
         private void Cancel()
@@ -128,5 +120,35 @@ namespace gui
             downloader.Stop();
             timer1.Stop();
         }
+
+        internal void Start(VideoFileModel select)
+        {
+            if (timer1.Enabled)
+            {
+                MessageBox.Show("Предыдущая загрузка не завершена");
+            }
+            else
+            {
+                Text = select.Camera.Name;
+                video = select;
+
+                dateTimeFromDate.Value = select.BeginTime;
+                dateTimeFromTime.Value = select.BeginTime;
+                dateTimeToDate.Value = select.EndTime;
+                dateTimeToTime.Value = select.EndTime;
+            }
+
+            if (Visible)
+                Activate();
+            else
+                Show();
+        }
+
+        public new void Dispose()
+        {
+            Cancel();
+            base.Dispose();
+        }
     }
+
 }

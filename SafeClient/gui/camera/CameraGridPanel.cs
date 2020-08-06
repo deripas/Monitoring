@@ -72,7 +72,6 @@ namespace gui
                 var cam = list[i];
                 var viewControl = views[i];
                 table.Controls.Add(viewControl);
-                //views.Add(viewControl);
 
                 viewControl.Ratio = cam.Ratio;
                 viewControl.StartPlay(cam);

@@ -22,6 +22,7 @@ namespace gui
 
         internal void Start(CameraController cam)
         {
+            Text = cam.Name;
             cameraPtzPanel1.Start(cam);
             if(Visible)
                 Activate();

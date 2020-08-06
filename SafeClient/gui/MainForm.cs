@@ -17,6 +17,7 @@ namespace gui
             CameraPtzForm.Instance.Dispose();
             VideoViewForm.Instance.Dispose();
             AlertViewForm.Instance.Dispose();
+            VideoExportForm.Instance.Dispose();
             DI.Instance.Dispose();
             Application.Exit();
         }

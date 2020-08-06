@@ -97,12 +97,16 @@ namespace gui
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            canvas.Ratio = 3D / 4D;
+            var ratio = 3D / 4D;
+            camera.Ratio = ratio;
+            canvas.Ratio = ratio;
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
-            canvas.Ratio = 9D / 16D;
+            var ratio = 9D / 16D;
+            camera.Ratio = ratio;
+            canvas.Ratio = ratio;
         }
 
         private void cameraToolStripMenuItem_SelectedIndexChanged(object sender, EventArgs e)

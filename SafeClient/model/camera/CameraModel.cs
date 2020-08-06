@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Web.ApplicationServices;
 using SDK_HANDLE = System.Int32;
 
 namespace model.camera
@@ -14,6 +15,7 @@ namespace model.camera
         private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
 
         private NvrModel nvr;
+        private double ratio = 9D / 16D;
 
         public int Channel { get; }
 
@@ -23,7 +25,11 @@ namespace model.camera
         {
             get
             {
-                return 9D / 16D;
+                return ratio;
+            }
+            set
+            {
+                ratio = value;
             }
         }
 

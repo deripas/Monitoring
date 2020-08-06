@@ -132,7 +132,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "VideoExportForm";
             this.Text = "VideoExportForm";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.VideoExportForm_FormClosed);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.VideoExportForm_FormClosing);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
