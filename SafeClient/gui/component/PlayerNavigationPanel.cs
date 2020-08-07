@@ -38,6 +38,18 @@ namespace gui
             }
         }
 
+        public bool VisibleTrackBar
+        {
+            get
+            {
+                return trackBar1.Visible;
+            }
+            set
+            {
+                trackBar1.Visible = value;
+            }
+        }
+
         public event Action<string> StatusText;
         public event Action<double> ProgressChange;
         private VideoFilePlayer player;
@@ -165,17 +177,17 @@ namespace gui
             PlayerControlPanel1_Play(false);
         }
 
-        private void BeginScroll(float val)
+        public void ScrollToPos(double val)
         {
-            lastScrollVal = val;
+            lastScrollVal = (float)val;
             lastScrollTime = DateTime.Now;
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            float v = trackBar1.Value;
-            float m = trackBar1.Maximum;
-            BeginScroll(v / m);
+            double v = trackBar1.Value;
+            double m = trackBar1.Maximum;
+            ScrollToPos(v / m);
         }
 
         private void trackBar1_MouseDown(object sender, MouseEventArgs e)
@@ -183,7 +195,7 @@ namespace gui
             var dX = (double)e.X / (double)trackBar1.Width;
             trackBar1.Value = Convert.ToInt32(dX * (trackBar1.Maximum - trackBar1.Minimum));
             ProgressChange?.Invoke(dX);
-            BeginScroll((float)dX);
+            ScrollToPos(dX);
         }
 
         public override string ToString()

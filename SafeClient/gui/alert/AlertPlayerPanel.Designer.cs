@@ -84,6 +84,7 @@
             this.chart1.Size = new System.Drawing.Size(1233, 245);
             this.chart1.TabIndex = 6;
             this.chart1.Text = "chart1";
+            this.chart1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.chart1_MouseDown);
             // 
             // canvasPanel1
             // 

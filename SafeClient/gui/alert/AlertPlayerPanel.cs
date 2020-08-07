@@ -62,6 +62,7 @@ namespace gui
         public AlertPlayerPanel()
         {
             InitializeComponent();
+            playerNavigationPanel1.VisibleTrackBar = false;
             playerNavigationPanel1.StatusText += PlayerNavigationPanel1_StatusText;
             playerNavigationPanel1.ProgressChange += PlayerNavigationPanel1_ProgressChange;
         }
@@ -112,6 +113,17 @@ namespace gui
         internal void Stop()
         {
             playerNavigationPanel1.Stop();
+        }
+
+        private void chart1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (chart == null) return;
+
+            var time = ChartArea.AxisX.PixelPositionToValue(e.Location.X);
+            var range = (chart.To - chart.From).TotalMilliseconds;
+            var dt = (DateTime.FromOADate(time) - chart.From).TotalMilliseconds;
+            ChartArea.CursorX.Position = time;
+            playerNavigationPanel1.ScrollToPos(dt / range);
         }
     }
 }
