@@ -56,6 +56,9 @@
     <ApplicationIcon>AppIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AGauge, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AGauge_V2.2.0.2\lib\AGauge.dll</HintPath>
+    </Reference>
     <Reference Include="NAudio, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NAudio.1.10.0\lib\net35\NAudio.dll</HintPath>
     </Reference>
@@ -94,6 +97,12 @@
     <Compile Include="api\impl\MockServerApi.cs" />
     <Compile Include="api\IServerApi.cs" />
     <Compile Include="api\NetSDK.cs" />
+    <Compile Include="gui\options\AlarmOption.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="gui\options\AlarmOption.Designer.cs">
+      <DependentUpon>AlarmOption.cs</DependentUpon>
+    </Compile>
     <Compile Include="gui\alert\AlertPlayerPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -105,6 +114,48 @@
     </Compile>
     <Compile Include="gui\alert\AlertViewForm.Designer.cs">
       <DependentUpon>AlertViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui\options\BaseOption.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="gui\options\BaseOption.Designer.cs">
+      <DependentUpon>BaseOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui\control\CircleHurbleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="gui\control\CircleHurbleControl.Designer.cs">
+      <DependentUpon>CircleHurbleControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui\control\ClassicHurbleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="gui\control\ClassicHurbleControl.Designer.cs">
+      <DependentUpon>ClassicHurbleControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui\control\ControlPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="gui\control\ControlPanel.Designer.cs">
+      <DependentUpon>ControlPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui\control\RolletControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="gui\control\RolletControl.Designer.cs">
+      <DependentUpon>RolletControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui\options\MeasureOption.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="gui\options\MeasureOption.Designer.cs">
+      <DependentUpon>MeasureOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui\sensor\BaseSensor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="gui\sensor\BaseSensor.Designer.cs">
+      <DependentUpon>BaseSensor.cs</DependentUpon>
     </Compile>
     <Compile Include="gui\camera\CameraGridPanel.cs">
       <SubType>UserControl</SubType>
@@ -142,6 +193,12 @@
     <Compile Include="gui\component\VerticalProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="gui\sensor\LeakSensor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="gui\sensor\LeakSensor.Designer.cs">
+      <DependentUpon>LeakSensor.cs</DependentUpon>
+    </Compile>
     <Compile Include="gui\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +228,24 @@
     </Compile>
     <Compile Include="gui\archive\SearchVideoFileHistoryPanel.Designer.cs">
       <DependentUpon>SearchVideoFileHistoryPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui\sensor\PressureSensor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="gui\sensor\PressureSensor.Designer.cs">
+      <DependentUpon>PressureSensor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui\sensor\SensorPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="gui\sensor\SensorPanel.Designer.cs">
+      <DependentUpon>SensorPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui\sensor\SmokeSensor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="gui\sensor\SmokeSensor.Designer.cs">
+      <DependentUpon>SmokeSensor.cs</DependentUpon>
     </Compile>
     <Compile Include="gui\SplashScreen.cs">
       <SubType>Form</SubType>
@@ -202,6 +277,18 @@
     <Compile Include="gui\archive\VideoViewForm.Designer.cs">
       <DependentUpon>VideoViewForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="gui\sensor\TemperatureSensor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="gui\sensor\TemperatureSensor.Designer.cs">
+      <DependentUpon>TemperatureSensor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui\sensor\VibrationSensor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="gui\sensor\VibrationSensor.Designer.cs">
+      <DependentUpon>VibrationSensor.cs</DependentUpon>
+    </Compile>
     <Compile Include="model\device\AlertModel.cs" />
     <Compile Include="model\camera\CameraController.cs" />
     <Compile Include="model\camera\CameraModel.cs" />
@@ -223,11 +310,35 @@
     <Compile Include="service\DeviceService.cs" />
     <Compile Include="service\CameraService.cs" />
     <Compile Include="service\DI.cs" />
+    <EmbeddedResource Include="gui\options\AlarmOption.resx">
+      <DependentUpon>AlarmOption.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="gui\alert\AlertPlayerPanel.resx">
       <DependentUpon>AlertPlayerPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gui\alert\AlertViewForm.resx">
       <DependentUpon>AlertViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\options\BaseOption.resx">
+      <DependentUpon>BaseOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\control\CircleHurbleControl.resx">
+      <DependentUpon>CircleHurbleControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\control\ClassicHurbleControl.resx">
+      <DependentUpon>ClassicHurbleControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\control\ControlPanel.resx">
+      <DependentUpon>ControlPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\control\RolletControl.resx">
+      <DependentUpon>RolletControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\options\MeasureOption.resx">
+      <DependentUpon>MeasureOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\sensor\BaseSensor.resx">
+      <DependentUpon>BaseSensor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gui\camera\CameraGridPanel.resx">
       <DependentUpon>CameraGridPanel.cs</DependentUpon>
@@ -244,6 +355,9 @@
     <EmbeddedResource Include="gui\component\CanvasPanel.resx">
       <DependentUpon>CanvasPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="gui\sensor\LeakSensor.resx">
+      <DependentUpon>LeakSensor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="gui\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -259,6 +373,15 @@
     <EmbeddedResource Include="gui\archive\SearchVideoFileHistoryPanel.resx">
       <DependentUpon>SearchVideoFileHistoryPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="gui\sensor\PressureSensor.resx">
+      <DependentUpon>PressureSensor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\sensor\SensorPanel.resx">
+      <DependentUpon>SensorPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\sensor\SmokeSensor.resx">
+      <DependentUpon>SmokeSensor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="gui\SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </EmbeddedResource>
@@ -273,6 +396,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="gui\archive\VideoViewForm.resx">
       <DependentUpon>VideoViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\sensor\TemperatureSensor.resx">
+      <DependentUpon>TemperatureSensor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\sensor\VibrationSensor.resx">
+      <DependentUpon>VibrationSensor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -312,6 +441,19 @@
     <Content Include="NLog.xsd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\classic_open.bmp" />
+    <None Include="Resources\classic_close.bmp" />
+    <None Include="Resources\classic_alarm.bmp" />
+    <None Include="Resources\circle_open.bmp" />
+    <None Include="Resources\circle_close.bmp" />
+    <None Include="Resources\circle_alarm.bmp" />
+    <None Include="Resources\rollet_up.bmp" />
+    <None Include="Resources\rollet_move.bmp" />
+    <None Include="Resources\rollet_dw.bmp" />
+    <None Include="Resources\weather_showers_scattered.png" />
+    <None Include="Resources\weather_fog.png" />
+    <None Include="Resources\no fire.jpg" />
+    <None Include="Resources\fire.jpg" />
     <None Include="Resources\sirena.wav" />
     <None Include="Resources\AppIcon.ico" />
     <None Include="Resources\temperature.png" />
@@ -321,5 +463,6 @@
     <None Include="Resources\bar.png" />
     <None Include="Resources\splash.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

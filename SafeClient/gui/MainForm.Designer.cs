@@ -32,21 +32,15 @@ namespace gui
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.grid = new gui.CameraGridPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.grid = new gui.CameraGridPanel();
+            this.sensorPanel1 = new gui.SensorPanel();
+            this.controlPanel1 = new gui.ControlPanel();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // grid
-            // 
-            this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grid.Location = new System.Drawing.Point(0, 38);
-            this.grid.Name = "grid";
-            this.grid.Size = new System.Drawing.Size(834, 493);
-            this.grid.TabIndex = 0;
             // 
             // toolStrip1
             // 
@@ -57,7 +51,7 @@ namespace gui
             this.toolStripButton2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(834, 38);
+            this.toolStrip1.Size = new System.Drawing.Size(1455, 38);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -95,12 +89,43 @@ namespace gui
             this.toolStripButton2.Text = "toolStripButton2";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
+            // grid
+            // 
+            this.grid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grid.Location = new System.Drawing.Point(0, 38);
+            this.grid.Name = "grid";
+            this.grid.Size = new System.Drawing.Size(805, 455);
+            this.grid.TabIndex = 0;
+            // 
+            // sensorPanel1
+            // 
+            this.sensorPanel1.AutoScroll = true;
+            this.sensorPanel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.sensorPanel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.sensorPanel1.Location = new System.Drawing.Point(805, 38);
+            this.sensorPanel1.Name = "sensorPanel1";
+            this.sensorPanel1.Size = new System.Drawing.Size(650, 625);
+            this.sensorPanel1.TabIndex = 2;
+            // 
+            // controlPanel1
+            // 
+            this.controlPanel1.AutoScroll = true;
+            this.controlPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.controlPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.controlPanel1.Location = new System.Drawing.Point(0, 493);
+            this.controlPanel1.Name = "controlPanel1";
+            this.controlPanel1.Size = new System.Drawing.Size(805, 170);
+            this.controlPanel1.TabIndex = 3;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 531);
+            this.ClientSize = new System.Drawing.Size(1455, 663);
             this.Controls.Add(this.grid);
+            this.Controls.Add(this.controlPanel1);
+            this.Controls.Add(this.sensorPanel1);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
@@ -121,5 +146,7 @@ namespace gui
         private System.Windows.Forms.ToolStripComboBox toolStripSplitButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private SensorPanel sensorPanel1;
+        private ControlPanel controlPanel1;
     }
 }
