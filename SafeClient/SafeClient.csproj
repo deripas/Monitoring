@@ -59,6 +59,9 @@
     <Reference Include="AGauge, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\AGauge_V2.2.0.2\lib\AGauge.dll</HintPath>
     </Reference>
+    <Reference Include="Common.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.2.0.0\lib\2.0\Common.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="NAudio, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NAudio.1.10.0\lib\net35\NAudio.dll</HintPath>
     </Reference>
@@ -71,6 +74,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="Spring.Rest, Version=1.1.1.35040, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spring.Rest.1.1.1\lib\net40-client\Spring.Rest.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -95,6 +101,7 @@
     <Compile Include="api\FFmpeg.cs" />
     <Compile Include="api\H264.cs" />
     <Compile Include="api\impl\MockServerApi.cs" />
+    <Compile Include="api\impl\RestServerApi.cs" />
     <Compile Include="api\IServerApi.cs" />
     <Compile Include="api\NetSDK.cs" />
     <Compile Include="gui\options\AlarmOption.cs">
@@ -438,6 +445,7 @@
   <ItemGroup>
     <Content Include="app.manifest" />
     <Content Include="AppIcon.ico" />
+    <Content Include="App_Readme\Spring.Rest.txt" />
     <Content Include="NLog.xsd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -1,4 +1,8 @@
-﻿namespace api.dto
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace SafeServer.dto
 {
     public class CameraInfo
     {
@@ -21,11 +25,6 @@
             Login = login;
             Password = password;
             Chanel = chanel;
-        }
-
-        public NvrInfo GetNvr()
-        {
-            return new NvrInfo(Ip, Port, Login, Password);
         }
     }
 }
