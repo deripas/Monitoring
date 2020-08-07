@@ -30,14 +30,12 @@
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.name = new System.Windows.Forms.Label();
-            this.description = new System.Windows.Forms.RichTextBox();
-            this.led = new System.Windows.Forms.PictureBox();
             this.maximum = new System.Windows.Forms.Label();
             this.current = new System.Windows.Forms.Label();
-            this.pictureIcon = new System.Windows.Forms.PictureBox();
+            this.description = new System.Windows.Forms.RichTextBox();
+            this.led = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.led)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -45,10 +43,10 @@
             this.flowLayoutPanel1.Controls.Add(this.name);
             this.flowLayoutPanel1.Controls.Add(this.maximum);
             this.flowLayoutPanel1.Controls.Add(this.current);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(128, 9);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(121, 6);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(6);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(506, 35);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(457, 35);
             this.flowLayoutPanel1.TabIndex = 15;
             // 
             // name
@@ -61,27 +59,6 @@
             this.name.Size = new System.Drawing.Size(108, 32);
             this.name.TabIndex = 2;
             this.name.Text = "Датчик";
-            // 
-            // description
-            // 
-            this.description.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.description.Location = new System.Drawing.Point(128, 47);
-            this.description.Margin = new System.Windows.Forms.Padding(6);
-            this.description.Name = "description";
-            this.description.ReadOnly = true;
-            this.description.Size = new System.Drawing.Size(428, 73);
-            this.description.TabIndex = 14;
-            this.description.Text = "";
-            // 
-            // led
-            // 
-            this.led.Image = global::Properties.Resources.led_green;
-            this.led.Location = new System.Drawing.Point(565, 53);
-            this.led.Name = "led";
-            this.led.Size = new System.Drawing.Size(69, 59);
-            this.led.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.led.TabIndex = 16;
-            this.led.TabStop = false;
             // 
             // maximum
             // 
@@ -107,28 +84,39 @@
             this.current.TabIndex = 9;
             this.current.Text = "current";
             // 
-            // pictureIcon
+            // description
             // 
-            this.pictureIcon.Location = new System.Drawing.Point(3, 3);
-            this.pictureIcon.Name = "pictureIcon";
-            this.pictureIcon.Size = new System.Drawing.Size(116, 124);
-            this.pictureIcon.TabIndex = 17;
-            this.pictureIcon.TabStop = false;
+            this.description.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.description.Location = new System.Drawing.Point(119, 47);
+            this.description.Margin = new System.Windows.Forms.Padding(6);
+            this.description.Name = "description";
+            this.description.ReadOnly = true;
+            this.description.Size = new System.Drawing.Size(376, 59);
+            this.description.TabIndex = 14;
+            this.description.Text = "";
+            // 
+            // led
+            // 
+            this.led.Image = global::Properties.Resources.led_green;
+            this.led.Location = new System.Drawing.Point(504, 47);
+            this.led.Name = "led";
+            this.led.Size = new System.Drawing.Size(69, 59);
+            this.led.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.led.TabIndex = 16;
+            this.led.TabStop = false;
             // 
             // BaseSensor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.pictureIcon);
             this.Controls.Add(this.led);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.description);
             this.Name = "BaseSensor";
-            this.Size = new System.Drawing.Size(650, 130);
+            this.Size = new System.Drawing.Size(584, 120);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.led)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureIcon)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -141,6 +129,5 @@
         private System.Windows.Forms.RichTextBox description;
         private System.Windows.Forms.Label maximum;
         private System.Windows.Forms.Label current;
-        private System.Windows.Forms.PictureBox pictureIcon;
     }
 }

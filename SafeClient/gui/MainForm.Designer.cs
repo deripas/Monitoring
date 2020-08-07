@@ -39,6 +39,9 @@ namespace gui
             this.grid = new gui.CameraGridPanel();
             this.sensorPanel1 = new gui.SensorPanel();
             this.controlPanel1 = new gui.ControlPanel();
+            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +51,10 @@ namespace gui
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSplitButton1,
             this.toolStripButton1,
-            this.toolStripButton2});
+            this.toolStripButton2,
+            this.toolStripButton3,
+            this.toolStripSeparator1,
+            this.toolStripComboBox1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1455, 38);
@@ -95,7 +101,7 @@ namespace gui
             this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grid.Location = new System.Drawing.Point(0, 38);
             this.grid.Name = "grid";
-            this.grid.Size = new System.Drawing.Size(805, 455);
+            this.grid.Size = new System.Drawing.Size(835, 425);
             this.grid.TabIndex = 0;
             // 
             // sensorPanel1
@@ -103,9 +109,9 @@ namespace gui
             this.sensorPanel1.AutoScroll = true;
             this.sensorPanel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.sensorPanel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.sensorPanel1.Location = new System.Drawing.Point(805, 38);
+            this.sensorPanel1.Location = new System.Drawing.Point(835, 38);
             this.sensorPanel1.Name = "sensorPanel1";
-            this.sensorPanel1.Size = new System.Drawing.Size(650, 625);
+            this.sensorPanel1.Size = new System.Drawing.Size(620, 625);
             this.sensorPanel1.TabIndex = 2;
             // 
             // controlPanel1
@@ -113,10 +119,34 @@ namespace gui
             this.controlPanel1.AutoScroll = true;
             this.controlPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.controlPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.controlPanel1.Location = new System.Drawing.Point(0, 493);
+            this.controlPanel1.Location = new System.Drawing.Point(0, 463);
             this.controlPanel1.Name = "controlPanel1";
-            this.controlPanel1.Size = new System.Drawing.Size(805, 170);
+            this.controlPanel1.Size = new System.Drawing.Size(835, 200);
             this.controlPanel1.TabIndex = 3;
+            // 
+            // toolStripComboBox1
+            // 
+            this.toolStripComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripComboBox1.Items.AddRange(new object[] {
+            "mode1",
+            "mode2",
+            "mode3"});
+            this.toolStripComboBox1.Name = "toolStripComboBox1";
+            this.toolStripComboBox1.Size = new System.Drawing.Size(121, 38);
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(40, 32);
+            this.toolStripButton3.Text = "toolStripButton3";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 38);
             // 
             // MainForm
             // 
@@ -148,5 +178,8 @@ namespace gui
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private SensorPanel sensorPanel1;
         private ControlPanel controlPanel1;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

@@ -48,9 +48,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Properties.Resources.no_fire;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 14);
+            this.pictureBox1.Location = new System.Drawing.Point(15, 11);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(114, 103);
+            this.pictureBox1.Size = new System.Drawing.Size(102, 95);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -59,10 +59,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.baseSensor1);
             this.Name = "SmokeSensor";
-            this.Size = new System.Drawing.Size(650, 130);
+            this.Size = new System.Drawing.Size(580, 116);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

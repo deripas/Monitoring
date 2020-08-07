@@ -90,10 +90,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.aGauge1);
             this.Controls.Add(this.baseSensor1);
             this.Name = "VibrationSensor";
-            this.Size = new System.Drawing.Size(650, 130);
+            this.Size = new System.Drawing.Size(580, 116);
             this.ResumeLayout(false);
 
         }

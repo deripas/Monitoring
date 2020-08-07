@@ -51,7 +51,7 @@
             this.pictureBox1.Image = global::Properties.Resources.temperature;
             this.pictureBox1.Location = new System.Drawing.Point(20, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(73, 124);
+            this.pictureBox1.Size = new System.Drawing.Size(73, 117);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -61,7 +61,7 @@
             this.verticalProgressBar1.ForeColor = System.Drawing.Color.Red;
             this.verticalProgressBar1.Location = new System.Drawing.Point(51, 15);
             this.verticalProgressBar1.Name = "verticalProgressBar1";
-            this.verticalProgressBar1.Size = new System.Drawing.Size(10, 100);
+            this.verticalProgressBar1.Size = new System.Drawing.Size(10, 97);
             this.verticalProgressBar1.TabIndex = 2;
             this.verticalProgressBar1.Value = 50;
             // 
@@ -69,11 +69,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.verticalProgressBar1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.baseSensor1);
             this.Name = "TemperatureSensor";
-            this.Size = new System.Drawing.Size(650, 130);
+            this.Size = new System.Drawing.Size(582, 118);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

@@ -43,10 +43,10 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.name);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(130, 7);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(94, 1);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(6);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(419, 35);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(371, 35);
             this.flowLayoutPanel1.TabIndex = 19;
             // 
             // name
@@ -63,20 +63,20 @@
             // description
             // 
             this.description.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.description.Location = new System.Drawing.Point(130, 45);
+            this.description.Location = new System.Drawing.Point(94, 39);
             this.description.Margin = new System.Windows.Forms.Padding(6);
             this.description.Name = "description";
             this.description.ReadOnly = true;
-            this.description.Size = new System.Drawing.Size(419, 73);
+            this.description.Size = new System.Drawing.Size(377, 35);
             this.description.TabIndex = 18;
             this.description.Text = "";
             // 
             // pictureIcon
             // 
             this.pictureIcon.Image = global::Properties.Resources.rollet_move;
-            this.pictureIcon.Location = new System.Drawing.Point(5, 1);
+            this.pictureIcon.Location = new System.Drawing.Point(-1, 1);
             this.pictureIcon.Name = "pictureIcon";
-            this.pictureIcon.Size = new System.Drawing.Size(116, 124);
+            this.pictureIcon.Size = new System.Drawing.Size(80, 64);
             this.pictureIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureIcon.TabIndex = 21;
             this.pictureIcon.TabStop = false;
@@ -84,7 +84,7 @@
             // led
             // 
             this.led.Image = global::Properties.Resources.led_green;
-            this.led.Location = new System.Drawing.Point(598, 3);
+            this.led.Location = new System.Drawing.Point(603, 6);
             this.led.Name = "led";
             this.led.Size = new System.Drawing.Size(69, 59);
             this.led.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -93,28 +93,29 @@
             // 
             // buttonUp
             // 
-            this.buttonUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.14286F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonUp.Location = new System.Drawing.Point(558, 81);
+            this.buttonUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonUp.Location = new System.Drawing.Point(538, 17);
             this.buttonUp.Name = "buttonUp";
-            this.buttonUp.Size = new System.Drawing.Size(75, 45);
+            this.buttonUp.Size = new System.Drawing.Size(59, 45);
             this.buttonUp.TabIndex = 22;
-            this.buttonUp.Text = "⇧";
+            this.buttonUp.Text = "🢁";
             this.buttonUp.UseVisualStyleBackColor = true;
             // 
             // buttonDown
             // 
-            this.buttonDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.14286F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonDown.Location = new System.Drawing.Point(639, 79);
+            this.buttonDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonDown.Location = new System.Drawing.Point(480, 17);
             this.buttonDown.Name = "buttonDown";
-            this.buttonDown.Size = new System.Drawing.Size(75, 45);
+            this.buttonDown.Size = new System.Drawing.Size(52, 45);
             this.buttonDown.TabIndex = 23;
-            this.buttonDown.Text = "⇩";
+            this.buttonDown.Text = "🢃";
             this.buttonDown.UseVisualStyleBackColor = true;
             // 
             // RolletControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.buttonDown);
             this.Controls.Add(this.buttonUp);
             this.Controls.Add(this.pictureIcon);
@@ -122,7 +123,7 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.description);
             this.Name = "RolletControl";
-            this.Size = new System.Drawing.Size(729, 134);
+            this.Size = new System.Drawing.Size(670, 65);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureIcon)).EndInit();

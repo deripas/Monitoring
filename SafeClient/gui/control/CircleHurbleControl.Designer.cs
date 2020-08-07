@@ -34,7 +34,6 @@
             this.description = new System.Windows.Forms.RichTextBox();
             this.pictureIcon = new System.Windows.Forms.PictureBox();
             this.led = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.led)).BeginInit();
@@ -44,7 +43,7 @@
             // 
             this.checkBoxEnable.AutoSize = true;
             this.checkBoxEnable.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.14286F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBoxEnable.Location = new System.Drawing.Point(600, 70);
+            this.checkBoxEnable.Location = new System.Drawing.Point(512, 21);
             this.checkBoxEnable.Name = "checkBoxEnable";
             this.checkBoxEnable.Size = new System.Drawing.Size(82, 43);
             this.checkBoxEnable.TabIndex = 33;
@@ -54,10 +53,10 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.name);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(132, 9);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(132, 3);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(6);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(356, 35);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(356, 32);
             this.flowLayoutPanel1.TabIndex = 30;
             // 
             // name
@@ -74,20 +73,20 @@
             // description
             // 
             this.description.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.description.Location = new System.Drawing.Point(132, 47);
+            this.description.Location = new System.Drawing.Point(132, 35);
             this.description.Margin = new System.Windows.Forms.Padding(6);
             this.description.Name = "description";
             this.description.ReadOnly = true;
-            this.description.Size = new System.Drawing.Size(356, 73);
+            this.description.Size = new System.Drawing.Size(356, 30);
             this.description.TabIndex = 29;
             this.description.Text = "";
             // 
             // pictureIcon
             // 
             this.pictureIcon.Image = global::Properties.Resources.circle_close;
-            this.pictureIcon.Location = new System.Drawing.Point(7, 3);
+            this.pictureIcon.Location = new System.Drawing.Point(0, 0);
             this.pictureIcon.Name = "pictureIcon";
-            this.pictureIcon.Size = new System.Drawing.Size(116, 124);
+            this.pictureIcon.Size = new System.Drawing.Size(105, 65);
             this.pictureIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureIcon.TabIndex = 32;
             this.pictureIcon.TabStop = false;
@@ -102,28 +101,17 @@
             this.led.TabIndex = 31;
             this.led.TabStop = false;
             // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.14286F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(513, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(81, 61);
-            this.button1.TabIndex = 34;
-            this.button1.Text = "🔐";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // CircleHurbleControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.checkBoxEnable);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.pictureIcon);
             this.Controls.Add(this.led);
             this.Controls.Add(this.description);
             this.Name = "CircleHurbleControl";
-            this.Size = new System.Drawing.Size(699, 150);
+            this.Size = new System.Drawing.Size(670, 65);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureIcon)).EndInit();
@@ -141,6 +129,5 @@
         private System.Windows.Forms.PictureBox pictureIcon;
         private System.Windows.Forms.PictureBox led;
         private System.Windows.Forms.RichTextBox description;
-        private System.Windows.Forms.Button button1;
     }
 }

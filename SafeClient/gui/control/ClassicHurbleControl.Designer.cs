@@ -42,10 +42,10 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.name);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(128, 9);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(119, 0);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(6);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(419, 35);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(365, 35);
             this.flowLayoutPanel1.TabIndex = 25;
             // 
             // name
@@ -62,11 +62,11 @@
             // description
             // 
             this.description.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.description.Location = new System.Drawing.Point(128, 47);
+            this.description.Location = new System.Drawing.Point(119, 38);
             this.description.Margin = new System.Windows.Forms.Padding(6);
             this.description.Name = "description";
             this.description.ReadOnly = true;
-            this.description.Size = new System.Drawing.Size(419, 73);
+            this.description.Size = new System.Drawing.Size(365, 28);
             this.description.TabIndex = 24;
             this.description.Text = "";
             // 
@@ -75,7 +75,7 @@
             this.pictureIcon.Image = global::Properties.Resources.classic_close;
             this.pictureIcon.Location = new System.Drawing.Point(3, 3);
             this.pictureIcon.Name = "pictureIcon";
-            this.pictureIcon.Size = new System.Drawing.Size(116, 124);
+            this.pictureIcon.Size = new System.Drawing.Size(103, 63);
             this.pictureIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureIcon.TabIndex = 27;
             this.pictureIcon.TabStop = false;
@@ -94,7 +94,7 @@
             // 
             this.checkBoxEnable.AutoSize = true;
             this.checkBoxEnable.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.14286F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBoxEnable.Location = new System.Drawing.Point(596, 70);
+            this.checkBoxEnable.Location = new System.Drawing.Point(508, 19);
             this.checkBoxEnable.Name = "checkBoxEnable";
             this.checkBoxEnable.Size = new System.Drawing.Size(82, 43);
             this.checkBoxEnable.TabIndex = 28;
@@ -105,13 +105,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.checkBoxEnable);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.pictureIcon);
             this.Controls.Add(this.led);
             this.Controls.Add(this.description);
             this.Name = "ClassicHurbleControl";
-            this.Size = new System.Drawing.Size(734, 161);
+            this.Size = new System.Drawing.Size(670, 65);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureIcon)).EndInit();
