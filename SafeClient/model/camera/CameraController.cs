@@ -32,7 +32,7 @@ namespace model.camera
 
         public CameraController(NvrModel model, int chanel)
         {
-            this.model = new CameraModel(model, chanel);
+            this.model = new CameraModel(model, chanel - 1);
             streams = new Dictionary<ICameraView, CameraSreamModel>();
         }
 

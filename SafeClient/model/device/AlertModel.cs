@@ -12,7 +12,7 @@ namespace model.device
         {
             get
             {
-                return info.Time;
+                return info.GetDateTime();
             }
         }
         public CameraController Camera;

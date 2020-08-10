@@ -2,30 +2,12 @@
 {
     public class CameraInfo
     {
-        public long Id { get; set; }
-        public string Ip { get; set; }
-        public ushort Port { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public int Chanel { get; set; }
-
-        public CameraInfo()
-        {
-        }
-
-        public CameraInfo(long id, string ip, ushort port, string login, string password, int chanel)
-        {
-            Id = id;
-            Ip = ip;
-            Port = port;
-            Login = login;
-            Password = password;
-            Chanel = chanel;
-        }
-
-        public NvrInfo GetNvr()
-        {
-            return new NvrInfo(Ip, Port, Login, Password);
-        }
+        public long id { get; set; }
+        public string name { get; set; }
+        public double rate { get; set; }
+        public double ratio { get; set; }
+        public int nvr { get; set; }
+        public int channel { get; set; }
+        public bool enable { get; set; }
     }
 }

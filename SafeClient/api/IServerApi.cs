@@ -6,7 +6,9 @@ namespace api
 {
     public interface IServerApi
     {
-        List<CameraInfo> Cameras();
+        List<NvrInfo> Nvr();
+
+        List<CameraInfo> Camera();
 
         List<AlertInfo> Alerts(DateTime from, DateTime to);
     }

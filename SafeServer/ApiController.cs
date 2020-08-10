@@ -1,104 +1,49 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SafeServer.dto;
+using SafeServer.service;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 
 namespace SafeServer
 {
     [ApiController]
     [Route("/api")]
+    [Produces("application/json")]
     public class ApiController : ControllerBase
     {
-        private static readonly NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
-
-        /*
-        [HttpGet]
-        public IActionResult Get()
-        {
-            log.Info("[test] get");
-            var name = "?";
-            var greeting = "Hello " + name;
-            return new JsonResult(new string[] { name, greeting });
-        }*/
-
-        [HttpGet]
-        public string[] Get()
-        {
-            log.Info("[test] get");
-            var name = "?";
-            var greeting = "Hello " + name;
-            return new string[] { name, greeting };
-        }
-
-        [HttpPost]
-        public IActionResult Post([FromBody] string name)
-        {
-            return new NoContentResult();
-        }
-
         [HttpGet]
         [Route("camera")]
-        public List<CameraInfo> Cameras()
+        public List<Camera> Camera()
         {
-            const string login = "admin";
-            const string pwd = "1qaz2wsx";
-            var i = 0;
-
-            if (false)
+            using (var db = new DatabaseService())
             {
-                return new List<CameraInfo>
-                {
-                    new CameraInfo(i++, "192.168.1.99", 34567, login, pwd, 0),
-                    new CameraInfo(i++, "192.168.1.99", 34567, login, pwd, 1),
-                    new CameraInfo(i++, "192.168.1.99", 34567, login, pwd, 2),
-                    new CameraInfo(i++, "192.168.1.99", 34567, login, pwd, 3),
-                    new CameraInfo(i++, "192.168.1.99", 34567, login, pwd, 3),
-                    new CameraInfo(i++, "192.168.1.99", 34567, login, pwd, 3),
-                };
+                return  db.Camera.ToList();
             }
-            return new List<CameraInfo>
+        }
+
+        [HttpGet]
+        [Route("nvr")]
+        public List<Nvr> Nvr()
+        {
+            using (var db = new DatabaseService())
             {
-                new CameraInfo(i++, "192.168.1.241", 34567, login, pwd, 0),
-                new CameraInfo(i++, "192.168.1.241", 34567, login, pwd, 1),
-                new CameraInfo(i++, "192.168.1.241", 34567, login, pwd, 2),
-                new CameraInfo(i++, "192.168.1.241", 34567, login, pwd, 3),
+                return db.Nvr.ToList();
+            }
+        }
 
-                new CameraInfo(i++, "192.168.1.242", 34567, login, pwd, 0),
-                new CameraInfo(i++, "192.168.1.242", 34567, login, pwd, 1),
-                new CameraInfo(i++, "192.168.1.242", 34567, login, pwd, 2),
-                new CameraInfo(i++, "192.168.1.242", 34567, login, pwd, 3),
-
-                new CameraInfo(i++, "192.168.1.243", 34567, login, pwd, 0),
-                new CameraInfo(i++, "192.168.1.243", 34567, login, pwd, 1),
-                new CameraInfo(i++, "192.168.1.243", 34567, login, pwd, 2),
-                new CameraInfo(i++, "192.168.1.243", 34567, login, pwd, 3),
-
-                new CameraInfo(i++, "192.168.1.244", 34567, login, pwd, 0),
-                new CameraInfo(i++, "192.168.1.244", 34567, login, pwd, 1),
-                new CameraInfo(i++, "192.168.1.244", 34567, login, pwd, 2),
-                new CameraInfo(i++, "192.168.1.244", 34567, login, pwd, 3),
-
-                new CameraInfo(i++, "192.168.1.241", 34567, login, pwd, 4),
-                new CameraInfo(i++, "192.168.1.241", 34567, login, pwd, 5),
-                new CameraInfo(i++, "192.168.1.241", 34567, login, pwd, 6),
-                new CameraInfo(i++, "192.168.1.241", 34567, login, pwd, 7),
-
-                new CameraInfo(i++, "192.168.1.242", 34567, login, pwd, 4),
-                new CameraInfo(i++, "192.168.1.242", 34567, login, pwd, 5),
-                new CameraInfo(i++, "192.168.1.242", 34567, login, pwd, 6),
-                new CameraInfo(i++, "192.168.1.242", 34567, login, pwd, 7),
-
-                new CameraInfo(i++, "192.168.1.243", 34567, login, pwd, 4),
-                new CameraInfo(i++, "192.168.1.243", 34567, login, pwd, 5),
-                new CameraInfo(i++, "192.168.1.243", 34567, login, pwd, 6),
-                new CameraInfo(i++, "192.168.1.243", 34567, login, pwd, 7),
-
-                new CameraInfo(i++, "192.168.1.244", 34567, login, pwd, 4),
-                new CameraInfo(i++, "192.168.1.244", 34567, login, pwd, 5),
-                new CameraInfo(i++, "192.168.1.244", 34567, login, pwd, 6),
-                new CameraInfo(i++, "192.168.1.244", 34567, login, pwd, 7),
-
-                new CameraInfo(i++, "192.168.1.242", 34567, login, pwd, 9),
-            };
+        [HttpGet]
+        [Route("alert")]
+        public List<Alert> Alert(String from, String to)
+        {
+            DateTime f = DateTime.Parse(from, CultureInfo.InvariantCulture);
+            DateTime t = DateTime.Parse(to, CultureInfo.InvariantCulture);
+            using (var db = new DatabaseService())
+            {
+                return db.Alert.Where(x => f <= x.time && x.time <= t).ToList();
+            }
         }
     }
 }

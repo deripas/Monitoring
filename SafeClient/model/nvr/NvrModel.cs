@@ -22,7 +22,7 @@ namespace model.nvr
         {
             get
             {
-                return info.Ip;
+                return info.ip;
             }
         }
 
@@ -56,7 +56,7 @@ namespace model.nvr
                 return true;
             }
 
-            loginId = NetSDK.H264_DVR_Login(info.Ip, info.Port, info.Login, info.Password, ref deviceInfo, out error, SocketStyle.TCPSOCKET);
+            loginId = NetSDK.H264_DVR_Login(info.ip, info.port, info.login, info.password, ref deviceInfo, out error, SocketStyle.TCPSOCKET);
             if (loginId > 0)
             {
                 Log.Info("{0}: H264_DVR_Login - OK {1}", this, loginId);
@@ -110,7 +110,7 @@ namespace model.nvr
 
         public override string ToString()
         {
-            return "nvr(" + info.Ip + ")";
+            return "nvr(" + info.ip + ")";
         }
     }
 }

@@ -29,7 +29,7 @@ namespace service
             var alerts = serverApi.Alerts(value.Date, value.Date.AddDays(1));
             foreach (AlertInfo info in alerts)
             {
-                var cam = DI.Instance.CameraService[info.CameraId];
+                var cam = DI.Instance.CameraService[info.camera];
                 result.Add(new AlertModel(cam, info));
             }
             result.Sort((x, y) => DateTime.Compare(x.Time, y.Time));

@@ -8,18 +8,13 @@ namespace api.impl
     {
         public List<AlertInfo> Alerts(DateTime from, DateTime to)
         {
-            var list = new List<AlertInfo>();
-            list.Add(new AlertInfo(0, 1, DateTime.Now.AddMinutes(-10), 100));
-            list.Add(new AlertInfo(1, 1, DateTime.Now.AddMinutes(-30), 100));
-            list.Add(new AlertInfo(2, 1, DateTime.Now.AddMinutes(-60), 100));
-            list.Add(new AlertInfo(3, 1, DateTime.Now.AddMinutes(-100), 100));
-            list.Add(new AlertInfo(4, 1, DateTime.Now.AddMinutes(-120), 100));
-            list.Add(new AlertInfo(5, 1, DateTime.Now.AddMinutes(-150), 100));
-            return list;
+            throw new NotImplementedException();
         }
 
-        public List<CameraInfo> Cameras()
+        public List<CameraInfo> Camera()
         {
+            throw new NotImplementedException();
+            /*
             const string login = "admin";
             const string pwd = "1qaz2wsx";
             var i = 0;
@@ -79,7 +74,12 @@ namespace api.impl
                 new CameraInfo(i++, "192.168.1.244", 34567, login, pwd, 7),
 
                 new CameraInfo(i++, "192.168.1.242", 34567, login, pwd, 9),
-            };
+            };*/
+        }
+
+        public List<NvrInfo> Nvr()
+        {
+            throw new NotImplementedException();
         }
     }
 }

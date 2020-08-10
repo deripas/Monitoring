@@ -21,6 +21,7 @@ namespace service
         private NetSDK.fDisConnect disconnectCallback;
         private Dictionary<long, CameraController> _cameraMap;
         private Dictionary<IPEndPoint, NvrController> _nvrMap;
+        private Dictionary<int, NvrController> _nvrMapById;
 
         public List<CameraController> CameraList { get; }
 
@@ -35,6 +36,7 @@ namespace service
         public CameraService(IServerApi serverApi)
         {
             _nvrMap = new Dictionary<IPEndPoint, NvrController>();
+            _nvrMapById = new Dictionary<int, NvrController>();
             _cameraMap = new Dictionary<long, CameraController>();
             CameraList = new List<CameraController>();
 
@@ -45,12 +47,16 @@ namespace service
             Log.Info("H264_DVR_Init {0}", NetSDK.H264_DVR_Init(disconnectCallback, IntPtr.Zero));
             Log.Info("H264_DVR_SetConnectTime {0}", NetSDK.H264_DVR_SetConnectTime(ConnectionTimeMs, 1));
 
-            foreach (CameraInfo camera in serverApi.Cameras())
+            foreach (NvrInfo nvrInfo in serverApi.Nvr())
             {
-                var nvr = Nvr(camera.GetNvr());
-                var cam = nvr.Camera(camera.Chanel);
+                var nvr = Nvr(nvrInfo);
+            }
+            foreach (CameraInfo camera in serverApi.Camera())
+            {
+                var nvr = _nvrMapById[camera.nvr];
+                var cam = nvr.Camera(camera.channel);
                 CameraList.Add(cam);
-                _cameraMap.Add(camera.Id, cam);
+                _cameraMap.Add(camera.id, cam);
             }
 
             timer = new Timer(TimerCallback, this, 200, 200);
@@ -94,6 +100,7 @@ namespace service
             {
                 var nvrController = new NvrController(nvr);
                 _nvrMap.Add(key, nvrController);
+                _nvrMapById.Add(nvr.id, nvrController);
                 return nvrController;
             }
         }

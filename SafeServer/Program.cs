@@ -1,6 +1,12 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
+using NLog.Web;
+using SafeServer.dto;
+using SafeServer.service;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -14,22 +20,11 @@ namespace SafeServer
         [STAThread]
         static void Main()
         {
-            new Thread(() =>
-            {
-                Thread.CurrentThread.IsBackground = true;
-                CreateWebHostBuilder().Run();
-            }).Start();
-
+            DI.Instance.Init();
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
-          
+            Application.Run(new MainForm());          
         }
-
-        private static IWebHost CreateWebHostBuilder() => WebHost
-            .CreateDefaultBuilder()
-            .UseStartup<Startup>()
-            .Build();
     }
 }
