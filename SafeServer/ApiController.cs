@@ -36,14 +36,34 @@ namespace SafeServer
 
         [HttpGet]
         [Route("alert")]
-        public List<Alert> Alert(String from, String to)
+        public List<Alert> Alert(String device, String from, String to)
         {
-            DateTime f = DateTime.Parse(from, CultureInfo.InvariantCulture);
-            DateTime t = DateTime.Parse(to, CultureInfo.InvariantCulture);
-            using (var db = new DatabaseService())
+            if (from != null && to != null)
             {
-                return db.Alert.Where(x => f <= x.time && x.time <= t).ToList();
+                DateTime f = DateTime.Parse(from, CultureInfo.InvariantCulture);
+                DateTime t = DateTime.Parse(to, CultureInfo.InvariantCulture);
+
+                if (device == null)
+                {
+                    using (var db = new DatabaseService())
+                    {
+                        return db.Alert.Where(x => f <= x.time && x.time <= t)
+                            .OrderByDescending(x => x.time)
+                            .ToList();
+                    }
+                }
+                else
+                {
+                    int id = int.Parse(device);
+                    using (var db = new DatabaseService())
+                    {
+                        return db.Alert.Where(x => f <= x.time && x.time <= t && x.device == id)
+                            .OrderByDescending(x => x.time)
+                            .ToList();
+                    }
+                }
             }
+            return null;
         }
 
         [HttpGet]

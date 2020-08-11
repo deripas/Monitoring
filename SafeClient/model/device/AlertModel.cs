@@ -15,18 +15,28 @@ namespace model.device
                 return info.GetDateTime();
             }
         }
+        public bool Processed
+        {
+            get
+            {
+                return info.processed;
+            }
+        }
+
         public CameraController Camera;
+        public DeviceController Device;
         private AlertInfo info;
 
-        public AlertModel(CameraController camera, AlertInfo info)
+        public AlertModel(CameraController camera, DeviceController device, AlertInfo info)
         {
             this.Camera = camera;
+            this.Device = device;
             this.info = info;
         }
 
         public override string ToString()
         {
-            return String.Format("alert [{0:HH:mm:ss}]", Time);
+            return String.Format("[{0:HH:mm:ss}]", Time);
         }
 
         internal VideoTimeRangeModel Video(DateTime from, DateTime to)

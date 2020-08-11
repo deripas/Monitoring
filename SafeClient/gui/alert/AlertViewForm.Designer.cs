@@ -35,9 +35,10 @@
             // alertPlayerPanel1
             // 
             this.alertPlayerPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.alertPlayerPanel1.Location = new System.Drawing.Point(360, 0);
+            this.alertPlayerPanel1.Location = new System.Drawing.Point(454, 0);
             this.alertPlayerPanel1.Name = "alertPlayerPanel1";
-            this.alertPlayerPanel1.Size = new System.Drawing.Size(995, 840);
+            this.alertPlayerPanel1.Ratio = 0.75D;
+            this.alertPlayerPanel1.Size = new System.Drawing.Size(901, 840);
             this.alertPlayerPanel1.TabIndex = 0;
             // 
             // searchAlertPanel1
@@ -45,7 +46,7 @@
             this.searchAlertPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.searchAlertPanel1.Location = new System.Drawing.Point(0, 0);
             this.searchAlertPanel1.Name = "searchAlertPanel1";
-            this.searchAlertPanel1.Size = new System.Drawing.Size(360, 840);
+            this.searchAlertPanel1.Size = new System.Drawing.Size(454, 840);
             this.searchAlertPanel1.TabIndex = 1;
             // 
             // AlertViewForm

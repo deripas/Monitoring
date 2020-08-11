@@ -11,10 +11,28 @@ namespace service
         private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
 
         private IServerApi serverApi;
+        private Dictionary<int, DeviceController> _deviceMapById;
 
+        public List<DeviceController> DeviceList { get; }
+
+        public DeviceController this[int id]
+        {
+            get
+            {
+                return _deviceMapById[id];
+            }
+        }
         public DeviceService(IServerApi serverApi)
         {
             this.serverApi = serverApi;
+            _deviceMapById = new Dictionary<int, DeviceController>();
+            DeviceList = new List<DeviceController>();
+            foreach (DeviceInfo info in serverApi.Device())
+            {
+                var dev = new DeviceController(info);
+                _deviceMapById.Add(info.id, dev);
+                DeviceList.Add(dev);
+            }
         }
 
         internal void Dispose()
@@ -22,17 +40,30 @@ namespace service
             
         }
 
-        internal List<AlertModel> FindAlerts(DateTime value)
+        internal List<AlertModel> FindAlerts(DateTime from, DateTime to)
         {
-            Log.Info("search alert {0}", value);
+            return ToAlertModel(serverApi.Alerts(from, to));
+        }
+
+        internal List<AlertModel> FindAlerts(int device, DateTime from, DateTime to)
+        {
+            return ToAlertModel(serverApi.Alerts(device, from, to));
+        }
+
+        private List<AlertModel> ToAlertModel(List<AlertInfo> alerts)
+        {
             List<AlertModel> result = new List<AlertModel>();
-            var alerts = serverApi.Alerts(value.Date, value.Date.AddDays(1));
             foreach (AlertInfo info in alerts)
             {
-                var cam = DI.Instance.CameraService[info.camera];
-                result.Add(new AlertModel(cam, info));
+                var dev = DI.Instance.DeviceService[info.device];
+                var cam = dev.Camera;
+                if (cam == null)
+                {
+                    Log.Warn("[{0}] Ignored! Without camera!", info);
+                    continue;
+                }
+                result.Add(new AlertModel(cam, dev, info));
             }
-            result.Sort((x, y) => DateTime.Compare(x.Time, y.Time));
             return result;
         }
 

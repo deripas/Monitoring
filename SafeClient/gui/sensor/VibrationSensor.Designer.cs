@@ -28,21 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.baseSensor1 = new gui.BaseSensor();
             this.aGauge1 = new System.Windows.Forms.AGauge();
+            this.baseSensor1 = new gui.BaseSensor();
             this.SuspendLayout();
-            // 
-            // baseSensor1
-            // 
-            this.baseSensor1.Alarm = false;
-            this.baseSensor1.Description = "";
-            this.baseSensor1.Location = new System.Drawing.Point(3, 3);
-            this.baseSensor1.Max = "maximum";
-            this.baseSensor1.Name = "baseSensor1";
-            this.baseSensor1.Size = new System.Drawing.Size(650, 130);
-            this.baseSensor1.TabIndex = 0;
-            this.baseSensor1.Title = "Вибрация";
-            this.baseSensor1.Value = "current";
             // 
             // aGauge1
             // 
@@ -51,8 +39,8 @@
             this.aGauge1.BaseArcStart = 135;
             this.aGauge1.BaseArcSweep = 270;
             this.aGauge1.BaseArcWidth = 2;
-            this.aGauge1.Center = new System.Drawing.Point(60, 70);
-            this.aGauge1.Location = new System.Drawing.Point(3, 6);
+            this.aGauge1.Center = new System.Drawing.Point(55, 60);
+            this.aGauge1.Location = new System.Drawing.Point(3, 3);
             this.aGauge1.MaxValue = 100F;
             this.aGauge1.MinValue = -100F;
             this.aGauge1.Name = "aGauge1";
@@ -81,10 +69,22 @@
             this.aGauge1.ScaleNumbersRotation = 0;
             this.aGauge1.ScaleNumbersStartScaleLine = 0;
             this.aGauge1.ScaleNumbersStepScaleLines = 1;
-            this.aGauge1.Size = new System.Drawing.Size(116, 125);
+            this.aGauge1.Size = new System.Drawing.Size(112, 109);
             this.aGauge1.TabIndex = 14;
             this.aGauge1.Text = "aGauge1";
             this.aGauge1.Value = 0F;
+            // 
+            // baseSensor1
+            // 
+            this.baseSensor1.Alarm = false;
+            this.baseSensor1.Description = "";
+            this.baseSensor1.Location = new System.Drawing.Point(0, 0);
+            this.baseSensor1.Max = "maximum";
+            this.baseSensor1.Name = "baseSensor1";
+            this.baseSensor1.Size = new System.Drawing.Size(576, 112);
+            this.baseSensor1.TabIndex = 0;
+            this.baseSensor1.Title = "Вибрация";
+            this.baseSensor1.Value = "current";
             // 
             // VibrationSensor
             // 
@@ -94,7 +94,7 @@
             this.Controls.Add(this.aGauge1);
             this.Controls.Add(this.baseSensor1);
             this.Name = "VibrationSensor";
-            this.Size = new System.Drawing.Size(580, 116);
+            this.Size = new System.Drawing.Size(578, 114);
             this.ResumeLayout(false);
 
         }

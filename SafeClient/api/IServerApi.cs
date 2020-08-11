@@ -10,6 +10,10 @@ namespace api
 
         List<CameraInfo> Camera();
 
+        List<DeviceInfo> Device();
+
         List<AlertInfo> Alerts(DateTime from, DateTime to);
+
+        List<AlertInfo> Alerts(int device, DateTime from, DateTime to);
     }
 }

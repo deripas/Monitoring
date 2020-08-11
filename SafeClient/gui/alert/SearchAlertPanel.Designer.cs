@@ -30,7 +30,10 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.alertListView = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.videoFileList1 = new gui.VideoFileList();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.comboBoxDevice = new System.Windows.Forms.ComboBox();
@@ -68,7 +71,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.listBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.alertListView);
             // 
             // splitContainer1.Panel2
             // 
@@ -77,16 +80,45 @@
             this.splitContainer1.SplitterDistance = 325;
             this.splitContainer1.TabIndex = 1;
             // 
-            // listBox1
+            // alertListView
             // 
-            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 24;
-            this.listBox1.Location = new System.Drawing.Point(0, 0);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(394, 325);
-            this.listBox1.TabIndex = 14;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.alertListView.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.alertListView.Alignment = System.Windows.Forms.ListViewAlignment.SnapToGrid;
+            this.alertListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.alertListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.alertListView.FullRowSelect = true;
+            this.alertListView.GridLines = true;
+            this.alertListView.HideSelection = false;
+            this.alertListView.HoverSelection = true;
+            this.alertListView.Location = new System.Drawing.Point(0, 0);
+            this.alertListView.MultiSelect = false;
+            this.alertListView.Name = "alertListView";
+            this.alertListView.RightToLeftLayout = true;
+            this.alertListView.Size = new System.Drawing.Size(394, 325);
+            this.alertListView.TabIndex = 0;
+            this.alertListView.UseCompatibleStateImageBehavior = false;
+            this.alertListView.View = System.Windows.Forms.View.Details;
+            this.alertListView.SelectedIndexChanged += new System.EventHandler(this.alertListView_SelectedIndexChanged);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Датчик";
+            this.columnHeader1.Width = 200;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Время";
+            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader2.Width = 100;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Обработан";
+            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader3.Width = 120;
             // 
             // videoFileList1
             // 
@@ -120,6 +152,7 @@
             this.comboBoxDevice.Name = "comboBoxDevice";
             this.comboBoxDevice.Size = new System.Drawing.Size(394, 32);
             this.comboBoxDevice.TabIndex = 15;
+            this.comboBoxDevice.SelectedIndexChanged += new System.EventHandler(this.comboBoxDevice_SelectedIndexChanged);
             // 
             // SearchAlertPanel
             // 
@@ -128,6 +161,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "SearchAlertPanel";
             this.Size = new System.Drawing.Size(400, 690);
+            this.Load += new System.EventHandler(this.SearchAlertPanel_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -141,9 +175,12 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ComboBox comboBoxDevice;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private VideoFileList videoFileList1;
+        private System.Windows.Forms.ListView alertListView;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }

@@ -28,11 +28,21 @@ namespace api.impl
             return template.GetForObject<List<CameraInfo>>("/api/camera");
         }
 
+        public List<DeviceInfo> Device()
+        {
+            return template.GetForObject<List<DeviceInfo>>("/api/device");
+        }
+
         public List<AlertInfo> Alerts(DateTime from, DateTime to)
         {
             var uri = string.Format("/api/alert?from={0}&to={1}", from.ToString(CultureInfo.InvariantCulture), to.ToString(CultureInfo.InvariantCulture));
             return template.GetForObject<List<AlertInfo>>(uri);
         }
 
+        public List<AlertInfo> Alerts(int device, DateTime from, DateTime to)
+        {
+            var uri = string.Format("/api/alert?from={0}&to={1}&device={2}", from.ToString(CultureInfo.InvariantCulture), to.ToString(CultureInfo.InvariantCulture), device);
+            return template.GetForObject<List<AlertInfo>>(uri);
+        }
     }
 }

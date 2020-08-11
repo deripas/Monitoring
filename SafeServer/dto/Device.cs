@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SafeServer.dto
 {
@@ -14,11 +11,14 @@ namespace SafeServer.dto
         [Column("name")]
         public string Name { get; set; }
 
+        [Column("description")]
+        public string Description { get; set; }
+
         [Column("enable")]
         public bool Enable { get; set; }
 
         [Column("camera")]
-        public int Camera { get; set; }
+        public int? Camera { get; set; }
 
         [Column("type")]
         public string Type { get; set; }

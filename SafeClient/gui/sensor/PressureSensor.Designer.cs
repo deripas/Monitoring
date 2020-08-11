@@ -41,7 +41,7 @@
             this.baseSensor1.Location = new System.Drawing.Point(3, 3);
             this.baseSensor1.Max = "maximum";
             this.baseSensor1.Name = "baseSensor1";
-            this.baseSensor1.Size = new System.Drawing.Size(650, 130);
+            this.baseSensor1.Size = new System.Drawing.Size(576, 112);
             this.baseSensor1.TabIndex = 0;
             this.baseSensor1.Title = "Давление";
             this.baseSensor1.Value = "current";
@@ -49,9 +49,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Properties.Resources.bar;
-            this.pictureBox1.Location = new System.Drawing.Point(29, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(29, -1);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(68, 118);
+            this.pictureBox1.Size = new System.Drawing.Size(68, 119);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -74,7 +74,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.baseSensor1);
             this.Name = "PressureSensor";
-            this.Size = new System.Drawing.Size(580, 116);
+            this.Size = new System.Drawing.Size(578, 114);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

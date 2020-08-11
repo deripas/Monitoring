@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace SafeServer.dto
 {
@@ -10,9 +8,6 @@ namespace SafeServer.dto
     {
         [Column("id")]
         public long id { get; set; }
-
-        [Column("camera")]
-        public int camera { get; set; }
 
         [Column("device")]
         public int device { get; set; }

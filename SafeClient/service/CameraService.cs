@@ -25,7 +25,7 @@ namespace service
 
         public List<CameraController> CameraList { get; }
 
-        public CameraController this[long id]
+        public CameraController this[int id]
         {
             get
             {

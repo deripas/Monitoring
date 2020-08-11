@@ -24,6 +24,7 @@ namespace SafeServer.service
         {
             optionsBuilder
                 .UseLoggerFactory(new NLogLoggerFactory())
+                .EnableSensitiveDataLogging()
                 .UseNpgsql("Server=127.0.0.1;Port=5432;Database=monitoring;User Id=postgres;Password=postgres;CommandTimeout=20;");
         }
 

@@ -43,10 +43,10 @@
             this.flowLayoutPanel1.Controls.Add(this.name);
             this.flowLayoutPanel1.Controls.Add(this.maximum);
             this.flowLayoutPanel1.Controls.Add(this.current);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(121, 6);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(114, 6);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(6);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(457, 35);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(459, 35);
             this.flowLayoutPanel1.TabIndex = 15;
             // 
             // name
@@ -113,7 +113,7 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.description);
             this.Name = "BaseSensor";
-            this.Size = new System.Drawing.Size(584, 120);
+            this.Size = new System.Drawing.Size(594, 120);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.led)).EndInit();

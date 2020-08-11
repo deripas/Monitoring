@@ -5,6 +5,7 @@ using model.device;
 using model.video;
 using System.Configuration;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace gui
 {
@@ -50,10 +51,12 @@ namespace gui
         {
             get
             {
-                if (listBox1.SelectedItem is AlertModel)
-                    return (AlertModel)listBox1.SelectedItem;
-                else
-                    return null;
+                if (alertListView.SelectedItems != null)
+                {
+                    var sel = alertListView.SelectedItems[0];
+                    return (AlertModel)sel.Tag;
+                }
+                return null;
             }
         }
 
@@ -108,20 +111,42 @@ namespace gui
         public void Search()
         {
             if (DI.Instance.DeviceService == null) return;
+            if (comboBoxDevice.SelectedItem == null) return;
+            if (dateTimePicker1.Value == null) return;
 
-            var alerts = DI.Instance.DeviceService.FindAlerts(dateTimePicker1.Value);
-            listBox1.Items.Clear();
-            listBox1.Items.AddRange(alerts.ToArray());
+            var from = dateTimePicker1.Value.Date;
+            var to = from.AddDays(1);
+            var select = comboBoxDevice.SelectedItem;
+            if (select is DeviceController)
+            {
+                var dev = (DeviceController)select;
+                var alerts = DI.Instance.DeviceService.FindAlerts(dev.Id, from, to);
+                SetAlertList(alerts);
+            }
+            else
+            {
+                var alerts = DI.Instance.DeviceService.FindAlerts(from, to);
+                SetAlertList(alerts);
+            }
+        }
+
+        private void SetAlertList(List<AlertModel> alerts)
+        {
+            alertListView.Items.Clear();
+            foreach (AlertModel alert in alerts)
+            {
+                ListViewItem item = new ListViewItem(alert.Device.Name);
+                item.SubItems.Add(String.Format("{0:HH:mm:ss}", alert.Time));
+                item.SubItems.Add(alert.Processed.ToString());
+                item.Tag = alert;
+                alertListView.Items.Add(item);
+            }
+            alertListView.Refresh();
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             Search();
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SelectAlert();
         }
 
         private bool SelectAlert()
@@ -139,6 +164,26 @@ namespace gui
             videoFileList1.Items = cam.SearchVideoFiles(from, to, api.FileType.SDK_RECORD_ALL);
             videoFileList1.SelectByTime(alert.Time);
             return true;
+        }
+
+        private void SearchAlertPanel_Load(object sender, EventArgs e)
+        {
+            if (DI.Instance.DeviceService == null) return;
+
+            var list = DI.Instance.DeviceService.DeviceList;
+            comboBoxDevice.Items.Clear();
+            comboBoxDevice.Items.Add("Все");
+            comboBoxDevice.Items.AddRange(list.ToArray());
+        }
+
+        private void comboBoxDevice_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Search();
+        }
+
+        private void alertListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectAlert();
         }
     }
 }

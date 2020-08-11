@@ -97,10 +97,11 @@
   <ItemGroup>
     <Compile Include="api\dto\AlertInfo.cs" />
     <Compile Include="api\dto\CameraInfo.cs" />
+    <Compile Include="api\dto\DeviceInfo.cs" />
+    <Compile Include="api\dto\DeviceType.cs" />
     <Compile Include="api\dto\NvrInfo.cs" />
     <Compile Include="api\FFmpeg.cs" />
     <Compile Include="api\H264.cs" />
-    <Compile Include="api\impl\MockServerApi.cs" />
     <Compile Include="api\impl\RestServerApi.cs" />
     <Compile Include="api\IServerApi.cs" />
     <Compile Include="api\NetSDK.cs" />
@@ -302,6 +303,8 @@
     <Compile Include="model\camera\CameraSreamModel.cs" />
     <Compile Include="model\camera\ICameraView.cs" />
     <Compile Include="model\device\ChartModel.cs" />
+    <Compile Include="model\device\DeviceController.cs" />
+    <Compile Include="model\device\SensorView.cs" />
     <Compile Include="model\nvr\NvrController.cs" />
     <Compile Include="model\nvr\NvrModel.cs" />
     <Compile Include="model\video\FileAlertType.cs" />
