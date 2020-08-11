@@ -16,5 +16,11 @@ namespace SafeServer.dto
 
         [Column("enable")]
         public bool Enable { get; set; }
+
+        [Column("camera")]
+        public int Camera { get; set; }
+
+        [Column("type")]
+        public string Type { get; set; }
     }
 }
