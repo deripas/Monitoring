@@ -45,5 +45,15 @@ namespace SafeServer
                 return db.Alert.Where(x => f <= x.time && x.time <= t).ToList();
             }
         }
+
+        [HttpGet]
+        [Route("device")]
+        public List<Device> Device()
+        {
+            using (var db = new DatabaseService())
+            {
+                return db.Device.ToList();
+            }
+        }
     }
 }

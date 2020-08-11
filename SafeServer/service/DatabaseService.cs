@@ -11,6 +11,7 @@ namespace SafeServer.service
         public DbSet<Camera> Camera { get; set; }
         public DbSet<Nvr> Nvr { get; set; }
         public DbSet<Alert> Alert { get; set; }
+        public DbSet<Device> Device { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
