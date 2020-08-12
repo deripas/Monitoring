@@ -105,10 +105,16 @@
     <Compile Include="api\impl\RestServerApi.cs" />
     <Compile Include="api\IServerApi.cs" />
     <Compile Include="api\NetSDK.cs" />
-    <Compile Include="gui\options\AlarmOption.cs">
+    <Compile Include="gui\device\DeviceViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gui\device\DeviceViewForm.Designer.cs">
+      <DependentUpon>DeviceViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui\device\AlarmOption.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="gui\options\AlarmOption.Designer.cs">
+    <Compile Include="gui\device\AlarmOption.Designer.cs">
       <DependentUpon>AlarmOption.cs</DependentUpon>
     </Compile>
     <Compile Include="gui\alert\AlertPlayerPanel.cs">
@@ -123,10 +129,10 @@
     <Compile Include="gui\alert\AlertViewForm.Designer.cs">
       <DependentUpon>AlertViewForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="gui\options\BaseOption.cs">
+    <Compile Include="gui\device\BaseOption.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="gui\options\BaseOption.Designer.cs">
+    <Compile Include="gui\device\BaseOption.Designer.cs">
       <DependentUpon>BaseOption.cs</DependentUpon>
     </Compile>
     <Compile Include="gui\control\CircleHurbleControl.cs">
@@ -153,10 +159,10 @@
     <Compile Include="gui\control\RolletControl.Designer.cs">
       <DependentUpon>RolletControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="gui\options\MeasureOption.cs">
+    <Compile Include="gui\device\MeasureOption.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="gui\options\MeasureOption.Designer.cs">
+    <Compile Include="gui\device\MeasureOption.Designer.cs">
       <DependentUpon>MeasureOption.cs</DependentUpon>
     </Compile>
     <Compile Include="gui\sensor\BaseSensor.cs">
@@ -320,7 +326,10 @@
     <Compile Include="service\DeviceService.cs" />
     <Compile Include="service\CameraService.cs" />
     <Compile Include="service\DI.cs" />
-    <EmbeddedResource Include="gui\options\AlarmOption.resx">
+    <EmbeddedResource Include="gui\device\DeviceViewForm.resx">
+      <DependentUpon>DeviceViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\device\AlarmOption.resx">
       <DependentUpon>AlarmOption.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gui\alert\AlertPlayerPanel.resx">
@@ -329,7 +338,7 @@
     <EmbeddedResource Include="gui\alert\AlertViewForm.resx">
       <DependentUpon>AlertViewForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="gui\options\BaseOption.resx">
+    <EmbeddedResource Include="gui\device\BaseOption.resx">
       <DependentUpon>BaseOption.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gui\control\CircleHurbleControl.resx">
@@ -344,7 +353,7 @@
     <EmbeddedResource Include="gui\control\RolletControl.resx">
       <DependentUpon>RolletControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="gui\options\MeasureOption.resx">
+    <EmbeddedResource Include="gui\device\MeasureOption.resx">
       <DependentUpon>MeasureOption.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gui\sensor\BaseSensor.resx">

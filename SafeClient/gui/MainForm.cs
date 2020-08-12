@@ -18,6 +18,7 @@ namespace gui
             VideoViewForm.Instance.Dispose();
             AlertViewForm.Instance.Dispose();
             VideoExportForm.Instance.Dispose();
+            DeviceViewForm.Instance.Dispose();
             DI.Instance.Dispose();
             Application.Exit();
         }
@@ -37,6 +38,16 @@ namespace gui
         private void toolStripButton2_Click(object sender, System.EventArgs e)
         {
             AlertViewForm.Instance.Start();
+        }
+
+        private void closeButton_Click(object sender, System.EventArgs e)
+        {
+            Close();
+        }
+
+        private void toolStripButton3_Click(object sender, System.EventArgs e)
+        {
+            DeviceViewForm.Instance.Start();
         }
     }
 }

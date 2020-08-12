@@ -1,4 +1,5 @@
 ﻿using api;
+using api.dto;
 using gui;
 using model.nvr;
 using model.video;
@@ -30,9 +31,9 @@ namespace model.camera
 
         public string Name => model.Name;
 
-        public CameraController(NvrModel model, int chanel)
+        public CameraController(NvrModel model, CameraInfo info)
         {
-            this.model = new CameraModel(model, chanel - 1);
+            this.model = new CameraModel(model, info);
             streams = new Dictionary<ICameraView, CameraSreamModel>();
         }
 
@@ -209,7 +210,7 @@ namespace model.camera
 
         public override string ToString()
         {
-            return model.ToString();
+            return model.Name;
         }
     }
 }

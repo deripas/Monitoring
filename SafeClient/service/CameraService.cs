@@ -54,7 +54,7 @@ namespace service
             foreach (CameraInfo camera in serverApi.Camera())
             {
                 var nvr = _nvrMapById[camera.nvr];
-                var cam = nvr.Camera(camera.channel);
+                var cam = nvr.Camera(camera);
                 CameraList.Add(cam);
                 _cameraMap.Add(camera.id, cam);
             }

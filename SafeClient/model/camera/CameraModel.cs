@@ -1,4 +1,5 @@
 ﻿using api;
+using api.dto;
 using model.nvr;
 using model.video;
 using System;
@@ -57,11 +58,11 @@ namespace model.camera
             }
         }
 
-        public CameraModel(NvrModel nvr, int channel)
+        public CameraModel(NvrModel nvr, CameraInfo info)
         {
             this.nvr = nvr;
-            this.Channel = channel;
-            Name = nvr.Ip + "#" + (Channel + 1);
+            this.Channel = info.channel - 1;
+            Name = info.name;
         }
 
         internal void StartTalk()

@@ -30,35 +30,60 @@
         {
             this.alertPlayerPanel1 = new gui.AlertPlayerPanel();
             this.searchAlertPanel1 = new gui.SearchAlertPanel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // alertPlayerPanel1
             // 
             this.alertPlayerPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.alertPlayerPanel1.Location = new System.Drawing.Point(454, 0);
+            this.alertPlayerPanel1.Location = new System.Drawing.Point(0, 0);
             this.alertPlayerPanel1.Name = "alertPlayerPanel1";
             this.alertPlayerPanel1.Ratio = 0.75D;
-            this.alertPlayerPanel1.Size = new System.Drawing.Size(901, 840);
+            this.alertPlayerPanel1.Size = new System.Drawing.Size(900, 840);
             this.alertPlayerPanel1.TabIndex = 0;
             // 
             // searchAlertPanel1
             // 
-            this.searchAlertPanel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.searchAlertPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.searchAlertPanel1.Location = new System.Drawing.Point(0, 0);
             this.searchAlertPanel1.Name = "searchAlertPanel1";
-            this.searchAlertPanel1.Size = new System.Drawing.Size(454, 840);
+            this.searchAlertPanel1.Size = new System.Drawing.Size(451, 840);
             this.searchAlertPanel1.TabIndex = 1;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.searchAlertPanel1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.alertPlayerPanel1);
+            this.splitContainer1.Size = new System.Drawing.Size(1355, 840);
+            this.splitContainer1.SplitterDistance = 451;
+            this.splitContainer1.TabIndex = 2;
             // 
             // AlertViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1355, 840);
-            this.Controls.Add(this.alertPlayerPanel1);
-            this.Controls.Add(this.searchAlertPanel1);
+            this.Controls.Add(this.splitContainer1);
             this.Name = "AlertViewForm";
             this.Text = "AlertViewForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AlertViewForm_FormClosing);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -67,5 +92,6 @@
 
         private AlertPlayerPanel alertPlayerPanel1;
         private SearchAlertPanel searchAlertPanel1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }

@@ -23,6 +23,7 @@ namespace gui
                 if (view == null) continue;
 
                 flowLayoutPanel1.Controls.Add(view.GetControl());
+                view.GetControl().Enabled = dev.Enable;
                 view.Set(dev);
             }
 

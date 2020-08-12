@@ -33,15 +33,17 @@ namespace gui
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.grid = new gui.CameraGridPanel();
-            this.sensorPanel1 = new gui.SensorPanel();
-            this.controlPanel1 = new gui.ControlPanel();
-            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+            this.closeButton = new System.Windows.Forms.ToolStripButton();
+            this.grid = new gui.CameraGridPanel();
+            this.controlPanel1 = new gui.ControlPanel();
+            this.sensorPanel1 = new gui.SensorPanel();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,17 +51,28 @@ namespace gui
             // 
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(28, 28);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton4,
             this.toolStripSplitButton1,
             this.toolStripButton1,
             this.toolStripButton2,
             this.toolStripButton3,
             this.toolStripSeparator1,
-            this.toolStripComboBox1});
+            this.toolStripComboBox1,
+            this.closeButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1455, 38);
+            this.toolStrip1.Size = new System.Drawing.Size(1455, 48);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(40, 42);
+            this.toolStripButton4.Text = "toolStripButton4";
             // 
             // toolStripSplitButton1
             // 
@@ -72,7 +85,7 @@ namespace gui
             "5x5",
             "6x6"});
             this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(75, 38);
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(75, 48);
             this.toolStripSplitButton1.SelectedIndexChanged += new System.EventHandler(this.toolStripSplitButton1_SelectedIndexChanged);
             // 
             // toolStripButton1
@@ -81,7 +94,7 @@ namespace gui
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(40, 32);
+            this.toolStripButton1.Size = new System.Drawing.Size(40, 42);
             this.toolStripButton1.Text = "historyButton";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -91,28 +104,55 @@ namespace gui
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(40, 32);
+            this.toolStripButton2.Size = new System.Drawing.Size(40, 42);
             this.toolStripButton2.Text = "toolStripButton2";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(40, 42);
+            this.toolStripButton3.Text = "toolStripButton3";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 48);
+            // 
+            // toolStripComboBox1
+            // 
+            this.toolStripComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripComboBox1.Items.AddRange(new object[] {
+            "mode1",
+            "mode2",
+            "mode3"});
+            this.toolStripComboBox1.Name = "toolStripComboBox1";
+            this.toolStripComboBox1.Size = new System.Drawing.Size(121, 48);
+            // 
+            // closeButton
+            // 
+            this.closeButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.closeButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.closeButton.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.closeButton.Image = ((System.Drawing.Image)(resources.GetObject("closeButton.Image")));
+            this.closeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(45, 42);
+            this.closeButton.Text = "✕";
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // grid
             // 
             this.grid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grid.Location = new System.Drawing.Point(0, 38);
+            this.grid.Location = new System.Drawing.Point(0, 48);
             this.grid.Name = "grid";
-            this.grid.Size = new System.Drawing.Size(835, 425);
+            this.grid.Size = new System.Drawing.Size(835, 415);
             this.grid.TabIndex = 0;
-            // 
-            // sensorPanel1
-            // 
-            this.sensorPanel1.AutoScroll = true;
-            this.sensorPanel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.sensorPanel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.sensorPanel1.Location = new System.Drawing.Point(835, 38);
-            this.sensorPanel1.Name = "sensorPanel1";
-            this.sensorPanel1.Size = new System.Drawing.Size(620, 625);
-            this.sensorPanel1.TabIndex = 2;
             // 
             // controlPanel1
             // 
@@ -124,29 +164,15 @@ namespace gui
             this.controlPanel1.Size = new System.Drawing.Size(835, 200);
             this.controlPanel1.TabIndex = 3;
             // 
-            // toolStripComboBox1
+            // sensorPanel1
             // 
-            this.toolStripComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.toolStripComboBox1.Items.AddRange(new object[] {
-            "mode1",
-            "mode2",
-            "mode3"});
-            this.toolStripComboBox1.Name = "toolStripComboBox1";
-            this.toolStripComboBox1.Size = new System.Drawing.Size(121, 38);
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(40, 32);
-            this.toolStripButton3.Text = "toolStripButton3";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 38);
+            this.sensorPanel1.AutoScroll = true;
+            this.sensorPanel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.sensorPanel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.sensorPanel1.Location = new System.Drawing.Point(835, 48);
+            this.sensorPanel1.Name = "sensorPanel1";
+            this.sensorPanel1.Size = new System.Drawing.Size(620, 615);
+            this.sensorPanel1.TabIndex = 2;
             // 
             // MainForm
             // 
@@ -157,6 +183,7 @@ namespace gui
             this.Controls.Add(this.controlPanel1);
             this.Controls.Add(this.sensorPanel1);
             this.Controls.Add(this.toolStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "MainForm";
@@ -181,5 +208,7 @@ namespace gui
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.ToolStripButton closeButton;
     }
 }

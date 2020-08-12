@@ -67,6 +67,14 @@ namespace model.device
             }
         }
 
+        public bool Enable
+        {
+            get
+            {
+                return info.enable;
+            }
+        }
+
         public DeviceController(DeviceInfo info)
         {
             this.info = info;

@@ -1,15 +1,30 @@
 ﻿using service;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace gui
 {
     public partial class CameraGridPanel : UserControl
     {
+        private double _ratio = 0.5625D;
         private readonly List<CameraViewPanel> views = new List<CameraViewPanel>();
         private int cols;
         private int rows;
         private CameraViewPanel select;
+
+        private Size TableSize
+        {
+            get
+            {
+                var ratio = _ratio;
+                var w = Math.Min(this.Width, (int)Math.Round(this.Height / ratio));
+                var h = (int)Math.Round(w * ratio);
+                var b = 0;
+                return new Size(w - b, h - b);
+            }
+        }
 
         public CameraGridPanel()
         {
@@ -82,6 +97,18 @@ namespace gui
         {
             foreach (var view in views)
                 view.StopPlay();
+        }
+
+        private void CameraGridPanel_Resize(object sender, System.EventArgs e)
+        {
+            DoResize();
+        }
+
+        private void DoResize()
+        {
+            var size = TableSize;
+            var loc = new Point((this.Width - size.Width) / 2, (this.Height - size.Height) / 2);
+            table?.SetBounds(0, 0, size.Width, size.Height);
         }
     }
 }

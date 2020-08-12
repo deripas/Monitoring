@@ -40,9 +40,9 @@ namespace model.nvr
             }
         }
 
-        internal CameraController Camera(int chanel)
+        internal CameraController Camera(CameraInfo info)
         {
-            CameraController camera = new CameraController(model, chanel);
+            CameraController camera = new CameraController(model, info);
             cameras.Add(camera);
             return camera;
         }

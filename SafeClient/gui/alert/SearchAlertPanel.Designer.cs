@@ -34,9 +34,9 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.videoFileList1 = new gui.VideoFileList();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.comboBoxDevice = new System.Windows.Forms.ComboBox();
+            this.videoFileList1 = new gui.VideoFileList();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -92,7 +92,6 @@
             this.alertListView.FullRowSelect = true;
             this.alertListView.GridLines = true;
             this.alertListView.HideSelection = false;
-            this.alertListView.HoverSelection = true;
             this.alertListView.Location = new System.Drawing.Point(0, 0);
             this.alertListView.MultiSelect = false;
             this.alertListView.Name = "alertListView";
@@ -120,14 +119,6 @@
             this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader3.Width = 120;
             // 
-            // videoFileList1
-            // 
-            this.videoFileList1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.videoFileList1.Location = new System.Drawing.Point(0, 0);
-            this.videoFileList1.Name = "videoFileList1";
-            this.videoFileList1.Size = new System.Drawing.Size(394, 265);
-            this.videoFileList1.TabIndex = 0;
-            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -153,6 +144,14 @@
             this.comboBoxDevice.Size = new System.Drawing.Size(394, 32);
             this.comboBoxDevice.TabIndex = 15;
             this.comboBoxDevice.SelectedIndexChanged += new System.EventHandler(this.comboBoxDevice_SelectedIndexChanged);
+            // 
+            // videoFileList1
+            // 
+            this.videoFileList1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.videoFileList1.Location = new System.Drawing.Point(0, 0);
+            this.videoFileList1.Name = "videoFileList1";
+            this.videoFileList1.Size = new System.Drawing.Size(394, 265);
+            this.videoFileList1.TabIndex = 0;
             // 
             // SearchAlertPanel
             // 

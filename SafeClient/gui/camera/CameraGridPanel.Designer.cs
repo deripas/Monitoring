@@ -36,7 +36,6 @@
             this.table.ColumnCount = 2;
             this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.table.Dock = System.Windows.Forms.DockStyle.Fill;
             this.table.Location = new System.Drawing.Point(0, 0);
             this.table.Name = "table";
             this.table.RowCount = 2;
@@ -52,6 +51,7 @@
             this.Controls.Add(this.table);
             this.Name = "CameraGridPanel";
             this.Size = new System.Drawing.Size(772, 496);
+            this.Resize += new System.EventHandler(this.CameraGridPanel_Resize);
             this.ResumeLayout(false);
 
         }
