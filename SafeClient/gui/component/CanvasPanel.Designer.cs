@@ -28,36 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.canvas = new System.Windows.Forms.PictureBox();
+            this.panel = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
+            this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // canvas
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Black;
-            this.pictureBox1.Location = new System.Drawing.Point(114, 78);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(543, 335);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
+            this.canvas.BackColor = System.Drawing.Color.Black;
+            this.canvas.Location = new System.Drawing.Point(22, 28);
+            this.canvas.Name = "canvas";
+            this.canvas.Size = new System.Drawing.Size(515, 330);
+            this.canvas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.canvas.TabIndex = 0;
+            this.canvas.TabStop = false;
+            // 
+            // panel
+            // 
+            this.panel.BackColor = System.Drawing.Color.Black;
+            this.panel.Controls.Add(this.canvas);
+            this.panel.Location = new System.Drawing.Point(78, 80);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(572, 396);
+            this.panel.TabIndex = 1;
             // 
             // CanvasPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.pictureBox1);
+            this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.panel);
             this.Name = "CanvasPanel";
             this.Size = new System.Drawing.Size(870, 570);
             this.Resize += new System.EventHandler(this.CanvasPanel_Resize);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.canvas)).EndInit();
+            this.panel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox canvas;
+        private System.Windows.Forms.Panel panel;
     }
 }

@@ -6,8 +6,11 @@ namespace gui
 {
     public partial class CanvasPanel : UserControl
     {
+        private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
+
         private static readonly int borderSize = 10;
         private double _ratio = 0.75D;
+        private RectangleF zoom;
 
         public double Ratio
         {
@@ -24,7 +27,7 @@ namespace gui
 
         public bool Selected { get; set; }
 
-        public PictureBox Canvas => pictureBox1;
+        public PictureBox Canvas => canvas;
 
         private Size ViewSize
         {
@@ -42,6 +45,7 @@ namespace gui
         {
             _ratio = 0.75D;
             Selected = false;
+            zoom = new RectangleF(0f, 0f, 1f, 1f);
             InitializeComponent();
         }
 
@@ -49,17 +53,17 @@ namespace gui
         {
             var size = ViewSize;
             var loc = new Point((this.Width - size.Width) / 2, (this.Height - size.Height) / 2);
-            pictureBox1?.SetBounds(loc.X, loc.Y, size.Width, size.Height);
+            panel?.SetBounds(loc.X, loc.Y, size.Width, size.Height);
+            canvas?.SetBounds(0, 0, size.Width, size.Height);
+
+            //var origSize = new Size((int)(size.Width / zoom.Width), (int)(size.Height / zoom.Width));
+            //var origLoc = new Point((int)(origSize.Width * zoom.X), (int)(origSize.Height * zoom.Y));
+            //canvas?.SetBounds(origLoc.X, origLoc.Y, origSize.Width, origSize.Height);
         }
 
         private void CanvasPanel_Resize(object sender, EventArgs e)
         {
             DoResize();
-        }
-
-        private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-
         }
     }
 }

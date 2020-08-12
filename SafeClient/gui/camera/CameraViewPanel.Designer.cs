@@ -136,6 +136,7 @@
             // 
             // canvas
             // 
+            this.canvas.BackColor = System.Drawing.Color.Black;
             this.canvas.ContextMenuStrip = this.contextMenu;
             this.canvas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.canvas.Location = new System.Drawing.Point(0, 0);
@@ -151,6 +152,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.canvas);
+            this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "CameraViewPanel";
             this.Size = new System.Drawing.Size(679, 566);
             this.contextMenu.ResumeLayout(false);
