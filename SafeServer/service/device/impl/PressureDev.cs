@@ -1,7 +1,7 @@
 ﻿namespace SafeServer.service.device
 {
-    public class PressureDev
-    {
-        
-    }
+    // public class PressureDev : LtrDevice
+    // {
+    //     
+    // }
 }

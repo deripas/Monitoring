@@ -6,8 +6,28 @@ using System.Reactive.Subjects;
 
 namespace SafeServer.ltr
 {
-    public class Ltr41 : LtrRead<Tuple<ushort[], int>>
+    public class Ltr41 : LtrRead<Tuple<ushort[], int>>, ILtr
     {
+        private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
+
+        public IObservable<Tuple<bool[], int>> this[int index]
+        {
+            get
+            {
+                var seed = Tuple.Create(new bool[_data.Length], 0);
+                return Data.Scan(seed, (accum, cur) =>
+                {
+                    var (inArray, size) = cur;
+                    var (outArray, _) = accum;
+
+                    for (var i = 0; i < size; i++)
+                        outArray[i] = ((inArray[i] >> index) & 1) == 1;
+
+                    return Tuple.Create(outArray, size);
+                });
+            }
+        }
+
         private Slot slot;
         private _ltr41api.TLTR41 _module;
         private readonly uint[] _data = new uint[1024];
@@ -19,26 +39,10 @@ namespace SafeServer.ltr
             _ltr41api.LTR41_Init(ref _module);
         }
 
-        public void Add(int index, IObserver<Tuple<bool[], int>> sensor)
-        {
-            Add(new Subject<Tuple<ushort[], int>>())
-                .ObserveOn(NewThreadScheduler.Default)
-                .Scan(Tuple.Create(new bool[1024], 0), (accum, cur) =>
-                {
-                    var (inArray, size) = cur;
-                    var (outArray, _) = accum;
-
-                    for (var i = 0; i < size; i++)
-                        outArray[i] = ((inArray[i] >> index) & 1) == 1;
-
-                    return Tuple.Create(outArray, size);
-                })
-                .Subscribe(sensor);
-        }
-
         public new void Start()
         {
-            _ltr41api.LTR41_Open(ref _module, (uint)0x7F000001L, 11111, slot.ToCharArraySn(), slot.Num);
+            Log.Info("{0} Start", this);
+            _ltr41api.LTR41_Open(ref _module, (uint)0x7F000001L, 11111, slot.ToCharArraySn(), slot.num);
 
             /* Конфигурация меток */
             _module.Marks.SecondMark_Mode = 0; //  Секундная метка внутр. с трансляцией на выход
@@ -56,6 +60,7 @@ namespace SafeServer.ltr
 
             _ltr41api.LTR41_StopStreamRead(ref _module);
             _ltr41api.LTR41_Close(ref _module);
+            Log.Info("{0} Stop", this);
         }
 
         protected override Tuple<ushort[], int> ReadItem()
@@ -64,6 +69,11 @@ namespace SafeServer.ltr
             _ltr41api.LTR41_Recv(ref _module, _data, null, (uint)_data.Length, 1000);
             var ok = _ltr41api.LTR41_ProcessData(ref _module, _data, _rez, ref size) == _LTRNative.LTRERROR.OK;
             return Tuple.Create(_rez, ok ? size : 0);
+        }
+        
+        public override string ToString()
+        {
+            return $"Ltr41 [{slot}]";
         }
     }
 }

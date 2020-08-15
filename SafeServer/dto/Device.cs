@@ -22,5 +22,11 @@ namespace SafeServer.dto
 
         [Column("type")]
         public string Type { get; set; }
+        
+        [Column("version")]
+        public long Version { get; set; }
+        
+        [Column("config", TypeName = "jsonb")]
+        public Config Config  { get; set; }
     }
 }

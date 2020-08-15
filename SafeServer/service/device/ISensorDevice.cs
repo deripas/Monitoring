@@ -1,9 +1,10 @@
 ﻿using System;
+using SafeServer.dto;
 
 namespace SafeServer.service.device
 {
-    public interface IMeasureDevice : IDevice
+    public interface ISensorDevice : IDevice
     {
-        public IObservable<Tuple<bool[], int>> Value;
+        IObservable<SensorStatus> Status();
     }
 }

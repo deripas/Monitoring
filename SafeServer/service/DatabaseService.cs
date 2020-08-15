@@ -18,6 +18,7 @@ namespace SafeServer.service
         public DbSet<Alert> Alert { get; set; }
         public DbSet<Device> Device { get; set; }
         public DbSet<Value> Value { get; set; }
+        public DbSet<LTR> LTR { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

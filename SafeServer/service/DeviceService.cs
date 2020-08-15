@@ -1,10 +1,10 @@
-﻿using SafeServer.dto;
+﻿using System;
+using SafeServer.dto;
 using SafeServer.service.device;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reactive.Concurrency;
 using System.Reactive.Linq;
-using Microsoft.EntityFrameworkCore.Internal;
+using System.Reactive.Subjects;
 
 namespace SafeServer.service
 {
@@ -15,10 +15,13 @@ namespace SafeServer.service
         public IDevice this[long id] => map[id];
 
         private Dictionary<long, IDevice> map;
+        private BehaviorSubject<Dictionary<long, SensorStatus>> statuses;
+        private IDisposable _disposable;
 
         public DeviceService()
         {
             map = new Dictionary<long, IDevice>();
+            statuses = new BehaviorSubject<Dictionary<long, SensorStatus>>(new Dictionary<long, SensorStatus>());
         }
 
         private List<Device> Devices()
@@ -29,7 +32,7 @@ namespace SafeServer.service
             }
         }
 
-        private IDevice create(Device dev)
+        private IDevice Create(Device dev)
         {
             if (dev.Type == null) return null;
 
@@ -38,12 +41,13 @@ namespace SafeServer.service
             if (dev.Type.Equals("smoke"))
                 return new SmokeDev(dev);
             if(dev.Type.Equals("water"))
-            return new WaterDev(dev); 
+                return new WaterDev(dev); 
             // if(dev.Type.Equals("temperature"))
             //     return new TemperatureDev(dev);  
             if (dev.Type.Equals("alarm"))
                 return new AlarmDev(dev);
 
+            Log.Warn("Unknown type [{0}] '{1}'", dev.Name, dev.Type);
             return null;
         }
 
@@ -51,25 +55,23 @@ namespace SafeServer.service
         {
             foreach (var dev in Devices())
             {
-                var d = create(dev);
-                if (d == null) continue;
+                try
+                {
+                    if (dev.Config == null) continue;
 
-                map.Add(dev.Id, d);
+                    var d = Create(dev);
+                    if(d == null) continue;
+                    
+                    map.Add(dev.Id, d);
+                }
+                catch (Exception ex)
+                {
+                    Log.Warn("Ignored [{0}]", dev.Name);
+                }
             }
 
-            map.Values
-                .OfType<ISensorDevice>()
-                .Where(d => d.Id() == 24)
-                .Select(device => device.Status())
-                .ToList()
-                .Merge()
-                .ObserveOn(NewThreadScheduler.Default);
-            // .Subscribe(s =>
-            // {
-            //     Log.Info("{0} {1} ", s.id, s.alarm);
-            // });
-
             SubscribeSiren();
+            SubscribeStatus();
         }
 
         private void SubscribeSiren()
@@ -88,6 +90,29 @@ namespace SafeServer.service
             }
         }
 
+        private void SubscribeStatus()
+        {
+            var status = map.Values
+                .OfType<ISensorDevice>()
+                .Select(device => device.Status())
+                .ToList()
+                .Merge();
+            
+            DI.Instance.MeasureWriter.Subscribe(status);
+
+            _disposable = status
+                .Scan(new Dictionary<long, SensorStatus>(), (dictionary, sensorStatus) =>
+                {
+                    if(dictionary.ContainsKey(sensorStatus.id))
+                        dictionary[sensorStatus.id] = sensorStatus;
+                    else
+                        dictionary.Add(sensorStatus.id, sensorStatus);
+                    return new Dictionary<long, SensorStatus>(dictionary);
+                })
+                .Sample(TimeSpan.FromMilliseconds(500))
+                .Subscribe(statuses);
+        }
+
         public void Start()
         {
             foreach (var dev in map.Values)
@@ -96,9 +121,26 @@ namespace SafeServer.service
 
         internal void Dispose()
         {
+            _disposable?.Dispose();
             foreach (var dev in map.Values)
                 dev.Close();
             map.Clear();
+        }
+
+        public List<SensorStatus> GetAllStatus()
+        {
+            return statuses.Value.Values.ToList();
+        }
+
+        public void UpdateConfig(long id, Config config)
+        {
+            using (var db = new DatabaseService())
+            {
+                var dev = db.Device.Find(id);
+                dev.Version += 1;
+                dev.Config = config;
+                db.SaveChanges();
+            }
         }
     }
 }

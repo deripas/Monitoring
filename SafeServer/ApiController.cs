@@ -110,5 +110,19 @@ namespace SafeServer
                     .Select(v => new PointD { time = v.time.ToOADate(), value = v.val })
                     .ToList();
         }
+        
+        [HttpPost]
+        [Route("device/{id}/reset")]
+        public void DeviceReset(int id)
+        {
+            DI.Instance.DeviceService[id].Reset();
+        }
+
+        [HttpGet]
+        [Route("status")]
+        public List<SensorStatus> Statuses()
+        {
+            return DI.Instance.DeviceService.GetAllStatus();
+        }
     }
 }

@@ -1,7 +1,11 @@
-﻿namespace SafeServer.service.device
+﻿using System;
+
+namespace SafeServer.service.device
 {
-    public interface IWithSirenaDevice : IDevice
+    public interface IWithSirenDevice : IDevice
     {
-        long SirenaId();
+        long SirenId();
+        
+        IObservable<bool> Siren();
     }
 }

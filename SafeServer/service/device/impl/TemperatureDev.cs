@@ -1,7 +1,7 @@
 ﻿namespace SafeServer.service.device
 {
-    public class TemperatureDev
-    {
-        
-    }
+    // public class TemperatureDev
+    // {
+    //     
+    // }
 }

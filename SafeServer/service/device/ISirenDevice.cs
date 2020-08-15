@@ -1,7 +1,9 @@
-﻿namespace SafeServer.service.device
+﻿using System;
+
+namespace SafeServer.service.device
 {
-    public class ISirenDevice
+    public interface ISirenDevice : IDevice
     {
-        
+        void Subscribe(IObservable<bool> siren);
     }
 }

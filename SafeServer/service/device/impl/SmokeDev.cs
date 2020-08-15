@@ -23,14 +23,6 @@ namespace SafeServer.service.device
         protected override IObservable<SensorStatus> CreateStatus()
         {
             var config = device.Config;
-            if (config == null)
-            {
-                config = new Config();
-                config.siren = 28;
-                config.sensor = new Channel {sn = "2D551744", num = 1, index = 1};
-                config.power = new Channel {sn = "2D551744", num = 2, index = 0};
-                device.Config = config;
-            }
             var ch1 = config.sensor;
             var ltr41 = Ltr41(ch1.GetSlot());
             return ltr41[ch1.index]

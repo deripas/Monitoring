@@ -29,6 +29,20 @@ namespace SafeServer
         {
             InitLogger();
             InitServer();
+            try
+            {
+                DI.Instance.Init();
+            }
+            catch (Exception exception)
+            {
+                log.Error(exception);
+            }
+  }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DI.Instance.Dispose();
+            Application.Exit();
         }
 
         private void InitLogger()

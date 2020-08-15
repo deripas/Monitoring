@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reactive.Concurrency;
+using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Threading;
 
@@ -7,24 +9,14 @@ namespace SafeServer.ltr
 {
     public abstract class LtrRead<T>
     {
+        public IObservable<T> Data => data.ObserveOn(NewThreadScheduler.Default);
+
         private Thread _timer;
         private volatile bool _running;
-        private readonly Subject<T> _data = new Subject<T>();
-        public IObservable<T> Data => _data;
-        private readonly List<Subject<T>> sensors = new List<Subject<T>>();
-        private readonly List<IDisposable> disposables = new List<IDisposable>();
-        
-        protected Subject<T> Add(Subject<T> subject)
-        {
-            sensors.Add(subject);
-            return subject;
-        }
+        private readonly Subject<T> data = new Subject<T>();
 
         public void Start()
         {
-            foreach (var subject in sensors)
-                disposables.Add(Data.Subscribe(subject));
-
             _running = true;
             _timer = new Thread(TimerCallback);
             _timer.Start();
@@ -35,17 +27,15 @@ namespace SafeServer.ltr
             _running = false;
             _timer?.Join();
             _timer = null;
-
-            foreach (var disposable in disposables)
-                disposable.Dispose();
-            disposables.Clear();
+            data.OnCompleted();
+            data.Dispose();
         }
 
         private void TimerCallback()
         {
             while (_running)
             {
-                _data.OnNext(ReadItem());
+                data.OnNext(ReadItem());
                 Thread.Sleep(10);
             }
         }

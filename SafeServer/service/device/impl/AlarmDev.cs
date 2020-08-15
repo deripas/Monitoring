@@ -22,13 +22,6 @@ namespace SafeServer.service.device
         public AlarmDev(Device device) : base(device)
         {
             var config = device.Config;
-            if (config == null)
-            {
-                config = new Config();
-                config.alarm = new Alarm {sn = "2D551744", num = 2, index = 1, count = 3, delay = 1000, period = 2000};
-                device.Config = config;
-            }
-
             var ch = config.alarm;
             var ltr42 = Ltr42(ch.GetSlot());
             ltr42[ch.index] = alarm;

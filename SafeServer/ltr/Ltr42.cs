@@ -6,9 +6,17 @@ using System.Reactive.Linq;
 
 namespace SafeServer.ltr
 {
-    public class Ltr42
+    public class Ltr42 : ILtr
     {
-        private static readonly NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
+        private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
+
+        public IObservable<bool> this[int index]
+        {
+            set
+            {
+                _indicators.Add(value.Select(enable => new BitsOp { Mask = 1 << index, Enable = enable }));
+            }
+        }
 
         private Slot slot;
         private _ltr42api.TLTR42 _module;
@@ -22,14 +30,10 @@ namespace SafeServer.ltr
             _indicators = new List<IObservable<BitsOp>>();
         }
 
-        public void Add(int index, IObservable<bool> i)
-        {
-            _indicators.Add(i.Select(enable => new BitsOp { Mask = 1 << index, Enable = enable }));
-        }
-
         public void Start()
         {
-            _ltr42api.LTR42_Open(ref _module, (uint)0x7F000001L, 11111, slot.ToCharArraySn(), slot.Num);
+            Log.Info("{0} Start", this);
+            _ltr42api.LTR42_Open(ref _module, (uint)0x7F000001L, 11111, slot.ToCharArraySn(), slot.num);
 
             /* Конфигурация меток */
             _module.Marks.SecondMark_Mode = 0; //  Секундная метка внутр. с трансляцией на выход
@@ -44,7 +48,7 @@ namespace SafeServer.ltr
                     ? val | item.Mask
                     : val & ~item.Mask)
                 .DistinctUntilChanged()
-                .Subscribe(val => Write(val));
+                .Subscribe(Write);
         }
 
         public void Stop()
@@ -52,12 +56,18 @@ namespace SafeServer.ltr
             _disposable?.Dispose();
             Write(0);
             _ltr42api.LTR42_Close(ref _module);
+            Log.Info("{0} Stop", this);
         }
 
         private void Write(int data)
         {
-            log.Info("LTR42_WritePort {0}", data);
+            Log.Info("{0} LTR42_WritePort {1}", slot, data);
             _ltr42api.LTR42_WritePort(ref _module, (ushort)data);
+        }
+        
+        public override string ToString()
+        {
+            return $"Ltr42 [{slot}]";
         }
     }
 }

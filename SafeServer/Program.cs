@@ -20,7 +20,6 @@ namespace SafeServer
         [STAThread]
         static void Main()
         {
-            DI.Instance.Init();
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
