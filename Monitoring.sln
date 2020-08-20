@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeClient", "SafeClient\Sa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeServer", "SafeServer\SafeServer.csproj", "{A8E71F31-44A8-46AC-8044-E8106F5514C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{565FBFCD-EF18-4099-8028-ACDDA7B30D7B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A8E71F31-44A8-46AC-8044-E8106F5514C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8E71F31-44A8-46AC-8044-E8106F5514C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8E71F31-44A8-46AC-8044-E8106F5514C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{565FBFCD-EF18-4099-8028-ACDDA7B30D7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{565FBFCD-EF18-4099-8028-ACDDA7B30D7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{565FBFCD-EF18-4099-8028-ACDDA7B30D7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{565FBFCD-EF18-4099-8028-ACDDA7B30D7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
