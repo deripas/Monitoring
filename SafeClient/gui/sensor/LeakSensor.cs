@@ -22,6 +22,7 @@ namespace gui
         public void Set(DeviceController dev)
         {
             baseSensor1.Description = dev.Description;
+            baseSensor1.EnabledLed = dev.Enable;
         }
 
         public void Update(SensorStatus status)

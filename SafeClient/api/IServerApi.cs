@@ -16,6 +16,13 @@ namespace api
 
         List<AlertInfo> Alerts(int device, DateTime from, DateTime to);
 
+        void ProcessAlert(long id);
+
+        List<PointD> DeviceData(int device, DateTime from, DateTime to);
+
         List<SensorStatus> Statuses();
+
+        void RolletUp(int device);
+        void RolletDown(int device);
     }
 }

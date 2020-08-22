@@ -69,14 +69,14 @@ namespace service
 
         internal ChartModel Chart(AlertModel alert, DateTime from, DateTime to)
         {
-            int n = 1000;
-            DateTime[] x = new DateTime[n];
-            double[] y = new double[n];
-            double millis = (to - from).TotalMilliseconds / n;
-            for (int i = 0; i < n; i++)
+            var points = serverApi.DeviceData(alert.Device.Id, from, to);
+            var x = new List<DateTime>();
+            var y = new List<double>();
+
+            foreach(PointD p in points)
             {
-                x[i] = from.AddMilliseconds(i * millis);
-                y[i] = Math.Sin((double)i * Math.PI * 2 / n);
+                x.Add(DateTime.FromOADate(p.time));
+                y.Add(p.value);
             }
 
             var chart = new ChartModel();
@@ -86,6 +86,16 @@ namespace service
             chart.To = to;
             chart.Alert = alert.Time;
             return chart;
+        }
+
+        public void RolletUp(int device)
+        {
+            serverApi.RolletUp(device);
+        }
+
+        public void RolletDown(int device)
+        {
+            serverApi.RolletDown(device);
         }
     }
 }

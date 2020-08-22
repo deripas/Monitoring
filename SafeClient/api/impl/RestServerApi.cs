@@ -45,9 +45,30 @@ namespace api.impl
             return template.GetForObject<List<AlertInfo>>(uri);
         }
 
+        public List<PointD> DeviceData(int device, DateTime from, DateTime to)
+        {
+            var uri = string.Format("/api/device/{2}/data?from={0}&to={1}", from.ToString(CultureInfo.InvariantCulture), to.ToString(CultureInfo.InvariantCulture), device);
+            return template.GetForObject<List<PointD>>(uri);
+        }
+
         public List<SensorStatus> Statuses()
         {
             return template.GetForObject<List<SensorStatus>>("/api/status");
+        }
+
+        public void RolletUp(int device)
+        {
+            template.Put("/api/device/{id}/up", null, device );
+        }
+
+        public void RolletDown(int device)
+        {
+            template.Put("/api/device/{id}/down", null, device );
+        }
+
+        public void ProcessAlert(long id)
+        {
+            template.Put("/api/alert/{id}/processed", null, id);
         }
     }
 }

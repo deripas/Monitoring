@@ -8,5 +8,6 @@
         smoke,
         water,
         vibration,
+        rollet,
     }
 }

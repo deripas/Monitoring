@@ -15,11 +15,12 @@ namespace SafeServer.service
         public void Subscribe(IObservable<SensorStatus> observable)
         {
             _disposable = observable
+                .Where(status => status.value.HasValue && !double.IsNaN(status.value.Value))
                 .GroupBy(status => status.id)
                 .SelectMany(group => group
                     .DistinctUntilChanged(status => status.alarm)
                     .Where(status => status.alarm)
-                    .Select(status => new Alert {device = group.Key, value = status.value, time = DateTime.Now, processed = false}))
+                    .Select(status => new Alert {device = group.Key, value = status.value.Value, time = DateTime.Now, processed = false}))
                 .Subscribe(WriteDB);
         }
         

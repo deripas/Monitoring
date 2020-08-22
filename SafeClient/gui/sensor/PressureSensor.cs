@@ -21,6 +21,7 @@ namespace gui
         public void Set(DeviceController dev)
         {
             baseSensor1.Description = dev.Description;
+            baseSensor1.EnabledLed = dev.Enable;
             var config = dev.Config;
             if (config != null)
             {
@@ -32,7 +33,7 @@ namespace gui
         public void Update(SensorStatus status)
         {
             baseSensor1.Alarm = status.alarm;
-            baseSensor1.Value = status.value.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+            baseSensor1.Value = status.value.Value.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
             verticalProgressBar1.Value = (int) status.value;
         }
     }

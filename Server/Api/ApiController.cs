@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using SafeServer;
 using SafeServer.dto;
 using SafeServer.service;
+using SafeServer.service.device;
 
 namespace Server.Api
 {
@@ -60,6 +61,16 @@ namespace Server.Api
             return null;
         }
 
+        [HttpPut]
+        [Route("alert/{id}/processed")]
+        public void AlertProcessing(long id)
+        {
+            using var db = new DatabaseService();
+            var alert = db.Alert.Find(id);
+            alert.processed = true;
+            db.SaveChanges();
+        }
+
         [HttpGet]
         [Route("device")]
         public List<Device> Device()
@@ -74,8 +85,18 @@ namespace Server.Api
         {
             var f = DateTime.Parse(from, CultureInfo.InvariantCulture);
             var t = DateTime.Parse(to, CultureInfo.InvariantCulture);
-            using var db = new DatabaseService();
-            return db.SelectValues(id, f, t)
+
+            // using var db = new DatabaseService();
+            // return db.SelectValues(id, f, t)
+            //     .Select(v => new PointD { time = v.time.ToOADate(), value = v.val })
+            //     .ToList();
+            
+            var random = new Random();
+            var v = new List<Value>();
+
+            for (DateTime x = f; x < t; x = x.AddSeconds(1))
+                v.Add(new Value() { device = id, time = x, val = random.NextDouble() * 100.0 });
+            return v
                 .Select(v => new PointD { time = v.time.ToOADate(), value = v.val })
                 .ToList();
         }
@@ -104,6 +125,22 @@ namespace Server.Api
         public void DeviceReset(int id)
         {
             DI.Instance.DeviceService[id].Reset();
+        }
+        
+        [HttpPut]
+        [Route("device/{id}/up")]
+        public void RolletUp(int id)
+        {
+            var device = DI.Instance.DeviceService[id] as RolletDev;
+            device?.Up();
+        }
+        
+        [HttpPut]
+        [Route("device/{id}/down")]
+        public void RolletDown(int id)
+        {
+            var device = DI.Instance.DeviceService[id] as RolletDev;
+            device?.Down();
         }
 
         [HttpGet]

@@ -8,6 +8,13 @@ namespace model.device
 {
     public class AlertModel
     {
+        public long ID
+        {
+            get
+            {
+                return info.id;
+            }
+        }
         public DateTime Time
         {
             get
@@ -20,6 +27,10 @@ namespace model.device
             get
             {
                 return info.processed;
+            }
+            set
+            {
+                info.processed = value;
             }
         }
 

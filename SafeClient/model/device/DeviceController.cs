@@ -40,6 +40,7 @@ namespace model.device
                 if (view != null)
                     throw new Exception();
                 view = value;
+                value.Set(this);
             }
         }
 
@@ -71,7 +72,7 @@ namespace model.device
         {
             get
             {
-                return info.enable;
+                return info.enable && info.config != null;
             }
         }
         
@@ -97,6 +98,16 @@ namespace model.device
         public void Update(SensorStatus status)
         {
             view?.Update(status);
+        }
+
+        public void RolletUp()
+        {
+            DI.Instance.DeviceService.RolletUp(info.id);
+        }
+
+        public void RolletDown()
+        {
+            DI.Instance.DeviceService.RolletDown(info.id);
         }
     }
 }

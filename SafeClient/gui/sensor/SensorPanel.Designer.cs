@@ -22,9 +22,9 @@
 
         #region Код, автоматически созданный конструктором компонентов
 
-        /// <summary> 
-        /// Требуемый метод для поддержки конструктора — не изменяйте 
-        /// содержимое этого метода с помощью редактора кода.
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
@@ -59,15 +59,15 @@
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Controls.Add(this.panel1);
             this.Name = "SensorPanel";
-            this.Size = new System.Drawing.Size(560, 670);
+            this.Size = new System.Drawing.Size(530, 640);
             this.Load += new System.EventHandler(this.SensorPanel_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
-
         }
 
-        #endregion
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
+
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Properties;
+using service;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -62,8 +63,25 @@ namespace gui
             }
             set
             {
+                if (!alarm && value) DI.Instance.AlarmSoundService.Play();
+                if (!value) DI.Instance.AlarmSoundService.Stop();
+
                 alarm = value;
                 led.Image = value ? Resources.led_red : Resources.led_green;
+            }
+        }
+
+        public bool EnabledLed
+        {
+            get
+            {
+                return led.Image != Resources.led_gray;
+            }
+            set
+            {
+                led.Image = value
+                    ? alarm ? Resources.led_red : Resources.led_green
+                    : Resources.led_gray;
             }
         }
 
@@ -72,6 +90,12 @@ namespace gui
         public BaseSensor()
         {
             InitializeComponent();
+        }
+
+        private void led_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (alarm)
+                DI.Instance.AlarmSoundService.Stop();
         }
     }
 }

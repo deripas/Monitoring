@@ -9,7 +9,7 @@ namespace SafeServer.dto
         public long version { get; set; }
         public bool enable { get; set; }
         public bool reset { get; set; }
-        public double value { get; set; }
+        public double? value { get; set; }
         public bool alarm { get; set; }
         
         public bool up { get; set; }
@@ -40,24 +40,11 @@ namespace SafeServer.dto
                 version = device.Version,
                 enable = device.Enable,
                 reset = true,
-                alarm = false,
-                value = double.NaN
+                alarm = false
             };
         }
         
-        public static SensorStatus Empty(Device device)
-        {
-            return new SensorStatus
-            {
-                id = device.Id,
-                version = device.Version,
-                enable = device.Enable,
-                reset = false,
-                alarm = false,
-                value = Double.NaN
-            };
-        }
-        
+       
         public static SensorStatus Rollet(Device device, bool up, bool dw)
         {
             return new SensorStatus
@@ -67,7 +54,6 @@ namespace SafeServer.dto
                 enable = device.Enable,
                 reset = false,
                 alarm = false,
-                value = Double.NaN,
                 up = up,
                 dw = dw
             };

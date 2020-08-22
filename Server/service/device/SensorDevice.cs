@@ -14,11 +14,11 @@ namespace SafeServer.service.device
         {
             status = CreateStatus()
                 .Merge(reset)
-                .Scan(SensorStatus.Empty(device), (s, item) =>
+                .Scan(SensorStatus.Value(device, 0, false), (s, item) =>
                 {
                     var alarm = item.enable && !item.reset && (s.alarm || item.alarm);
-                    var val = !double.IsNaN(item.value) ? item.value : s.value;
-                    return SensorStatus.Value(device, val, alarm);
+                    var val = !double.IsNaN(item.value.Value) ? item.value : s.value;
+                    return SensorStatus.Value(device, val.Value, alarm);
                 })
                 .Publish();
         }

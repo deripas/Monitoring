@@ -117,7 +117,8 @@
             this.AutoScroll = true;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ControlPanel";
-            this.Size = new System.Drawing.Size(790, 138);
+            this.Size = new System.Drawing.Size(760, 108);
+            this.Load += new System.EventHandler(this.ControlPanel_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

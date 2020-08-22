@@ -100,6 +100,7 @@
             this.buttonUp.TabIndex = 22;
             this.buttonUp.Text = "🢁";
             this.buttonUp.UseVisualStyleBackColor = true;
+            this.buttonUp.Click += new System.EventHandler(this.buttonUp_Click);
             // 
             // buttonDown
             // 
@@ -110,6 +111,7 @@
             this.buttonDown.TabIndex = 23;
             this.buttonDown.Text = "🢃";
             this.buttonDown.UseVisualStyleBackColor = true;
+            this.buttonDown.Click += new System.EventHandler(this.buttonDown_Click);
             // 
             // RolletControl
             // 

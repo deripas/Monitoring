@@ -101,6 +101,7 @@
     <Compile Include="api\dto\DeviceInfo.cs" />
     <Compile Include="api\dto\DeviceType.cs" />
     <Compile Include="api\dto\NvrInfo.cs" />
+    <Compile Include="api\dto\PointD.cs" />
     <Compile Include="api\dto\SensorStatus.cs" />
     <Compile Include="api\FFmpeg.cs" />
     <Compile Include="api\H264.cs" />
@@ -464,6 +465,7 @@
     <Content Include="NLog.xsd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\led-green1.png" />
     <None Include="Resources\classic_open.bmp" />
     <None Include="Resources\classic_close.bmp" />
     <None Include="Resources\classic_alarm.bmp" />

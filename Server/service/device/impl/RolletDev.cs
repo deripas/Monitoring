@@ -30,12 +30,21 @@ namespace SafeServer.service.device
             var motor_1 = config.motorUP;
             var ltr42_1 = Ltr42(motor_1.GetSlot());
             ltr42_1[motor_1.index] = UP
-                .CombineLatest(sensorUP, (cmd, status) => cmd && !status);
+                .CombineLatest(sensorUP, (cmd, status) =>
+                {
+                    if(cmd && status) UP.OnNext(false);
+                    return cmd && !status;
+                });
             
             var motor_2 = config.motorDW;
             var ltr42_2 = Ltr42(motor_2.GetSlot());
             ltr42_2[motor_2.index] = DW
-                .CombineLatest(sensorDW, (cmd, status) => cmd && !status);
+                .CombineLatest(sensorDW, (cmd, status) =>
+                {
+                    if(cmd && status) DW.OnNext(false);
+                    return cmd && !status;
+                });
+
 
             status = sensorUP
                 .CombineLatest(sensorDW, (up, dw) => SensorStatus.Rollet(dev, up, dw))

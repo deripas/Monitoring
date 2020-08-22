@@ -51,7 +51,7 @@ namespace gui
         {
             get
             {
-                if (alertListView.SelectedItems != null)
+                if (alertListView.SelectedItems != null && alertListView.SelectedItems.Count == 1)
                 {
                     var sel = alertListView.SelectedItems[0];
                     return (AlertModel)sel.Tag;
@@ -59,6 +59,8 @@ namespace gui
                 return null;
             }
         }
+
+        private List<AlertModel> alertsList;
 
         internal void NextVideoItem()
         {
@@ -132,6 +134,7 @@ namespace gui
 
         private void SetAlertList(List<AlertModel> alerts)
         {
+            alertsList = alerts;
             alertListView.Items.Clear();
             foreach (AlertModel alert in alerts)
             {
@@ -184,6 +187,16 @@ namespace gui
         private void alertListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             SelectAlert();
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            var alert = Alert;
+            if (alert == null) return;
+
+            DI.Instance.ServerApi.ProcessAlert(alert.ID);
+            alert.Processed = true;
+            SetAlertList(alertsList);
         }
     }
 }

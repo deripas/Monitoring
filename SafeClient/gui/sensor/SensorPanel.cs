@@ -24,7 +24,7 @@ namespace gui
 
                 flowLayoutPanel1.Controls.Add(view.GetControl());
                 view.GetControl().Enabled = dev.Enable;
-                view.Set(dev);
+                dev.View = view;
             }
 
             CorrectSize();

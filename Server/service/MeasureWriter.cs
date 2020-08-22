@@ -16,6 +16,7 @@ namespace SafeServer.service
         public void Subscribe(IObservable<SensorStatus> observable)
         {
             _disposable = observable
+                .Where(status => status.value.HasValue && !double.IsNaN(status.value.Value))
                 .Buffer(TimeSpan.FromSeconds(1))
                 .Select(ToBatch)
                 .ObserveOn(ThreadPoolScheduler.Instance)
@@ -40,7 +41,7 @@ namespace SafeServer.service
             foreach (var s in statuses)
                 dic[s.id] = s;
             return dic.Values
-                .Select(s => new Value {device = s.id, val = s.value, time = DateTime.Now})
+                .Select(s => new Value {device = s.id, val = s.value.Value, time = DateTime.Now})
                 .ToList();
         }
     }
