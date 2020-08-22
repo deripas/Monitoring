@@ -97,9 +97,11 @@
   <ItemGroup>
     <Compile Include="api\dto\AlertInfo.cs" />
     <Compile Include="api\dto\CameraInfo.cs" />
+    <Compile Include="api\dto\Config.cs" />
     <Compile Include="api\dto\DeviceInfo.cs" />
     <Compile Include="api\dto\DeviceType.cs" />
     <Compile Include="api\dto\NvrInfo.cs" />
+    <Compile Include="api\dto\SensorStatus.cs" />
     <Compile Include="api\FFmpeg.cs" />
     <Compile Include="api\H264.cs" />
     <Compile Include="api\impl\RestServerApi.cs" />
@@ -326,6 +328,7 @@
     <Compile Include="service\DeviceService.cs" />
     <Compile Include="service\CameraService.cs" />
     <Compile Include="service\DI.cs" />
+    <Compile Include="service\StatusReaderService.cs" />
     <EmbeddedResource Include="gui\device\DeviceViewForm.resx">
       <DependentUpon>DeviceViewForm.cs</DependentUpon>
     </EmbeddedResource>

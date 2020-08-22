@@ -44,5 +44,10 @@ namespace api.impl
             var uri = string.Format("/api/alert?from={0}&to={1}&device={2}", from.ToString(CultureInfo.InvariantCulture), to.ToString(CultureInfo.InvariantCulture), device);
             return template.GetForObject<List<AlertInfo>>(uri);
         }
+
+        public List<SensorStatus> Statuses()
+        {
+            return template.GetForObject<List<SensorStatus>>("/api/status");
+        }
     }
 }

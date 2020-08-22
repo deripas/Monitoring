@@ -11,6 +11,8 @@ namespace api.dto
         public bool enable { get; set; }
         public int? camera { get; set; }
         public string type { get; set; }
+        
+        public Config config  { get; set; }
 
         public DeviceType GetTypeEnum()
         {

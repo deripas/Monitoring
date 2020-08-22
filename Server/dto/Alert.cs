@@ -10,7 +10,7 @@ namespace SafeServer.dto
         public long id { get; set; }
 
         [Column("device")]
-        public int device { get; set; }
+        public long device { get; set; }
 
         [Column("time")]
         public DateTime time { get; set; }

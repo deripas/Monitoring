@@ -8,7 +8,7 @@ namespace SafeServer.dto
     {
         public DateTime time { get; set; }
 
-        public int device { get; set; }
+        public long device { get; set; }
 
         public double val { get; set; }
     }

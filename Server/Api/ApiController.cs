@@ -41,22 +41,20 @@ namespace Server.Api
 
                 if (device == null)
                 {
-                    using (var db = new DatabaseService())
-                    {
-                        return db.Alert.Where(x => f <= x.time && x.time <= t)
-                            .OrderByDescending(x => x.time)
-                            .ToList();
-                    }
+                    using var db = new DatabaseService();
+                    return db.Alert
+                        .Where(x => f <= x.time && x.time <= t)
+                        .OrderByDescending(x => x.time)
+                        .ToList();
                 }
                 else
                 {
                     int id = int.Parse(device);
-                    using (var db = new DatabaseService())
-                    {
-                        return db.Alert.Where(x => f <= x.time && x.time <= t && x.device == id)
-                            .OrderByDescending(x => x.time)
-                            .ToList();
-                    }
+                    using var db = new DatabaseService();
+                    return db.Alert
+                        .Where(x => f <= x.time && x.time <= t && x.device == id)
+                        .OrderByDescending(x => x.time)
+                        .ToList();
                 }
             }
             return null;
@@ -74,8 +72,8 @@ namespace Server.Api
         [Route("device/{id}/data")]
         public List<PointD> DeviceData(int id, String from, String to)
         {
-            DateTime f = DateTime.Parse(from, CultureInfo.InvariantCulture);
-            DateTime t = DateTime.Parse(to, CultureInfo.InvariantCulture);
+            var f = DateTime.Parse(from, CultureInfo.InvariantCulture);
+            var t = DateTime.Parse(to, CultureInfo.InvariantCulture);
             using var db = new DatabaseService();
             return db.SelectValues(id, f, t)
                 .Select(v => new PointD { time = v.time.ToOADate(), value = v.val })
@@ -86,10 +84,10 @@ namespace Server.Api
         [Route("device/{id}/generate")]
         public List<PointD> DeviceDataGenerate(int id, String from, String to)
         {
+            var f = DateTime.Parse(from, CultureInfo.InvariantCulture);
+            var t = DateTime.Parse(to, CultureInfo.InvariantCulture);
             var random = new Random();
-            DateTime f = DateTime.Parse(from, CultureInfo.InvariantCulture);
-            DateTime t = DateTime.Parse(to, CultureInfo.InvariantCulture);
-            List<Value> v = new List<Value>();
+            var v = new List<Value>();
 
             for (DateTime x = f; x < t; x = x.AddSeconds(1))
                 v.Add(new Value() { device = id, time = x, val = random.NextDouble() * 100.0 });

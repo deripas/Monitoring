@@ -13,6 +13,7 @@ namespace SafeServer
         public DeviceService DeviceService;
         public LtrService LtrService;
         public MeasureWriter MeasureWriter;
+        public AlertWriter AlertWriter;
 
         public void Init()
         {
@@ -22,6 +23,7 @@ namespace SafeServer
                 .Build();
             
             MeasureWriter = new MeasureWriter();
+            AlertWriter = new AlertWriter();
             DeviceService = new DeviceService();
             LtrService = new LtrService();
 
@@ -33,9 +35,11 @@ namespace SafeServer
         internal void Dispose()
         {
             MeasureWriter?.Dispose();
+            AlertWriter?.Dispose();
             DeviceService?.Dispose();
             LtrService?.Dispose();
 
+            AlertWriter = null;
             MeasureWriter = null;
             DeviceService = null;
             LtrService = null;

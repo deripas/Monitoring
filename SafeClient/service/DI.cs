@@ -11,6 +11,7 @@ namespace service
         public DeviceService DeviceService { get; set; }
         public IServerApi ServerApi { get; set; }
         public AlarmSoundService AlarmSoundService { get; set; }
+        public StatusReaderService StatusReaderService { get; set; }
         
         
         public void Init()
@@ -19,11 +20,13 @@ namespace service
             ServerApi = new RestServerApi();
             CameraService = new CameraService(ServerApi);
             DeviceService = new DeviceService(ServerApi);
+            StatusReaderService = new StatusReaderService(ServerApi);
             AlarmSoundService = new AlarmSoundService();
         }
 
         internal void Dispose()
         {
+            StatusReaderService.Dispose();
             CameraService.Dispose();
             DeviceService.Dispose();
             AlarmSoundService.Dispose();

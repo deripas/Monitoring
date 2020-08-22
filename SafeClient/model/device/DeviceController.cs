@@ -74,6 +74,15 @@ namespace model.device
                 return info.enable;
             }
         }
+        
+        public Config Config
+        {
+            get
+            {
+                return info.config;
+            }
+        }
+
 
         public DeviceController(DeviceInfo info)
         {
@@ -83,6 +92,11 @@ namespace model.device
         public override string ToString()
         {
             return Name;
+        }
+
+        public void Update(SensorStatus status)
+        {
+            view?.Update(status);
         }
     }
 }

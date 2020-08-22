@@ -36,10 +36,10 @@ namespace SafeServer.service
             modelBuilder.Entity<Value>().HasNoKey();
         }
 
-        public void InsertValues(List<Value> batch)
+        public void InsertValues(IList<Value> batch)
         {
             if (batch.Count == 0) return;
-
+            
             var values = String.Join(',', batch.Select(x => string.Format(CultureInfo.InvariantCulture, "({0},'{1:o}',{2:0.00})", x.device, x.time, x.val)));
             Database.ExecuteSqlRaw(string.Format("INSERT INTO measure(device, time, val) VALUES {0};", values));
         }

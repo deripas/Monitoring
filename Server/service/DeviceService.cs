@@ -36,16 +36,18 @@ namespace SafeServer.service
         {
             if (dev.Type == null) return null;
 
-            // if(dev.Type.Equals("pressure"))
-            //     return new PressureDev(dev);
+            if(dev.Type.Equals("pressure"))
+                return new PressureDev(dev);
+            if(dev.Type.Equals("temperature"))
+                return new TemperatureDev(dev);  
             if (dev.Type.Equals("smoke"))
                 return new SmokeDev(dev);
             if(dev.Type.Equals("water"))
                 return new WaterDev(dev); 
-            // if(dev.Type.Equals("temperature"))
-            //     return new TemperatureDev(dev);  
             if (dev.Type.Equals("alarm"))
-                return new AlarmDev(dev);
+                return new AlarmDev(dev);            
+            if (dev.Type.Equals("rollet"))
+                return new RolletDev(dev);
 
             Log.Warn("Unknown type [{0}] '{1}'", dev.Name, dev.Type);
             return null;
@@ -99,17 +101,12 @@ namespace SafeServer.service
                 .Merge();
             
             DI.Instance.MeasureWriter.Subscribe(status);
+            DI.Instance.AlertWriter.Subscribe(status);
 
             _disposable = status
-                .Scan(new Dictionary<long, SensorStatus>(), (dictionary, sensorStatus) =>
-                {
-                    if(dictionary.ContainsKey(sensorStatus.id))
-                        dictionary[sensorStatus.id] = sensorStatus;
-                    else
-                        dictionary.Add(sensorStatus.id, sensorStatus);
-                    return new Dictionary<long, SensorStatus>(dictionary);
-                })
-                .Sample(TimeSpan.FromMilliseconds(500))
+                .Scan(new Dictionary<long, SensorStatus>(),
+                    (dictionary, sensorStatus) => new Dictionary<long, SensorStatus>(dictionary) {[sensorStatus.id] = sensorStatus})
+                .Sample(TimeSpan.FromMilliseconds(100))
                 .Subscribe(statuses);
         }
 
@@ -134,13 +131,11 @@ namespace SafeServer.service
 
         public void UpdateConfig(long id, Config config)
         {
-            using (var db = new DatabaseService())
-            {
-                var dev = db.Device.Find(id);
-                dev.Version += 1;
-                dev.Config = config;
-                db.SaveChanges();
-            }
+            using var db = new DatabaseService();
+            var dev = db.Device.Find(id);
+            dev.Version += 1;
+            dev.Config = config;
+            db.SaveChanges();
         }
     }
 }

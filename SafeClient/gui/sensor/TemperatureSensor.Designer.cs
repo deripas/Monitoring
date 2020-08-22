@@ -22,16 +22,16 @@
 
         #region Код, автоматически созданный конструктором компонентов
 
-        /// <summary> 
-        /// Требуемый метод для поддержки конструктора — не изменяйте 
-        /// содержимое этого метода с помощью редактора кода.
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
             this.baseSensor1 = new gui.BaseSensor();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.verticalProgressBar1 = new gui.component.VerticalProgressBar();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // baseSensor1
@@ -75,15 +75,14 @@
             this.Controls.Add(this.baseSensor1);
             this.Name = "TemperatureSensor";
             this.Size = new System.Drawing.Size(578, 114);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-
         }
 
-        #endregion
-
-        private BaseSensor baseSensor1;
+        private gui.BaseSensor baseSensor1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private component.VerticalProgressBar verticalProgressBar1;
+        private gui.component.VerticalProgressBar verticalProgressBar1;
+
+        #endregion
     }
 }

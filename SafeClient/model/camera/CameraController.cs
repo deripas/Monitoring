@@ -121,7 +121,7 @@ namespace model.camera
 
         internal bool Talk()
         {
-            return model.Talk == true;
+            return model.Talk;
         }
 
         internal void StartTalk()
@@ -179,19 +179,17 @@ namespace model.camera
                 {
                     lock (kv.Value)
                     {
+                        bool freeze = (DateTime.Now - kv.Value.LastUpdateTime).TotalSeconds > 10;
+                        if(!freeze) continue;
+                        
                         if (!kv.Value.StartedPlay)
                         {
-                            if ((DateTime.Now - kv.Value.LastUpdateTime).TotalSeconds > 10)
-                            {
-                                kv.Value.StartPlay();
-                            }
+                            kv.Value.StartPlay();
                         }
                         else
                         {
-                            if ((DateTime.Now - kv.Value.LastUpdateTime).TotalSeconds > 5)
-                            {
-                                StopPlay(kv);
-                            }
+                            Log.Warn("{0} Freeze detect! ", kv.Value);
+                            StopPlay(kv);
                         }
                     }
                 }

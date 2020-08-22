@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using api.dto;
 
 namespace model.device
 {
@@ -6,5 +7,6 @@ namespace model.device
     {
         Control GetControl();
         void Set(DeviceController dev);
+        void Update(SensorStatus status);
     }
 }

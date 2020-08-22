@@ -22,9 +22,9 @@
 
         #region Код, автоматически созданный конструктором компонентов
 
-        /// <summary> 
-        /// Требуемый метод для поддержки конструктора — не изменяйте 
-        /// содержимое этого метода с помощью редактора кода.
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
@@ -96,12 +96,11 @@
             this.Name = "VibrationSensor";
             this.Size = new System.Drawing.Size(578, 114);
             this.ResumeLayout(false);
-
         }
 
-        #endregion
-
-        private BaseSensor baseSensor1;
         private System.Windows.Forms.AGauge aGauge1;
+        private gui.BaseSensor baseSensor1;
+
+        #endregion
     }
 }

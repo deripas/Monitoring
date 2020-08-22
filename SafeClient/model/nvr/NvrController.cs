@@ -15,7 +15,7 @@ namespace model.nvr
         public NvrController(NvrInfo nvr)
         {
             time = DateTime.MinValue;
-            this.model = new NvrModel(nvr);
+            model = new NvrModel(nvr);
             cameras = new List<CameraController>();
         }
 

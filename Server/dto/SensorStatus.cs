@@ -11,6 +11,9 @@ namespace SafeServer.dto
         public bool reset { get; set; }
         public double value { get; set; }
         public bool alarm { get; set; }
+        
+        public bool up { get; set; }
+        public bool dw { get; set; }
 
         public static SensorStatus Value(Device device, bool alert)
         {
@@ -52,6 +55,21 @@ namespace SafeServer.dto
                 reset = false,
                 alarm = false,
                 value = Double.NaN
+            };
+        }
+        
+        public static SensorStatus Rollet(Device device, bool up, bool dw)
+        {
+            return new SensorStatus
+            {
+                id = device.Id,
+                version = device.Version,
+                enable = device.Enable,
+                reset = false,
+                alarm = false,
+                value = Double.NaN,
+                up = up,
+                dw = dw
             };
         }
     }
