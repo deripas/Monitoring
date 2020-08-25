@@ -14,6 +14,7 @@ namespace SafeServer
         public LtrService LtrService;
         public MeasureWriter MeasureWriter;
         public AlertWriter AlertWriter;
+        public DeviceStatusService DeviceStatusService;
 
         public void Init()
         {
@@ -24,6 +25,7 @@ namespace SafeServer
             
             MeasureWriter = new MeasureWriter();
             AlertWriter = new AlertWriter();
+            DeviceStatusService = new DeviceStatusService();
             DeviceService = new DeviceService();
             LtrService = new LtrService();
 
@@ -36,11 +38,13 @@ namespace SafeServer
         {
             MeasureWriter?.Dispose();
             AlertWriter?.Dispose();
+            DeviceStatusService?.Dispose();
             DeviceService?.Dispose();
             LtrService?.Dispose();
 
             AlertWriter = null;
             MeasureWriter = null;
+            DeviceStatusService = null;
             DeviceService = null;
             LtrService = null;
         }

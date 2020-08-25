@@ -9,22 +9,28 @@ namespace service
     public class AlarmSoundService
     {
         private WaveOutEvent output;
+        private volatile bool play;
 
         public AlarmSoundService()
         {
-            var wav = new RawSourceWaveStream(Resources.sirena, new WaveFormat(44100, 16, 2));
             output = new WaveOutEvent();
-            output.Init(wav);
         }
 
         public void Play()
         {
-            output.Play();
+            if (!play)
+            {
+                play = true;
+                var waveStream = new RawSourceWaveStream(Resources.sirena, new WaveFormat(44100, 16, 2));
+                output.Init(waveStream);
+                output.Play();
+            }
         }
 
         public void Stop()
         {
             output.Stop();
+            play = false;
         }
 
         internal void Dispose()

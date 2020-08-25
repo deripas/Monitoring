@@ -17,6 +17,8 @@ namespace api
         List<AlertInfo> Alerts(int device, DateTime from, DateTime to);
 
         void ProcessAlert(long id);
+        void ResetDevice(long id);
+        void ResetDeviceAlert(long id);
 
         List<PointD> DeviceData(int device, DateTime from, DateTime to);
 

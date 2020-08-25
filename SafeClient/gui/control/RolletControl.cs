@@ -39,14 +39,11 @@ namespace gui
             var change = (up != status.up) || (dw != status.dw);
             dw = status.dw;
             up = status.up;
-            if (change) Invoke(new Action(updateUI));
-        }
-
-        private void updateUI()
-        {
+            if (!change) return;
+            
             if (dw == up)
             {
-                pictureIcon.Image = Properties.Resources.rollet_move;
+                pictureIcon.Image = Resources.rollet_move;
                 buttonDown.Enabled = true;
                 buttonUp.Enabled = true;
             }
@@ -54,18 +51,19 @@ namespace gui
             {
                 if (dw)
                 {
-                    pictureIcon.Image = Properties.Resources.rollet_dw;
+                    pictureIcon.Image = Resources.rollet_dw;
                     buttonDown.Enabled = false;
                     buttonUp.Enabled = true;
                 }
                 else
                 {
-                    pictureIcon.Image = Properties.Resources.rollet_up;
+                    pictureIcon.Image = Resources.rollet_up;
                     buttonDown.Enabled = true;
                     buttonUp.Enabled = false;
                 }
             }
         }
+
 
         private void buttonDown_Click(object sender, EventArgs e)
         {

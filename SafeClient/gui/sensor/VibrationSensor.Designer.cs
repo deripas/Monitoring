@@ -31,9 +31,6 @@
             this.aGauge1 = new System.Windows.Forms.AGauge();
             this.baseSensor1 = new gui.BaseSensor();
             this.SuspendLayout();
-            // 
-            // aGauge1
-            // 
             this.aGauge1.BaseArcColor = System.Drawing.Color.Gray;
             this.aGauge1.BaseArcRadius = 40;
             this.aGauge1.BaseArcStart = 135;
@@ -73,9 +70,6 @@
             this.aGauge1.TabIndex = 14;
             this.aGauge1.Text = "aGauge1";
             this.aGauge1.Value = 0F;
-            // 
-            // baseSensor1
-            // 
             this.baseSensor1.Alarm = false;
             this.baseSensor1.Description = "";
             this.baseSensor1.Location = new System.Drawing.Point(0, 0);
@@ -85,9 +79,6 @@
             this.baseSensor1.TabIndex = 0;
             this.baseSensor1.Title = "Вибрация";
             this.baseSensor1.Value = "current";
-            // 
-            // VibrationSensor
-            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;

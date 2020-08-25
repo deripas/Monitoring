@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using SafeServer.dto;
+using SafeServer.service.device;
 
 namespace SafeServer.service
 {
@@ -13,36 +14,40 @@ namespace SafeServer.service
 
         private IDisposable _disposable;
         
-        public void Subscribe(IObservable<SensorStatus> observable)
+        public void Subscribe(ICollection<IDevice> devices)
         {
-            _disposable = observable
-                .Where(status => status.value.HasValue && !double.IsNaN(status.value.Value))
+            _disposable = devices
+                .OfType<IMeasureDevice>()
+                .Select(device => device.Status())
+                .Merge()
+                .Where(status => status.HasValue())
                 .Buffer(TimeSpan.FromSeconds(1))
                 .Select(ToBatch)
                 .ObserveOn(ThreadPoolScheduler.Instance)
                 .Subscribe(WriteDB);
         }
 
+        private IList<Value> ToBatch(IList<DeviceStatus> statuses)
+        {
+            var dic = new Dictionary<long, DeviceStatus>();
+            foreach (var s in statuses)
+                dic[s.id] = s;
+            
+            return dic.Values
+                .Select(s => new Value {device = s.id, val = s.GetValue(), time = DateTime.Now})
+                .ToList();
+        }
+        
         private void WriteDB(IList<Value> values)
         {
             Log.Debug("write values {0}", values.Count);
             using var db = new DatabaseService();
             db.InsertValues(values);
         }
-
+        
         internal void Dispose()
         {
             _disposable?.Dispose();
-        }
-
-        private IList<Value> ToBatch(IList<SensorStatus> statuses)
-        {
-            var dic = new Dictionary<long, SensorStatus>();
-            foreach (var s in statuses)
-                dic[s.id] = s;
-            return dic.Values
-                .Select(s => new Value {device = s.id, val = s.value.Value, time = DateTime.Now})
-                .ToList();
         }
     }
 }

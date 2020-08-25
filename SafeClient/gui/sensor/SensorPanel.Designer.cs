@@ -59,7 +59,7 @@
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Controls.Add(this.panel1);
             this.Name = "SensorPanel";
-            this.Size = new System.Drawing.Size(530, 640);
+            this.Size = new System.Drawing.Size(500, 610);
             this.Load += new System.EventHandler(this.SensorPanel_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -10,9 +10,6 @@ namespace SafeServer.service
 {
     public class LtrService
     {
-        private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
-
-
         private Dictionary<Slot, ILtr> map;
 
         public LtrService()
@@ -33,6 +30,8 @@ namespace SafeServer.service
                 return new Ltr42(slot);
             if (type.ToLower().Equals("ltr27"))
                 return new Ltr27(slot);
+            if (type.ToLower().Equals("ltr25"))
+                return new Ltr25(slot);
 
             throw new Exception("unknown type " + type);
         }
@@ -42,12 +41,10 @@ namespace SafeServer.service
             return (T)map[slot];
         }
 
-        private List<LTR> Ltr()
+        private IEnumerable<LTR> Ltr()
         {
-            using (var db = new DatabaseService())
-            {
-                return db.LTR.ToList();
-            }
+            using var db = new DatabaseService();
+            return db.LTR.ToList();
         }
 
         public void Start()

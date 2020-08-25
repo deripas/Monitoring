@@ -97,7 +97,7 @@ namespace model.device
 
         public void Update(SensorStatus status)
         {
-            view?.Update(status);
+            view?.GetControl().Invoke(new Action(() => view.Update(status)));
         }
 
         public void RolletUp()

@@ -2,6 +2,7 @@
 using service;
 using System.Drawing;
 using System.Windows.Forms;
+using model.device;
 
 namespace gui
 {
@@ -64,7 +65,6 @@ namespace gui
             set
             {
                 if (!alarm && value) DI.Instance.AlarmSoundService.Play();
-                if (!value) DI.Instance.AlarmSoundService.Stop();
 
                 alarm = value;
                 led.Image = value ? Resources.led_red : Resources.led_green;
@@ -85,7 +85,19 @@ namespace gui
             }
         }
 
+        public DeviceController Device
+        {
+            get => device;
+            set
+            {
+                device = value;
+                Description = value.Description;
+                EnabledLed = value.Enable;
+            }
+        }
+
         private bool alarm;
+        private DeviceController device;
 
         public BaseSensor()
         {
@@ -94,8 +106,10 @@ namespace gui
 
         private void led_MouseClick(object sender, MouseEventArgs e)
         {
-            if (alarm)
-                DI.Instance.AlarmSoundService.Stop();
+            if (device == null) return;
+
+            DI.Instance.AlarmSoundService.Stop();
+            DI.Instance.ServerApi.ResetDeviceAlert(device.Id);
         }
     }
 }

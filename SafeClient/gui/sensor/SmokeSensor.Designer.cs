@@ -37,6 +37,8 @@
             // 
             this.baseSensor1.Alarm = false;
             this.baseSensor1.Description = "";
+            this.baseSensor1.Device = null;
+            this.baseSensor1.EnabledLed = true;
             this.baseSensor1.Location = new System.Drawing.Point(0, 3);
             this.baseSensor1.Max = "maximum";
             this.baseSensor1.Name = "baseSensor1";

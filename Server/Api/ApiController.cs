@@ -120,18 +120,27 @@ namespace Server.Api
                     .ToList();
         }
         
-        [HttpPost]
+        [HttpPut]
         [Route("device/{id}/reset")]
         public void DeviceReset(int id)
         {
-            DI.Instance.DeviceService[id].Reset();
+            var device = DI.Instance.DeviceService[id] as MeasureDevice;
+            device?.Reset();
+        }
+        
+        [HttpPut]
+        [Route("device/{id}/reset-alarm")]
+        public void DeviceResetAlarm(int id)
+        {
+            var device = DI.Instance.DeviceService[id] as MeasureDevice;
+            device?.ResetAlarm();
         }
         
         [HttpPut]
         [Route("device/{id}/up")]
         public void RolletUp(int id)
         {
-            var device = DI.Instance.DeviceService[id] as RolletDev;
+            var device = DI.Instance.DeviceService[id] as RolletDevice;
             device?.Up();
         }
         
@@ -139,15 +148,15 @@ namespace Server.Api
         [Route("device/{id}/down")]
         public void RolletDown(int id)
         {
-            var device = DI.Instance.DeviceService[id] as RolletDev;
+            var device = DI.Instance.DeviceService[id] as RolletDevice;
             device?.Down();
         }
 
         [HttpGet]
         [Route("status")]
-        public List<SensorStatus> Statuses()
+        public List<DeviceStatus> Statuses()
         {
-            return DI.Instance.DeviceService.GetAllStatus();
+            return DI.Instance.DeviceStatusService.GetStatuses();
         }
     }
 }

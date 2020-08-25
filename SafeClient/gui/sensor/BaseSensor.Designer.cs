@@ -35,7 +35,7 @@
             this.description = new System.Windows.Forms.RichTextBox();
             this.led = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.led)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.led)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -52,7 +52,7 @@
             // name
             // 
             this.name.AutoSize = true;
-            this.name.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.name.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle) ((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.name.Location = new System.Drawing.Point(6, 0);
             this.name.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.name.Name = "name";
@@ -64,7 +64,7 @@
             // 
             this.maximum.AutoSize = true;
             this.maximum.BackColor = System.Drawing.Color.DarkOrange;
-            this.maximum.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.maximum.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.maximum.Location = new System.Drawing.Point(126, 0);
             this.maximum.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.maximum.Name = "maximum";
@@ -76,7 +76,7 @@
             // 
             this.current.AutoSize = true;
             this.current.BackColor = System.Drawing.Color.YellowGreen;
-            this.current.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.current.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.current.Location = new System.Drawing.Point(267, 0);
             this.current.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.current.Name = "current";
@@ -86,7 +86,7 @@
             // 
             // description
             // 
-            this.description.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.description.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.description.Location = new System.Drawing.Point(119, 47);
             this.description.Margin = new System.Windows.Forms.Padding(6);
             this.description.Name = "description";
@@ -116,9 +116,8 @@
             this.Size = new System.Drawing.Size(594, 120);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.led)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.led)).EndInit();
             this.ResumeLayout(false);
-
         }
 
         private System.Windows.Forms.Label current;

@@ -70,5 +70,15 @@ namespace api.impl
         {
             template.Put("/api/alert/{id}/processed", null, id);
         }
+
+        public void ResetDevice(long device)
+        {
+            template.Put("/api/device/{id}/reset", null, device );
+        }
+        
+        public void ResetDeviceAlert(long device)
+        {
+            template.Put("/api/device/{id}/reset-alarm", null, device );
+        }
     }
 }

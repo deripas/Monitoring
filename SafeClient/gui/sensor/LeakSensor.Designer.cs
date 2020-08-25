@@ -32,9 +32,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // baseSensor1
-            // 
             this.baseSensor1.Alarm = false;
             this.baseSensor1.Description = "";
             this.baseSensor1.Location = new System.Drawing.Point(0, 0);
@@ -44,9 +41,6 @@
             this.baseSensor1.TabIndex = 0;
             this.baseSensor1.Title = "Протечка";
             this.baseSensor1.Value = "current";
-            // 
-            // pictureBox1
-            // 
             this.pictureBox1.Image = global::Properties.Resources.weather_fog;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
@@ -54,9 +48,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            // 
-            // LeakSensor
-            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;

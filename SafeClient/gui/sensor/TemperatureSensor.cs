@@ -20,12 +20,11 @@ namespace gui
 
         public void Set(DeviceController dev)
         {
-            baseSensor1.Description = dev.Description;
-            baseSensor1.EnabledLed = dev.Enable;
+            baseSensor1.Device = dev;
             var config = dev.Config;
             if (config != null)
             {
-                baseSensor1.Max = config.porog.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+                baseSensor1.Max = config.porogMax.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
                 verticalProgressBar1.Maximum = (int) (config.max * 1.1);
             }
         }

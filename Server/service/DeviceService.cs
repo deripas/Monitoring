@@ -3,8 +3,6 @@ using SafeServer.dto;
 using SafeServer.service.device;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reactive.Linq;
-using System.Reactive.Subjects;
 
 namespace SafeServer.service
 {
@@ -15,21 +13,16 @@ namespace SafeServer.service
         public IDevice this[long id] => map[id];
 
         private Dictionary<long, IDevice> map;
-        private BehaviorSubject<Dictionary<long, SensorStatus>> statuses;
-        private IDisposable _disposable;
 
         public DeviceService()
         {
             map = new Dictionary<long, IDevice>();
-            statuses = new BehaviorSubject<Dictionary<long, SensorStatus>>(new Dictionary<long, SensorStatus>());
         }
 
-        private List<Device> Devices()
+        private IEnumerable<Device> Devices()
         {
-            using (var db = new DatabaseService())
-            {
-                return db.Device.ToList();
-            }
+            using var db = new DatabaseService();
+            return db.Device.ToList();
         }
 
         private IDevice Create(Device dev)
@@ -37,17 +30,17 @@ namespace SafeServer.service
             if (dev.Type == null) return null;
 
             if(dev.Type.Equals("pressure"))
-                return new PressureDev(dev);
+                return new DoubleMeasureDev(dev);
             if(dev.Type.Equals("temperature"))
-                return new TemperatureDev(dev);  
+                return new DoubleMeasureDev(dev);  
             if (dev.Type.Equals("smoke"))
-                return new SmokeDev(dev);
+                return new SmokeDevice(dev);
             if(dev.Type.Equals("water"))
-                return new WaterDev(dev); 
-            if (dev.Type.Equals("alarm"))
-                return new AlarmDev(dev);            
+                return new BoolMeasureDevice(dev);
             if (dev.Type.Equals("rollet"))
-                return new RolletDev(dev);
+                return new RolletDevice(dev);
+           if (dev.Type.Equals("hurble"))
+                return new HurbleDevice(dev);
 
             Log.Warn("Unknown type [{0}] '{1}'", dev.Name, dev.Type);
             return null;
@@ -55,6 +48,7 @@ namespace SafeServer.service
 
         public void Init()
         {
+            map.Clear();
             foreach (var dev in Devices())
             {
                 try
@@ -68,46 +62,13 @@ namespace SafeServer.service
                 }
                 catch (Exception ex)
                 {
-                    Log.Warn("Ignored [{0}]", dev.Name);
+                    Log.Warn("Ignored [{0}]", dev.Name, ex);
                 }
             }
 
-            SubscribeSiren();
-            SubscribeStatus();
-        }
-
-        private void SubscribeSiren()
-        {
-            var f = map.Values.OfType<IWithSirenDevice>();
-            var t = map.Values.OfType<ISirenDevice>();
-
-            var result = from w in f
-                join s in t on w.SirenId() equals s.Id()
-                select new {From = w, To = s};
-
-            foreach (var item in result)
-            {
-                Log.Info("{0} => {1}", item.From, item.To);
-                item.To.Subscribe(item.From.Siren());
-            }
-        }
-
-        private void SubscribeStatus()
-        {
-            var status = map.Values
-                .OfType<ISensorDevice>()
-                .Select(device => device.Status())
-                .ToList()
-                .Merge();
-            
-            DI.Instance.MeasureWriter.Subscribe(status);
-            DI.Instance.AlertWriter.Subscribe(status);
-
-            _disposable = status
-                .Scan(new Dictionary<long, SensorStatus>(),
-                    (dictionary, sensorStatus) => new Dictionary<long, SensorStatus>(dictionary) {[sensorStatus.id] = sensorStatus})
-                .Sample(TimeSpan.FromMilliseconds(100))
-                .Subscribe(statuses);
+            DI.Instance.MeasureWriter.Subscribe(map.Values);
+            DI.Instance.AlertWriter.Subscribe(map.Values);
+            DI.Instance.DeviceStatusService.Subscribe(map.Values);
         }
 
         public void Start()
@@ -118,15 +79,9 @@ namespace SafeServer.service
 
         internal void Dispose()
         {
-            _disposable?.Dispose();
             foreach (var dev in map.Values)
                 dev.Close();
             map.Clear();
-        }
-
-        public List<SensorStatus> GetAllStatus()
-        {
-            return statuses.Value.Values.ToList();
         }
 
         public void UpdateConfig(long id, Config config)

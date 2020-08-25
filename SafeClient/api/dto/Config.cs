@@ -2,8 +2,9 @@
 {
     public class Config
     {
-        public  double porog{ get; set; }
-        public  double min{ get; set; }
-        public  double max{ get; set; }
+        public double porogMax { get; set; }
+        public double porogMin { get; set; }
+        public double min { get; set; }
+        public double max { get; set; }
     }
 }
