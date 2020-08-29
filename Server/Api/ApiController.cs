@@ -124,7 +124,7 @@ namespace Server.Api
         [Route("device/{id}/reset")]
         public void DeviceReset(int id)
         {
-            var device = DI.Instance.DeviceService[id] as MeasureDevice;
+            var device = DI.Instance.DeviceService[id] as AlarmSensorDevice;
             device?.Reset();
         }
         
@@ -132,7 +132,7 @@ namespace Server.Api
         [Route("device/{id}/reset-alarm")]
         public void DeviceResetAlarm(int id)
         {
-            var device = DI.Instance.DeviceService[id] as MeasureDevice;
+            var device = DI.Instance.DeviceService[id] as AlarmSensorDevice;
             device?.ResetAlarm();
         }
         

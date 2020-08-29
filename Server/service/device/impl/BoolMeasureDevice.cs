@@ -3,7 +3,7 @@ using SafeServer.dto;
 
 namespace SafeServer.service.device
 {
-    public class BoolMeasureDevice : MeasureDevice, IMeasureDevice
+    public class BoolMeasureDevice : AlarmSensorDevice, IMeasureDevice
     {
         public BoolMeasureDevice(Device device)
             : base(device, GetBool41(device.Config.sensor)

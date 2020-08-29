@@ -9,11 +9,17 @@ namespace SafeServer.dto
         public long version { get; set; }
         public bool enable { get; set; }
         public double? value { get; set; }
-        public bool alarm { get; set; }
-        public bool reset { get; set; }
+        public long alarm { get; set; }
         
         public bool up { get; set; }
         public bool dw { get; set; }
+
+        public DeviceStatus Add(DeviceStatus s)
+        {
+            s.alarm = s.alarm >= 0 ? Math.Max(s.alarm, this.alarm) : 0;
+            s.value = s.HasValue() ? s.value : this.value;
+            return s;
+        }
 
         public static DeviceStatus Value(Device device, bool alert)
         {
@@ -28,7 +34,7 @@ namespace SafeServer.dto
                 version = device.Version,
                 enable = device.Enable,
                 value = val,
-                alarm = alert
+                alarm = alert ? DateTime.Now.Ticks : 0
             };
         }
         
@@ -39,7 +45,7 @@ namespace SafeServer.dto
                 id = device.Id,
                 version = device.Version,
                 enable = device.Enable,
-                reset = true
+                alarm = -1
             };
         }
         

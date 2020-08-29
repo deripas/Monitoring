@@ -33,7 +33,7 @@ namespace SafeServer.service
             _disposable = devices
                 .Select(device => device.Status())
                 .Merge()
-                .Where(status => !status.reset)
+                .Where(status => status.alarm >= 0)
                 .Scan(new Dictionary<long, DeviceStatus>(),
                     (dictionary, sensorStatus) => new Dictionary<long, DeviceStatus>(dictionary) {[sensorStatus.id] = sensorStatus})
                 .Subscribe(statuses);

@@ -4,7 +4,7 @@ using SafeServer.dto;
 
 namespace SafeServer.service.device
 {
-    public class HurbleDevice : MeasureDevice
+    public class HurbleDevice : AlarmSensorDevice
     {
         private readonly Subject<bool> power = new Subject<bool>();
 

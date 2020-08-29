@@ -3,7 +3,7 @@ using SafeServer.dto;
 
 namespace SafeServer.service.device
 {
-    public class DoubleMeasureDev : MeasureDevice, IMeasureDevice
+    public class DoubleMeasureDev : AlarmSensorDevice, IMeasureDevice
     {
         public DoubleMeasureDev(Device device)
             : base(device, GetDouble27(device.Config.sensor)

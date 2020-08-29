@@ -6,7 +6,7 @@ using SafeServer.dto;
 
 namespace SafeServer.service.device
 {
-    public abstract class MeasureDevice : LtrDevice
+    public abstract class AlarmSensorDevice : LtrDevice
     {
         private readonly SirenDev siren;
         private readonly Subject<DeviceStatus> reset;
@@ -14,19 +14,14 @@ namespace SafeServer.service.device
         private readonly Timer _timer;
         private readonly IDisposable _disposable;
 
-        public MeasureDevice(Device device, IObservable<DeviceStatus> measure) : base(device)
+        public AlarmSensorDevice(Device device, IObservable<DeviceStatus> measure) : base(device)
         {
             reset = new Subject<DeviceStatus>();
             siren = new SirenDev(config.alarm);
             Add42(config.siren, siren.Siren);
 
             status = measure.Merge(reset)
-                .Scan(DeviceStatus.Value(device, 0, false), (s, item) =>
-                {
-                    var alarm = !item.reset && (s.alarm || item.alarm);
-                    var val = item.HasValue() ? item.value : s.value;
-                    return DeviceStatus.Value(device, val.Value, alarm);
-                })
+                .Scan(DeviceStatus.Value(device, 0, false), (s, item) => s.Add(item))
                 .Publish();
             
             _timer = new Timer(config.timeout);
@@ -36,7 +31,7 @@ namespace SafeServer.service.device
 
             _disposable = status
                 .DistinctUntilChanged(s => s.alarm)
-                .Where(s => s.alarm)
+                .Where(s => s.alarm > 0)
                 .Subscribe(s => siren.Play(true));
         }
 

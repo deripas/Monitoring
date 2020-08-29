@@ -23,7 +23,7 @@ namespace SafeServer.service
                 .GroupBy(status => status.id)
                 .SelectMany(group => group
                     .DistinctUntilChanged(status => status.alarm)
-                    .Where(status => status.alarm)
+                    .Where(status => status.alarm > 0)
                     .Select(status => new Alert {device = group.Key, value = status.GetValue(), time = DateTime.Now, processed = false}))
                 .ObserveOn(ThreadPoolScheduler.Instance)
                 .Subscribe(WriteDB);
