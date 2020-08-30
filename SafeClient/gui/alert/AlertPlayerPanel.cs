@@ -102,6 +102,8 @@ namespace gui
             alert.X = chart.Alert.ToOADate();
             chart1.Annotations.Add(alert);
 
+            ChartArea.AxisX.Minimum = chart.From.ToOADate();
+            ChartArea.AxisX.Maximum = chart.To.ToOADate();
             Series.Points.DataBindXY(chart.X, chart.Y);
         }
 

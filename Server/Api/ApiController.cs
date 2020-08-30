@@ -86,40 +86,12 @@ namespace Server.Api
             var f = DateTime.Parse(from, CultureInfo.InvariantCulture);
             var t = DateTime.Parse(to, CultureInfo.InvariantCulture);
 
-            // using var db = new DatabaseService();
-            // return db.SelectValues(id, f, t)
-            //     .Select(v => new PointD { time = v.time.ToOADate(), value = v.val })
-            //     .ToList();
-            
-            var random = new Random();
-            var v = new List<Value>();
-
-            for (DateTime x = f; x < t; x = x.AddSeconds(1))
-                v.Add(new Value() { device = id, time = x, val = random.NextDouble() * 100.0 });
-            return v
+            using var db = new DatabaseService();
+            return db.SelectValues(id, f, t)
                 .Select(v => new PointD { time = v.time.ToOADate(), value = v.val })
                 .ToList();
         }
 
-        [HttpGet]
-        [Route("device/{id}/generate")]
-        public List<PointD> DeviceDataGenerate(int id, String from, String to)
-        {
-            var f = DateTime.Parse(from, CultureInfo.InvariantCulture);
-            var t = DateTime.Parse(to, CultureInfo.InvariantCulture);
-            var random = new Random();
-            var v = new List<Value>();
-
-            for (DateTime x = f; x < t; x = x.AddSeconds(1))
-                v.Add(new Value() { device = id, time = x, val = random.NextDouble() * 100.0 });
-
-            using var db = new DatabaseService();
-            db.InsertValues(v);
-            return v
-                    .Select(v => new PointD { time = v.time.ToOADate(), value = v.val })
-                    .ToList();
-        }
-        
         [HttpPut]
         [Route("device/{id}/reset")]
         public void DeviceReset(int id)
