@@ -10,6 +10,7 @@ namespace gui
 
         private static readonly int borderSize = 10;
         private double _ratio = 0.75D;
+        private bool _select;
         private RectangleF zoom;
 
         public double Ratio
@@ -25,7 +26,18 @@ namespace gui
             }
         }
 
-        public bool Selected { get; set; }
+        public bool Selected
+        {
+            get
+            {
+                return _select;
+            }
+            set
+            {
+                _select = value;
+                DoResize();
+            }
+        }
 
         public PictureBox Canvas => canvas;
 
@@ -36,7 +48,7 @@ namespace gui
                 var ratio = _ratio;
                 var w = Math.Min(this.Width, (int)Math.Round(this.Height / ratio));
                 var h = (int)Math.Round(w * ratio);
-                var b = Selected ? borderSize : 0;
+                var b = _select ? borderSize : 0;
                 return new Size(w - b, h - b);
             }
         }
@@ -55,10 +67,6 @@ namespace gui
             var loc = new Point((this.Width - size.Width) / 2, (this.Height - size.Height) / 2);
             panel?.SetBounds(loc.X, loc.Y, size.Width, size.Height);
             canvas?.SetBounds(0, 0, size.Width, size.Height);
-
-            //var origSize = new Size((int)(size.Width / zoom.Width), (int)(size.Height / zoom.Width));
-            //var origLoc = new Point((int)(origSize.Width * zoom.X), (int)(origSize.Height * zoom.Y));
-            //canvas?.SetBounds(origLoc.X, origLoc.Y, origSize.Width, origSize.Height);
         }
 
         private void CanvasPanel_Resize(object sender, EventArgs e)

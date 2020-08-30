@@ -7,6 +7,8 @@ namespace model.camera
     {
         double Ratio { get; set; }
 
+        bool Selected { get; set; }
+
         PictureBox Canvas { get; }
     }
 }

@@ -16,6 +16,7 @@ namespace model.camera
         private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
 
         private CameraModel model;
+        private bool select;
         private Dictionary<ICameraView, CameraSreamModel> streams;
 
         public double Ratio {
@@ -26,6 +27,23 @@ namespace model.camera
             set
             {
                 model.Ratio = value;
+            }
+        }
+
+        public bool Selected
+        {
+            get
+            {
+                return select;
+            }
+            set
+            {
+                select = value;
+                lock (streams)
+                {
+                    foreach (var kv in streams)
+                        kv.Key.Selected = value;
+                }
             }
         }
 
@@ -43,7 +61,10 @@ namespace model.camera
             Log.Debug("{0}: add stream view", stream);
 
             lock (streams)
+            {
+                view.Selected = select;
                 streams.Add(view, stream);
+            }
         }
 
         internal void StopPlay(ICameraView view)
@@ -57,6 +78,7 @@ namespace model.camera
                         stream.StopPlay();
 
                     streams.Remove(view);
+                    view.Selected = false;
                     view.Canvas.Invalidate();
                     Log.Debug("{0}: remove stream view", stream);
                 }

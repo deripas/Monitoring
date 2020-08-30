@@ -3,6 +3,7 @@ using Properties;
 using service;
 using System;
 using System.Windows.Forms;
+using System.Windows.Media;
 
 namespace gui
 {
@@ -19,6 +20,19 @@ namespace gui
             set
             {
                 canvas.Ratio = value;
+            }
+        }
+
+        public bool Selected
+        {
+            get
+            {
+                return canvas.Selected;
+            }
+            set
+            {
+                canvas.Selected = value;
+                canvas.BackColor = value ? System.Drawing.Color.Red : System.Drawing.Color.Black;
             }
         }
 
