@@ -26,10 +26,10 @@ namespace gui
 
         public void Update(SensorStatus status)
         {
-            baseSensor1.Alarm = status.alarm > 0;
-            pictureBox1.Image = status.alarm > 0
-                ? Resources.weather_fog
-                : Resources.weather_showers_scattered;
+            baseSensor1.SetAlarm(status.alarm);
+            pictureBox1.Image = status.value > 0
+                ? Resources.weather_showers_scattered
+                : Resources.weather_fog;
         }
     }
 }

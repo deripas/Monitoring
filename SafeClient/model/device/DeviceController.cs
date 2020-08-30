@@ -66,6 +66,10 @@ namespace model.device
             {
                 return info.description;
             }
+            set
+            {
+                info.description = value;
+            }
         }
 
         public bool Enable
@@ -73,6 +77,10 @@ namespace model.device
             get
             {
                 return info.enable && info.config != null;
+            }
+            set
+            {
+                info.enable = value;
             }
         }
         
@@ -108,6 +116,11 @@ namespace model.device
         public void RolletDown()
         {
             DI.Instance.DeviceService.RolletDown(info.id);
+        }
+
+        public void RolletStop()
+        {
+            DI.Instance.DeviceService.RolletStop(info.id);
         }
     }
 }

@@ -152,11 +152,21 @@ namespace Server.Api
             device?.Down();
         }
 
+        [HttpPut]
+        [Route("device/{id}/stop")]
+        public void RolletStop(int id)
+        {
+            var device = DI.Instance.DeviceService[id] as RolletDevice;
+            device?.Stop();
+        }
+
         [HttpGet]
         [Route("status")]
         public List<DeviceStatus> Statuses()
         {
-            return DI.Instance.DeviceStatusService.GetStatuses();
+            return DI.Instance.DeviceStatusService.GetStatuses()
+                .Values
+                .ToList();
         }
     }
 }

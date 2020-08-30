@@ -62,7 +62,7 @@ namespace SafeServer.service.device
             DW.OnNext(true);
         }
 
-        private void Stop()
+        public void Stop()
         {
             UP.OnNext(false);
             DW.OnNext(false);

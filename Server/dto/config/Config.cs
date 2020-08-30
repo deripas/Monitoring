@@ -4,7 +4,6 @@ namespace SafeServer.dto
 {
     public class Config
     {
-        public long timeout { get; set; }
         public Channel sensor { get; set; }
         public Channel power { get; set; }
 
@@ -13,12 +12,10 @@ namespace SafeServer.dto
 
         public Channel sensorUP { get; set; }
         public Channel sensorDW { get; set; }
-        public Alarm alarm { get; set; }
+
         public Channel siren { get; set; }
 
-        public double porogMax { get; set; }
-        public double porogMin { get; set; }
-        public double min { get; set; }
-        public double max { get; set; }
+        public Alarm alarm { get; set; }
+        public Calibr calibr { get; set; }
     }
 }

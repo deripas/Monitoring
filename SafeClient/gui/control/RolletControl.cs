@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using model.device;
 using api.dto;
@@ -44,11 +38,13 @@ namespace gui
             if (dw == up)
             {
                 pictureIcon.Image = Resources.rollet_move;
+                led.Image = Resources.led_red;
                 buttonDown.Enabled = true;
                 buttonUp.Enabled = true;
             }
             else
             {
+                led.Image = Resources.led_green;
                 if (dw)
                 {
                     pictureIcon.Image = Resources.rollet_dw;
@@ -73,6 +69,11 @@ namespace gui
         private void buttonUp_Click(object sender, EventArgs e)
         {
             device?.RolletUp();
+        }
+
+        private void led_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            device?.RolletStop();
         }
     }
 }

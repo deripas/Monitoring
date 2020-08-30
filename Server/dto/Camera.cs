@@ -9,7 +9,7 @@ namespace SafeServer.dto
     public class Camera
     {
         [Column("id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [Column("name")]
         public string Name { get; set; }
@@ -28,5 +28,8 @@ namespace SafeServer.dto
 
         [Column("enable")]
         public bool Enable { get; set; }
+
+        [Column("rtsp")]
+        public string rtsp { get; set; }
     }
 }

@@ -23,9 +23,9 @@ namespace SafeServer.service
             _disposable?.Dispose();
         }
 
-        public List<DeviceStatus> GetStatuses()
+        public Dictionary<long, DeviceStatus> GetStatuses()
         {
-            return statuses.Value.Values.ToList();
+            return statuses.Value;
         }
 
         public void Subscribe(ICollection<IDevice> devices)

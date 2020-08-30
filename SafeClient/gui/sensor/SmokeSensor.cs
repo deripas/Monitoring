@@ -26,7 +26,7 @@ namespace gui
 
         public void Update(SensorStatus status)
         {
-            baseSensor1.Alarm = status.alarm > 0;
+            baseSensor1.SetAlarm(status.alarm);
             pictureBox1.Image = status.alarm > 0
                 ? Resources.fire
                 : Resources.no_fire;

@@ -77,12 +77,14 @@ namespace gui
             StopPlay();
             camera = cameraController;
             camera.StartPlay(this);
+            contextMenu.Enabled = true;
         }
 
         internal void StopPlay()
         {
             camera?.StopPlay(this);
             camera = null;
+            contextMenu.Enabled = false;
         }
 
         private void mainToolStripMenuItem_Click(object sender, EventArgs e)

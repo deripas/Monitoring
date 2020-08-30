@@ -97,5 +97,10 @@ namespace service
         {
             serverApi.RolletDown(device);
         }
+
+        public void RolletStop(int device)
+        {
+            serverApi.RolletStop(device);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using model.device;
+﻿using gui.device;
+using model.device;
 using service;
 using System;
 using System.Windows.Forms;
@@ -41,6 +42,22 @@ namespace gui
                 listView1.Items.Add(item);
             }
             listView1.Refresh();
+        }
+
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems != null && listView1.SelectedItems.Count > 0)
+            {
+                DeviceController dev = (DeviceController)listView1.SelectedItems[0].Tag;
+                DeviceEditorForm form = new DeviceEditorForm();
+                form.Device = dev;
+                form.TopMost = true;
+                form.StartPosition = FormStartPosition.CenterParent;
+                if (form.ShowDialog(this) == DialogResult.OK)
+                {
+
+                }
+            }
         }
     }
 }

@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SafeServer;
+using SafeServer.dto;
+using SafeServer.service;
 using Server.Models;
 
 namespace Server.Controllers
@@ -21,77 +25,47 @@ namespace Server.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         public IActionResult Camera()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Device()
         {
-            return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+            return View();
         }
 
-        public IActionResult PageData()
+        public IActionResult CameraTable()
         {
-            try
+            var draw = HttpContext.Request.Form["draw"].FirstOrDefault();
+            using var db = new DatabaseService();
+            var camera = db.Camera.ToList();
+            return Json(new { draw = draw, recordsFiltered = camera.Count, recordsTotal = camera.Count, data = camera });
+        }
+
+        public IActionResult DeviceTable()
+        {
+            Dictionary<long, DeviceStatus> status = DI.Instance.DeviceStatusService.GetStatuses();
+            var draw = HttpContext.Request.Form["draw"].FirstOrDefault();
+            using var db = new DatabaseService();
+            var query = from d in db.Device 
+                         join c in db.Camera on d.Camera equals c.Id
+                         select new {d.Id, d.Name, c.rtsp };
+
+            var result = new List<DeviceModel>();
+            foreach (var item in query.ToList())
             {
-                var draw = HttpContext.Request.Form["draw"].FirstOrDefault();
-
-                // Skip number of Rows count  
-                var start = Request.Form["start"].FirstOrDefault();
-
-                // Paging Length 10,20  
-                var length = Request.Form["length"].FirstOrDefault();
-
-                // Sort Column Name  
-                var sortColumn = Request.Form["columns[" + Request.Form["order[0][column]"].FirstOrDefault() + "][name]"].FirstOrDefault();
-
-                // Sort Column Direction (asc, desc)  
-                var sortColumnDirection = Request.Form["order[0][dir]"].FirstOrDefault();
-
-                // Search Value from (Search box)  
-                var searchValue = Request.Form["search[value]"].FirstOrDefault();
-
-                //Paging Size (10, 20, 50,100)  
-                int pageSize = length != null ? Convert.ToInt32(length) : 0;
-
-                int skip = start != null ? Convert.ToInt32(start) : 0;
-
-                int recordsTotal = 0;
-
-                // getting all Customer data  
-                var customerData = SampleEntity.GetSampleData();
-                //Sorting  
-                if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDirection)))
+                DeviceStatus s;
+                var exist = status.TryGetValue(item.Id, out s);
+                result.Add(new DeviceModel
                 {
-                    //customerData = customerData.OrderBy(sortColumn + " " + sortColumnDirection);
-                }
-                //Search  
-                if (!string.IsNullOrEmpty(searchValue))
-                {
-                    customerData = customerData.Where(m => m.Name == searchValue);
-                }
-
-                //total number of rows counts   
-                recordsTotal = customerData.Count();
-                //Paging   
-                //var data = customerData.Skip(skip).Take(pageSize).ToList();
-                var data = customerData.ToList();
-                //Returning Json Data  
-                return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data });
-
+                    id = item.Id,
+                    name = item.Name,
+                    rtsp = item.rtsp,
+                    value = exist ? s.value.ToString() : "-"
+                });
             }
-            catch (Exception)
-            {
-                throw;
-            }
-
+            return Json(new { draw = draw, recordsFiltered = result.Count, recordsTotal = result.Count, data = result });
         }
     }
 }

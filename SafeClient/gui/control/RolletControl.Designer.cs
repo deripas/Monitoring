@@ -36,8 +36,8 @@
             this.buttonUp = new System.Windows.Forms.Button();
             this.buttonDown = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.pictureIcon)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.led)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureIcon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -52,7 +52,7 @@
             // name
             // 
             this.name.AutoSize = true;
-            this.name.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle) ((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.name.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.name.Location = new System.Drawing.Point(6, 0);
             this.name.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.name.Name = "name";
@@ -62,7 +62,7 @@
             // 
             // description
             // 
-            this.description.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.description.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.description.Location = new System.Drawing.Point(94, 39);
             this.description.Margin = new System.Windows.Forms.Padding(6);
             this.description.Name = "description";
@@ -89,10 +89,11 @@
             this.led.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.led.TabIndex = 20;
             this.led.TabStop = false;
+            this.led.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.led_MouseDoubleClick);
             // 
             // buttonUp
             // 
-            this.buttonUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.buttonUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonUp.Location = new System.Drawing.Point(538, 17);
             this.buttonUp.Name = "buttonUp";
             this.buttonUp.Size = new System.Drawing.Size(59, 45);
@@ -103,7 +104,7 @@
             // 
             // buttonDown
             // 
-            this.buttonDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.buttonDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonDown.Location = new System.Drawing.Point(480, 17);
             this.buttonDown.Name = "buttonDown";
             this.buttonDown.Size = new System.Drawing.Size(52, 45);
@@ -127,9 +128,10 @@
             this.Size = new System.Drawing.Size(670, 65);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.pictureIcon)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.led)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureIcon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.Button buttonDown;

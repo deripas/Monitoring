@@ -21,7 +21,7 @@ namespace gui
         public void Set(DeviceController dev)
         {
             baseSensor1.Device = dev;
-            var config = dev.Config;
+            var config = dev.Config?.calibr;
             if (config != null)
             {
                 baseSensor1.Max = config.porogMax.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
@@ -31,7 +31,7 @@ namespace gui
 
         public void Update(SensorStatus status)
         {
-            baseSensor1.Alarm = status.alarm > 0;
+            baseSensor1.SetAlarm(status.alarm);
             baseSensor1.Value = status.value.Value.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
             verticalProgressBar1.Value = (int) status.value;
         }

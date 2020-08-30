@@ -29,18 +29,22 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.thresholdText = new System.Windows.Forms.TextBox();
+            this.thresholdMinText = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.maxText = new System.Windows.Forms.TextBox();
             this.minText = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.thresholdMaxText = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.thresholdText);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.thresholdMaxText);
+            this.groupBox2.Controls.Add(this.thresholdMinText);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.maxText);
@@ -50,18 +54,18 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(6);
-            this.groupBox2.Size = new System.Drawing.Size(422, 192);
+            this.groupBox2.Size = new System.Drawing.Size(422, 224);
             this.groupBox2.TabIndex = 46;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Калибровка";
             // 
-            // thresholdText
+            // thresholdMinText
             // 
-            this.thresholdText.Location = new System.Drawing.Point(183, 129);
-            this.thresholdText.Margin = new System.Windows.Forms.Padding(6);
-            this.thresholdText.Name = "thresholdText";
-            this.thresholdText.Size = new System.Drawing.Size(211, 29);
-            this.thresholdText.TabIndex = 43;
+            this.thresholdMinText.Location = new System.Drawing.Point(183, 170);
+            this.thresholdMinText.Margin = new System.Windows.Forms.Padding(6);
+            this.thresholdMinText.Name = "thresholdMinText";
+            this.thresholdMinText.Size = new System.Drawing.Size(211, 29);
+            this.thresholdMinText.TabIndex = 43;
             // 
             // label7
             // 
@@ -79,9 +83,9 @@
             this.label1.Location = new System.Drawing.Point(55, 129);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 25);
+            this.label1.Size = new System.Drawing.Size(123, 25);
             this.label1.TabIndex = 42;
-            this.label1.Text = "Порог";
+            this.label1.Text = "Порог Макс.";
             // 
             // maxText
             // 
@@ -109,13 +113,31 @@
             this.label6.TabIndex = 40;
             this.label6.Text = "Мин.";
             // 
+            // thresholdMaxText
+            // 
+            this.thresholdMaxText.Location = new System.Drawing.Point(183, 129);
+            this.thresholdMaxText.Margin = new System.Windows.Forms.Padding(6);
+            this.thresholdMaxText.Name = "thresholdMaxText";
+            this.thresholdMaxText.Size = new System.Drawing.Size(211, 29);
+            this.thresholdMaxText.TabIndex = 44;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(55, 170);
+            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(115, 25);
+            this.label2.TabIndex = 45;
+            this.label2.Text = "Порог Мин.";
+            // 
             // MeasureOption
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox2);
             this.Name = "MeasureOption";
-            this.Size = new System.Drawing.Size(428, 209);
+            this.Size = new System.Drawing.Size(428, 239);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -125,11 +147,13 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox thresholdText;
+        private System.Windows.Forms.TextBox thresholdMinText;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox maxText;
         private System.Windows.Forms.TextBox minText;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox thresholdMaxText;
     }
 }

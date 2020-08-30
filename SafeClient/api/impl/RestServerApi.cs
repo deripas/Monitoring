@@ -66,6 +66,11 @@ namespace api.impl
             template.Put("/api/device/{id}/down", null, device );
         }
 
+        public void RolletStop(int device)
+        {
+            template.Put("/api/device/{id}/stop", null, device);
+        }
+
         public void ProcessAlert(long id)
         {
             template.Put("/api/alert/{id}/processed", null, id);

@@ -1,33 +1,23 @@
 ﻿$(document).ready(function () {
-    var table = $("#example").DataTable({
+    var table = $("#table-camera").DataTable({
         "paging": false,
-        "processing": true, 
+        "processing": false, 
         "serverSide": true, 
         "filter": false,  
         "ajax": {
-            "url": "/Home/PageData",
+            "url": "/Home/CameraTable",
             "type": "POST",
             "datatype": "json"
         },
         "columns": [
-            { "data": "id", "name": "ID", "autoWidth": true },
-           // { "data": "name", "name": "Name", "autoWidth": true },
+            { "data": "name", "name": "Name", "autoWidth": true },
             {
                 "data": "name", "render": function (data, type, row, meta) {
-                    return "<a href='/DemoGrid/Edit/" + row.name + "' class='btn btn-info'>Delete</a>";
+                    return "<a href='" + row.rtsp + "' class='btn btn-info'>View</a>";
                 }
             }
         ]
 
     });
 
-
-    setInterval(function () {
-        table.ajax.reload();
-    }, 1000);
 });
-
-function DeleteData(CustomerID) {
-    alert("Something Went Wrong!" + CustomerID);
-}  
-

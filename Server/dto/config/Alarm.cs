@@ -2,6 +2,7 @@
 {
     public class Alarm
     {
+        public long timeout { get; set; }
         /// <summary>
         /// количество циклов
         /// </summary>

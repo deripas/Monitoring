@@ -36,7 +36,7 @@ namespace SafeServer.service
             if (dev.Type.Equals("smoke"))
                 return new SmokeDevice(dev);
             if(dev.Type.Equals("water"))
-                return new BoolMeasureDevice(dev);
+                return new WaterDevice(dev);
             if (dev.Type.Equals("rollet"))
                 return new RolletDevice(dev);
            if (dev.Type.Equals("hurble"))

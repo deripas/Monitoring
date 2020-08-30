@@ -20,7 +20,6 @@ namespace SafeServer.service
                 .OfType<IMeasureDevice>()
                 .Select(device => device.Status())
                 .Merge()
-                .Where(status => status.HasValue())
                 .Buffer(TimeSpan.FromSeconds(1))
                 .Select(ToBatch)
                 .ObserveOn(ThreadPoolScheduler.Instance)
@@ -34,7 +33,7 @@ namespace SafeServer.service
                 dic[s.id] = s;
             
             return dic.Values
-                .Select(s => new Value {device = s.id, val = s.GetValue(), time = DateTime.Now})
+                .Select(s => new Value {device = s.id, val = s.value, time = DateTime.Now})
                 .ToList();
         }
         

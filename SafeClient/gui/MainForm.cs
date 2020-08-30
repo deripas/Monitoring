@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using api.dto;
 using service;
 
 namespace gui
@@ -9,7 +10,6 @@ namespace gui
         {
             DI.Instance.Init();
             InitializeComponent();
-            toolStripSplitButton1.SelectedIndex = 0;
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -21,13 +21,6 @@ namespace gui
             DeviceViewForm.Instance.Dispose();
             DI.Instance.Dispose();
             Application.Exit();
-        }
-
-        private void toolStripSplitButton1_SelectedIndexChanged(object sender, System.EventArgs e)
-        {
-            var index = toolStripSplitButton1.SelectedIndex;
-            var val = index + 1;
-            grid.Grid(val, val);
         }
 
         private void toolStripButton1_Click(object sender, System.EventArgs e)
@@ -48,6 +41,26 @@ namespace gui
         private void toolStripButton3_Click(object sender, System.EventArgs e)
         {
             DeviceViewForm.Instance.Start();
+        }
+
+        private void toolStripButton5_Click(object sender, System.EventArgs e)
+        {
+            grid.Grid(CameraGrid.grid6x6());
+        }
+
+        private void toolStripButton6_Click(object sender, System.EventArgs e)
+        {
+            grid.Grid(CameraGrid.grid3x3_1());
+        }
+
+        private void toolStripButton7_Click(object sender, System.EventArgs e)
+        {
+            grid.Grid(CameraGrid.grid3x3_2());
+        }
+
+        private void toolStripButton8_Click(object sender, System.EventArgs e)
+        {
+            grid.Grid(CameraGrid.grid3x3_3());
         }
     }
 }

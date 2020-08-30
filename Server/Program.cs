@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NLog.Config;
@@ -36,9 +33,9 @@ namespace Server
             target.Targets.Add(file);
 
             SimpleConfigurator.ConfigureForTargetLogging(target, NLog.LogLevel.Debug);
-            
+
             DI.Instance.Init();
-            AppDomain.CurrentDomain.ProcessExit += (sender, eventArgs) => DI.Instance.Dispose();           
+            AppDomain.CurrentDomain.ProcessExit += (sender, eventArgs) => DI.Instance.Dispose();
 
             CreateHostBuilder(args).Build().Run();
         }
@@ -49,6 +46,7 @@ namespace Server
                     .UseStartup<Startup>()
                     .ConfigureLogging(logging => { logging.SetMinimumLevel(LogLevel.Information); })
                     .UseNLog()
-                );
+                    .UseKestrel((context, options) => { options.Listen(IPAddress.Any, 5000); })
+                    );
     }
 }

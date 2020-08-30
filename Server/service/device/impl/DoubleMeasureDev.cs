@@ -8,8 +8,8 @@ namespace SafeServer.service.device
         public DoubleMeasureDev(Device device)
             : base(device, GetDouble27(device.Config.sensor)
                 .ToMean()
-                .Convert(4, 20, device.Config.min, device.Config.max)
-                .Select(v => DeviceStatus.Value(device, v, v > device.Config.porogMax || v < device.Config.porogMin)))
+                .Convert(4, 20, device.Config.calibr.min, device.Config.calibr.max)
+                .Select(v => DeviceStatus.Value(device, v, v > device.Config.calibr.porogMax || v < device.Config.calibr.porogMin)))
         {
         }
     }

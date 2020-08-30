@@ -2,12 +2,15 @@
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Timers;
+using NLog.Fluent;
 using SafeServer.dto;
 
 namespace SafeServer.service.device
 {
     public abstract class AlarmSensorDevice : LtrDevice
     {
+        private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
+
         private readonly SirenDev siren;
         private readonly Subject<DeviceStatus> reset;
         private readonly IConnectableObservable<DeviceStatus> status;
@@ -21,10 +24,10 @@ namespace SafeServer.service.device
             Add42(config.siren, siren.Siren);
 
             status = measure.Merge(reset)
-                .Scan(DeviceStatus.Value(device, 0, false), (s, item) => s.Add(item))
+                .Scan(DeviceStatus.Reset(device), ValueAgregate)
                 .Publish();
             
-            _timer = new Timer(config.timeout);
+            _timer = new Timer(config.alarm.timeout);
             _timer.Elapsed += Elapsed;
             _timer.AutoReset = false;
             _timer.Enabled = false;
@@ -32,7 +35,24 @@ namespace SafeServer.service.device
             _disposable = status
                 .DistinctUntilChanged(s => s.alarm)
                 .Where(s => s.alarm > 0)
+                .Do(s =>
+                {
+                    Log.Warn("{0} Alert: {1} {2}", this, s.alarm, s.value);
+                })
                 .Subscribe(s => siren.Play(true));
+        }
+
+        public virtual DeviceStatus ValueAgregate(DeviceStatus old, DeviceStatus cur)
+        {
+            if(cur.alarm < 0)
+            {
+                return DeviceStatus.Value(device, old.value);
+            }
+            else
+            {
+                var alert = old.alarm > 0 ? old.alarm : cur.alarm;
+                return DeviceStatus.Value(device, cur.value, alert);
+            }
         }
 
         public override IObservable<DeviceStatus> Status()

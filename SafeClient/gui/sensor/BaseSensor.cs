@@ -3,6 +3,7 @@ using service;
 using System.Drawing;
 using System.Windows.Forms;
 using model.device;
+using System;
 
 namespace gui
 {
@@ -60,14 +61,11 @@ namespace gui
         {
             get
             {
-                return alarm;
+                return alarm > 0;
             }
             set
             {
-                if (!alarm && value) DI.Instance.AlarmSoundService.Play();
-
-                alarm = value;
-                led.Image = value ? Resources.led_red : Resources.led_green;
+                alarm = value ? DateTime.Now.Ticks : 0;
             }
         }
 
@@ -75,13 +73,12 @@ namespace gui
         {
             get
             {
-                return led.Image != Resources.led_gray;
+                return enable;
             }
             set
             {
-                led.Image = value
-                    ? alarm ? Resources.led_red : Resources.led_green
-                    : Resources.led_gray;
+                enable = value;
+                UpdateLed();
             }
         }
 
@@ -91,12 +88,16 @@ namespace gui
             set
             {
                 device = value;
-                Description = value.Description;
-                EnabledLed = value.Enable;
+                if (value != null)
+                {
+                    Description = value.Description;
+                    EnabledLed = value.Enable;
+                }
             }
         }
 
-        private bool alarm;
+        private long alarm;
+        private bool enable;
         private DeviceController device;
 
         public BaseSensor()
@@ -108,8 +109,33 @@ namespace gui
         {
             if (device == null) return;
 
-            DI.Instance.AlarmSoundService.Stop();
-            DI.Instance.ServerApi.ResetDeviceAlert(device.Id);
+            if (alarm > 0)
+            {
+                DI.Instance.AlarmSoundService.Stop();
+                DI.Instance.ServerApi.ResetDeviceAlert(device.Id);
+            }
+        }
+
+        private void UpdateLed()
+        {
+            if (enable)
+            {
+                led.Image = Alarm ? Resources.led_red : Resources.led_green;
+            }
+            else
+            {
+                led.Image = Resources.led_gray;
+            }
+        }
+
+        internal void SetAlarm(long alarm)
+        {
+            if(alarm > this.alarm)
+            {
+                DI.Instance.AlarmSoundService.Play();
+            }
+            this.alarm = alarm;
+            UpdateLed();
         }
     }
 }

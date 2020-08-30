@@ -1,4 +1,5 @@
-﻿using service;
+﻿using api.dto;
+using service;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -10,8 +11,7 @@ namespace gui
     {
         private double _ratio = 0.5625D;
         private readonly List<CameraViewPanel> views = new List<CameraViewPanel>();
-        private int cols;
-        private int rows;
+        private CameraGrid grid;
         private CameraViewPanel select;
 
         private Size TableSize
@@ -40,7 +40,7 @@ namespace gui
 
         private void Vp_DoubleClick(CameraViewPanel owner)
         {
-            if (cols <= 1 && rows <= 1) return;
+            if (grid.cols <= 1 && grid.rows <= 1) return;
 
             if (select == null)
             {
@@ -52,7 +52,7 @@ namespace gui
             else
             {
                 // restore
-                Grid(cols, rows);
+                Grid(grid);
             }
         }
 
@@ -72,24 +72,31 @@ namespace gui
 
         }
 
-        public void Grid(int cols, int rows)
+        public void Grid(CameraGrid grid)
         {
-            this.cols = cols;
-            this.rows = rows;
+            this.grid = grid;
             select = null;
 
             Clear(views);
-            Table(cols, rows);
+            Table(grid.cols, grid.rows);
 
-            var list = DI.Instance.CameraService.CameraList;
-            for (var i = 0; i < cols * rows && i < list.Count; i++)
+            var list = grid.cams;
+            for (var i = 0; i < grid.cols * grid.rows && i < list.Count; i++)
             {
-                var cam = list[i];
                 var viewControl = views[i];
                 table.Controls.Add(viewControl);
 
-                viewControl.Ratio = cam.Ratio;
-                viewControl.StartPlay(cam);
+                var camId = list[i];
+                if (camId > 0)
+                {
+                    var cam = DI.Instance.CameraService[camId];
+                    viewControl.Ratio = cam.Ratio;
+                    viewControl.StartPlay(cam);
+                }
+                else
+                {
+
+                }
             }
         }
 

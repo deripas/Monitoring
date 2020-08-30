@@ -1,10 +1,10 @@
-﻿namespace api.dto
+﻿using SafeServer.dto.config;
+
+namespace api.dto
 {
     public class Config
     {
-        public double porogMax { get; set; }
-        public double porogMin { get; set; }
-        public double min { get; set; }
-        public double max { get; set; }
+        public Alarm alarm { get; set; }
+        public Calibr calibr { get; set; }
     }
 }

@@ -17,14 +17,15 @@ namespace SafeServer.service
         public void Subscribe(ICollection<IDevice> devices)
         {
             _disposable = devices
+                .OfType<IMeasureDevice>()
                 .Select(device => device.Status())
                 .Merge()
-                .Where(status => status.HasValue())
+                .Where(status => status.enable)
                 .GroupBy(status => status.id)
                 .SelectMany(group => group
                     .DistinctUntilChanged(status => status.alarm)
                     .Where(status => status.alarm > 0)
-                    .Select(status => new Alert {device = group.Key, value = status.GetValue(), time = DateTime.Now, processed = false}))
+                    .Select(status => new Alert {device = group.Key, value = status.value, time = DateTime.Now, processed = false}))
                 .ObserveOn(ThreadPoolScheduler.Instance)
                 .Subscribe(WriteDB);
         }
