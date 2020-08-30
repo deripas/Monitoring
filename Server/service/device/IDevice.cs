@@ -7,10 +7,16 @@ namespace SafeServer.service.device
     {
         long Id();
 
+        int? CameraId();
+
+        string Name();
+
         void Init();
 
         void Close();
         
         IObservable<DeviceStatus> Status();
+
+        string RenderStatusValue(DeviceStatus status);
     }
 }

@@ -11,18 +11,14 @@ namespace SafeServer.service
         private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
 
         public IDevice this[long id] => map[id];
+        public ICollection<IDevice> Devices => map.Values;
 
         private Dictionary<long, IDevice> map;
+
 
         public DeviceService()
         {
             map = new Dictionary<long, IDevice>();
-        }
-
-        private IEnumerable<Device> Devices()
-        {
-            using var db = new DatabaseService();
-            return db.Device.ToList();
         }
 
         private IDevice Create(Device dev)
@@ -49,7 +45,8 @@ namespace SafeServer.service
         public void Init()
         {
             map.Clear();
-            foreach (var dev in Devices())
+            using var db = new DatabaseService();
+            foreach (var dev in db.Device.ToList())
             {
                 try
                 {

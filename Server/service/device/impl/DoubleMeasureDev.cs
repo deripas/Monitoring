@@ -12,5 +12,10 @@ namespace SafeServer.service.device
                 .Select(v => DeviceStatus.Value(device, v, v > device.Config.calibr.porogMax || v < device.Config.calibr.porogMin)))
         {
         }
+
+        public override string RenderStatusValue(DeviceStatus status)
+        {
+            return status.value.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+        }
     }
 }

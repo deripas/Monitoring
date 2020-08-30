@@ -72,5 +72,10 @@ namespace SafeServer.service.device
         {
             Stop();
         }
+
+        public override string RenderStatusValue(DeviceStatus status)
+        {
+            return "?";
+        }
     }
 }

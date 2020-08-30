@@ -47,22 +47,23 @@ namespace Server.Controllers
         {
             Dictionary<long, DeviceStatus> status = DI.Instance.DeviceStatusService.GetStatuses();
             var draw = HttpContext.Request.Form["draw"].FirstOrDefault();
-            using var db = new DatabaseService();
-            var query = from d in db.Device 
-                         join c in db.Camera on d.Camera equals c.Id
-                         select new {d.Id, d.Name, c.rtsp };
 
+            var devices =  DI.Instance.DeviceService.Devices;
             var result = new List<DeviceModel>();
-            foreach (var item in query.ToList())
+            foreach (var dev in devices)
             {
+                var camId = dev.CameraId();
+                if (!camId.HasValue) continue;
+
+                var cam = DI.Instance.CameraService[camId.Value];
                 DeviceStatus s;
-                var exist = status.TryGetValue(item.Id, out s);
+                var exist = status.TryGetValue(dev.Id(), out s);
                 result.Add(new DeviceModel
                 {
-                    id = item.Id,
-                    name = item.Name,
-                    rtsp = item.rtsp,
-                    value = exist ? s.value.ToString() : "-"
+                    id = dev.Id(),
+                    name = dev.Name(),
+                    rtsp = cam.rtsp,
+                    value = exist ? dev.RenderStatusValue(s) : "-"
                 });
             }
             return Json(new { draw = draw, recordsFiltered = result.Count, recordsTotal = result.Count, data = result });

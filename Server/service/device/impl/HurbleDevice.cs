@@ -21,5 +21,10 @@ namespace SafeServer.service.device
             base.Close();
             power.OnNext(false);
         }
+
+        public override string RenderStatusValue(DeviceStatus status)
+        {
+            return "?";
+        }
     }
 }

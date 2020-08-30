@@ -1,4 +1,5 @@
-﻿using System.Reactive.Linq;
+﻿using System;
+using System.Reactive.Linq;
 using SafeServer.dto;
 
 namespace SafeServer.service.device
@@ -10,6 +11,11 @@ namespace SafeServer.service.device
                 .ToBool()
                 .Select(v => DeviceStatus.Value(device, v)))
         {
+        }
+
+        public override string RenderStatusValue(DeviceStatus status)
+        {
+            return (status.value == 0).ToString();
         }
     }
 }

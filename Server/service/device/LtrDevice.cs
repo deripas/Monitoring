@@ -22,9 +22,20 @@ namespace SafeServer.service.device
             return device.Id;
         }
 
+        public string Name()
+        {
+            return device.Name;
+        }
+
+        public int? CameraId()
+        {
+            return device.Camera;
+        }
+
         public abstract void Init();
         public abstract void Close();
         public abstract IObservable<DeviceStatus> Status();
+        public abstract string RenderStatusValue(DeviceStatus status);
 
         protected static void Add42(Channel ch, IObservable<bool> @in)
         {

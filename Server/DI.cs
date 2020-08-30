@@ -2,6 +2,7 @@
 using System.IO;
 using Microsoft.Extensions.Configuration;
 using SafeServer.service;
+using Server.service;
 
 namespace SafeServer
 {
@@ -15,6 +16,7 @@ namespace SafeServer
         public MeasureWriter MeasureWriter;
         public AlertWriter AlertWriter;
         public DeviceStatusService DeviceStatusService;
+        public CameraService CameraService;
 
         public void Init()
         {
@@ -27,9 +29,11 @@ namespace SafeServer
             AlertWriter = new AlertWriter();
             DeviceStatusService = new DeviceStatusService();
             DeviceService = new DeviceService();
+            CameraService = new CameraService();
             LtrService = new LtrService();
 
             DeviceService.Init();
+            CameraService.Init();
             LtrService.Start();
             DeviceService.Start();
         }
@@ -40,12 +44,14 @@ namespace SafeServer
             AlertWriter?.Dispose();
             DeviceStatusService?.Dispose();
             DeviceService?.Dispose();
+            CameraService?.Dispose();
             LtrService?.Dispose();
 
             AlertWriter = null;
             MeasureWriter = null;
             DeviceStatusService = null;
             DeviceService = null;
+            CameraService = null;
             LtrService = null;
         }
     }
