@@ -1,0 +1,1 @@
+delete from device where id in (28, 29, 30, 31, 32, 62, 63, 64);
