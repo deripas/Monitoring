@@ -47,6 +47,8 @@ namespace Server
                     .ConfigureLogging(logging => { logging.SetMinimumLevel(LogLevel.Information); })
                     .UseNLog()
                     .UseKestrel((context, options) => { options.Listen(IPAddress.Any, 5000); })
+                    .UseIIS()
+                    .UseIISIntegration()
                     );
     }
 }

@@ -6,11 +6,11 @@ namespace SafeServer.service.device
 {
     public class BoolMeasureDevice : AlarmSensorDevice, IMeasureDevice
     {
-        public BoolMeasureDevice(Device device)
-            : base(device, GetBool41(device.Config.sensor)
-                .ToBool()
-                .Select(v => DeviceStatus.Value(device, v)))
+        public BoolMeasureDevice(Device device) : base(device)
         {
+            Sensor(GetBool41(device.Config.sensor)
+                .ToBool()
+                .Select(v => DeviceStatus.Value(device, v)));
         }
 
         public override string RenderStatusValue(DeviceStatus status)

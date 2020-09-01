@@ -27,5 +27,9 @@ namespace api
         void RolletUp(int device);
         void RolletDown(int device);
         void RolletStop(int device);
+
+        void HurbleOn(int device);
+        void HurbleOff(int device);
+        void HurbleAuto(int device);
     }
 }

@@ -9,5 +9,6 @@
         water,
         vibration,
         rollet,
+        hurble,
     }
 }

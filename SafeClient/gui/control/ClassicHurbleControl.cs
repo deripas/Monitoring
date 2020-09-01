@@ -1,19 +1,195 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using model.device;
+using api.dto;
+using Properties;
+using service;
+using System.CodeDom;
 
 namespace gui
 {
-    public partial class ClassicHurbleControl : UserControl
+    public partial class ClassicHurbleControl : UserControl, SensorView
     {
+        private DeviceController device;
+        private long alarm;
+        private bool enable;
+        private ControlType last = ControlType.NULL;
+
+        public bool Alarm
+        {
+            get
+            {
+                return alarm > 0;
+            }
+            set
+            {
+                alarm = value ? DateTime.Now.Ticks : 0;
+            }
+        }
+
+        public bool EnabledLed
+        {
+            get
+            {
+                return enable;
+            }
+            set
+            {
+                enable = value;
+                UpdateLed();
+            }
+        }
+
+        public string Description
+        {
+            get
+            {
+                return description.Text;
+            }
+            set
+            {
+                description.Text = value;
+            }
+        }
+
+        public DeviceController Device
+        {
+            get => device;
+            set
+            {
+                device = value;
+                if (value != null)
+                {
+                    Description = value.Description;
+                    EnabledLed = value.Enable;
+                }
+            }
+        }
+
         public ClassicHurbleControl()
         {
             InitializeComponent();
         }
+
+        public Control GetControl()
+        {
+            return this;
+        }
+
+        public void Set(DeviceController dev)
+        {
+            Device = dev;
+        }
+
+        public void Update(SensorStatus status)
+        {
+            if (!status.enable)
+            {
+                EnabledLed = false;
+                Enabled = false;
+                return;
+            }
+            if (!Enabled)
+            {
+                EnabledLed = true;
+                Enabled = true;
+            }
+            SetAlarm(status.alarm);
+            SetImage((ControlType)status.value);
+            SetControll((ControlType)status.value);
+            last = (ControlType)status.value;
+        }
+
+        internal void SetImage(ControlType type)
+        {
+            if (Alarm)
+            {
+                pictureIcon.Image = Resources.classic_alarm;
+            }
+            else
+            {
+                pictureIcon.Image = type.HasFlag(ControlType.POWER)
+                        ? Resources.classic_close
+                        : Resources.classic_open;
+            }
+        }
+
+        internal void SetControll(ControlType type)
+        {
+            if (type.HasFlag(ControlType.ON)) modeoOn.Checked = true;
+            if (type.HasFlag(ControlType.OFF)) modeOff.Checked = true;
+            if (type.HasFlag(ControlType.AUTO)) modeAuto.Checked = true;
+        }
+
+        internal void SetAlarm(long alarm)
+        {
+            if (alarm > this.alarm)
+            {
+                DI.Instance.AlarmSoundService.Play();
+                device.Camera.Selected = true;
+            }
+            this.alarm = alarm;
+            UpdateLed();
+        }
+
+        private void UpdateLed()
+        {
+            if (enable)
+            {
+                led.Image = Alarm ? Resources.led_red : Resources.led_green;
+            }
+            else
+            {
+                led.Image = Resources.led_gray;
+            }
+        }
+
+        private void led_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (device == null) return;
+
+            if (Alarm)
+            {
+                device.Camera.Selected = false;
+                DI.Instance.AlarmSoundService.Stop();
+                DI.Instance.ServerApi.ResetDeviceAlert(device.Id);
+            }
+        }
+
+        private void modeOff_Click(object sender, EventArgs e)
+        {
+            if (modeOff.Checked && !last.HasFlag(ControlType.OFF))
+            {
+                DI.Instance.DeviceService.HurbleOff(device.Id);
+            }
+        }
+
+        private void modeoOn_Click(object sender, EventArgs e)
+        {
+            if (modeoOn.Checked && !last.HasFlag(ControlType.ON))
+            {
+                DI.Instance.DeviceService.HurbleOn(device.Id);
+            }
+        }
+
+        private void modeAuto_Click(object sender, EventArgs e)
+        {
+            if (modeAuto.Checked && !last.HasFlag(ControlType.AUTO))
+            {
+                DI.Instance.DeviceService.HurbleAuto(device.Id);
+            }
+        }
+    }
+
+    [Flags]
+    public enum ControlType
+    {
+        NULL = 0,
+        POWER = 1,
+        REMOTE = 2,
+        ENCODER = 4,
+        ON = 8,
+        OFF = 16,
+        AUTO = 32,
     }
 }

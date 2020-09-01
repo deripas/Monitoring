@@ -132,6 +132,31 @@ namespace Server.Api
             device?.Stop();
         }
 
+        [HttpPut]
+        [Route("device/{id}/on")]
+        public void HurbleOn(int id)
+        {
+            var device = DI.Instance.DeviceService[id] as HurbleDevice;
+            device?.PowerOn();
+        }
+
+        [HttpPut]
+        [Route("device/{id}/off")]
+        public void HurbleOff(int id)
+        {
+            var device = DI.Instance.DeviceService[id] as HurbleDevice;
+            device?.PowerOff();
+        }
+
+
+        [HttpPut]
+        [Route("device/{id}/auto")]
+        public void HurbleAuto(int id)
+        {
+            var device = DI.Instance.DeviceService[id] as HurbleDevice;
+            device?.PowerAuto();
+        }
+
         [HttpGet]
         [Route("status")]
         public List<DeviceStatus> Statuses()

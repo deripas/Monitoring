@@ -1,0 +1,1 @@
+INSERT INTO public.ltr (id, sn, num, type) VALUES (3, '2D551743', 1, 'ltr27');

@@ -1,21 +1,26 @@
 ﻿using SafeServer.dto.config;
+using Server.dto.config;
 
 namespace SafeServer.dto
 {
     public class Config
     {
-        public Channel sensor { get; set; }
-        public Channel power { get; set; }
+        public Channel sensor { get; set; } //41,27,25
+        public Channel power { get; set; } //42
 
-        public Channel motorUP { get; set; }
-        public Channel motorDW { get; set; }
+        public Channel encoder { get; set; } //41
+        public Channel remote { get; set; } //41
 
-        public Channel sensorUP { get; set; }
-        public Channel sensorDW { get; set; }
+        public Channel motorUP { get; set; } //42
+        public Channel motorDW { get; set; } //42
 
-        public Channel siren { get; set; }
+        public Channel sensorUP { get; set; } //41
+        public Channel sensorDW { get; set; } //41
+
+        public Channel siren { get; set; } //42
 
         public Alarm alarm { get; set; }
         public Calibr calibr { get; set; }
+        public Encoder counter { get; set; }
     }
 }

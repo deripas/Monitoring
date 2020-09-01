@@ -102,5 +102,20 @@ namespace service
         {
             serverApi.RolletStop(device);
         }
+
+        public void HurbleOn(int device)
+        {
+            serverApi.HurbleOn(device);
+        }
+
+        public void HurbleOff(int device)
+        {
+            serverApi.HurbleOff(device);
+        }
+
+        public void HurbleAuto(int device)
+        {
+            serverApi.HurbleAuto(device);
+        }
     }
 }

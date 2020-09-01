@@ -1,7 +1,4 @@
-﻿using System.Reactive.Subjects;
-using System.Threading;
-using System.Threading.Tasks;
-using SafeServer.dto;
+﻿using SafeServer.dto;
 
 namespace SafeServer.service.device
 {

@@ -52,14 +52,20 @@ namespace SafeServer.service.device
 
         public void Up()
         {
-            DW.OnNext(false);
-            UP.OnNext(true);
+            if (device.Enable)
+            {
+                DW.OnNext(false);
+                UP.OnNext(true);
+            }
         }
 
         public void Down()
         {
-            UP.OnNext(false);
-            DW.OnNext(true);
+            if (device.Enable)
+            {
+                UP.OnNext(false);
+                DW.OnNext(true);
+            }
         }
 
         public void Stop()

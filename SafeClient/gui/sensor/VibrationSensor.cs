@@ -24,7 +24,7 @@ namespace gui
         public void Update(SensorStatus status)
         {
             baseSensor1.SetAlarm(status.alarm);
-            baseSensor1.Value = status.value.Value.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+            baseSensor1.Value = status.value.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
             aGauge1.Value = (float) status.value;
         }
     }

@@ -9,8 +9,6 @@ namespace gui
     public partial class RolletControl : UserControl, SensorView
     {
         private DeviceController device;
-        private volatile bool up;
-        private volatile bool dw;
 
         public RolletControl()
         {
@@ -30,33 +28,27 @@ namespace gui
 
         public void Update(SensorStatus status)
         {
-            var change = (up != status.up) || (dw != status.dw);
-            dw = status.dw;
-            up = status.up;
-            if (!change) return;
-            
-            if (dw == up)
+            var value = (int)status.value;
+            switch (value)
             {
-                pictureIcon.Image = Resources.rollet_move;
-                led.Image = Resources.led_red;
-                buttonDown.Enabled = true;
-                buttonUp.Enabled = true;
-            }
-            else
-            {
-                led.Image = Resources.led_green;
-                if (dw)
-                {
+                case 1:
+                    led.Image = Resources.led_green;
                     pictureIcon.Image = Resources.rollet_dw;
                     buttonDown.Enabled = false;
                     buttonUp.Enabled = true;
-                }
-                else
-                {
+                    break;
+                case 2:
+                    led.Image = Resources.led_green;
                     pictureIcon.Image = Resources.rollet_up;
                     buttonDown.Enabled = true;
                     buttonUp.Enabled = false;
-                }
+                    break;
+                default:
+                    pictureIcon.Image = Resources.rollet_move;
+                    led.Image = Resources.led_red;
+                    buttonDown.Enabled = true;
+                    buttonUp.Enabled = true;
+                    break;
             }
         }
 

@@ -109,7 +109,7 @@ namespace gui
         {
             if (device == null) return;
 
-            if (alarm > 0)
+            if (Alarm)
             {
                 device.Camera.Selected = false;
                 DI.Instance.AlarmSoundService.Stop();
@@ -135,8 +135,8 @@ namespace gui
             {
                 DI.Instance.AlarmSoundService.Play();
                 device.Camera.Selected = true;
+                this.alarm = alarm;
             }
-            this.alarm = alarm;
             UpdateLed();
         }
     }

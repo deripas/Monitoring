@@ -71,6 +71,21 @@ namespace api.impl
             template.Put("/api/device/{id}/stop", null, device);
         }
 
+        public void HurbleOn(int device)
+        {
+            template.Put("/api/device/{id}/on", null, device);
+        }
+
+        public void HurbleOff(int device)
+        {
+            template.Put("/api/device/{id}/off", null, device);
+        }
+
+        public void HurbleAuto(int device)
+        {
+            template.Put("/api/device/{id}/auto", null, device);
+        }
+
         public void ProcessAlert(long id)
         {
             template.Put("/api/alert/{id}/processed", null, id);

@@ -10,9 +10,6 @@ namespace SafeServer.dto
         public bool enable { get; set; }
         public double value { get; set; }
         public long alarm { get; set; }
-        
-        public bool up { get; set; }
-        public bool dw { get; set; }
 
 
         public static DeviceStatus Value(Device device, bool alert)
@@ -60,8 +57,9 @@ namespace SafeServer.dto
                 id = device.Id,
                 version = device.Version,
                 enable = device.Enable,
-                up = up,
-                dw = dw
+                value =  up 
+                    ? dw ? 0 : 2
+                    : dw ? 1 : 0
             };
         }
     }

@@ -25,7 +25,7 @@ namespace Server.service
 
         internal void Dispose()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

@@ -33,10 +33,16 @@
             this.description = new System.Windows.Forms.RichTextBox();
             this.pictureIcon = new System.Windows.Forms.PictureBox();
             this.led = new System.Windows.Forms.PictureBox();
-            this.checkBoxEnable = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.modeOff = new System.Windows.Forms.RadioButton();
+            this.modeoOn = new System.Windows.Forms.RadioButton();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.modeAuto = new System.Windows.Forms.RadioButton();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.led)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -45,7 +51,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(119, 0);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(6);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(365, 35);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(238, 35);
             this.flowLayoutPanel1.TabIndex = 25;
             // 
             // name
@@ -66,7 +72,7 @@
             this.description.Margin = new System.Windows.Forms.Padding(6);
             this.description.Name = "description";
             this.description.ReadOnly = true;
-            this.description.Size = new System.Drawing.Size(365, 28);
+            this.description.Size = new System.Drawing.Size(238, 88);
             this.description.TabIndex = 24;
             this.description.Text = "";
             // 
@@ -89,36 +95,85 @@
             this.led.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.led.TabIndex = 26;
             this.led.TabStop = false;
+            this.led.MouseClick += new System.Windows.Forms.MouseEventHandler(this.led_MouseClick);
             // 
-            // checkBoxEnable
+            // groupBox1
             // 
-            this.checkBoxEnable.AutoSize = true;
-            this.checkBoxEnable.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.14286F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBoxEnable.Location = new System.Drawing.Point(508, 19);
-            this.checkBoxEnable.Name = "checkBoxEnable";
-            this.checkBoxEnable.Size = new System.Drawing.Size(82, 43);
-            this.checkBoxEnable.TabIndex = 28;
-            this.checkBoxEnable.Text = "💤";
-            this.checkBoxEnable.UseVisualStyleBackColor = true;
+            this.groupBox1.Controls.Add(this.flowLayoutPanel2);
+            this.groupBox1.Location = new System.Drawing.Point(383, -1);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(162, 137);
+            this.groupBox1.TabIndex = 29;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Режим";
+            // 
+            // modeOff
+            // 
+            this.modeOff.AutoSize = true;
+            this.modeOff.Location = new System.Drawing.Point(3, 3);
+            this.modeOff.Name = "modeOff";
+            this.modeOff.Size = new System.Drawing.Size(88, 29);
+            this.modeOff.TabIndex = 0;
+            this.modeOff.TabStop = true;
+            this.modeOff.Text = "выкл.";
+            this.modeOff.UseVisualStyleBackColor = true;
+            this.modeOff.Click += new System.EventHandler(this.modeOff_Click);
+            // 
+            // modeoOn
+            // 
+            this.modeoOn.AutoSize = true;
+            this.modeoOn.Location = new System.Drawing.Point(3, 38);
+            this.modeoOn.Name = "modeoOn";
+            this.modeoOn.Size = new System.Drawing.Size(74, 29);
+            this.modeoOn.TabIndex = 1;
+            this.modeoOn.TabStop = true;
+            this.modeoOn.Text = "вкл.";
+            this.modeoOn.UseVisualStyleBackColor = true;
+            this.modeoOn.Click += new System.EventHandler(this.modeoOn_Click);
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.modeOff);
+            this.flowLayoutPanel2.Controls.Add(this.modeoOn);
+            this.flowLayoutPanel2.Controls.Add(this.modeAuto);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 25);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(156, 109);
+            this.flowLayoutPanel2.TabIndex = 0;
+            // 
+            // modeAuto
+            // 
+            this.modeAuto.AutoSize = true;
+            this.modeAuto.Location = new System.Drawing.Point(3, 73);
+            this.modeAuto.Name = "modeAuto";
+            this.modeAuto.Size = new System.Drawing.Size(80, 29);
+            this.modeAuto.TabIndex = 2;
+            this.modeAuto.TabStop = true;
+            this.modeAuto.Text = "авто";
+            this.modeAuto.UseVisualStyleBackColor = true;
+            this.modeAuto.Click += new System.EventHandler(this.modeAuto_Click);
             // 
             // ClassicHurbleControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Controls.Add(this.checkBoxEnable);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.pictureIcon);
             this.Controls.Add(this.led);
             this.Controls.Add(this.description);
             this.Name = "ClassicHurbleControl";
-            this.Size = new System.Drawing.Size(670, 65);
+            this.Size = new System.Drawing.Size(670, 132);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.led)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -129,6 +184,10 @@
         private System.Windows.Forms.PictureBox pictureIcon;
         private System.Windows.Forms.PictureBox led;
         private System.Windows.Forms.RichTextBox description;
-        private System.Windows.Forms.CheckBox checkBoxEnable;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.RadioButton modeOff;
+        private System.Windows.Forms.RadioButton modeoOn;
+        private System.Windows.Forms.RadioButton modeAuto;
     }
 }

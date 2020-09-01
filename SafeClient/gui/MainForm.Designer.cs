@@ -39,13 +39,13 @@ namespace gui
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.closeButton = new System.Windows.Forms.ToolStripButton();
-            this.grid = new gui.CameraGridPanel();
-            this.controlPanel1 = new gui.ControlPanel();
-            this.sensorPanel1 = new gui.SensorPanel();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
+            this.grid = new gui.CameraGridPanel();
+            this.controlPanel1 = new gui.ControlPanel();
+            this.sensorPanel1 = new gui.SensorPanel();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -125,35 +125,6 @@ namespace gui
             this.closeButton.Text = "✕";
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
-            // grid
-            // 
-            this.grid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grid.Location = new System.Drawing.Point(0, 48);
-            this.grid.Name = "grid";
-            this.grid.Size = new System.Drawing.Size(835, 415);
-            this.grid.TabIndex = 0;
-            // 
-            // controlPanel1
-            // 
-            this.controlPanel1.AutoScroll = true;
-            this.controlPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.controlPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.controlPanel1.Location = new System.Drawing.Point(0, 463);
-            this.controlPanel1.Name = "controlPanel1";
-            this.controlPanel1.Size = new System.Drawing.Size(835, 200);
-            this.controlPanel1.TabIndex = 3;
-            // 
-            // sensorPanel1
-            // 
-            this.sensorPanel1.AutoScroll = true;
-            this.sensorPanel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.sensorPanel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.sensorPanel1.Location = new System.Drawing.Point(835, 48);
-            this.sensorPanel1.Name = "sensorPanel1";
-            this.sensorPanel1.Size = new System.Drawing.Size(620, 615);
-            this.sensorPanel1.TabIndex = 2;
-            // 
             // toolStripButton5
             // 
             this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -193,6 +164,35 @@ namespace gui
             this.toolStripButton8.Size = new System.Drawing.Size(166, 42);
             this.toolStripButton8.Text = "Спящий режим";
             this.toolStripButton8.Click += new System.EventHandler(this.toolStripButton8_Click);
+            // 
+            // grid
+            // 
+            this.grid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grid.Location = new System.Drawing.Point(0, 48);
+            this.grid.Name = "grid";
+            this.grid.Size = new System.Drawing.Size(835, 415);
+            this.grid.TabIndex = 0;
+            // 
+            // controlPanel1
+            // 
+            this.controlPanel1.AutoScroll = true;
+            this.controlPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.controlPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.controlPanel1.Location = new System.Drawing.Point(0, 463);
+            this.controlPanel1.Name = "controlPanel1";
+            this.controlPanel1.Size = new System.Drawing.Size(835, 200);
+            this.controlPanel1.TabIndex = 3;
+            // 
+            // sensorPanel1
+            // 
+            this.sensorPanel1.AutoScroll = true;
+            this.sensorPanel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.sensorPanel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.sensorPanel1.Location = new System.Drawing.Point(835, 48);
+            this.sensorPanel1.Name = "sensorPanel1";
+            this.sensorPanel1.Size = new System.Drawing.Size(620, 615);
+            this.sensorPanel1.TabIndex = 2;
             // 
             // MainForm
             // 

@@ -61,7 +61,7 @@ namespace SafeServer.ltr
 
         private void Write(int data)
         {
-            Log.Info("{0} LTR42_WritePort {1}", slot, data);
+            Log.Debug("{0} LTR42_WritePort {1}", slot, data);
             _ltr42api.LTR42_WritePort(ref _module, (ushort)data);
         }
         
