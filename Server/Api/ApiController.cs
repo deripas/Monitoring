@@ -71,6 +71,38 @@ namespace Server.Api
             db.SaveChanges();
         }
 
+        [HttpPut]
+        [Route("alert/{id}/processed-all")]
+        public void AlertProcessingAllBefore(long id)
+        {
+            using var db = new DatabaseService();
+            var alert = db.Alert.Find(id);
+            alert.processed = true;
+            
+            foreach( var a in db.Alert.Where(a => a.processed == false && a.time <= alert.time))
+                a.processed = true;               
+            db.SaveChanges();
+        }
+
+        [HttpGet]
+        [Route("alert/{id}/find-before")]
+        public object FindAlertAll(long id)
+        {
+            using var db = new DatabaseService();
+            var alert = db.Alert.Find(id);
+            int count = db.Alert.Where(a => a.processed == false && a.time <= alert.time).Count();
+            return new { count = count };
+        }
+
+        [HttpGet]
+        [Route("alert/{id}/find-all")]
+        public object FindAlertAll()
+        {
+            using var db = new DatabaseService();
+            int count = db.Alert.Where(a => a.processed == false).Count();
+            return new { count = count };
+        }
+
         [HttpGet]
         [Route("device")]
         public List<Device> Device()

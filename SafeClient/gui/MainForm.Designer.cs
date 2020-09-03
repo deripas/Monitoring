@@ -70,7 +70,7 @@ namespace gui
             this.toolStripButton8});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(2566, 48);
+            this.toolStrip1.Size = new System.Drawing.Size(1455, 48);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -183,7 +183,7 @@ namespace gui
             this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grid.Location = new System.Drawing.Point(0, 48);
             this.grid.Name = "grid";
-            this.grid.Size = new System.Drawing.Size(835, 415);
+            this.grid.Size = new System.Drawing.Size(835, 333);
             this.grid.TabIndex = 0;
             // 
             // controlPanel1
@@ -191,9 +191,9 @@ namespace gui
             this.controlPanel1.AutoScroll = true;
             this.controlPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.controlPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.controlPanel1.Location = new System.Drawing.Point(0, 463);
+            this.controlPanel1.Location = new System.Drawing.Point(0, 381);
             this.controlPanel1.Name = "controlPanel1";
-            this.controlPanel1.Size = new System.Drawing.Size(835, 200);
+            this.controlPanel1.Size = new System.Drawing.Size(835, 282);
             this.controlPanel1.TabIndex = 3;
             // 
             // sensorPanel1

@@ -16,12 +16,12 @@ namespace gui
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            DI.Instance.Dispose();
             CameraPtzForm.Instance.Dispose();
             VideoViewForm.Instance.Dispose();
             AlertViewForm.Instance.Dispose();
             VideoExportForm.Instance.Dispose();
             DeviceViewForm.Instance.Dispose();
-            DI.Instance.Dispose();
             Application.Exit();
         }
 

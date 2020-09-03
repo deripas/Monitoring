@@ -17,6 +17,10 @@ namespace api
         List<AlertInfo> Alerts(int device, DateTime from, DateTime to);
 
         void ProcessAlert(long id);
+        void ProcessAlertAll(long id);
+        CountResult FindAlertAll(long id);
+        CountResult FindAlertAll();
+
         void ResetDevice(long id);
         void ResetDeviceAlert(long id);
 

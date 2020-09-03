@@ -138,7 +138,6 @@
             // toolTip1
             // 
             this.toolTip1.IsBalloon = true;
-            this.toolTip1.ShowAlways = true;
             // 
             // canvas
             // 

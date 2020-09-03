@@ -198,5 +198,19 @@ namespace gui
             alert.Processed = true;
             SetAlertList(alertsList);
         }
+
+        private void applyAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var alert = Alert;
+            if (alert == null) return;
+
+            var count = DI.Instance.ServerApi.FindAlertAll(alert.ID).count;
+            DialogResult dialogResult = MessageBox.Show("Найдено " + count + " тревог", "Внимание" , MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                DI.Instance.ServerApi.ProcessAlertAll(alert.ID);
+                Search();
+            }
+        }
     }
 }

@@ -91,6 +91,21 @@ namespace api.impl
             template.Put("/api/alert/{id}/processed", null, id);
         }
 
+        public void ProcessAlertAll(long id)
+        {
+            template.Put("/api/alert/{id}/processed-all", null, id);
+        }
+
+        public CountResult FindAlertAll(long id)
+        {
+            return template.GetForObject<CountResult>("/api/alert/{id}/find-before", id);
+        }
+
+        public CountResult FindAlertAll()
+        {
+            return template.GetForObject<CountResult>("/api/alert/find-all");
+        }
+
         public void ResetDevice(long device)
         {
             template.Put("/api/device/{id}/reset", null, device );

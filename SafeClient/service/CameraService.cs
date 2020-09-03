@@ -109,7 +109,7 @@ namespace service
         {
             timer.Dispose();
             foreach (var nvr in _nvrMap.Values)
-                nvr.Disconnect();
+                nvr.Disconnect(false);
 
             Log.Info("H264_DVR_Cleanup {0}", NetSDK.H264_DVR_Cleanup());
         }

@@ -59,11 +59,18 @@ namespace gui
             InitializeComponent();
             canvas.Canvas.Image = Resources.no_image;
             canvas.Canvas.MouseDoubleClick += Canvas_MouseDoubleClick;
+            canvas.Canvas.MouseClick += Canvas_MouseClick;
+
         }
 
         private void Canvas_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             DoubleClick?.Invoke(this);
+        }
+
+        private void Canvas_MouseClick(object sender, MouseEventArgs e)
+        {
+
         }
 
         private void contextMenu_VisibleChanged(object sender, EventArgs e)
@@ -100,7 +107,7 @@ namespace gui
             camera = cameraController;
             camera.StartPlay(this);
             contextMenu.Enabled = true;
-            toolTip1.SetToolTip(this.Canvas, camera.Name);
+            toolTip1.SetToolTip(Canvas, camera.Name);
         }
 
         internal void StopPlay()

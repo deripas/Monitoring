@@ -68,12 +68,21 @@ namespace model.nvr
 
         internal void Disconnect()
         {
+            Disconnect(true);
+        }
+
+        internal void Disconnect(bool full)
+        {
             lock (model)
             {
-                foreach (var cam in cameras)
-                    cam.Disconnect();
+                if (full)
+                {
+                    foreach (var cam in cameras)
+                        cam.Disconnect();
+                }
 
                 model.Logout();
+                cameras.Clear();
                 time = DateTime.Now;
             }
         }

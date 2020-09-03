@@ -34,9 +34,9 @@
             this.pictureIcon = new System.Windows.Forms.PictureBox();
             this.led = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.modeOff = new System.Windows.Forms.RadioButton();
             this.modeoOn = new System.Windows.Forms.RadioButton();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.modeAuto = new System.Windows.Forms.RadioButton();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureIcon)).BeginInit();
@@ -48,7 +48,7 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.name);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(119, 0);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(157, 6);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(6);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(238, 35);
@@ -68,20 +68,20 @@
             // description
             // 
             this.description.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.description.Location = new System.Drawing.Point(119, 38);
+            this.description.Location = new System.Drawing.Point(157, 44);
             this.description.Margin = new System.Windows.Forms.Padding(6);
             this.description.Name = "description";
             this.description.ReadOnly = true;
-            this.description.Size = new System.Drawing.Size(238, 88);
+            this.description.Size = new System.Drawing.Size(226, 82);
             this.description.TabIndex = 24;
             this.description.Text = "";
             // 
             // pictureIcon
             // 
             this.pictureIcon.Image = global::Properties.Resources.classic_close;
-            this.pictureIcon.Location = new System.Drawing.Point(3, 3);
+            this.pictureIcon.Location = new System.Drawing.Point(15, 31);
             this.pictureIcon.Name = "pictureIcon";
-            this.pictureIcon.Size = new System.Drawing.Size(103, 63);
+            this.pictureIcon.Size = new System.Drawing.Size(133, 92);
             this.pictureIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureIcon.TabIndex = 27;
             this.pictureIcon.TabStop = false;
@@ -89,7 +89,7 @@
             // led
             // 
             this.led.Image = global::Properties.Resources.led_green;
-            this.led.Location = new System.Drawing.Point(596, 5);
+            this.led.Location = new System.Drawing.Point(635, 46);
             this.led.Name = "led";
             this.led.Size = new System.Drawing.Size(69, 59);
             this.led.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -100,12 +100,24 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.flowLayoutPanel2);
-            this.groupBox1.Location = new System.Drawing.Point(383, -1);
+            this.groupBox1.Location = new System.Drawing.Point(392, 10);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(162, 137);
+            this.groupBox1.Size = new System.Drawing.Size(228, 116);
             this.groupBox1.TabIndex = 29;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Режим";
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.modeOff);
+            this.flowLayoutPanel2.Controls.Add(this.modeoOn);
+            this.flowLayoutPanel2.Controls.Add(this.modeAuto);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 25);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(222, 88);
+            this.flowLayoutPanel2.TabIndex = 0;
             // 
             // modeOff
             // 
@@ -131,21 +143,10 @@
             this.modeoOn.UseVisualStyleBackColor = true;
             this.modeoOn.Click += new System.EventHandler(this.modeoOn_Click);
             // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.Controls.Add(this.modeOff);
-            this.flowLayoutPanel2.Controls.Add(this.modeoOn);
-            this.flowLayoutPanel2.Controls.Add(this.modeAuto);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 25);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(156, 109);
-            this.flowLayoutPanel2.TabIndex = 0;
-            // 
             // modeAuto
             // 
             this.modeAuto.AutoSize = true;
-            this.modeAuto.Location = new System.Drawing.Point(3, 73);
+            this.modeAuto.Location = new System.Drawing.Point(97, 3);
             this.modeAuto.Name = "modeAuto";
             this.modeAuto.Size = new System.Drawing.Size(80, 29);
             this.modeAuto.TabIndex = 2;
@@ -165,7 +166,7 @@
             this.Controls.Add(this.led);
             this.Controls.Add(this.description);
             this.Name = "ClassicHurbleControl";
-            this.Size = new System.Drawing.Size(670, 132);
+            this.Size = new System.Drawing.Size(719, 132);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureIcon)).EndInit();

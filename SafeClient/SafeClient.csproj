@@ -101,6 +101,7 @@
     <Compile Include="api\dto\CameraInfo.cs" />
     <Compile Include="api\dto\Config.cs" />
     <Compile Include="api\dto\config\Calibr.cs" />
+    <Compile Include="api\dto\CountResult.cs" />
     <Compile Include="api\dto\DeviceInfo.cs" />
     <Compile Include="api\dto\DeviceType.cs" />
     <Compile Include="api\dto\NvrInfo.cs" />

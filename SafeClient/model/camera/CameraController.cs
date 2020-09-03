@@ -202,7 +202,7 @@ namespace model.camera
                 {
                     lock (kv.Value)
                     {
-                        bool freeze = (DateTime.Now - kv.Value.LastUpdateTime).TotalSeconds > 10;
+                        bool freeze = (DateTime.Now - kv.Value.LastUpdateTime).TotalSeconds > 15;
                         if(!freeze) continue;
                         
                         if (!kv.Value.StartedPlay)
