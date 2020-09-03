@@ -161,6 +161,7 @@ namespace gui
             if (modeOff.Checked && !last.HasFlag(ControlType.OFF))
             {
                 DI.Instance.DeviceService.HurbleOff(device.Id);
+                SetImage(last ^ ControlType.POWER);
             }
         }
 
@@ -169,6 +170,7 @@ namespace gui
             if (modeoOn.Checked && !last.HasFlag(ControlType.ON))
             {
                 DI.Instance.DeviceService.HurbleOn(device.Id);
+                SetImage(last | ControlType.POWER);
             }
         }
 
@@ -177,6 +179,14 @@ namespace gui
             if (modeAuto.Checked && !last.HasFlag(ControlType.AUTO))
             {
                 DI.Instance.DeviceService.HurbleAuto(device.Id);
+                if(last.HasFlag(ControlType.ENCODER))
+                {
+                    SetImage(last | ControlType.POWER);
+                }
+                else
+                {
+                    SetImage(last ^ ControlType.POWER);
+                }
             }
         }
     }

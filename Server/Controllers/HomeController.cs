@@ -39,8 +39,20 @@ namespace Server.Controllers
         {
             var draw = HttpContext.Request.Form["draw"].FirstOrDefault();
             using var db = new DatabaseService();
-            var camera = db.Camera.ToList();
-            return Json(new { draw = draw, recordsFiltered = camera.Count, recordsTotal = camera.Count, data = camera });
+            var camera = db.Camera.ToList()
+                .Select(c =>
+                {
+                    c.rtsp = c.rtsp + "1";
+                    return c;
+                })
+                .ToList();
+            return Json(new
+            {
+                draw = draw,
+                recordsFiltered = camera.Count,
+                recordsTotal = camera.Count,
+                data = camera
+            });
         }
 
         public IActionResult DeviceTable()
@@ -62,7 +74,8 @@ namespace Server.Controllers
                 {
                     id = dev.Id(),
                     name = dev.Name(),
-                    rtsp = cam.rtsp,
+                    alert = s.alarm > 0,
+                    rtsp = cam.rtsp + "1",
                     value = exist ? dev.RenderStatusValue(s) : "-"
                 });
             }

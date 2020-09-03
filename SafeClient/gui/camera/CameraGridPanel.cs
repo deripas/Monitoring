@@ -47,6 +47,7 @@ namespace gui
                 select = owner;
                 Clear(views.FindAll(v => v != owner));
                 Table(1, 1);
+                owner.MainStream = true;
                 table.Controls.Add(owner);
             }
             else

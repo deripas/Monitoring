@@ -7,6 +7,7 @@ namespace api.dto
 
         public int id { get; set; }
         public string name { get; set; }
+        public string stand_id { get; set; }
         public string description { get; set; }
         public bool enable { get; set; }
         public int? camera { get; set; }

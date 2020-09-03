@@ -40,6 +40,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.pTZToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.canvas = new gui.CanvasPanel();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
@@ -134,6 +135,11 @@
             this.pTZToolStripMenuItem.Text = "PTZ";
             this.pTZToolStripMenuItem.Click += new System.EventHandler(this.pTZToolStripMenuItem_Click);
             // 
+            // toolTip1
+            // 
+            this.toolTip1.IsBalloon = true;
+            this.toolTip1.ShowAlways = true;
+            // 
             // canvas
             // 
             this.canvas.BackColor = System.Drawing.Color.Black;
@@ -174,5 +180,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripComboBox cameraToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pTZToolStripMenuItem;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

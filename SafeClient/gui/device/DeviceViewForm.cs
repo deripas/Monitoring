@@ -3,6 +3,7 @@ using model.device;
 using service;
 using System;
 using System.Windows.Forms;
+using System.Windows.Media;
 
 namespace gui
 {
@@ -34,14 +35,36 @@ namespace gui
             if (DI.Instance.DeviceService == null) return;
 
             listView1.Items.Clear();
-            foreach (DeviceController dev in DI.Instance.DeviceService.DeviceList)
+            var devList = DI.Instance.DeviceService.DeviceList;
+            foreach (DeviceController dev in devList)
             {
                 ListViewItem item = new ListViewItem(dev.Name);
                 item.SubItems.Add(dev.Enable.ToString());
                 item.Tag = dev;
+                item.BackColor = GetColor(dev?.Camera?.Stand);
                 listView1.Items.Add(item);
             }
             listView1.Refresh();
+        }
+
+        private System.Drawing.Color GetColor(string stand)
+        {
+            switch(stand)
+            {
+                case "flor1":
+                case "ory":
+                    return System.Drawing.Color.FromArgb(217, 217, 217);
+                case "kes":
+                    return System.Drawing.Color.FromArgb(216, 228, 188);
+                case "mks":
+                    return System.Drawing.Color.FromArgb(184, 204, 228);
+                case "bks":
+                    return System.Drawing.Color.FromArgb(252, 213, 180);
+                case "snim":
+                    return System.Drawing.Color.FromArgb(230, 184, 183);
+                default:
+                    return System.Drawing.Color.White;
+            }
         }
 
         private void listView1_DoubleClick(object sender, EventArgs e)

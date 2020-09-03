@@ -21,6 +21,7 @@ namespace model.camera
         public int Channel { get; }
 
         public String Name { get; }
+        public String Stand { get; }
 
         public double Ratio
         {
@@ -63,6 +64,7 @@ namespace model.camera
             this.nvr = nvr;
             this.Channel = info.channel - 1;
             Name = info.name;
+            Stand = info.stand;
         }
 
         internal void StartTalk()

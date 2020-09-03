@@ -147,12 +147,6 @@
     <Compile Include="gui\device\BaseOption.Designer.cs">
       <DependentUpon>BaseOption.cs</DependentUpon>
     </Compile>
-    <Compile Include="gui\control\CircleHurbleControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="gui\control\CircleHurbleControl.Designer.cs">
-      <DependentUpon>CircleHurbleControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="gui\control\ClassicHurbleControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -356,9 +350,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="gui\device\BaseOption.resx">
       <DependentUpon>BaseOption.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="gui\control\CircleHurbleControl.resx">
-      <DependentUpon>CircleHurbleControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gui\control\ClassicHurbleControl.resx">
       <DependentUpon>ClassicHurbleControl.cs</DependentUpon>

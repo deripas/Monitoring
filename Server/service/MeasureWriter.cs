@@ -39,7 +39,7 @@ namespace SafeServer.service
         
         private void WriteDB(IList<Value> values)
         {
-            Log.Debug("write values {0}", values.Count);
+            Log.Trace("write values {0}", values.Count);
             using var db = new DatabaseService();
             db.InsertValues(values);
         }

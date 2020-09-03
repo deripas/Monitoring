@@ -14,6 +14,9 @@ namespace SafeServer.dto
         [Column("name")]
         public string Name { get; set; }
 
+        [Column("stand_id")]
+        public string Stand { get; set; }
+
         [Column("rate")]
         public double Rate { get; set; }
 

@@ -1,0 +1,1 @@
+update camera set rtsp = FORMAT('rtsp://%s:554/user=%s&password=%s&channel=%s&stream=', n.ip, n.login, n.password, channel) from nvr n where dvr = n.id;

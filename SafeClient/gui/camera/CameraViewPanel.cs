@@ -11,6 +11,14 @@ namespace gui
     {
         private CameraController camera;
 
+        public bool MainStream
+        {
+            set
+            {
+                camera?.SetStream(this, value ? 0 : 1);
+            }
+        }
+
         public double Ratio
         {
             get
@@ -92,6 +100,7 @@ namespace gui
             camera = cameraController;
             camera.StartPlay(this);
             contextMenu.Enabled = true;
+            toolTip1.SetToolTip(this.Canvas, camera.Name);
         }
 
         internal void StopPlay()
@@ -99,16 +108,17 @@ namespace gui
             camera?.StopPlay(this);
             camera = null;
             contextMenu.Enabled = false;
+            toolTip1.RemoveAll();
         }
 
         private void mainToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            camera?.SetStream(this, 0);
+            MainStream = true;
         }
 
         private void subToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            camera?.SetStream(this, 1);
+            MainStream = false;
         }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)

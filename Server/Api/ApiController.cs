@@ -20,7 +20,7 @@ namespace Server.Api
         public List<Camera> Camera()
         {
             using var db = new DatabaseService();
-            return  db.Camera.ToList();
+            return  db.Camera.OrderBy(c => c.Stand).ToList();
         }
 
         [HttpGet]
@@ -76,7 +76,7 @@ namespace Server.Api
         public List<Device> Device()
         {
             using var db = new DatabaseService();
-            return db.Device.ToList();
+            return db.Device.OrderBy(d => d.Stand).ToList();
         }
 
         [HttpGet]

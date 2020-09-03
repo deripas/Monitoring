@@ -45,10 +45,8 @@ namespace Server
                 .ConfigureWebHostDefaults(webBuilder => webBuilder
                     .UseStartup<Startup>()
                     .ConfigureLogging(logging => { logging.SetMinimumLevel(LogLevel.Information); })
-                    .UseNLog()
                     .UseKestrel((context, options) => { options.Listen(IPAddress.Any, 5000); })
-                    .UseIIS()
-                    .UseIISIntegration()
-                    );
+                    .UseNLog()
+                    .UseIIS());
     }
 }

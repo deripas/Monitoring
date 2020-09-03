@@ -28,5 +28,8 @@ namespace SafeServer.dto
         
         [Column("config", TypeName = "jsonb")]
         public Config Config  { get; set; }
+
+        [Column("stand_id")]
+        public string Stand { get; set; }
     }
 }

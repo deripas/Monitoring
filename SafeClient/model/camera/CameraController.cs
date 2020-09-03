@@ -48,6 +48,7 @@ namespace model.camera
         }
 
         public string Name => model.Name;
+        public string Stand => model.Stand;
 
         public CameraController(NvrModel model, CameraInfo info)
         {

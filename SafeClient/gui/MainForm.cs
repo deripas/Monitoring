@@ -1,5 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using api.dto;
+using Properties;
 using service;
 
 namespace gui
@@ -46,21 +48,37 @@ namespace gui
         private void toolStripButton5_Click(object sender, System.EventArgs e)
         {
             grid.Grid(CameraGrid.grid6x6());
+            UpdateMode(toolStripButton5);
         }
 
         private void toolStripButton6_Click(object sender, System.EventArgs e)
         {
             grid.Grid(CameraGrid.grid3x3_1());
+            UpdateMode(toolStripButton6);
         }
 
         private void toolStripButton7_Click(object sender, System.EventArgs e)
         {
             grid.Grid(CameraGrid.grid3x3_2());
+            UpdateMode(toolStripButton7);
         }
 
         private void toolStripButton8_Click(object sender, System.EventArgs e)
         {
             grid.Grid(CameraGrid.grid3x3_3());
+            UpdateMode(toolStripButton8);
+        }
+
+        private void UpdateMode(ToolStripButton select)
+        {
+            ToolStripButton[] array = new ToolStripButton[] { toolStripButton5, toolStripButton6, toolStripButton7, toolStripButton8 };
+            foreach(ToolStripButton button in array)
+            {
+                button.Checked = button == select;
+                button.Image = button == select
+                    ? Resources.led_green
+                    : Resources.led_gray;
+            }
         }
     }
 }
