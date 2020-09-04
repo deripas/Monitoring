@@ -83,6 +83,7 @@
             // 
             // led
             // 
+            this.led.Image = global::Properties.Resources.led_green;
             this.led.Location = new System.Drawing.Point(637, 48);
             this.led.Name = "led";
             this.led.Size = new System.Drawing.Size(69, 59);

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Reactive.Linq;
 using ltrModulesNet;
+using SafeServer.service.device;
+using static ltrModulesNet.ltr24api;
 
 namespace SafeServer.ltr
 {
     public class Ltr25 : LtrRead<Tuple<double[], int>>, ILtr
     {
-        /* количество отсчетов на канал, принмаемых за раз (блок) */
-        const int RECV_BLOCK_CH_SIZE = 16*1024;
         private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
 
         public IObservable<Tuple<double[], int>> this[int index]
@@ -31,10 +31,10 @@ namespace SafeServer.ltr
         private Slot slot;
         private ltr25api ltr;
 
-        private static int EnabledChCnt = 16;
+        const int EnabledChCnt = 8;
+        const int RECV_BLOCK_CH_SIZE = 1024;
         private static ltr25api.DataFormat DataFmt = ltr25api.DataFormat.Format20;
         private static int recv_data_cnt = RECV_BLOCK_CH_SIZE * EnabledChCnt;
-        /* В 20-битном формате каждому отсчету соответствует одно слово от модуля, а в остальных - два */
         private static int recv_wrd_cnt = recv_data_cnt * (DataFmt == ltr25api.DataFormat.Format20 ? 1 : 2);
 
         private uint[] rbuf = new uint[recv_wrd_cnt];
@@ -57,7 +57,8 @@ namespace SafeServer.ltr
             
             var cfg = ltr.Cfg;
             cfg.DataFmt = DataFmt;
-            cfg.FreqCode = ltr25api.FreqCode.Freq_9K7;
+            cfg.FreqCode = ltr25api.FreqCode.Freq_2K4;
+            cfg.ISrcValue = ltr25api.ISrcValues.I_10;
 
             for (var i = 0; i < EnabledChCnt; i++)
                 cfg.Ch[i].Enabled = true;
@@ -67,6 +68,30 @@ namespace SafeServer.ltr
             ltr.Start();
             
             base.Start();
+            /*
+            IObservable<double> o0 = this[0].ToMean();
+            IObservable<double> o1 = this[1].ToMean();
+            IObservable<double> o2 = this[2].ToMean();
+            IObservable<double> o3 = this[3].ToMean();
+            IObservable<double> o4 = this[4].ToMean();
+            IObservable<double> o5 = this[5].ToMean();
+            IObservable<double> o6 = this[6].ToMean();
+            IObservable<double> o7 = this[6].ToMean();
+            Observable.CombineLatest(o0, o1, o2, o3, o4, o5, o6, o7,
+                (v0, v1, v2, v3, v4, v5, v6, v7) =>
+                {
+                    Log.Info("");
+                    Log.Info("1 - {0:0.0000}", v0 * 1000);
+                    Log.Info("2 - {0:0.0000}", v1 * 1000);
+                    Log.Info("3 - {0:0.0000}", v2 * 1000);
+                    Log.Info("4 - {0:0.0000}", v3 * 1000);
+                    Log.Info("5 - {0:0.0000}", v4 * 1000);
+                    Log.Info("6 - {0:0.0000}", v5 * 1000);
+                    Log.Info("7 - {0:0.0000}", v6 * 1000);
+                    Log.Info("8 - {0:0.0000}", v7 * 1000);
+                    return true;
+                })
+                .Subscribe();*/
         }
 
         public new void Stop()

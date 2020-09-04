@@ -42,8 +42,12 @@ namespace Server.Controllers
             var camera = db.Camera.ToList()
                 .Select(c =>
                 {
-                    c.rtsp = c.rtsp + "1";
-                    return c;
+                    return new
+                    {
+                        name = c.Name,
+                        main = c.rtsp + "0",
+                        sub = c.rtsp + "1"
+                    };
                 })
                 .ToList();
             return Json(new
