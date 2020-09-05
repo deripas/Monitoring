@@ -100,7 +100,9 @@
     <Compile Include="api\dto\AlertInfo.cs" />
     <Compile Include="api\dto\CameraInfo.cs" />
     <Compile Include="api\dto\Config.cs" />
+    <Compile Include="api\dto\config\Base.cs" />
     <Compile Include="api\dto\config\Calibr.cs" />
+    <Compile Include="api\dto\config\Encoder.cs" />
     <Compile Include="api\dto\CountResult.cs" />
     <Compile Include="api\dto\DeviceInfo.cs" />
     <Compile Include="api\dto\DeviceType.cs" />
@@ -165,6 +167,12 @@
     </Compile>
     <Compile Include="gui\control\RolletControl.Designer.cs">
       <DependentUpon>RolletControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui\device\EncoderOption.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="gui\device\EncoderOption.Designer.cs">
+      <DependentUpon>EncoderOption.cs</DependentUpon>
     </Compile>
     <Compile Include="gui\device\MeasureOption.cs">
       <SubType>UserControl</SubType>
@@ -360,6 +368,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="gui\control\RolletControl.resx">
       <DependentUpon>RolletControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\device\EncoderOption.resx">
+      <DependentUpon>EncoderOption.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gui\device\MeasureOption.resx">
       <DependentUpon>MeasureOption.cs</DependentUpon>

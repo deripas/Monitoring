@@ -18,5 +18,6 @@ namespace SafeServer.service.device
         IObservable<DeviceStatus> Status();
 
         string RenderStatusValue(DeviceStatus status);
+        void Update(Config cfg);
     }
 }

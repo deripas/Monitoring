@@ -19,6 +19,7 @@ namespace SafeServer.dto
 
         public Channel siren { get; set; } //42
 
+        public Base simple { get; set; }
         public Alarm alarm { get; set; }
         public Calibr calibr { get; set; }
         public Encoder counter { get; set; }

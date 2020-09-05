@@ -63,7 +63,8 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(293, 3);
+            this.buttonCancel.Location = new System.Drawing.Point(286, 10);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(10);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(165, 45);
             this.buttonCancel.TabIndex = 1;
@@ -73,7 +74,8 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(122, 3);
+            this.buttonSave.Location = new System.Drawing.Point(101, 10);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(10);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(165, 45);
             this.buttonSave.TabIndex = 0;

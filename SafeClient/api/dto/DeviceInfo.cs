@@ -7,13 +7,14 @@ namespace api.dto
 
         public int id { get; set; }
         public string name { get; set; }
-        public string stand_id { get; set; }
+        public string stand { get; set; }
         public string description { get; set; }
         public bool enable { get; set; }
         public int? camera { get; set; }
         public string type { get; set; }
         
         public Config config  { get; set; }
+        public long version { get; set; }
 
         public DeviceType GetTypeEnum()
         {
@@ -23,5 +24,7 @@ namespace api.dto
             else
                 return DeviceType.unknown;
         }
+
+
     }
 }

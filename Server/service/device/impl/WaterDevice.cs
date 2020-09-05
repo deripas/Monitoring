@@ -9,7 +9,7 @@ namespace SafeServer.service.device
 
         }
 
-        public override DeviceStatus ValueAgregate(DeviceStatus old, DeviceStatus cur)
+        protected override DeviceStatus ValueAgregate(DeviceStatus old, DeviceStatus cur)
         {
             if (cur.alarm < 0)
             {

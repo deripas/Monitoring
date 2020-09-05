@@ -36,7 +36,7 @@ namespace SafeServer.service.device
         public abstract void Close();
         public abstract IObservable<DeviceStatus> Status();
         public abstract string RenderStatusValue(DeviceStatus status);
-
+        public abstract void Update(Config cfg);
         protected static void Add42(Channel ch, IObservable<bool> @in)
         {
             Ltr42(ch.GetSlot())[ch.index] = @in;

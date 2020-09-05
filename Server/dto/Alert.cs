@@ -20,5 +20,6 @@ namespace SafeServer.dto
 
         [Column("processed")]
         public bool processed { get; set; }
+
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using model.device;
 using SafeServer.dto.config;
+using api.dto;
 
 namespace gui
 {
@@ -38,17 +39,18 @@ namespace gui
             }
         }
 
-        internal void Save()
+        internal void Save(Config config)
         {
             if (Enabled)
             {
-                device.Config.calibr = new Calibr
+                config.calibr = new Calibr
                 {
                     min = Double.Parse(minText.Text),
                     max = Double.Parse(maxText.Text),
                     porogMin = Double.Parse(thresholdMinText.Text),
                     porogMax = Double.Parse(thresholdMaxText.Text)
                 };
+                device.Config.calibr = config.calibr;
             }
         }
 

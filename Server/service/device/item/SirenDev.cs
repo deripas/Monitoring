@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reactive.Subjects;
+using System.Reflection;
 using System.Threading;
 using SafeServer.dto.config;
 
@@ -7,17 +8,25 @@ namespace SafeServer.service.device
 {
     public class SirenDev
     {
-        private Alarm config;
         private Subject<bool> siren;
         private volatile Thread _timer;
         private volatile bool _runnig;
+        private volatile int count = 1;
+        private volatile int delay = 0;
+        private volatile int period = 0;
 
         public IObservable<bool> Siren => siren;
 
-        public SirenDev(Alarm alarm)
+        public SirenDev()
         {
-            config = alarm;
             siren = new Subject<bool>();
+        }
+
+        public void Config(Alarm config)
+        {
+            count = config.count;
+            delay = config.delay;
+            period = config.period;
         }
 
         public void Play(bool value)
@@ -46,7 +55,6 @@ namespace SafeServer.service.device
 
         private void TimerCallback()
         {
-            var count = config.count;
             while (_runnig)
             {
                 if (count <= 0)
@@ -58,10 +66,10 @@ namespace SafeServer.service.device
                 count--;
 
                 On();
-                if (config.delay > 1) Thread.Sleep(config.delay);
+                if (delay > 1) Thread.Sleep(delay);
 
                 Off();
-                if (config.delay > 1) Thread.Sleep(config.delay);
+                if (period > 1) Thread.Sleep(period);
             }
         }
 
@@ -73,6 +81,12 @@ namespace SafeServer.service.device
         private void Off()
         {
             siren.OnNext(false);
+        }
+
+        public void Peak()
+        {
+            On();
+            Off();
         }
     }
 }

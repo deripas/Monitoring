@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SafeServer;
 using SafeServer.dto;
 using SafeServer.service;
@@ -21,6 +22,14 @@ namespace Server.Api
         {
             using var db = new DatabaseService();
             return  db.Camera.OrderBy(c => c.Stand).ToList();
+        }
+
+        [HttpGet]
+        [Route("camera/{id}")]
+        public Camera CameraSingle(int id)
+        {
+            using var db = new DatabaseService();
+            return db.Camera.Find(id);
         }
 
         [HttpGet]
@@ -108,7 +117,15 @@ namespace Server.Api
         public List<Device> Device()
         {
             using var db = new DatabaseService();
-            return db.Device.OrderBy(d => d.Stand).ToList();
+            return db.Device.OrderBy(d => d.Stand).ThenBy(d => d.Type).ToList();
+        }
+
+        [HttpGet]
+        [Route("device/{id}")]
+        public Device DeviceSingle(long id)
+        {
+            using var db = new DatabaseService();
+            return db.Device.Find(id);
         }
 
         [HttpGet]
@@ -187,6 +204,30 @@ namespace Server.Api
         {
             var device = DI.Instance.DeviceService[id] as HurbleDevice;
             device?.PowerAuto();
+        }
+
+        [HttpPut]
+        [Route("device/{id}/cfg")]
+        public void DeviceConfig(long id, Config cfg)
+        {
+            DI.Instance.DeviceService[id].Update(cfg);
+
+            using var db = new DatabaseService();
+            var entity = db.Device.Find(id);
+            var old = entity.Config;
+            if(cfg.calibr != null)
+                old.calibr = cfg.calibr;
+            if (cfg.alarm != null)
+                old.alarm = cfg.alarm;
+            if (cfg.counter != null)
+                old.counter = cfg.counter;
+            if (cfg.simple != null)
+            {
+                entity.Enable = cfg.simple.enable;
+                entity.Description = cfg.simple.description;
+            }
+            entity.Version++;
+            db.SaveChanges();
         }
 
         [HttpGet]

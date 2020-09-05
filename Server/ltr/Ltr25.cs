@@ -114,7 +114,6 @@ namespace SafeServer.ltr
             }
             else
             {
-                Log.Warn("{0} bad data read", this);
                 return Tuple.Create(data, 0);
             }
         }

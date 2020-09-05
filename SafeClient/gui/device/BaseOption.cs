@@ -1,5 +1,7 @@
 ﻿using System.Windows.Forms;
+using api.dto;
 using model.device;
+using service;
 
 namespace gui
 {
@@ -26,10 +28,18 @@ namespace gui
             typeText.Enabled = false;
         }
 
-        internal void Save()
+        internal void Save(Config config)
         {
-            device.Enable = enableCheckBox.Checked;
-            device.Description = descText.Text;
+            if (device.Enable != enableCheckBox.Checked
+                || !device.Description.Equals(descText.Text))
+            {
+                config.simple = new SafeServer.dto.config.Base();
+                config.simple.enable = enableCheckBox.Checked;
+                config.simple.description = descText.Text;
+
+                device.Enable = enableCheckBox.Checked;
+                device.Description = descText.Text;
+            }
         }
     }
 }

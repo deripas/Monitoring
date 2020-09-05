@@ -7,6 +7,8 @@ namespace model.device
 {
     public class DeviceController
     {
+        private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
+
         private DeviceInfo info;
         private SensorView view;
 
@@ -15,6 +17,14 @@ namespace model.device
             get
             {
                 return info.id;
+            }
+        }
+
+        public string Stand
+        {
+            get
+            {
+                return info.stand;
             }
         }
 
@@ -92,7 +102,6 @@ namespace model.device
             }
         }
 
-
         public DeviceController(DeviceInfo info)
         {
             this.info = info;
@@ -105,7 +114,23 @@ namespace model.device
 
         public void Update(SensorStatus status)
         {
-            view?.GetControl().Invoke(new Action(() => view.Update(status)));
+            var changed = info.version != status.version;
+            if(changed)
+            {
+                info = DI.Instance.ServerApi.DeviceSingle(Id);
+                Log.Info("device changed {}({})", info.name, info.id);
+            }
+
+            if (view != null)
+            {
+                var c = view.GetControl();
+                if (c.IsHandleCreated && c.Parent != null)
+                    c.Invoke(new Action(() =>
+                    {
+                        if(changed) view.Set(this);
+                        view.Update(status);
+                    }));
+            }
         }
 
         public void RolletUp()

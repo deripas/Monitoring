@@ -20,6 +20,7 @@ namespace SafeServer.service
                 .OfType<IMeasureDevice>()
                 .Select(device => device.Status())
                 .Merge()
+                .Where(status => status.alarm >= 0 && status.enable)
                 .Buffer(TimeSpan.FromSeconds(1))
                 .Select(ToBatch)
                 .ObserveOn(ThreadPoolScheduler.Instance)

@@ -31,7 +31,7 @@
             this.baseSensor1 = new gui.BaseSensor();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.verticalProgressBar1 = new gui.component.VerticalProgressBar();
-            ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // baseSensor1
@@ -77,8 +77,9 @@
             this.Controls.Add(this.baseSensor1);
             this.Name = "PressureSensor";
             this.Size = new System.Drawing.Size(578, 114);
-            ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         private gui.BaseSensor baseSensor1;

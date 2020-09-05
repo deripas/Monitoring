@@ -17,5 +17,10 @@
         /// затишье между сиренами
         /// </summary>
         public int period { get; set; }
+
+        public override string ToString()
+        {
+            return $"{nameof(timeout)}: {timeout}, {nameof(count)}: {count}, {nameof(delay)}: {delay}, {nameof(period)}: {period}";
+        }
     }
 }

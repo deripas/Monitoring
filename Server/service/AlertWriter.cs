@@ -32,7 +32,7 @@ namespace SafeServer.service
         
         private void WriteDB(Alert alert)
         {
-            Log.Warn("write alert {0}", alert);
+            Log.Warn("write alert {0}", alert.device);
             using var db = new DatabaseService();
             db.Alert.Add(alert);
             db.SaveChanges();

@@ -16,7 +16,6 @@ namespace service
         
         public void Init()
         {
-            //ServerApi = new MockServerApi();
             ServerApi = new RestServerApi();
             CameraService = new CameraService(ServerApi);
             DeviceService = new DeviceService(ServerApi);

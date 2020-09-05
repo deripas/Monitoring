@@ -33,6 +33,16 @@ namespace api.impl
             return template.GetForObject<List<DeviceInfo>>("/api/device");
         }
 
+        public DeviceInfo DeviceSingle(int id)
+        {
+            return template.GetForObject<DeviceInfo>("/api/device/{id}", id);
+        }
+
+        public void DeviceConfig(int device, Config cfg)
+        {
+            template.Put("/api/device/{id}/cfg", cfg, device);
+        }
+
         public List<AlertInfo> Alerts(DateTime from, DateTime to)
         {
             var uri = string.Format("/api/alert?from={0}&to={1}", from.ToString(CultureInfo.InvariantCulture), to.ToString(CultureInfo.InvariantCulture));

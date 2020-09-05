@@ -28,9 +28,7 @@ namespace gui
             {
                 SensorView view = createView(dev);
                 if (view == null) continue;
-
-                flowLayoutPanel1.Controls.Add(view.GetControl());
-                view.GetControl().Enabled = dev.Enable;
+                
                 dev.View = view;
             }
         }
@@ -47,6 +45,17 @@ namespace gui
                     return new ClassicHurbleControl();
                 default:
                     return null;
+            }
+        }
+
+        internal void Set(List<int> controlList)
+        {
+            flowLayoutPanel1.Controls.Clear();
+            foreach (var id in controlList)
+            {
+                var dev = DI.Instance.DeviceService[id];
+                var control = dev.View?.GetControl();
+                flowLayoutPanel1.Controls.Add(control);
             }
         }
     }

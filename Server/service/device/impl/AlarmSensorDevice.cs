@@ -13,16 +13,20 @@ namespace SafeServer.service.device
 
         private readonly SirenDev siren;
         private readonly Subject<DeviceStatus> reset;
+        private readonly Subject<DeviceStatus> status;
+        private readonly BehaviorSubject<bool> enable;
         private readonly Timer _timer;
         private readonly List<IDisposable> _disposables;
-
-        private IConnectableObservable<DeviceStatus> status;
 
         public AlarmSensorDevice(Device device) : base(device)
         {
             _disposables = new List<IDisposable>();
+            enable = new BehaviorSubject<bool>(device.Enable);
             reset = new Subject<DeviceStatus>();
-            siren = new SirenDev(config.alarm);
+            status = new Subject<DeviceStatus>();
+            siren = new SirenDev();
+            siren.Config(config.alarm);
+
             Add42(config.siren, siren.Siren);
 
             _timer = new Timer(config.alarm.timeout);
@@ -33,9 +37,16 @@ namespace SafeServer.service.device
 
         protected void Sensor(IObservable<DeviceStatus> measure)
         {
-            status = measure.Merge(reset)
+            _(measure.Merge(reset)
                 .Scan(DeviceStatus.Reset(device), ValueAgregate)
-                .Publish();
+                .CombineLatest(enable, (s, e) =>
+                {
+                    s.enable = e;
+                    s.alarm = e ? s.alarm : 0;
+                    s.value = e ? s.value : 0;
+                    return s;
+                })
+                .Subscribe(status));
 
             _(status
                 .DistinctUntilChanged(s => s.alarm)
@@ -43,7 +54,7 @@ namespace SafeServer.service.device
                 .Subscribe(s => siren.Play(true)));
         }
 
-        public virtual DeviceStatus ValueAgregate(DeviceStatus old, DeviceStatus cur)
+        protected virtual DeviceStatus ValueAgregate(DeviceStatus old, DeviceStatus cur)
         {
             if (cur.alarm < 0)
             {
@@ -64,7 +75,7 @@ namespace SafeServer.service.device
         public override void Init()
         {
             Reset();
-            status.Connect();
+            Log.Info("{}({}) init", device.Name, device.Id);
         }
 
         public virtual void Reset()
@@ -79,10 +90,16 @@ namespace SafeServer.service.device
                 _timer.Start();
         }
 
+        public void Peak()
+        {
+            siren.Peak();
+        }
+
         public override void Close()
         {
             _disposables.ForEach(d => d.Dispose());
             _disposables.Clear();
+            Log.Info("{}({}) close", device.Name, device.Id);
         }
 
         private void Elapsed(object sender, ElapsedEventArgs e)
@@ -93,6 +110,27 @@ namespace SafeServer.service.device
         protected void _(IDisposable d)
         {
             _disposables.Add(d);
+        }
+
+        public override void Update(Config cfg)
+        {
+            device.Version++;
+            if (cfg.simple != null)
+            {
+                enable.OnNext(cfg.simple.enable);
+                device.Enable = cfg.simple.enable;
+                Log.Info("{}({}) enable status {}", device.Name, device.Id, cfg.simple.enable);
+            }
+            if (cfg.alarm != null)
+            {
+                device.Config.alarm = cfg.alarm;
+                siren.Config(cfg.alarm);
+                _timer.Interval = cfg.alarm.timeout;
+                Log.Info("{}({}) update alert config {}", device.Name, device.Id, cfg.alarm);
+            }
+            Close();
+            Init();
+            Log.Info("{}({}) update configuration", device.Name, device.Id);
         }
     }
 }

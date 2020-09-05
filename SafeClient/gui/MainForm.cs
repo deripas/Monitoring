@@ -47,25 +47,36 @@ namespace gui
 
         private void toolStripButton5_Click(object sender, System.EventArgs e)
         {
-            grid.Grid(CameraGrid.grid6x6());
+            var gridConf = CameraGrid.grid6x6();
+            grid.Grid(gridConf);
+            sensorPanel1.Set(gridConf.device);
             UpdateMode(toolStripButton5);
         }
 
         private void toolStripButton6_Click(object sender, System.EventArgs e)
         {
-            grid.Grid(CameraGrid.grid3x3_1());
+            var gridConf = CameraGrid.grid3x3_1();
+            grid.Grid(gridConf);
+            sensorPanel1.Set(gridConf.device);
+            controlPanel1.Set(gridConf.control);
             UpdateMode(toolStripButton6);
         }
 
         private void toolStripButton7_Click(object sender, System.EventArgs e)
         {
-            grid.Grid(CameraGrid.grid3x3_2());
+            var gridConf = CameraGrid.grid3x3_2();
+            grid.Grid(gridConf);
+            sensorPanel1.Set(gridConf.device);
+            controlPanel1.Set(gridConf.control);
             UpdateMode(toolStripButton7);
         }
 
         private void toolStripButton8_Click(object sender, System.EventArgs e)
         {
-            grid.Grid(CameraGrid.grid3x3_3());
+            var gridConf = CameraGrid.grid3x3_3();
+            grid.Grid(gridConf);
+            sensorPanel1.Set(gridConf.device);
+            controlPanel1.Set(gridConf.control);
             UpdateMode(toolStripButton8);
         }
 

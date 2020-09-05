@@ -7,7 +7,9 @@ namespace SafeServer.service.device
 {
     public class RolletDevice : LtrDevice
     {
-        private readonly IConnectableObservable<DeviceStatus> status;
+        private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
+
+        private readonly IObservable<DeviceStatus> status;
         private readonly Subject<bool> UP = new Subject<bool>();
         private readonly Subject<bool> DW = new Subject<bool>();
         
@@ -36,8 +38,8 @@ namespace SafeServer.service.device
                 }));
 
             status = sensorUp
-                .CombineLatest(sensorDw, (up, dw) => DeviceStatus.Rollet(dev, up, dw))
-                .Publish();
+                    .CombineLatest(sensorDw, (up, dw) => DeviceStatus.Rollet(dev, up, dw))
+                ;
         }
         
         public override IObservable<DeviceStatus> Status()
@@ -47,13 +49,14 @@ namespace SafeServer.service.device
 
         public override void Init()
         {
-            status.Connect();
+            Log.Info("{}({}) init", device.Name, device.Id);
         }
 
         public void Up()
         {
             if (device.Enable)
             {
+                Log.Info("{}({}) rollet UP", device.Name, device.Id);
                 DW.OnNext(false);
                 UP.OnNext(true);
             }
@@ -63,6 +66,7 @@ namespace SafeServer.service.device
         {
             if (device.Enable)
             {
+                Log.Info("{}({}) rollet DOWN", device.Name, device.Id);
                 UP.OnNext(false);
                 DW.OnNext(true);
             }
@@ -70,6 +74,7 @@ namespace SafeServer.service.device
 
         public void Stop()
         {
+            Log.Info("{}({}) rollet STOP", device.Name, device.Id);
             UP.OnNext(false);
             DW.OnNext(false);
         }
@@ -77,11 +82,22 @@ namespace SafeServer.service.device
         public override void Close()
         {
             Stop();
+            Log.Info("{}({}) close", device.Name, device.Id);
         }
 
         public override string RenderStatusValue(DeviceStatus status)
         {
             return "?";
+        }
+
+        public override void Update(Config cfg)
+        {
+            device.Version++;
+            if (cfg.simple != null)
+            {
+                device.Enable = cfg.simple.enable;
+                Log.Info("{}({}) enable status {}", device.Name, device.Id, cfg.simple.enable);
+            }
         }
     }
 }

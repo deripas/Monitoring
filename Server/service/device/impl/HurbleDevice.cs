@@ -20,20 +20,34 @@ namespace SafeServer.service.device
                 .Select(b => !b);
 
             encoder = new BehaviorSubject<bool>(false);
+        }
 
+        public override void Init()
+        {
             if (device.Config.encoder != null)
             {
                 _(GetBool41(device.Config.encoder)
                     .ToThresholdRate(device.Config.counter.threshold)
                     .Subscribe((IObserver<bool>)encoder));
             }
-
+            
             var power = mode.CombineLatest(remote, encoder, AgregatePower);
 
             Sensor(GetBool41(device.Config.sensor)
                 .ToBool()
                 .CombineLatest(power, (b1, b2) => b1 && b2)
                 .Select(v => DeviceStatus.Value(device, v)));
+            base.Init();
+        }
+
+        public override void Update(Config cfg)
+        {
+            if (cfg.counter != null)
+            {
+                device.Config.counter = cfg.counter;
+                Log.Info("{}({}) cange threshold {}", device.Name, device.Id, cfg.counter.threshold);
+            }
+            base.Update(cfg);
         }
 
         protected bool AgregatePower(int mode, bool remote, bool encoder)
@@ -77,6 +91,7 @@ namespace SafeServer.service.device
         {
             if (device.Enable)
             {
+                Log.Info("{}({}) hurble ON", device.Name, device.Id);
                 mode.OnNext(1);
             }
         }
@@ -85,6 +100,7 @@ namespace SafeServer.service.device
         {
             if (device.Enable)
             {
+                Log.Info("{}({}) hurble OFF", device.Name, device.Id);
                 mode.OnNext(0);
             }
         }
@@ -93,6 +109,7 @@ namespace SafeServer.service.device
         {
             if (device.Enable)
             {
+                Log.Info("{}({}) hurble AUTO", device.Name, device.Id);
                 mode.OnNext(2);
             }
         }

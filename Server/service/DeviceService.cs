@@ -3,6 +3,7 @@ using SafeServer.dto;
 using SafeServer.service.device;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace SafeServer.service
 {
@@ -50,6 +51,7 @@ namespace SafeServer.service
             {
                 try
                 {
+                    db.Entry(dev).State = EntityState.Detached;
                     if (dev.Config == null) continue;
 
                     var d = Create(dev);
@@ -79,15 +81,6 @@ namespace SafeServer.service
             foreach (var dev in map.Values)
                 dev.Close();
             map.Clear();
-        }
-
-        public void UpdateConfig(long id, Config config)
-        {
-            using var db = new DatabaseService();
-            var dev = db.Device.Find(id);
-            dev.Version += 1;
-            dev.Config = config;
-            db.SaveChanges();
         }
     }
 }

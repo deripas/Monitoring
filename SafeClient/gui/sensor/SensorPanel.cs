@@ -2,6 +2,7 @@
 using model.device;
 using service;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace gui
@@ -19,15 +20,11 @@ namespace gui
 
             foreach (DeviceController dev in DI.Instance.DeviceService.DeviceList)
             {
-                SensorView view = createView(dev);
+                var view = createView(dev);
                 if (view == null) continue;
 
-                flowLayoutPanel1.Controls.Add(view.GetControl());
-                view.GetControl().Enabled = dev.Enable;
                 dev.View = view;
             }
-
-            CorrectSize();
         }
 
         private SensorView createView(DeviceController dev)
@@ -47,6 +44,18 @@ namespace gui
                 default:
                     return null;
             }
+        }
+
+        internal void Set(List<int> deviceList)
+        {
+            flowLayoutPanel1.Controls.Clear();
+            foreach(var id in deviceList)
+            {
+                var dev = DI.Instance.DeviceService[id];
+                var control = dev.View?.GetControl();
+                flowLayoutPanel1.Controls.Add(control);
+            }
+            CorrectSize();
         }
 
         private void CorrectSize()

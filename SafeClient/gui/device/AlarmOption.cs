@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using model.device;
 using SafeServer.dto.config;
+using api.dto;
 
 namespace gui
 {
@@ -38,17 +39,18 @@ namespace gui
             }
         }
 
-        internal void Save()
+        internal void Save(Config config)
         {
             if(Enabled)
             {
-                device.Config.alarm = new Alarm
+                config.alarm = new Alarm
                 {
                     count = Int64.Parse(countText.Text),
                     delay = Int64.Parse(delayText.Text),
                     period = Int64.Parse(periodText.Text),
                     timeout = Int64.Parse(timeoutText.Text)
                 };
+                device.Config.alarm = config.alarm;
             }
         }
 

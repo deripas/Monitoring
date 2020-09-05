@@ -11,6 +11,9 @@ namespace api
         List<CameraInfo> Camera();
 
         List<DeviceInfo> Device();
+        DeviceInfo DeviceSingle(int id);
+
+        void DeviceConfig(int id, Config cfg);
 
         List<AlertInfo> Alerts(DateTime from, DateTime to);
 
@@ -35,5 +38,6 @@ namespace api
         void HurbleOn(int device);
         void HurbleOff(int device);
         void HurbleAuto(int device);
+       
     }
 }

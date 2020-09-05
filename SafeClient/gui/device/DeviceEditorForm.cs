@@ -1,4 +1,5 @@
-﻿using model.device;
+﻿using api.dto;
+using model.device;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,10 +43,13 @@ namespace gui.device
         private void buttonSave_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
-            baseOption1.Save();
-            alarmOption1.Save();
-            measureOption1.Save();
-            Close();
+        }
+
+        public void Save(Config config)
+        {
+            baseOption1.Save(config);
+            alarmOption1.Save(config);
+            measureOption1.Save(config);
         }
     }
 }
