@@ -34,7 +34,11 @@ namespace gui
         {
             baseSensor1.SetAlarm(status.alarm);
             baseSensor1.Value = status.value.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
-            verticalProgressBar1.Value = (int) status.value;
+
+            var value = (int)status.value;
+            if (value > verticalProgressBar1.Maximum) value = verticalProgressBar1.Maximum;
+            if (value < verticalProgressBar1.Minimum) value = verticalProgressBar1.Minimum;
+            verticalProgressBar1.Value = value;
         }
     }
 }

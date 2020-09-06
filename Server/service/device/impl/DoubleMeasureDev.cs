@@ -16,6 +16,7 @@ namespace SafeServer.service.device
             var calibr = device.Config.calibr;
             Sensor(GetDouble27(device.Config.sensor)
                 .ToMean()
+                .Where(v => v >= 4)
                 .Convert(4, 20, calibr.min, calibr.max)
                 .Select(v => DeviceStatus.Value(device, v, v > calibr.porogMax || v < calibr.porogMin)));
             base.Init();

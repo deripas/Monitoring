@@ -127,8 +127,16 @@ namespace model.device
                 if (c.IsHandleCreated && c.Parent != null)
                     c.Invoke(new Action(() =>
                     {
-                        if (changed) view.Set(this);
-                        if (Enable) view.Update(status);
+                        try
+                        {
+                            if (changed) view.Set(this);
+                            if (Enable) view.Update(status);
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error("error update", e);
+                        }
+
                     }));
             }
         }

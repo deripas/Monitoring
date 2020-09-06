@@ -46,8 +46,6 @@ namespace SafeServer.service.device
         {
             return observable.Select(val =>
                 {
-                    if (double.IsNaN(val)) return minValue;
-
                     var k = (maxValue - minValue) / (max - min);
                     var b = minValue - min * k;
                     return val * k + b;
