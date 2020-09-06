@@ -41,7 +41,7 @@ namespace SafeServer.service.device
                 .Scan(DeviceStatus.Reset(device), ValueAgregate)
                 .CombineLatest(enable, (s, e) =>
                 {
-                    s.enable = e;
+                    s.version = e ? s.version : -1;
                     s.alarm = e ? s.alarm : 0;
                     s.value = e ? s.value : 0;
                     return s;

@@ -21,6 +21,7 @@ namespace gui
         public void Set(DeviceController dev)
         {
             baseSensor1.Device = dev;
+            Enabled = dev.Enable;
             var config = dev.Config?.calibr;
             if (config != null)
             {

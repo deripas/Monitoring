@@ -9,7 +9,7 @@ namespace model.device
     {
         private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
 
-        private DeviceInfo info;
+        private volatile DeviceInfo info;
         private SensorView view;
 
         public int Id
@@ -127,25 +127,28 @@ namespace model.device
                 if (c.IsHandleCreated && c.Parent != null)
                     c.Invoke(new Action(() =>
                     {
-                        if(changed) view.Set(this);
-                        view.Update(status);
+                        if (changed) view.Set(this);
+                        if (Enable) view.Update(status);
                     }));
             }
         }
 
         public void RolletUp()
         {
-            DI.Instance.DeviceService.RolletUp(info.id);
+            if (Enable)
+                DI.Instance.DeviceService.RolletUp(info.id);
         }
 
         public void RolletDown()
         {
-            DI.Instance.DeviceService.RolletDown(info.id);
+            if (Enable)
+                DI.Instance.DeviceService.RolletDown(info.id);
         }
 
         public void RolletStop()
         {
-            DI.Instance.DeviceService.RolletStop(info.id);
+            if (Enable)
+                DI.Instance.DeviceService.RolletStop(info.id);
         }
     }
 }

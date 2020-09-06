@@ -24,6 +24,7 @@ namespace gui
         {
             device = dev;
             led.Image = dev.Enable ? Resources.led_green : Resources.led_gray;
+            Enabled = dev.Enable;
         }
 
         public void Update(SensorStatus status)

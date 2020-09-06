@@ -131,7 +131,7 @@ namespace gui
 
         internal void SetAlarm(long alarm)
         {
-            if(alarm > this.alarm)
+            if(enable && alarm > this.alarm)
             {
                 DI.Instance.AlarmSoundService.Play();
                 device.Camera.Selected = true;

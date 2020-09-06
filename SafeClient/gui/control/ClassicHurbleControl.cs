@@ -79,11 +79,12 @@ namespace gui
         public void Set(DeviceController dev)
         {
             Device = dev;
+            Enabled = dev.Enable;
         }
 
         public void Update(SensorStatus status)
         {
-            if (!status.enable)
+            if (status.version < 0)
             {
                 EnabledLed = false;
                 Enabled = false;

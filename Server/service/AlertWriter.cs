@@ -20,7 +20,7 @@ namespace SafeServer.service
                 .OfType<IMeasureDevice>()
                 .Select(device => device.Status())
                 .Merge()
-                .Where(status => status.enable)
+                .Where(status => status.version >= 0)
                 .GroupBy(status => status.id)
                 .SelectMany(group => group
                     .DistinctUntilChanged(status => status.alarm)

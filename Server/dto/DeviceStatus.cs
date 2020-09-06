@@ -7,7 +7,6 @@ namespace SafeServer.dto
     {
         public long id { get; set; }
         public long version { get; set; }
-        public bool enable { get; set; }
         public double value { get; set; }
         public long alarm { get; set; }
 
@@ -32,8 +31,7 @@ namespace SafeServer.dto
             return new DeviceStatus
             {
                 id = device.Id,
-                version = device.Version,
-                enable = device.Enable,
+                version = device.Enable ? device.Version : -1,
                 value = val,
                 alarm = alert
             };
@@ -44,8 +42,6 @@ namespace SafeServer.dto
             return new DeviceStatus
             {
                 id = device.Id,
-                version = device.Version,
-                enable = device.Enable,
                 alarm = -1
             };
         }
@@ -55,8 +51,7 @@ namespace SafeServer.dto
             return new DeviceStatus
             {
                 id = device.Id,
-                version = device.Version,
-                enable = device.Enable,
+                version = device.Enable ? device.Version : -1,
                 value =  up 
                     ? dw ? 0 : 2
                     : dw ? 1 : 0
