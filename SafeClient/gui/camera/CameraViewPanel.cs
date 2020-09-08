@@ -112,6 +112,7 @@ namespace gui
 
         internal void StopPlay()
         {
+            Selected = false;
             camera?.StopPlay(this);
             camera = null;
             contextMenu.Enabled = false;

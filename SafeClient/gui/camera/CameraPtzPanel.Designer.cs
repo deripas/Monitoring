@@ -38,26 +38,23 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonCenter = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.button5 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.buttonCenter = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.button11 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.buttonSetPos = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -206,6 +203,18 @@
             this.panel1.Size = new System.Drawing.Size(159, 139);
             this.panel1.TabIndex = 9;
             // 
+            // buttonCenter
+            // 
+            this.buttonCenter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonCenter.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCenter.Location = new System.Drawing.Point(0, 0);
+            this.buttonCenter.Name = "buttonCenter";
+            this.buttonCenter.Size = new System.Drawing.Size(159, 139);
+            this.buttonCenter.TabIndex = 2;
+            this.buttonCenter.Text = "⦁";
+            this.buttonCenter.UseVisualStyleBackColor = true;
+            this.buttonCenter.Click += new System.EventHandler(this.buttonCenter_Click);
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
@@ -252,6 +261,46 @@
             this.button10.MouseLeave += new System.EventHandler(this.button10_MouseLeave);
             this.button10.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button10_MouseUp);
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.buttonSetPos);
+            this.panel4.Location = new System.Drawing.Point(251, 61);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(243, 53);
+            this.panel4.TabIndex = 3;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.checkBox1);
+            this.panel5.Location = new System.Drawing.Point(3, 61);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(242, 53);
+            this.panel5.TabIndex = 4;
+            // 
+            // buttonSetPos
+            // 
+            this.buttonSetPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonSetPos.Location = new System.Drawing.Point(3, 8);
+            this.buttonSetPos.Name = "buttonSetPos";
+            this.buttonSetPos.Size = new System.Drawing.Size(81, 38);
+            this.buttonSetPos.TabIndex = 3;
+            this.buttonSetPos.Text = "🖈";
+            this.buttonSetPos.UseVisualStyleBackColor = true;
+            this.buttonSetPos.Click += new System.EventHandler(this.buttonSetPos_Click);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.857143F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBox1.Location = new System.Drawing.Point(3, 9);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(87, 38);
+            this.checkBox1.TabIndex = 2;
+            this.checkBox1.Text = "💡";
+            this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -272,82 +321,6 @@
             this.panel3.Size = new System.Drawing.Size(499, 119);
             this.panel3.TabIndex = 3;
             // 
-            // buttonCenter
-            // 
-            this.buttonCenter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonCenter.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCenter.Location = new System.Drawing.Point(0, 0);
-            this.buttonCenter.Name = "buttonCenter";
-            this.buttonCenter.Size = new System.Drawing.Size(159, 139);
-            this.buttonCenter.TabIndex = 2;
-            this.buttonCenter.Text = "⦁";
-            this.buttonCenter.UseVisualStyleBackColor = true;
-            this.buttonCenter.Click += new System.EventHandler(this.buttonCenter_Click);
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.857143F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBox1.Location = new System.Drawing.Point(3, 9);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(87, 38);
-            this.checkBox1.TabIndex = 2;
-            this.checkBox1.Text = "💡";
-            this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.button11);
-            this.panel4.Controls.Add(this.numericUpDown1);
-            this.panel4.Location = new System.Drawing.Point(251, 61);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(243, 53);
-            this.panel4.TabIndex = 3;
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(15, 9);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(84, 29);
-            this.numericUpDown1.TabIndex = 0;
-            // 
-            // button11
-            // 
-            this.button11.Location = new System.Drawing.Point(105, 4);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(81, 38);
-            this.button11.TabIndex = 1;
-            this.button11.Text = "button11";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.buttonSetPos);
-            this.panel5.Controls.Add(this.checkBox1);
-            this.panel5.Location = new System.Drawing.Point(3, 61);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(242, 53);
-            this.panel5.TabIndex = 4;
-            // 
-            // buttonSetPos
-            // 
-            this.buttonSetPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonSetPos.Location = new System.Drawing.Point(96, 9);
-            this.buttonSetPos.Name = "buttonSetPos";
-            this.buttonSetPos.Size = new System.Drawing.Size(81, 38);
-            this.buttonSetPos.TabIndex = 3;
-            this.buttonSetPos.Text = "🖈";
-            this.buttonSetPos.UseVisualStyleBackColor = true;
-            this.buttonSetPos.Click += new System.EventHandler(this.buttonSetPos_Click);
-            // 
             // CameraPtzPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
@@ -359,11 +332,10 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -388,8 +360,6 @@
         private System.Windows.Forms.Button buttonCenter;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Button buttonSetPos;
     }

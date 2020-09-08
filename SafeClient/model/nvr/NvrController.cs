@@ -82,7 +82,6 @@ namespace model.nvr
                 }
 
                 model.Logout();
-                cameras.Clear();
                 time = DateTime.Now;
             }
         }

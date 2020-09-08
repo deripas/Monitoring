@@ -54,6 +54,7 @@ namespace gui
                 var dev = DI.Instance.DeviceService[id];
                 var control = dev.View?.GetControl();
                 flowLayoutPanel1.Controls.Add(control);
+                Application.DoEvents();
             }
             CorrectSize();
         }

@@ -13,7 +13,7 @@ namespace model.nvr
         private static readonly int KeepLifeTimeSec = Int32.Parse(ConfigurationManager.AppSettings["nvr.keeplife.time.sec"]);
 
         private NvrInfo info;
-        private SDK_HANDLE loginId;
+        private volatile SDK_HANDLE loginId;
         private SDK_HANDLE talkId;
         private H264_DVR_DEVICEINFO deviceInfo;
         private int error;

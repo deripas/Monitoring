@@ -112,23 +112,30 @@ namespace gui
 
         public void Search()
         {
-            if (DI.Instance.DeviceService == null) return;
-            if (comboBoxDevice.SelectedItem == null) return;
-            if (dateTimePicker1.Value == null) return;
+            try
+            {
+                if (DI.Instance.DeviceService == null) return;
+                if (comboBoxDevice.SelectedItem == null) return;
+                if (dateTimePicker1.Value == null) return;
 
-            var from = dateTimePicker1.Value.Date;
-            var to = from.AddDays(1);
-            var select = comboBoxDevice.SelectedItem;
-            if (select is DeviceController)
-            {
-                var dev = (DeviceController)select;
-                var alerts = DI.Instance.DeviceService.FindAlerts(dev.Id, from, to);
-                SetAlertList(alerts);
+                var from = dateTimePicker1.Value.Date;
+                var to = from.AddDays(1);
+                var select = comboBoxDevice.SelectedItem;
+                if (select is DeviceController)
+                {
+                    var dev = (DeviceController)select;
+                    var alerts = DI.Instance.DeviceService.FindAlerts(dev.Id, from, to);
+                    SetAlertList(alerts);
+                }
+                else
+                {
+                    var alerts = DI.Instance.DeviceService.FindAlerts(from, to);
+                    SetAlertList(alerts);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                var alerts = DI.Instance.DeviceService.FindAlerts(from, to);
-                SetAlertList(alerts);
+                MessageBox.Show(this, ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

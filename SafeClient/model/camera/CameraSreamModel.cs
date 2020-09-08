@@ -13,7 +13,7 @@ namespace model.camera
         private CameraModel camera;
         private NetSDK.fRealDataCallBack realDataCallBack;
         private H264_DVR_CLIENTINFO info;
-        private SDK_HANDLE playHandleId;
+        private volatile SDK_HANDLE playHandleId;
         private bool sound;
         private long ticks;
         private long frames;
@@ -55,20 +55,10 @@ namespace model.camera
             }
         }
 
-        public bool Play
-        {
-            get
-            {
-                var c = Interlocked.Read(ref frames);
-                return c > 0;
-            }
-        }
-
-
         public CameraSreamModel(CameraModel camera, PictureBox canvas)
         {
             this.camera = camera;
-            ticks = DateTime.MinValue.Ticks;
+            Interlocked.Exchange(ref ticks, DateTime.MinValue.Ticks);
             frames = 0;
             info = new H264_DVR_CLIENTINFO
             {
@@ -93,7 +83,7 @@ namespace model.camera
                 return;
 
             frames = 0;
-            ticks = DateTime.Now.Ticks;
+            Interlocked.Exchange(ref ticks, DateTime.Now.Ticks);
             playHandleId = NetSDK.H264_DVR_RealPlay(camera.LoginId, ref info);
             if (playHandleId > 0)
             {
@@ -123,12 +113,12 @@ namespace model.camera
             playHandleId = 0;
             realDataCallBack = null;
             frames = 0;
-            ticks = DateTime.MinValue.Ticks;
+            Interlocked.Exchange(ref ticks, DateTime.MinValue.Ticks);
         }
 
         public void ResetTime()
         {
-            ticks = DateTime.Now.Ticks;
+            Interlocked.Exchange(ref ticks, DateTime.Now.Ticks);
         }
 
         public void OpenSound()

@@ -1,10 +1,12 @@
 ﻿using api.dto;
+using Spring.Http.Client;
 using Spring.Http.Converters.Json;
 using Spring.Rest.Client;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
+using System.Windows.Forms;
 
 namespace api.impl
 {
@@ -14,8 +16,12 @@ namespace api.impl
 
         public RestServerApi()
         {
+            var factory = new WebClientHttpRequestFactory();
+            factory.Timeout = 3000;
+
             template = new RestTemplate(ConfigurationManager.AppSettings["server.url"]);
             template.MessageConverters.Add(new DataContractJsonHttpMessageConverter());
+            template.RequestFactory = factory;
         }
 
         public List<NvrInfo> Nvr()
@@ -68,42 +74,42 @@ namespace api.impl
 
         public void RolletUp(int device)
         {
-            template.Put("/api/device/{id}/up", null, device );
+            tryAction(() => template.Put("/api/device/{id}/up", null, device ));
         }
 
         public void RolletDown(int device)
         {
-            template.Put("/api/device/{id}/down", null, device );
+            tryAction(() => template.Put("/api/device/{id}/down", null, device ));
         }
 
         public void RolletStop(int device)
         {
-            template.Put("/api/device/{id}/stop", null, device);
+            tryAction(() => template.Put("/api/device/{id}/stop", null, device));
         }
 
         public void HurbleOn(int device)
         {
-            template.Put("/api/device/{id}/on", null, device);
+            tryAction(() => template.Put("/api/device/{id}/on", null, device));
         }
 
         public void HurbleOff(int device)
         {
-            template.Put("/api/device/{id}/off", null, device);
+            tryAction(() => template.Put("/api/device/{id}/off", null, device));
         }
 
         public void HurbleAuto(int device)
         {
-            template.Put("/api/device/{id}/auto", null, device);
+            tryAction(() => template.Put("/api/device/{id}/auto", null, device));
         }
 
         public void ProcessAlert(long id)
         {
-            template.Put("/api/alert/{id}/processed", null, id);
+            tryAction(() => template.Put("/api/alert/{id}/processed", null, id));
         }
 
         public void ProcessAlertAll(long id)
         {
-            template.Put("/api/alert/{id}/processed-all", null, id);
+            tryAction(() => template.Put("/api/alert/{id}/processed-all", null, id));
         }
 
         public CountResult FindAlertAll(long id)
@@ -118,12 +124,24 @@ namespace api.impl
 
         public void ResetDevice(long device)
         {
-            template.Put("/api/device/{id}/reset", null, device );
+            tryAction(() => template.Put("/api/device/{id}/reset", null, device ));
         }
         
         public void ResetDeviceAlert(long device)
         {
-            template.Put("/api/device/{id}/reset-alarm", null, device );
+            tryAction(() => template.Put("/api/device/{id}/reset-alarm", null, device));
+        }
+
+        private void tryAction(Action a)
+        {
+            try
+            {
+                a.Invoke();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

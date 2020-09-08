@@ -6,6 +6,8 @@ namespace service
 {
     public class StatusReaderService
     {
+        private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
+
         private Timer _timer;
         
         public StatusReaderService(IServerApi serverApi)
@@ -20,11 +22,18 @@ namespace service
 
         private void callback(object obj)
         {
-            var serverApi = (IServerApi) obj;
-            var statuses = serverApi.Statuses();
-            foreach (var status in statuses)
+            try
             {
-                DI.Instance.DeviceService[status.id]?.Update(status);
+                var serverApi = (IServerApi)obj;
+                var statuses = serverApi.Statuses();
+                foreach (var status in statuses)
+                {
+                    DI.Instance.DeviceService[status.id]?.Update(status);
+                }
+            }
+            catch (Exception e)
+            {
+                Log.Warn(e.Message);
             }
         }
     }

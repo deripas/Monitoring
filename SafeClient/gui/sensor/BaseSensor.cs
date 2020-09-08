@@ -114,6 +114,7 @@ namespace gui
                 device.Camera.Selected = false;
                 DI.Instance.AlarmSoundService.Stop();
                 DI.Instance.ServerApi.ResetDeviceAlert(device.Id);
+                toolTip1.Show("Тревога сброшена", led, 3000);
             }
         }
 
@@ -134,9 +135,9 @@ namespace gui
             if(enable && alarm > this.alarm)
             {
                 DI.Instance.AlarmSoundService.Play();
-                device.Camera.Selected = true;
                 this.alarm = alarm;
             }
+            device.Camera.Selected = Alarm;
             UpdateLed();
         }
     }

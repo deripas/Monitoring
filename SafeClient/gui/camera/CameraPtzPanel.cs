@@ -227,12 +227,8 @@ namespace gui
             {
                 checkBox1.Text = "💡";
                 camera?.Preset(101);
+                camera?.Preset(102);
             }
-        }
-
-        private void button11_Click(object sender, EventArgs e)
-        {
-            camera?.Preset(Decimal.ToInt32(numericUpDown1.Value));
         }
 
         private void buttonSetPos_Click(object sender, EventArgs e)

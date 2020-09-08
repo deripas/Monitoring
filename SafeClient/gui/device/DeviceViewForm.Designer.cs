@@ -49,7 +49,7 @@
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.RightToLeftLayout = true;
-            this.listView1.Size = new System.Drawing.Size(735, 694);
+            this.listView1.Size = new System.Drawing.Size(1278, 694);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -63,19 +63,20 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "Включен";
-            this.columnHeader2.Width = 100;
+            this.columnHeader2.Width = 200;
             // 
             // DeviceViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(735, 694);
+            this.ClientSize = new System.Drawing.Size(1278, 694);
             this.Controls.Add(this.listView1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "DeviceViewForm";
             this.Text = "DeviceViewForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DeviceViewForm_FormClosing);
             this.Load += new System.EventHandler(this.DeviceViewForm_Load);
+            this.Resize += new System.EventHandler(this.DeviceViewForm_Resize);
             this.ResumeLayout(false);
 
         }

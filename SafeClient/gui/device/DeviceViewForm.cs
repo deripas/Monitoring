@@ -46,6 +46,7 @@ namespace gui
                 listView1.Items.Add(item);
             }
             listView1.Refresh();
+            DeviceViewForm_Resize(null, null);
         }
 
         private System.Drawing.Color GetColor(string stand)
@@ -80,19 +81,34 @@ namespace gui
                 form.StartPosition = FormStartPosition.CenterParent;
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
-                    Config cfg = new Config();
-                    form.Save(cfg);
-                    form.Close();
+                    try
+                    {
+                        Config cfg = new Config();
+                        form.Save(cfg);
 
-                    item.SubItems.Clear();
-                    item.Text = dev.Name;
-                    item.SubItems.Add(dev.Enable.ToString());
-                    item.BackColor = GetColor(dev?.Stand);
-                    listView1.Refresh();
+                        DI.Instance.ServerApi.DeviceConfig(dev.Id, cfg);
 
-                    DI.Instance.ServerApi.DeviceConfig(dev.Id, cfg);
+                        item.SubItems.Clear();
+                        item.Text = dev.Name;
+                        item.SubItems.Add(dev.Enable.ToString());
+                        item.BackColor = GetColor(dev?.Stand);
+                        listView1.Refresh();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        form.Close();
+                    }
                 }
             }
+        }
+
+        private void DeviceViewForm_Resize(object sender, EventArgs e)
+        {
+            columnHeader1.Width = Math.Max(600, listView1.Width - columnHeader2.Width - SystemInformation.VerticalScrollBarWidth - 4);
         }
     }
 }

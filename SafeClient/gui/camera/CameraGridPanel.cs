@@ -3,6 +3,7 @@ using service;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace gui
@@ -94,10 +95,7 @@ namespace gui
                     viewControl.Ratio = cam.Ratio;
                     viewControl.StartPlay(cam);
                 }
-                else
-                {
-
-                }
+                Application.DoEvents();
             }
         }
 

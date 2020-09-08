@@ -38,12 +38,12 @@ namespace model.camera
             }
             set
             {
-                select = value;
                 lock (streams)
                 {
                     foreach (var kv in streams)
                         kv.Key.Selected = value;
                 }
+                select = value;
             }
         }
 
@@ -200,19 +200,23 @@ namespace model.camera
             {
                 foreach (var kv in streams)
                 {
-                    lock (kv.Value)
+                    var stream = kv.Value;
+                    lock (stream)
                     {
-                        bool freeze = (DateTime.Now - kv.Value.LastUpdateTime).TotalSeconds > 15;
-                        if(!freeze) continue;
-                        
-                        if (!kv.Value.StartedPlay)
+                        if (!stream.StartedPlay)
                         {
-                            kv.Value.StartPlay();
+                            if ((DateTime.Now - stream.LastUpdateTime).TotalSeconds > 5)
+                            {
+                                stream.StartPlay();
+                            }
                         }
                         else
                         {
-                            Log.Warn("{0} Freeze detect! ", kv.Value);
-                            StopPlay(kv);
+                            if ((DateTime.Now - stream.LastUpdateTime).TotalSeconds > 10)
+                            {
+                                Log.Warn("{0} Freeze detect! ", stream);
+                                StopPlay(kv);
+                            }
                         }
                     }
                 }
