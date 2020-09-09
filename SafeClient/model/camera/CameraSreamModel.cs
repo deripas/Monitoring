@@ -95,10 +95,17 @@ namespace model.camera
             }
             else
             {
-                Log.Info("{0}: H264_DVR_RealPlay -  FAIL {1}", this, NetSDK.GetLastErrorCode());
+                var error = NetSDK.GetLastErrorCode();
+                Log.Info("{0}: H264_DVR_RealPlay -  FAIL {1}", this, error);
                 playHandleId = 0;
                 realDataCallBack = null;
+
+                if(error == "H264_DVR_INVALID_HANDLE")
+                {
+                    camera.Logout();
+                }
             }
+            Interlocked.Exchange(ref ticks, DateTime.Now.Ticks);
         }
 
         public void StopPlay()

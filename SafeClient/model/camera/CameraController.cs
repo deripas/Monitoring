@@ -190,7 +190,6 @@ namespace model.camera
         private void StopPlay(KeyValuePair<ICameraView, CameraSreamModel> kv)
         {
             kv.Value.StopPlay();
-            kv.Value.ResetTime();
             kv.Key.Canvas.Invalidate();
         }
 
@@ -212,10 +211,11 @@ namespace model.camera
                         }
                         else
                         {
-                            if ((DateTime.Now - stream.LastUpdateTime).TotalSeconds > 10)
+                            if ((DateTime.Now - stream.LastUpdateTime).TotalSeconds > 15)
                             {
                                 Log.Warn("{0} Freeze detect! ", stream);
                                 StopPlay(kv);
+                                stream.ResetTime();
                             }
                         }
                     }

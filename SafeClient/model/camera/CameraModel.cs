@@ -77,6 +77,11 @@ namespace model.camera
             nvr.StopTalk();
         }
 
+        internal void Logout()
+        {
+            nvr.Logout();
+        }
+
         internal void Ptz(PTZ_ControlType cmd, bool stop, int speed)
         {
             var result = NetSDK.H264_DVR_PTZControl(LoginId, Channel, cmd, stop, speed);

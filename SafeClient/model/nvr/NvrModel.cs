@@ -11,6 +11,8 @@ namespace model.nvr
         private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
         private static readonly int DetectTimeSec = Int32.Parse(ConfigurationManager.AppSettings["nvr.detect.time.sec"]);
         private static readonly int KeepLifeTimeSec = Int32.Parse(ConfigurationManager.AppSettings["nvr.keeplife.time.sec"]);
+        private static readonly object LOCK = new object();
+        private static volatile SDK_HANDLE LAST_LOGIN_ID = 0;
 
         private NvrInfo info;
         private volatile SDK_HANDLE loginId;
@@ -49,24 +51,28 @@ namespace model.nvr
 
         public bool Login()
         {
-            Log.Debug("{0}: begin login", this);
-            if (loginId > 0)
+            lock (LOCK)
             {
-                Log.Warn("{0}: already H264_DVR_Login", this);
-                return true;
-            }
+                Log.Debug("{0}: begin login", this);
+                if (loginId > 0)
+                {
+                    Log.Warn("{0}: already H264_DVR_Login", this);
+                    return true;
+                }
 
-            loginId = NetSDK.H264_DVR_Login(info.ip, info.port, info.login, info.password, ref deviceInfo, out error, SocketStyle.TCPSOCKET);
-            if (loginId > 0)
-            {
-                Log.Info("{0}: H264_DVR_Login - OK {1}", this, loginId);
-                Log.Info("{0}: H264_DVR_SetKeepLifeTime - {1}", this, NetSDK.H264_DVR_SetKeepLifeTime(loginId, KeepLifeTimeSec, DetectTimeSec));
-                return true;
-            }
-            else
-            {
-                Log.Info("{0}: H264_DVR_Login - FAIL {1}", this, NetSDK.GetLastErrorCode());
-                return false;
+                loginId = NetSDK.H264_DVR_Login(info.ip, info.port, info.login, info.password, ref deviceInfo, out error, SocketStyle.TCPSOCKET);
+                if (loginId > LAST_LOGIN_ID)
+                {
+                    LAST_LOGIN_ID = loginId;
+                    Log.Info("{0}: H264_DVR_Login - OK {1}", this, loginId);
+                    Log.Info("{0}: H264_DVR_SetKeepLifeTime - {1}", this, NetSDK.H264_DVR_SetKeepLifeTime(loginId, KeepLifeTimeSec, DetectTimeSec));
+                    return true;
+                }
+                else
+                {
+                    Log.Info("{0}: H264_DVR_Login - FAIL {1}", this, NetSDK.GetLastErrorCode());
+                    return false;
+                }
             }
         }
 
@@ -78,7 +84,7 @@ namespace model.nvr
                 Log.Warn("{0}: already H264_DVR_Logout", this);
                 return true;
             }
-            Log.Info("{0}: H264_DVR_Logout - {1}", this, NetSDK.H264_DVR_Logout(loginId));
+            Log.Info("{0}: H264_DVR_Logout - {1}", this, NetSDK.H264_DVR_Logout(loginId) == 1);
             loginId = 0;
             return true;
         }
