@@ -6,6 +6,15 @@ namespace SafeServer.dto
     [Table("alert")]
     public class Alert
     {
+        public static Alert NULL = new Alert()
+        {
+            id = -1,
+            device = -1,
+            time = DateTime.MinValue,
+            value = 0,
+            processed = false
+        };
+
         [Column("id")]
         public long id { get; set; }
 

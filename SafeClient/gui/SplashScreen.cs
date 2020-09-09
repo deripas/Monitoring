@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Properties;
+using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace gui
@@ -12,8 +14,16 @@ namespace gui
         public SplashScreen()
         {
             InitializeComponent();
+            try
+            {
+                pictureBox1.Image = Image.FromFile("logo.png");
+            }
+            catch (Exception e)
+            {
+                pictureBox1.Image = Resources.lmz;
+            }
             timerHide.Enabled = false;
-            timerHide.Interval = 1000;
+            timerHide.Interval = 5000;
             timerHide.Tick += Tmr_Tick;
 
             timerShow.Enabled = false;

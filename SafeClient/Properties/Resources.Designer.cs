@@ -183,6 +183,16 @@ namespace Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap lmz {
+            get {
+                object obj = ResourceManager.GetObject("lmz", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap no_fire {
             get {
                 object obj = ResourceManager.GetObject("no_fire", resourceCulture);

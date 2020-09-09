@@ -2,6 +2,7 @@
 using Properties;
 using service;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Media;
 
@@ -103,11 +104,24 @@ namespace gui
 
         internal void StartPlay(CameraController cameraController)
         {
+            canvas.Canvas.Image = Resources.no_image;
             StopPlay();
             camera = cameraController;
             camera.StartPlay(this);
             contextMenu.Enabled = true;
             toolTip1.SetToolTip(Canvas, camera.Name);
+        }
+
+        internal void Empty()
+        {
+            try
+            {
+                canvas.Canvas.Image = Image.FromFile("empty.png");
+            }
+            catch (Exception e)
+            {
+                canvas.Canvas.Image = Resources.lmz;
+            }
         }
 
         internal void StopPlay()

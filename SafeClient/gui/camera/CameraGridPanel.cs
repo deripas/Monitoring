@@ -95,7 +95,11 @@ namespace gui
                     viewControl.Ratio = cam.Ratio;
                     viewControl.StartPlay(cam);
                 }
-                Application.DoEvents();
+                else
+                {
+                    viewControl.Ratio = _ratio;
+                    viewControl.Empty();
+                }
             }
         }
 

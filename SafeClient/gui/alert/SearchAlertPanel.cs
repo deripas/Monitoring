@@ -61,6 +61,7 @@ namespace gui
         }
 
         private List<AlertModel> alertsList;
+        private long selectAlertId = -1;
 
         internal void NextVideoItem()
         {
@@ -143,6 +144,7 @@ namespace gui
         {
             alertsList = alerts;
             alertListView.Items.Clear();
+            ListViewItem select = null;
             foreach (AlertModel alert in alerts)
             {
                 ListViewItem item = new ListViewItem(alert.Device.Name);
@@ -150,8 +152,17 @@ namespace gui
                 item.SubItems.Add(alert.Processed.ToString());
                 item.Tag = alert;
                 alertListView.Items.Add(item);
+
+                if(selectAlertId == alert.ID)
+                    select = item;
+                
             }
             alertListView.Refresh();
+            
+            if(select != null)
+            {
+                select.Selected = true;
+            }
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -219,5 +230,52 @@ namespace gui
                 Search();
             }
         }
+
+        private void applyListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var alert = Alert;
+            if (alert == null) return;
+
+            DI.Instance.ServerApi.ProcessAlert(alert.ID);
+            alert.Processed = true;
+            SetAlertList(alertsList);
+        }
+
+        private void alertListView_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (alertListView.FocusedItem.Bounds.Contains(e.Location))
+                {
+                    contextMenuStrip1.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void alertListView_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (Alert == null)
+                {
+                    contextMenuStrip2.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void findToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var alert = DI.Instance.ServerApi.FindLastAlert(false);
+            if(alert.id > 0)
+            {
+                selectAlertId = alert.id;
+                dateTimePicker1.Value = alert.GetDateTime();
+                if(comboBoxDevice.SelectedItem == null)
+                {
+                    comboBoxDevice.SelectedItem = DI.Instance.DeviceService[alert.device];
+                }
+            }
+        }
+
     }
 }

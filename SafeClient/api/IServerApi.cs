@@ -23,6 +23,7 @@ namespace api
         void ProcessAlertAll(long id);
         CountResult FindAlertAll(long id);
         CountResult FindAlertAll();
+        AlertInfo FindLastAlert(bool processed);
 
         void ResetDevice(long id);
         void ResetDeviceAlert(long id);

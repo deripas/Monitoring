@@ -121,5 +121,14 @@ namespace gui
             }
             Application.DoEvents();
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            var count = DI.Instance.ServerApi.FindAlertAll().count;
+            if (count > 0)
+            {
+                MessageBox.Show("Найдено " + count + " необработанных тревог!", "Внимание", MessageBoxButtons.OK);
+            }
+        }
     }
 }

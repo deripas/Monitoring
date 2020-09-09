@@ -122,6 +122,12 @@ namespace api.impl
             return template.GetForObject<CountResult>("/api/alert/find-all");
         }
 
+        public AlertInfo FindLastAlert(bool processed)
+        {
+            var uri = string.Format("/api/alert/find-last?processed={0}", processed);
+            return template.GetForObject<AlertInfo>(uri);
+        }
+
         public void ResetDevice(long device)
         {
             tryAction(() => template.Put("/api/device/{id}/reset", null, device ));

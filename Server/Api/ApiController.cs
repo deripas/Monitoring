@@ -104,12 +104,24 @@ namespace Server.Api
         }
 
         [HttpGet]
-        [Route("alert/{id}/find-all")]
+        [Route("alert/find-all")]
         public object FindAlertAll()
         {
             using var db = new DatabaseService();
             int count = db.Alert.Where(a => a.processed == false).Count();
             return new { count = count };
+        }
+
+        [HttpGet]
+        [Route("alert/find-last")]
+        public Alert FindLastAlert(bool processed)
+        {
+            using var db = new DatabaseService();
+            Alert alert = db.Alert
+                .Where(a => a.processed == processed)
+                .OrderByDescending(x => x.time)
+                .FirstOrDefault();
+            return alert != null ? alert : SafeServer.dto.Alert.NULL;
         }
 
         [HttpGet]

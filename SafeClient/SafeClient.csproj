@@ -480,6 +480,7 @@
     <Content Include="NLog.xsd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\lmz.jpg" />
     <None Include="Resources\led-green1.png" />
     <None Include="Resources\classic_open.bmp" />
     <None Include="Resources\classic_close.bmp" />
