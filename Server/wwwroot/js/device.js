@@ -23,7 +23,13 @@
             {
                 "data": null,
                 "render": function (data, type, row, meta) {
-                    return "<a href='" + row.rtsp + "' class='btn btn-info'>View</a>";
+                    return "<a href='" + row.main + "' class='btn btn-info'>Main</a>";
+                }
+            },
+            {
+                "data": null,
+                "render": function (data, type, row, meta) {
+                    return "<a href='" + row.sub + "' class='btn btn-info'>Sub</a>";
                 }
             }
         ]

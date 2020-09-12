@@ -1,0 +1,1 @@
+UPDATE public.camera SET channel = 9 WHERE id = 33;

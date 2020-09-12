@@ -16,6 +16,8 @@ namespace SafeServer.dto
 
         public Channel sensorUP { get; set; } //41
         public Channel sensorDW { get; set; } //41
+        public Channel sensorX { get; set; } //41
+        public Channel sensorY { get; set; } //41
 
         public Channel siren { get; set; } //42
 

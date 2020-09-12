@@ -99,7 +99,7 @@ namespace Server.Api
         {
             using var db = new DatabaseService();
             var alert = db.Alert.Find(id);
-            int count = db.Alert.Where(a => a.processed == false && a.time <= alert.time).Count();
+            int count = db.Alert.Count(a => a.processed == false && a.time <= alert.time);
             return new { count = count };
         }
 
@@ -108,7 +108,7 @@ namespace Server.Api
         public object FindAlertAll()
         {
             using var db = new DatabaseService();
-            int count = db.Alert.Where(a => a.processed == false).Count();
+            int count = db.Alert.Count(a => a.processed == false);
             return new { count = count };
         }
 
@@ -121,7 +121,7 @@ namespace Server.Api
                 .Where(a => a.processed == processed)
                 .OrderByDescending(x => x.time)
                 .FirstOrDefault();
-            return alert != null ? alert : SafeServer.dto.Alert.NULL;
+            return alert ?? SafeServer.dto.Alert.NULL;
         }
 
         [HttpGet]

@@ -36,7 +36,7 @@ namespace SafeServer.service
                 return new WaterDevice(dev);
             if (dev.Type.Equals("rollet"))
                 return new RolletDevice(dev);
-           if (dev.Type.Equals("hurble"))
+            if (dev.Type.Equals("hurble"))
                 return new HurbleDevice(dev);
 
             Log.Warn("Unknown type [{0}] '{1}'", dev.Name, dev.Type);
@@ -45,9 +45,26 @@ namespace SafeServer.service
 
         public void Init()
         {
+            var sql = @"
+WITH dev AS (
+    select d.id, name, enable, camera, type, description, version, stand_id, siren,
+           d.config || json_object_agg(m.field, json_build_object('sn', m.sn, 'num', m.num, 'index', m.ch - 1))::jsonb as config
+    from ltr_device m,
+         device d
+    where m.device = d.id
+    group by d.id
+)
+select d.id, name, enable, camera, type, description, version, stand_id, siren, 
+       d.config || json_build_object('siren', json_build_object('sn', m.sn, 'num', m.num, 'index', m.ch - 1))::jsonb as config
+from dev d,
+     ltr_device m
+where d.siren = m.device;
+";
+                
             map.Clear();
             using var db = new DatabaseService();
-            foreach (var dev in db.Device.ToList())
+            var list = db.Device.FromSqlRaw(sql).ToList();
+            foreach (var dev in list)
             {
                 try
                 {

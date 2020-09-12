@@ -65,7 +65,7 @@ namespace Server.Controllers
             var draw = HttpContext.Request.Form["draw"].FirstOrDefault();
 
             var devices =  DI.Instance.DeviceService.Devices;
-            var result = new List<DeviceModel>();
+            var result = new List<object>();
             foreach (var dev in devices)
             {
                 var camId = dev.CameraId();
@@ -74,12 +74,13 @@ namespace Server.Controllers
                 var cam = DI.Instance.CameraService[camId.Value];
                 DeviceStatus s;
                 var exist = status.TryGetValue(dev.Id(), out s);
-                result.Add(new DeviceModel
+                result.Add(new
                 {
                     id = dev.Id(),
                     name = dev.Name(),
                     alert = s.alarm > 0,
-                    rtsp = cam.rtsp + "1",
+                    main = cam.rtsp + "0",
+                    sub = cam.rtsp + "1",
                     value = exist ? dev.RenderStatusValue(s) : "-"
                 });
             }
