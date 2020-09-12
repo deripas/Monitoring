@@ -4,14 +4,18 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using SafeServer;
 
 namespace Server
 {
     public class Startup
     {
+        private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            DI.Instance.Init();
         }
 
         public IConfiguration Configuration { get; }
@@ -27,8 +31,9 @@ namespace Server
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostApplicationLifetime lifetime)
         {
+            lifetime.ApplicationStopping.Register(OnShutdown);
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
@@ -43,6 +48,12 @@ namespace Server
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        private void OnShutdown()
+        {
+            Log.Info("OnShutdown");
+            DI.Instance.Dispose();
         }
     }
 }

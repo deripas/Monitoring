@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations.Operations;
+﻿using ltrModulesNet;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using SafeServer.dto;
 using SafeServer.ltr;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace SafeServer.service
@@ -57,6 +59,14 @@ namespace SafeServer.service
         {
             foreach (var ltr in map.Values)
                 ltr.Stop();
+
+            _LTRNative.TLTR LTR = _LTRNative.NewLTR;
+            LTR.cc = 0;
+            LTR_ServerRestart(ref LTR);
         }
+
+        [DllImport("ltrapi.dll")]
+        public static extern ltrModulesNet._LTRNative.LTRERROR LTR_ServerRestart(ref _LTRNative.TLTR ltr);
+
     }
 }
