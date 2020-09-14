@@ -104,12 +104,12 @@ namespace gui
 
         internal void StartPlay(CameraController cameraController)
         {
-            canvas.Canvas.Image = Resources.no_image;
             StopPlay();
             camera = cameraController;
             camera.StartPlay(this);
             contextMenu.Enabled = true;
             toolTip1.SetToolTip(Canvas, camera.Name);
+            canvas.Canvas.Image = null;
         }
 
         internal void Empty()
@@ -126,6 +126,7 @@ namespace gui
 
         internal void StopPlay()
         {
+            canvas.Canvas.Image = Resources.no_image;
             Selected = false;
             camera?.StopPlay(this);
             camera = null;
