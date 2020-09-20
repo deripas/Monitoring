@@ -85,6 +85,7 @@ namespace service
             chart.From = from;
             chart.To = to;
             chart.Alert = alert.Time;
+            chart.Value = alert.Value;
             return chart;
         }
 

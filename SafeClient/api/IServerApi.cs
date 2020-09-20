@@ -16,7 +16,6 @@ namespace api
         void DeviceConfig(int id, Config cfg);
 
         List<AlertInfo> Alerts(DateTime from, DateTime to);
-
         List<AlertInfo> Alerts(int device, DateTime from, DateTime to);
 
         void ProcessAlert(long id);

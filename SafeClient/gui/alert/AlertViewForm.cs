@@ -37,7 +37,7 @@ namespace gui
             searchAlertPanel1.NextVideoItem();
         }
 
-        private void SearchAlertPanel1_SelectVideoItem(VideoFileModel video)
+        private void SearchAlertPanel1_SelectVideoItem(VideoPlayBackSource video)
         {
             var alert = searchAlertPanel1.Alert;
             if (alert == null) return;

@@ -5,9 +5,12 @@ using model.nvr;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
+using NetSDKCS;
 using SDK_HANDLE = System.Int32;
 
 namespace service
@@ -17,21 +20,16 @@ namespace service
         private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
         private static readonly int ConnectionTimeMs = Int32.Parse(ConfigurationManager.AppSettings["nvr.connect.time.ms"]);
 
-        private Timer timer;
-        private NetSDK.fDisConnect disconnectCallback;
+        private static fDisConnectCallBack m_DisConnectCallBack; //Disconnect the callback
+        private static fHaveReConnectCallBack m_ReConnectCallBack; //Disconnect the callback
+        
         private Dictionary<long, CameraController> _cameraMap;
         private Dictionary<IPEndPoint, NvrController> _nvrMap;
         private Dictionary<int, NvrController> _nvrMapById;
 
         public List<CameraController> CameraList { get; }
 
-        public CameraController this[int id]
-        {
-            get
-            {
-                return _cameraMap[id];
-            }
-        }
+        public CameraController this[int id] => _cameraMap[id];
 
         public CameraService(IServerApi serverApi)
         {
@@ -41,11 +39,21 @@ namespace service
             CameraList = new List<CameraController>();
 
             SetDllDirectory(ConfigurationManager.AppSettings["netsdk.dir"]);
-            disconnectCallback = new NetSDK.fDisConnect(FDisconnectCallback);
-            GC.KeepAlive(disconnectCallback);
+            
+            m_DisConnectCallBack = DisConnectCallBack;
+            m_ReConnectCallBack = ReConnectCallBack;
 
-            Log.Info("H264_DVR_Init {0}", NetSDK.H264_DVR_Init(disconnectCallback, IntPtr.Zero));
-            Log.Info("H264_DVR_SetConnectTime {0}", NetSDK.H264_DVR_SetConnectTime(ConnectionTimeMs, 1));
+            NET_PARAM param = new NET_PARAM()
+            {
+                nConnectTime = ConnectionTimeMs,
+                nsubDisconnetTime = 10_000
+            };
+            
+            Log.Info("NETClient.Init {0}", NETClient.Init(m_DisConnectCallBack, IntPtr.Zero, null));
+            //Set auto reconnecting after disconnection
+            NETClient.SetAutoReconnect(m_ReConnectCallBack, IntPtr.Zero);
+            //Set network parameters
+            NETClient.SetNetworkParam(param);
 
             foreach (NvrInfo nvrInfo in serverApi.Nvr())
             {
@@ -59,28 +67,47 @@ namespace service
                 _cameraMap.Add(camera.id, cam);
             }
 
-            timer = new Timer(TimerCallback, this, 200, 200);
+            Task.Factory.StartNew(() =>
+            {
+                while (!_nvrMap.Values.All(nvr => nvr.Login()))
+                {
+                    Thread.Sleep(TimeSpan.FromSeconds(5));
+                }
+            });
+        }
+        
+        private void DisConnectCallBack(IntPtr LoginID, IntPtr DVRIP, int DVRPort, IntPtr dwUser)
+        {
+            try
+            {
+                var dvrIp = Marshal.PtrToStringAnsi(DVRIP);
+                Log.Info("NETClient.Disconnect callback {0} {1} {2}", LoginID, dvrIp, dwUser);
+                var ip = IPAddress.Parse(dvrIp);
+                var address = new IPEndPoint(ip, DVRPort);
+                var nvr = _nvrMap[address];
+                nvr?.Disconnected();
+            }
+            catch (Exception e)
+            {
+                Log.Error(e.ToString(), e);
+            }
         }
 
-        private void FDisconnectCallback(SDK_HANDLE LoginID, string DVRIP, int DVRPort, IntPtr dwUser)
+        private void ReConnectCallBack(IntPtr LoginID, IntPtr DVRIP, int DVRPort, IntPtr dwUser)
         {
-            Log.Info("Disconnect callback {0} {1} {2}", LoginID, DVRIP, dwUser);
-            var ip = IPAddress.Parse(DVRIP);
-            var address = new IPEndPoint(ip, DVRPort);
-            var nvr = _nvrMap[address];
-            nvr?.Disconnect();
-        }
-
-        private void TimerCallback(object state)
-        {
-            foreach (var nvr in _nvrMap.Values)
-                nvr.Check();
-        }
-
-        internal void StopTalk()
-        {
-            foreach (var nvr in _nvrMap.Values)
-                nvr.StopTalk();
+            try
+            {
+                var dvrIp = Marshal.PtrToStringAnsi(DVRIP);
+                Log.Info("NETClient.ReConnect callback {0} {1} {2}", LoginID, dvrIp, dwUser);
+                var ip = IPAddress.Parse(dvrIp);
+                var address = new IPEndPoint(ip, DVRPort);
+                var nvr = _nvrMap[address];
+                nvr?.Connected();
+            }
+            catch (Exception e)
+            {
+                Log.Error(e.ToString(), e);
+            }
         }
 
         internal void CloseSound()
@@ -94,7 +121,9 @@ namespace service
             var key = nvr.GetAddress();
             if (_nvrMap.ContainsKey(key))
             {
-                return _nvrMap[key];
+                var nvrController = _nvrMap[key];
+                _nvrMapById.Add(nvr.id, nvrController);
+                return nvrController;
             }
             else
             {
@@ -107,11 +136,11 @@ namespace service
 
         internal void Dispose()
         {
-            timer.Dispose();
             foreach (var nvr in _nvrMap.Values)
-                nvr.Disconnect(false);
+                nvr.Disconnect();
 
-            Log.Info("H264_DVR_Cleanup {0}", NetSDK.H264_DVR_Cleanup());
+            Log.Info("NETClient.Cleanup");
+            NETClient.Cleanup();
         }
 
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]

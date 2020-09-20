@@ -3,6 +3,7 @@ using model.camera;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace model.nvr
 {
@@ -10,34 +11,22 @@ namespace model.nvr
     {
         private NvrModel model;
         private List<CameraController> cameras;
-        private DateTime time;
+
+        private volatile bool connect;
+        private Task checker;
 
         public NvrController(NvrInfo nvr)
         {
-            time = DateTime.MinValue;
             model = new NvrModel(nvr);
             cameras = new List<CameraController>();
         }
 
 
-        internal void Check()
+        internal bool Login()
         {
-            lock (model)
-            {
-                if (model.LoginId > 0)
-                {
-                    foreach (var cam in cameras)
-                        cam.Check();
-                }
-                else
-                {
-                    if ((DateTime.Now - time).TotalSeconds > 10)
-                    {
-                        model.Login();
-                        time = DateTime.Now;
-                    }
-                }
-            }
+            var login = model.Login();
+            if (login) Connected();
+            return login;
         }
 
         internal CameraController Camera(CameraInfo info)
@@ -45,18 +34,6 @@ namespace model.nvr
             CameraController camera = new CameraController(model, info);
             cameras.Add(camera);
             return camera;
-        }
-
-        internal void StartTalk()
-        {
-            lock (model)
-                model.StartTalk();
-        }
-
-        internal void StopTalk()
-        {
-            lock (model)
-                model.StopTalk();
         }
 
         internal void CloseSound()
@@ -68,22 +45,38 @@ namespace model.nvr
 
         internal void Disconnect()
         {
-            Disconnect(true);
-        }
-
-        internal void Disconnect(bool full)
-        {
             lock (model)
             {
-                if (full)
-                {
-                    foreach (var cam in cameras)
-                        cam.Disconnect();
-                }
-
                 model.Logout();
-                time = DateTime.Now;
             }
+        }
+
+        public void Disconnected()
+        {
+            connect = false;
+            Task.WaitAll(checker);
+            checker = null;
+
+            lock (model)
+                foreach (var cam in cameras)
+                    cam.StopPlay();
+        }
+
+        public void Connected()
+        {
+            if (checker != null) return;
+
+            connect = true;
+            checker = Task.Factory.StartNew(() =>
+            {
+                while (connect)
+                {
+                    lock (model)
+                        foreach (var cam in cameras)
+                            cam.StartPlay();
+                    Thread.Sleep(500);
+                }
+            });
         }
     }
 }

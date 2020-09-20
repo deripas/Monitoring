@@ -2,6 +2,7 @@
 using System;
 using System.Threading;
 using System.Windows.Forms;
+using NetSDKCS;
 using SDK_HANDLE = System.Int32;
 
 namespace model.camera
@@ -11,12 +12,10 @@ namespace model.camera
         private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
 
         private CameraModel camera;
-        private NetSDK.fRealDataCallBack realDataCallBack;
-        private H264_DVR_CLIENTINFO info;
-        private volatile SDK_HANDLE playHandleId;
+        private IntPtr canvas;
+        private volatile IntPtr playHandleId;
         private bool sound;
-        private long ticks;
-        private long frames;
+        private EM_RealPlayType stream;
 
         public bool Sound
         {
@@ -28,110 +27,58 @@ namespace model.camera
 
         public int Stream
         {
-            get
-            {
-                return info.nStream;
-            }
-            set
-            {
-                info.nStream = value;
-            }
+            get => stream == EM_RealPlayType.Realplay_0 ? 0 : 1;
+            set => stream = value == 0 ? EM_RealPlayType.Realplay_0 : EM_RealPlayType.Realplay_1;
         }
 
         public bool StartedPlay
         {
             get
             {
-                return playHandleId > 0;
+                return playHandleId != IntPtr.Zero;
             }
         }
 
-        public DateTime LastUpdateTime
-        {
-            get
-            {
-                var t = Interlocked.Read(ref ticks);
-                return new DateTime(t);
-            }
-        }
-
+ 
         public CameraSreamModel(CameraModel camera, PictureBox canvas)
         {
             this.camera = camera;
-            Interlocked.Exchange(ref ticks, DateTime.MinValue.Ticks);
-            frames = 0;
-            info = new H264_DVR_CLIENTINFO
-            {
-                nChannel = camera.Channel,
-                nStream = 1,
-                nMode = 0,
-                hWnd = canvas.Handle
-            };
-        }
-
-        private int FRealDataCallBack(SDK_HANDLE lRealHandle, int dwDataType, IntPtr pBuffer, UInt32 lbufsize, IntPtr dwUser)
-        {
-            Interlocked.Exchange(ref ticks, DateTime.Now.Ticks);
-            Interlocked.Increment(ref frames);
-            return 1;
+            this.canvas = canvas.Handle;
+            stream = EM_RealPlayType.Realplay_1;
         }
 
         public void StartPlay()
         {
-            Log.Debug("{0}: start play live video", this);
-            if (playHandleId > 0)
+            if (playHandleId != IntPtr.Zero)
                 return;
 
-            frames = 0;
-            Interlocked.Exchange(ref ticks, DateTime.Now.Ticks);
-            playHandleId = NetSDK.H264_DVR_RealPlay(camera.LoginId, ref info);
-            if (playHandleId > 0)
+            Log.Debug("{0}: start play live video", this);
+            playHandleId = NETClient.StartRealPlay(camera.LoginId, camera.Channel, canvas, stream, null, null, IntPtr.Zero, 5000);
+            if (playHandleId != IntPtr.Zero)
             {
-                realDataCallBack = new NetSDK.fRealDataCallBack(FRealDataCallBack);
-                GC.KeepAlive(realDataCallBack);
-
-                Log.Info("{0}: H264_DVR_RealPlay - OK", this);
-                Log.Info("{0}: H264_DVR_SetRealDataCallBack - {1}", this, NetSDK.H264_DVR_SetRealDataCallBack(playHandleId, realDataCallBack, IntPtr.Zero));
+                Log.Info("{0}: NETClient.StartRealPlay - OK", this);
             }
             else
             {
-                var error = NetSDK.GetLastErrorCode();
-                Log.Info("{0}: H264_DVR_RealPlay -  FAIL {1}", this, error);
-                playHandleId = 0;
-                realDataCallBack = null;
-
-                if(error == "H264_DVR_INVALID_HANDLE")
-                {
-                    camera.Logout();
-                }
+                var error = NETClient.GetLastError();
+                Log.Info("{0}: NETClient.StartRealPlay -  FAIL {1}", this, error);
             }
-            Interlocked.Exchange(ref ticks, DateTime.Now.Ticks);
         }
 
         public void StopPlay()
         {
             camera.StopTalk();
-            if (playHandleId > 0)
+            if (playHandleId != IntPtr.Zero)
             {
-                Log.Debug("{0}: stop play live video", this);
-                Log.Info("{0}: H264_DVR_DelRealDataCallBack - {1}", this, NetSDK.H264_DVR_DelRealDataCallBack(playHandleId, realDataCallBack, IntPtr.Zero));
-                Log.Info("{0}: H264_DVR_StopRealPlay - {1}", this, NetSDK.H264_DVR_StopRealPlay(playHandleId, 0));
+                Log.Info("{0}: NETClient.StopRealPlay - {1}", this, NETClient.StopRealPlay(playHandleId));
+                playHandleId = IntPtr.Zero;
             }
-            playHandleId = 0;
-            realDataCallBack = null;
-            frames = 0;
-            Interlocked.Exchange(ref ticks, DateTime.MinValue.Ticks);
-        }
-
-        public void ResetTime()
-        {
-            Interlocked.Exchange(ref ticks, DateTime.Now.Ticks);
         }
 
         public void OpenSound()
         {
             Log.Debug("{0}: open sound", this);
-            Log.Info("{0}: H264_DVR_OpenSound - {1}", this, NetSDK.H264_DVR_OpenSound(playHandleId));
+            Log.Info("{0}: NETClient.OpenSound - {1}", this, NETClient.OpenSound(playHandleId));
             sound = true;
         }
 
@@ -140,7 +87,7 @@ namespace model.camera
             if (sound)
             {
                 Log.Debug("{0}: close sound", this);
-                Log.Info("{0}: H264_DVR_CloseSound - {1}", this, NetSDK.H264_DVR_CloseSound(playHandleId));
+                Log.Info("{0}: NETClient.CloseSound - {1}", this, NETClient.CloseSound());
                 sound = false;
             }
         }
@@ -148,6 +95,12 @@ namespace model.camera
         public override string ToString()
         {
             return camera.ToString();
+        }
+
+        public void Disconnected()
+        {
+            playHandleId = IntPtr.Zero;
+            sound = false;
         }
     }
 }

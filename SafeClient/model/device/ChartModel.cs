@@ -10,5 +10,8 @@ namespace model.device
         public DateTime From { get; set; }
         public DateTime To { get; set; }
         public DateTime Alert { get; set; }
+        public double Value { get; set; }
+
+        public bool IsEmpty => X.Count == 0 || Y.Count == 0;
     }
 }

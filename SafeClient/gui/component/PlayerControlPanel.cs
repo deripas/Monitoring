@@ -10,8 +10,6 @@ namespace gui
         public event Action<bool> SoundEvent;
         public event Action Slow;
         public event Action Fast;
-        public event Action NextFrame;
-        public event Action PrevFrame;
         public event Action NextFile;
 
         public bool Sound
@@ -45,8 +43,6 @@ namespace gui
             checkBoxPause.Enabled = running && Pause != null;
             buttonFast.Enabled = running && Fast != null;
             buttonSlow.Enabled = running && Slow != null;
-            buttonNextFrame.Enabled = running && NextFrame != null;
-            buttonPrevFrame.Enabled = running && PrevFrame != null;
             buttonNext.Enabled = running && NextFile != null;
             checkBoxSound.Enabled = running && SoundEvent != null;
         }
@@ -98,16 +94,6 @@ namespace gui
         private void checkBoxPause_CheckedChanged(object sender, EventArgs e)
         {
             Pause?.Invoke(checkBoxPause.Checked);
-        }
-
-        private void buttonPrevFrame_Click(object sender, EventArgs e)
-        {
-            PrevFrame?.Invoke();
-        }
-
-        private void buttonNextFrame_Click(object sender, EventArgs e)
-        {
-            NextFrame?.Invoke();
         }
 
         private void checkBoxSound_CheckedChanged(object sender, EventArgs e)

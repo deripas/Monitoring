@@ -7,7 +7,10 @@ using service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NetSDKCS;
 using SDK_HANDLE = System.Int32;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace model.camera
 {
@@ -20,14 +23,8 @@ namespace model.camera
         private Dictionary<ICameraView, CameraSreamModel> streams;
 
         public double Ratio {
-            get
-            {
-                return model.Ratio;
-            }
-            set
-            {
-                model.Ratio = value;
-            }
+            get => model.Ratio;
+            set => model.Ratio = value;
         }
 
         public bool Selected
@@ -86,30 +83,14 @@ namespace model.camera
             }
         }
 
-        internal List<VideoFileModel> SearchVideoFiles(DateTime day, FileAlertType type)
-        {
-            var result = new List<VideoFileModel>();
-            if (type.HasFlag(FileAlertType.Alarm))
-                result.AddRange(SearchVideoFiles(day, FileType.SDK_RECORD_ALARM));
-            if (type.HasFlag(FileAlertType.Detect))
-                result.AddRange(SearchVideoFiles(day, FileType.SDK_RECORD_DETECT));
-            if (type.HasFlag(FileAlertType.Regular))
-                result.AddRange(SearchVideoFiles(day, FileType.SDK_RECORD_REGULAR));
-            if (type.HasFlag(FileAlertType.Manual))
-                result.AddRange(SearchVideoFiles(day, FileType.SDK_RECORD_MANUAL));
-            
-            result.Sort((x, y) => DateTime.Compare(x.BeginTime, y.BeginTime)); 
-            return result;
-        }
-
-        internal List<VideoFileModel> SearchVideoFiles(DateTime day, FileType type)
+        internal List<VideoFileModel> SearchVideoFiles(DateTime day, EM_QUERY_RECORD_TYPE type)
         {
             DateTime from = day.Date.AddSeconds(1);
             DateTime to = day.Date.AddDays(1).AddSeconds(-1);
             return SearchVideoFiles(from, to, type);
         }
 
-        internal List<VideoFileModel> SearchVideoFiles(DateTime from, DateTime to, FileType type)
+        internal List<VideoFileModel> SearchVideoFiles(DateTime from, DateTime to, EM_QUERY_RECORD_TYPE type)
         {
             return model.SearchVideoFiles(from, to, type);
         }
@@ -127,7 +108,6 @@ namespace model.camera
         internal void OpenSound(CameraViewPanel view)
         {
             DI.Instance.CameraService.CloseSound();
-            DI.Instance.CameraService.StopTalk();
             streams[view]?.OpenSound();
         }
 
@@ -145,18 +125,6 @@ namespace model.camera
         internal bool Talk()
         {
             return model.Talk;
-        }
-
-        internal void StartTalk()
-        {
-            DI.Instance.CameraService.CloseSound();
-            DI.Instance.CameraService.StopTalk();
-            model.StartTalk();
-        }
-
-        internal void StopTalk()
-        {
-            model.StopTalk();
         }
 
         internal void SetStream(CameraViewPanel view, int streamNum)
@@ -179,63 +147,43 @@ namespace model.camera
             return streams[view].Stream;
         }
 
-        internal void Disconnect()
-        {
-            Log.Debug("{0}: disconnect", model);
-
-            foreach (var kv in streams)
-                StopPlay(kv);
-        }
-
-        private void StopPlay(KeyValuePair<ICameraView, CameraSreamModel> kv)
-        {
-            kv.Value.StopPlay();
-            kv.Key.Canvas.Invalidate();
-        }
-
-        internal void Check()
-        {
-            lock (streams)
-            {
-                foreach (var kv in streams)
-                {
-                    var stream = kv.Value;
-                    lock (stream)
-                    {
-                        if (!stream.StartedPlay)
-                        {
-                            if ((DateTime.Now - stream.LastUpdateTime).TotalSeconds > 5)
-                            {
-                                stream.StartPlay();
-                            }
-                        }
-                        else
-                        {
-                            if ((DateTime.Now - stream.LastUpdateTime).TotalSeconds > 15)
-                            {
-                                Log.Warn("{0} Freeze detect! ", stream);
-                                StopPlay(kv);
-                                stream.ResetTime();
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        internal void Ptz(PTZ_ControlType cmd, bool stop)
+        internal void Ptz(EM_EXTPTZ_ControlType cmd, bool stop)
         {
             model.Ptz(cmd, stop, 4);
         }
 
         internal void Preset(int val)
         {
-            model.Ptz(PTZ_ControlType.EXTPTZ_POINT_MOVE_CONTROL, true, val);
+            model.Ptz(EM_EXTPTZ_ControlType.POINT_MOVE_CONTROL, false, val);
         }
 
         public override string ToString()
         {
             return model.Name;
+        }
+
+        public void StopPlay()
+        {
+            lock (streams)
+            {
+                foreach (var kv in streams)
+                {
+                    kv.Value.StopPlay();
+                    kv.Value.Disconnected();
+                    kv.Key.Canvas.Invalidate();
+                }
+            }
+        }
+
+        public void StartPlay()
+        {
+            lock (streams)
+            {
+                foreach (var kv in streams)
+                {
+                    kv.Value.StartPlay();
+                }
+            }
         }
     }
 }

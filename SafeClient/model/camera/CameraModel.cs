@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Web.ApplicationServices;
+using NetSDKCS;
 using SDK_HANDLE = System.Int32;
 
 namespace model.camera
@@ -35,7 +36,7 @@ namespace model.camera
             }
         }
 
-        public SDK_HANDLE LoginId
+        public IntPtr LoginId
         {
             get
             {
@@ -82,10 +83,10 @@ namespace model.camera
             nvr.Logout();
         }
 
-        internal void Ptz(PTZ_ControlType cmd, bool stop, int speed)
+        internal void Ptz(EM_EXTPTZ_ControlType cmd, bool stop, int speed)
         {
-            var result = NetSDK.H264_DVR_PTZControl(LoginId, Channel, cmd, stop, speed);
-            Log.Debug("{0}: H264_DVR_PTZControl cmd={1} value={2} {3}", this, cmd, speed, result);
+            var result = NETClient.PTZControl(LoginId, Channel, cmd, 0, speed, 0, stop,  IntPtr.Zero);
+            Log.Debug("{0}: NETClient.PTZControl cmd={1} value={2} {3}", this, cmd, speed, result);
         }
 
         public override string ToString()
@@ -93,81 +94,46 @@ namespace model.camera
             return "cam(" + nvr.Ip + " #" + (Channel + 1) + ")";
         }
 
-        private H264_DVR_TIME ToDvrTime(DateTime t)
+        internal List<VideoFileModel> SearchVideoFiles(DateTime from, DateTime to, EM_QUERY_RECORD_TYPE type)
         {
-            H264_DVR_TIME time = new H264_DVR_TIME();
-            time.dwYear = t.Year;
-            time.dwMonth = t.Month;
-            time.dwDay = t.Day;
-            time.dwHour = t.Hour;
-            time.dwMinute = t.Minute;
-            time.dwSecond = t.Second;
-            return time;
+            return SearchVideoFilesBatch(from, to, type);
         }
 
-        internal List<VideoFileModel> SearchVideoFiles(DateTime from, DateTime to, FileType type)
+        private List<VideoFileModel> SearchVideoFilesBatch(DateTime from, DateTime to, EM_QUERY_RECORD_TYPE fileType)
         {
-            var result = new List<VideoFileModel>();
-            List<VideoFileModel> sub;
-            do
-            {
-                sub = SearchVideoFilesBatch(from, to, type);
-                result.AddRange(sub);
-
-                if (sub.Count > 0) from = sub.Last().EndTime;
-            } while (sub.Count == 64);
-            return result;
+            int fileCount = 0;
+            NET_RECORDFILE_INFO[] recordFileArray = new NET_RECORDFILE_INFO[5000];
+            bool ret = QueryFile(from, to, fileType, ref recordFileArray, ref fileCount);
+            Log.Debug("{0}: NETClient.QueryRecordFile code={1}, count={2}", this, ret, fileCount);
+            return ToList(recordFileArray, fileCount);
         }
 
-        private List<VideoFileModel> SearchVideoFilesBatch(DateTime from, DateTime to, FileType fileType)
+        private bool QueryFile(DateTime startTime, DateTime endTime, EM_QUERY_RECORD_TYPE nRecordFileType, ref NET_RECORDFILE_INFO[] infos ,ref int fileCount)
         {
-            var info = new H264_DVR_FINDINFO();
-            info.nChannelN0 = Channel;
-            info.nFileType = (int)fileType;
-            info.startTime = ToDvrTime(from);
-            info.endTime = ToDvrTime(to);
-
-            int nMaxLen = 64;
             int waitTime = 5000;
-            int nNum = 0;
-
-            IntPtr ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(H264_DVR_FILE_DATA)) * nMaxLen);
-            try
-            {
-                int ret = NetSDK.H264_DVR_FindFile(LoginId, ref info, ptr, nMaxLen, out nNum, waitTime);
-                Log.Debug("{0}: H264_DVR_FindFile code={1}, count={2}", this, ret, nNum);
-                return ToList(ptr, nNum, fileType);
-            }
-            finally
-            {
-                Marshal.FreeHGlobal(ptr);
-            }
+            //set stream type 设置码流类型
+            EM_STREAM_TYPE streamType = EM_STREAM_TYPE.MAIN;
+            IntPtr pStream = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(int)));
+            Marshal.StructureToPtr((int)streamType, pStream, true);
+            NETClient.SetDeviceMode(LoginId, EM_USEDEV_MODE.RECORD_STREAM_TYPE, pStream);
+            //query record file 查询录像文件
+            return NETClient.QueryRecordFile(LoginId, Channel, nRecordFileType, startTime, endTime, null, ref infos, ref fileCount, waitTime, false);
         }
 
-        private List<VideoFileModel> ToList(IntPtr ptr, int nNum, FileType fileType)
+
+        private List<VideoFileModel> ToList(NET_RECORDFILE_INFO[] recordFileArray, int fileCount)
         {
             var result = new List<VideoFileModel>();
-            for (int index = 0; index < nNum; index++)
+            for (int index = 0; index < fileCount; index++)
             {
-                unsafe
-                {
-                    int* pDev = (int*)ptr.ToPointer();
-                    pDev += Marshal.SizeOf(typeof(H264_DVR_FILE_DATA)) * index / 4;
-                    IntPtr ptrTemp = new IntPtr(pDev);
-                    var file = (H264_DVR_FILE_DATA)Marshal.PtrToStructure(ptrTemp, typeof(H264_DVR_FILE_DATA));
-                    result.Add(new VideoFileModel(this, file, fileType));
-                }
+                result.Add(new VideoFileModel(this, recordFileArray[index]));
             }
             return result;
         }
 
         internal VideoTimeRangeModel SearchVideo(DateTime from, DateTime to)
         {
-            var info = new H264_DVR_FINDINFO();
-            info.nChannelN0 = Channel;
-            info.startTime = ToDvrTime(from);
-            info.endTime = ToDvrTime(to);
-            return new VideoTimeRangeModel(this, info);
+            return new VideoTimeRangeModel(this, from, to);
         }
     }
 }

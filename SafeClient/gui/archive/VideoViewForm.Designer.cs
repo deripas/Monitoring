@@ -47,6 +47,7 @@
             // 
             // videoPlayerPanel1
             // 
+            this.videoPlayerPanel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.videoPlayerPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.videoPlayerPanel1.Location = new System.Drawing.Point(0, 0);
             this.videoPlayerPanel1.Name = "videoPlayerPanel1";
@@ -88,10 +89,10 @@
 
         }
 
-        #endregion
-
-        private VideoPlayerPanel videoPlayerPanel1;
-        private SearchVideoFileHistoryPanel searchVideoFileHistoryPanel1;
+        private gui.SearchVideoFileHistoryPanel searchVideoFileHistoryPanel1;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private gui.VideoPlayerPanel videoPlayerPanel1;
+
+        #endregion
     }
 }

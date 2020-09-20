@@ -29,6 +29,11 @@ namespace gui
             }
         }
 
+        public void RefreshCanvas()
+        {
+            BeginInvoke((Action)(() => Canvas.Refresh()));
+        }
+
         public event Action NextFile
         {
             add
@@ -104,7 +109,12 @@ namespace gui
 
             ChartArea.AxisX.Minimum = chart.From.ToOADate();
             ChartArea.AxisX.Maximum = chart.To.ToOADate();
-            Series.Points.DataBindXY(chart.X, chart.Y);
+
+            Series.XValueType = ChartValueType.DateTime;
+            if (chart.IsEmpty)
+                Series.Points.AddXY(chart.Alert.ToOADate(), chart.Value);
+            else
+                Series.Points.DataBindXY(chart.X, chart.Y);
         }
 
         internal void Start()

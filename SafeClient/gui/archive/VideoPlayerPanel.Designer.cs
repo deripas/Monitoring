@@ -22,9 +22,9 @@
 
         #region Код, автоматически созданный конструктором компонентов
 
-        /// <summary> 
-        /// Требуемый метод для поддержки конструктора — не изменяйте 
-        /// содержимое этого метода с помощью редактора кода.
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
@@ -37,22 +37,22 @@
             // 
             // canvasPanel1
             // 
+            this.canvasPanel1.BackColor = System.Drawing.Color.Black;
             this.canvasPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.canvasPanel1.Location = new System.Drawing.Point(0, 0);
             this.canvasPanel1.Name = "canvasPanel1";
             this.canvasPanel1.Ratio = 0.75D;
             this.canvasPanel1.Selected = false;
-            this.canvasPanel1.Size = new System.Drawing.Size(1226, 592);
+            this.canvasPanel1.Size = new System.Drawing.Size(1226, 596);
             this.canvasPanel1.TabIndex = 0;
             // 
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(28, 28);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.speedLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 707);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.speedLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 711);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1226, 39);
+            this.statusStrip1.Size = new System.Drawing.Size(1226, 35);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -65,11 +65,12 @@
             // playerNavigationPanel1
             // 
             this.playerNavigationPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.playerNavigationPanel1.Location = new System.Drawing.Point(0, 592);
+            this.playerNavigationPanel1.Location = new System.Drawing.Point(0, 596);
             this.playerNavigationPanel1.Name = "playerNavigationPanel1";
             this.playerNavigationPanel1.Size = new System.Drawing.Size(1226, 115);
             this.playerNavigationPanel1.TabIndex = 3;
             this.playerNavigationPanel1.VideoPlayer = null;
+            this.playerNavigationPanel1.VisibleTrackBar = true;
             // 
             // VideoPlayerPanel
             // 
@@ -84,14 +85,13 @@
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
-        #endregion
-
-        private CanvasPanel canvasPanel1;
-        private System.Windows.Forms.StatusStrip statusStrip1;
+        private gui.CanvasPanel canvasPanel1;
+        private gui.PlayerNavigationPanel playerNavigationPanel1;
         private System.Windows.Forms.ToolStripStatusLabel speedLabel;
-        private PlayerNavigationPanel playerNavigationPanel1;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+
+        #endregion
     }
 }

@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using model.camera;
 using model.video;
+using NetSDKCS;
 using service;
 
 namespace gui
@@ -56,7 +57,6 @@ namespace gui
             var cameras = DI.Instance.CameraService.CameraList;
             cameraComboBox.Items.Clear();
             cameraComboBox.Items.AddRange(cameras.ToArray());
-            cameraComboBox.SelectedItem = cam ?? cameras[0];
         }
 
         internal void NextItem()
@@ -64,31 +64,21 @@ namespace gui
             videoFileList1.NextItem();
         }
 
-        private FileAlertType calcFileType()
-        {
-            FileAlertType type = FileAlertType.None;
-            if (alarmCheckBox.Checked)
-                type |= FileAlertType.Alarm;
-            if (regularCheckBox.Checked)
-                type |= FileAlertType.Regular;
-            if (detectCheckBox.Checked)
-                type |= FileAlertType.Detect;
-            if (manualCheckBox.Checked)
-                type |= FileAlertType.Manual;
-            return type;
-        }
-
-        private void findButton_Click(object sender, System.EventArgs e)
+        private void Search()
         {
             var cam = (CameraController)cameraComboBox.SelectedItem;
-            FileAlertType type = calcFileType();
-            var video = cam.SearchVideoFiles(dateTimePicker1.Value.Date, type);
+            var video = cam.SearchVideoFiles(dateTimePicker1.Value.Date, EM_QUERY_RECORD_TYPE.ALL);
             if (video.Count == 0)
             {
-                MessageBox.Show("not found");
+                MessageBox.Show("Не найдено");
                 return;
             }
             videoFileList1.Items = video;
+        }
+
+        private void cameraComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Search();
         }
     }
 }

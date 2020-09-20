@@ -94,6 +94,7 @@ namespace gui
                     var cam = DI.Instance.CameraService[camId];
                     viewControl.Ratio = cam.Ratio;
                     viewControl.StartPlay(cam);
+                    Application.DoEvents();
                 }
                 else
                 {

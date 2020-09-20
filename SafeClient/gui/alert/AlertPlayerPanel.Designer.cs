@@ -22,9 +22,9 @@
 
         #region Код, автоматически созданный конструктором компонентов
 
-        /// <summary> 
-        /// Требуемый метод для поддержки конструктора — не изменяйте 
-        /// содержимое этого метода с помощью редактора кода.
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
@@ -38,8 +38,8 @@
             this.playerNavigationPanel1 = new gui.PlayerNavigationPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -48,11 +48,10 @@
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(28, 28);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.speedLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 714);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.speedLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 718);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1233, 39);
+            this.statusStrip1.Size = new System.Drawing.Size(1233, 35);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -81,29 +80,31 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(1233, 245);
+            this.chart1.Size = new System.Drawing.Size(1233, 247);
             this.chart1.TabIndex = 6;
             this.chart1.Text = "chart1";
             this.chart1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.chart1_MouseDown);
             // 
             // canvasPanel1
             // 
+            this.canvasPanel1.BackColor = System.Drawing.Color.Black;
             this.canvasPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.canvasPanel1.Location = new System.Drawing.Point(0, 0);
             this.canvasPanel1.Name = "canvasPanel1";
             this.canvasPanel1.Ratio = 0.75D;
             this.canvasPanel1.Selected = false;
-            this.canvasPanel1.Size = new System.Drawing.Size(1233, 350);
+            this.canvasPanel1.Size = new System.Drawing.Size(1233, 352);
             this.canvasPanel1.TabIndex = 5;
             // 
             // playerNavigationPanel1
             // 
             this.playerNavigationPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.playerNavigationPanel1.Location = new System.Drawing.Point(0, 599);
+            this.playerNavigationPanel1.Location = new System.Drawing.Point(0, 603);
             this.playerNavigationPanel1.Name = "playerNavigationPanel1";
             this.playerNavigationPanel1.Size = new System.Drawing.Size(1233, 115);
             this.playerNavigationPanel1.TabIndex = 4;
             this.playerNavigationPanel1.VideoPlayer = null;
+            this.playerNavigationPanel1.VisibleTrackBar = true;
             // 
             // splitContainer1
             // 
@@ -119,8 +120,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.chart1);
-            this.splitContainer1.Size = new System.Drawing.Size(1233, 599);
-            this.splitContainer1.SplitterDistance = 350;
+            this.splitContainer1.Size = new System.Drawing.Size(1233, 603);
+            this.splitContainer1.SplitterDistance = 352;
             this.splitContainer1.TabIndex = 7;
             // 
             // AlertPlayerPanel
@@ -134,23 +135,22 @@
             this.Size = new System.Drawing.Size(1233, 753);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.chart1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
-        #endregion
-
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel speedLabel;
-        private PlayerNavigationPanel playerNavigationPanel1;
-        private CanvasPanel canvasPanel1;
+        private gui.CanvasPanel canvasPanel1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private gui.PlayerNavigationPanel playerNavigationPanel1;
+        private System.Windows.Forms.ToolStripStatusLabel speedLabel;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+
+        #endregion
     }
 }

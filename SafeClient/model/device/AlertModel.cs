@@ -2,6 +2,7 @@
 using model.camera;
 using model.video;
 using System;
+using System.Configuration;
 using SDK_HANDLE = System.Int32;
 
 namespace model.device
@@ -20,6 +21,13 @@ namespace model.device
             get
             {
                 return info.GetDateTime();
+            }
+        }        
+        public double Value
+        {
+            get
+            {
+                return info.value;
             }
         }
         public bool Processed
@@ -50,8 +58,13 @@ namespace model.device
             return String.Format("[{0:HH:mm:ss}]", Time);
         }
 
-        internal VideoTimeRangeModel Video(DateTime from, DateTime to)
+        public VideoTimeRangeModel Video()
         {
+            int AlertBeforeSec = int.Parse(ConfigurationManager.AppSettings["alert.before.sec"]);
+            int AlertAfterSec = int.Parse(ConfigurationManager.AppSettings["alert.after.sec"]);
+
+            DateTime from = Time.AddSeconds(-AlertBeforeSec);
+            DateTime to = Time.AddSeconds(AlertAfterSec);
             return Camera.SearchVideo(from, to);
         }
     }

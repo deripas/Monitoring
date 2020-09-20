@@ -109,11 +109,11 @@
     <Compile Include="api\dto\NvrInfo.cs" />
     <Compile Include="api\dto\PointD.cs" />
     <Compile Include="api\dto\SensorStatus.cs" />
-    <Compile Include="api\FFmpeg.cs" />
-    <Compile Include="api\H264.cs" />
     <Compile Include="api\impl\RestServerApi.cs" />
     <Compile Include="api\IServerApi.cs" />
-    <Compile Include="api\NetSDK.cs" />
+    <Compile Include="api\sdk\NetSDK.cs" />
+    <Compile Include="api\sdk\NetSDKStruct.cs" />
+    <Compile Include="api\sdk\OriginalSDK.cs" />
     <Compile Include="gui\device\DeviceEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -330,7 +330,6 @@
     <Compile Include="model\nvr\NvrModel.cs" />
     <Compile Include="model\video\FileAlertType.cs" />
     <Compile Include="model\video\IVideoPlayerView.cs" />
-    <Compile Include="model\video\VideoFileDownloader.cs" />
     <Compile Include="model\video\VideoFileModel.cs" />
     <Compile Include="model\video\VideoFilePlayer.cs" />
     <Compile Include="model\video\VideoPlayBackSource.cs" />
@@ -504,6 +503,5 @@
     <None Include="Resources\bar.png" />
     <None Include="Resources\splash.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

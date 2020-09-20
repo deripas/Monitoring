@@ -55,7 +55,7 @@ namespace gui
         private VideoFilePlayer player;
 
         private DateTime lastScrollTime;
-        private float lastScrollVal;
+        private double lastScrollVal;
 
         public PlayerNavigationPanel()
         {
@@ -68,8 +68,6 @@ namespace gui
             playerControlPanel1.Pause += PlayerControlPanel1_Pause;
             playerControlPanel1.Slow += PlayerControlPanel1_Slow;
             playerControlPanel1.Fast += PlayerControlPanel1_Fast;
-            playerControlPanel1.NextFrame += PlayerControlPanel1_NextFrame;
-            playerControlPanel1.PrevFrame += PlayerControlPanel1_PrevFrame;
             playerControlPanel1.SoundEvent += PlayerControlPanel1_Sound;
         }
 
@@ -79,20 +77,6 @@ namespace gui
                 StatusText?.Invoke("");
             else
                 StatusText?.Invoke("Скорость: " + player.Speed);
-        }
-
-        private void PlayerControlPanel1_PrevFrame()
-        {
-            if (player == null) return;
-
-            player.PrevFrame();
-        }
-
-        private void PlayerControlPanel1_NextFrame()
-        {
-            if (player == null) return;
-
-            player.NextFrame();
         }
 
         private void PlayerControlPanel1_Sound(bool sound)
@@ -123,6 +107,7 @@ namespace gui
             if (player == null) return;
 
             player.Pause = pause;
+            UpdateSpeedText();
         }
 
         private void PlayerControlPanel1_Play(bool run)
@@ -141,6 +126,7 @@ namespace gui
                 timerPlayBack.Stop();
                 playerControlPanel1.Reset();
             }
+            UpdateSpeedText();
         }
 
         private void timerPlayBack_Tick(object sender, EventArgs e)
@@ -154,6 +140,7 @@ namespace gui
                 player.SetPlayPos(lastScrollVal);
                 lastScrollVal = -1;
                 lastScrollTime = DateTime.Now;
+                UpdateSpeedText();
             }
             else
             {
@@ -163,6 +150,9 @@ namespace gui
                 {
                     trackBar1.Value = pos;
                     ProgressChange?.Invoke((double) trackBar1.Value / trackBar1.Maximum);
+
+                    if (pos == max)
+                        playerControlPanel1.DoNextFile();
                 }
             }
         }

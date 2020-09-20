@@ -1,6 +1,7 @@
 ﻿using api;
 using System;
 using System.Threading;
+using NetSDKCS;
 using SDK_HANDLE = System.Int32;
 
 namespace model.video
@@ -9,6 +10,14 @@ namespace model.video
     {
         private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
 
+        private const double MAXSPEED = 16;
+        private const double MINSPEED = 0.0625; // 1/16
+        
+        private NET_TIME m_OsdTime = new NET_TIME();
+        private NET_TIME m_OsdStartTime = new NET_TIME();
+        private NET_TIME m_OsdEndTime = new NET_TIME();
+        private double m_CurrentSpeed;
+        
         public bool Pause
         {
             get
@@ -20,30 +29,21 @@ namespace model.video
                 pause = value;
                 if (pause)
                 {
-                    PlayBackControl(PlayBackAction.SDK_PLAY_BACK_PAUSE, 0);
+                    PlayBackControl(PlayBackType.Pause);
                 }
                 else
                 {
-                    PlayBackControl(PlayBackAction.SDK_PLAY_BACK_CONTINUE, 0);
-                    PlayBackControl(PlayBackAction.SDK_PLAY_BACK_FAST, 0);
-                    speed = 0;
+                    SetPlayPos(GetPlayPos());
+                    //PlayBackControl(PlayBackType.Play);
                 }
             }
         }
 
-        public int Speed
+        public string Speed
         {
             get
             {
-                return speed;
-            }
-            set
-            {
-                speed = (value >= -4) && (value <= 4) ? value : speed;
-                if (speed >= 0)
-                    PlayBackControl(PlayBackAction.SDK_PLAY_BACK_FAST, speed);
-                else
-                    PlayBackControl(PlayBackAction.SDK_PLAY_BACK_SLOW, -speed);
+                return speedText;
             }
         }
 
@@ -66,100 +66,139 @@ namespace model.video
         private IVideoPlayerView view;
         private VideoPlayBackSource source;
 
-        private SDK_HANDLE playHandleId;
+        private IntPtr m_PlayBackID;
         private bool sound;
         private bool pause;
-        private int speed;
+        private string speedText;
 
         public VideoFilePlayer(IVideoPlayerView view, VideoPlayBackSource source)
         {
             this.view = view;
             this.source = source;
-            playHandleId = -1;
+            m_PlayBackID = IntPtr.Zero;
         }
 
         public void Start()
         {
-            playHandleId = source.Play(view.Canvas.Handle);
-            if (playHandleId < 0) Stop();
+            Start(source.BeginTime, source.EndTime);
+        }
+        
+        public void Start(DateTime startTime, DateTime endTime)
+        {
+            Stop();
+            m_OsdTime = NET_TIME.FromDateTime(startTime);
+            m_PlayBackID = source.Play(view.Canvas.Handle, startTime, endTime);
+            ShowSpeed(PlayBackType.Normal);
+            if (Pause)            
+                PlayBackControl(PlayBackType.Pause);
         }
 
         public void Stop()
         {
-            if (playHandleId >= 0)
-                Log.Info("{0}: H264_DVR_StopPlayBack - {1}", this, NetSDK.H264_DVR_StopPlayBack(playHandleId));
+            if (m_PlayBackID != IntPtr.Zero)
+                Log.Info("{0}: NETClient.PlayBackControl STOP - {1}", this, NETClient.PlayBackControl(m_PlayBackID, PlayBackType.Stop));
             sound = false;
-            playHandleId = -1;
+            m_PlayBackID = IntPtr.Zero;
         }
 
-        private void PlayBackControl(PlayBackAction cmd, int val)
+        private void PlayBackControl(PlayBackType cmd)
         {
-            if (playHandleId >= 0)
-                Log.Info("{0}: H264_DVR_PlayBackControl {1}({2}) - {3}", this, cmd, val, NetSDK.H264_DVR_PlayBackControl(playHandleId, cmd, val));
+            if (m_PlayBackID != IntPtr.Zero)
+            {
+                Log.Info("{0}: NETClient.PlayBackControl {1} - {2}", this, cmd, NETClient.PlayBackControl(m_PlayBackID, cmd));
+                ShowSpeed(cmd);
+            }
         }
 
         public void Slow()
         {
-            Speed--;
+            if (m_CurrentSpeed > MINSPEED)
+                PlayBackControl(PlayBackType.Slow);
         }
 
         public void Fast()
         {
-            Speed++;
-        }
-
-        public void NextFrame()
-        {
-            float pos = GetPlayPos();
-            int p = Convert.ToInt32(pos * 100);
-            PlayBackControl(PlayBackAction.SDK_PLAY_BACK_SEEK_PERCENT, Math.Min(p + 1, 100));
-        }
-
-        public void PrevFrame()
-        {
-            float pos = GetPlayPos();
-            int p = Convert.ToInt32(pos * 100);
-            PlayBackControl(PlayBackAction.SDK_PLAY_BACK_SEEK_PERCENT, Math.Max(p - 1, 0));
+            if (m_CurrentSpeed < MAXSPEED)
+                PlayBackControl(PlayBackType.Fast);
         }
 
         public void OpenSound()
         {
-            if (playHandleId >= 0)
-                Log.Info("{0}: H264_DVR_OpenSound - {1}", this, NetSDK.H264_DVR_OpenSound(playHandleId));
+            if (m_PlayBackID != IntPtr.Zero)
+                Log.Info("{0}: NETClient.OpenSound - {1}", this, NETClient.OpenSound(m_PlayBackID));
 
             sound = true;
         }
 
         public void CloseSound()
         {
-            if (playHandleId >= 0)
-                Log.Info("{0}: H264_DVR_CloseSound - {1}", this, NetSDK.H264_DVR_CloseSound(playHandleId));
+            if (m_PlayBackID != IntPtr.Zero)
+                Log.Info("{0}: NETClient.CloseSound - {1}", this, NETClient.CloseSound());
 
             sound = false;
         }
 
-        public void SetPlayPos(float pos)
+        public void SetPlayPos(double pos)
         {
-            if (playHandleId >= 0)
-            {
-                var result = NetSDK.H264_DVR_SetPlayPos(playHandleId, pos);
-                if(result)
-                    Log.Info("{0}: H264_DVR_SetPlayPos {1} - OK", this, pos);
-                else
-                    Log.Info("{0}: H264_DVR_SetPlayPos {1} - FAIL {2}", this, pos, NetSDK.GetLastErrorCode());
-            }
+            if (m_PlayBackID == IntPtr.Zero)
+                return;
+
+            var sec = (source.EndTime - source.BeginTime).TotalSeconds * pos;
+            Start(source.BeginTime.AddSeconds(sec), source.EndTime);
         }
 
-        public float GetPlayPos()
+        public double GetPlayPos()
         {
-            if (playHandleId < 0) return 0;
-            float pos = NetSDK.H264_DVR_GetPlayPos(playHandleId);
+            if (m_PlayBackID == IntPtr.Zero) return 0;
+            
+            NETClient.GetPlayBackOsdTime(m_PlayBackID, ref m_OsdTime, ref m_OsdStartTime, ref m_OsdEndTime);
+            var osd = m_OsdTime.ToDateTime();
+            if (osd <= source.BeginTime || osd > source.EndTime) return 0;
+            
+            var pos = (osd - source.BeginTime).TotalSeconds / (source.EndTime - source.BeginTime).TotalSeconds;
+
+            if (pos > 0.99 && (source.EndTime - osd).TotalSeconds <= 1) return 1;
             return pos;
+        }
+        
+        private void ShowSpeed(PlayBackType mode)
+        {
+            switch (mode)
+            {
+                case PlayBackType.Slow:
+                    m_CurrentSpeed /= 2;
+                    break;
+                case PlayBackType.Stop:
+                    m_CurrentSpeed = 0;
+                    break;
+                case PlayBackType.Normal:
+                    m_CurrentSpeed = 1;
+                    break;
+                case PlayBackType.Fast:
+                    m_CurrentSpeed *= 2;
+                    break;
+                default:
+                    break;
+            }
+            if (mode == PlayBackType.Pause || m_CurrentSpeed == 0)
+            {
+                speedText = "";
+                return;
+            }
+            if (m_CurrentSpeed < 1 && m_CurrentSpeed > 0)
+            {
+                int i = (int)(1 / m_CurrentSpeed);
+                speedText = $"1/{i}X";
+            }
+            else
+            {
+                speedText = m_CurrentSpeed + "X";
+            }
         }
 
         public override string ToString()
         {
-            return source.ToString() + " player";
+            return source + " player";
         }
     }
 }

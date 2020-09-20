@@ -40,6 +40,19 @@ namespace Server.Api
             return db.Nvr.ToList();
         }
 
+        [HttpPost]
+        [Route("alert")]
+        public void AlertCreate(String device)
+        {
+            using var db = new DatabaseService();
+            Alert alert = new Alert();
+            alert.device = int.Parse(device);
+            alert.time = DateTime.Now;
+            alert.value = 0;
+            db.Alert.Add(alert);
+            db.SaveChanges();
+        }
+
         [HttpGet]
         [Route("alert")]
         public List<Alert> Alert(String device, String from, String to)

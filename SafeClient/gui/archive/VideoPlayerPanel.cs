@@ -66,5 +66,10 @@ namespace gui
         {
             playerNavigationPanel1.Stop();
         }
+
+        public void RefreshCanvas()
+        {
+            BeginInvoke((Action)(() => Canvas.Refresh()));
+        }
     }
 }

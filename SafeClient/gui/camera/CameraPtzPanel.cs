@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using api;
 using model.camera;
+using NetSDKCS;
 
 namespace gui
 {
@@ -24,190 +25,190 @@ namespace gui
         private void button1_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;
-            camera?.Ptz(PTZ_ControlType.PAN_LEFTTOP, false);
+            camera?.Ptz(EM_EXTPTZ_ControlType.LEFTTOP, false);
         }
 
         private void button1_MouseLeave(object sender, EventArgs e)
         {
             if (mouseDown)
-                camera?.Ptz(PTZ_ControlType.PAN_LEFTTOP, true);
+                camera?.Ptz(EM_EXTPTZ_ControlType.LEFTTOP, true);
             mouseDown = false;
         }
 
         private void button1_MouseUp(object sender, MouseEventArgs e)
         {
-            camera?.Ptz(PTZ_ControlType.PAN_LEFTTOP, true);
+            camera?.Ptz(EM_EXTPTZ_ControlType.LEFTTOP, true);
             mouseDown = false;
         }
 
         private void button2_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;
-            camera?.Ptz(PTZ_ControlType.TILT_UP, false);
+            camera?.Ptz(EM_EXTPTZ_ControlType.UP_CONTROL, false);
         }
 
         private void button2_MouseLeave(object sender, EventArgs e)
         {
             if (mouseDown)
-                camera?.Ptz(PTZ_ControlType.TILT_UP, true);
+                camera?.Ptz(EM_EXTPTZ_ControlType.UP_CONTROL, true);
             mouseDown = false;
         }
 
         private void button2_MouseUp(object sender, MouseEventArgs e)
         {
-            camera?.Ptz(PTZ_ControlType.TILT_UP, true);
+            camera?.Ptz(EM_EXTPTZ_ControlType.UP_CONTROL, true);
             mouseDown = false;
         }
 
         private void button3_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;
-            camera?.Ptz(PTZ_ControlType.PAN_RIGTHTOP, false);
+            camera?.Ptz(EM_EXTPTZ_ControlType.RIGHTTOP, false);
         }
 
         private void button3_MouseLeave(object sender, EventArgs e)
         {
             if (mouseDown)
-                camera?.Ptz(PTZ_ControlType.PAN_RIGTHTOP, true);
+                camera?.Ptz(EM_EXTPTZ_ControlType.RIGHTTOP, true);
             mouseDown = false;
         }
 
         private void button3_MouseUp(object sender, MouseEventArgs e)
         {
-            camera?.Ptz(PTZ_ControlType.PAN_RIGTHTOP, true);
+            camera?.Ptz(EM_EXTPTZ_ControlType.RIGHTTOP, true);
             mouseDown = false;
         }
 
         private void button6_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;
-            camera?.Ptz(PTZ_ControlType.PAN_RIGHT, false);
+            camera?.Ptz(EM_EXTPTZ_ControlType.RIGHT_CONTROL, false);
         }
 
         private void button6_MouseLeave(object sender, EventArgs e)
         {
             if (mouseDown)
-                camera?.Ptz(PTZ_ControlType.PAN_RIGHT, true);
+                camera?.Ptz(EM_EXTPTZ_ControlType.RIGHT_CONTROL, true);
             mouseDown = false;
         }
 
         private void button6_MouseUp(object sender, MouseEventArgs e)
         {
-            camera?.Ptz(PTZ_ControlType.PAN_RIGHT, true);
+            camera?.Ptz(EM_EXTPTZ_ControlType.RIGHT_CONTROL, true);
             mouseDown = false;
         }
 
         private void button9_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;
-            camera?.Ptz(PTZ_ControlType.PAN_RIGTHDOWN, false);
+            camera?.Ptz(EM_EXTPTZ_ControlType.RIGHTDOWN, false);
         }
 
         private void button9_MouseLeave(object sender, EventArgs e)
         {
             if (mouseDown)
-                camera?.Ptz(PTZ_ControlType.PAN_RIGTHDOWN, true);
+                camera?.Ptz(EM_EXTPTZ_ControlType.RIGHTDOWN, true);
             mouseDown = false;
         }
 
         private void button9_MouseUp(object sender, MouseEventArgs e)
         {
-            camera?.Ptz(PTZ_ControlType.PAN_RIGTHDOWN, true);
+            camera?.Ptz(EM_EXTPTZ_ControlType.RIGHTDOWN, true);
             mouseDown = false;
         }
 
         private void button8_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;
-            camera?.Ptz(PTZ_ControlType.TILT_DOWN, false);
+            camera?.Ptz(EM_EXTPTZ_ControlType.DOWN_CONTROL, false);
         }
 
         private void button8_MouseLeave(object sender, EventArgs e)
         {
             if (mouseDown)
-                camera?.Ptz(PTZ_ControlType.TILT_DOWN, true);
+                camera?.Ptz(EM_EXTPTZ_ControlType.DOWN_CONTROL, true);
             mouseDown = false;
         }
 
         private void button8_MouseUp(object sender, MouseEventArgs e)
         {
-            camera?.Ptz(PTZ_ControlType.TILT_DOWN, true);
+            camera?.Ptz(EM_EXTPTZ_ControlType.DOWN_CONTROL, true);
             mouseDown = false;
         }
 
         private void button7_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;
-            camera?.Ptz(PTZ_ControlType.PAN_LEFTDOWN, false);
+            camera?.Ptz(EM_EXTPTZ_ControlType.LEFTDOWN, false);
         }
 
         private void button7_MouseLeave(object sender, EventArgs e)
         {
             if (mouseDown)
-                camera?.Ptz(PTZ_ControlType.PAN_LEFTDOWN, true);
+                camera?.Ptz(EM_EXTPTZ_ControlType.LEFTDOWN, true);
             mouseDown = false;
         }
 
         private void button7_MouseUp(object sender, MouseEventArgs e)
         {
-            camera?.Ptz(PTZ_ControlType.PAN_LEFTDOWN, true);
+            camera?.Ptz(EM_EXTPTZ_ControlType.LEFTDOWN, true);
             mouseDown = false;
         }
 
         private void button4_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;
-            camera?.Ptz(PTZ_ControlType.PAN_LEFT, false);
+            camera?.Ptz(EM_EXTPTZ_ControlType.LEFT_CONTROL, false);
         }
 
         private void button4_MouseLeave(object sender, EventArgs e)
         {
             if (mouseDown)
-                camera?.Ptz(PTZ_ControlType.PAN_LEFT, true);
+                camera?.Ptz(EM_EXTPTZ_ControlType.LEFT_CONTROL, true);
             mouseDown = false;
         }
 
         private void button4_MouseUp(object sender, MouseEventArgs e)
         {
-            camera?.Ptz(PTZ_ControlType.PAN_LEFT, true);
+            camera?.Ptz(EM_EXTPTZ_ControlType.LEFT_CONTROL, true);
             mouseDown = false;
         }
 
         private void button5_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;
-            camera?.Ptz(PTZ_ControlType.ZOOM_OUT, false);
+            camera?.Ptz(EM_EXTPTZ_ControlType.ZOOM_DEC_CONTROL, false);
         }
 
         private void button5_MouseLeave(object sender, EventArgs e)
         {
             if (mouseDown)
-                camera?.Ptz(PTZ_ControlType.ZOOM_OUT, true);
+                camera?.Ptz(EM_EXTPTZ_ControlType.ZOOM_DEC_CONTROL, true);
             mouseDown = false;
         }
 
         private void button5_MouseUp(object sender, MouseEventArgs e)
         {
-            camera?.Ptz(PTZ_ControlType.ZOOM_OUT, true);
+            camera?.Ptz(EM_EXTPTZ_ControlType.ZOOM_DEC_CONTROL, true);
             mouseDown = false;
         }
 
         private void button10_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;
-            camera?.Ptz(PTZ_ControlType.ZOOM_IN, false);
+            camera?.Ptz(EM_EXTPTZ_ControlType.ZOOM_ADD_CONTROL, false);
         }
 
         private void button10_MouseLeave(object sender, EventArgs e)
         {
             if (mouseDown)
-                camera?.Ptz(PTZ_ControlType.ZOOM_IN, true);
+                camera?.Ptz(EM_EXTPTZ_ControlType.ZOOM_ADD_CONTROL, true);
             mouseDown = false;
         }
 
         private void button10_MouseUp(object sender, MouseEventArgs e)
         {
-            camera?.Ptz(PTZ_ControlType.ZOOM_IN, true);
+            camera?.Ptz(EM_EXTPTZ_ControlType.ZOOM_ADD_CONTROL, true);
             mouseDown = false;
         }
 

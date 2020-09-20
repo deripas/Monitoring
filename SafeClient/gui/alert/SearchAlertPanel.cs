@@ -6,46 +6,15 @@ using model.video;
 using System.Configuration;
 using System.Drawing;
 using System.Collections.Generic;
+using NetSDKCS;
 
 namespace gui
 {
     public partial class SearchAlertPanel : UserControl
     {
-        public event Action PlayVideoItem
-        {
-            add
-            {
-                videoFileList1.PlayItem += value;
-            }
-            remove
-            {
-                videoFileList1.PlayItem -= value;
-            }
-        }
-
-        public event Action StopVideoItem
-        {
-            add
-            {
-                videoFileList1.StopItem += value;
-            }
-            remove
-            {
-                videoFileList1.StopItem -= value;
-            }
-        }
-
-        public event Action<VideoFileModel> SelectVideoItem
-        {
-            add
-            {
-                videoFileList1.SelectItem += value;
-            }
-            remove
-            {
-                videoFileList1.SelectItem -= value;
-            }
-        }
+        public event Action PlayVideoItem;
+        public event Action StopVideoItem;
+        public event Action<VideoPlayBackSource> SelectVideoItem;
 
         public AlertModel Alert
         {
@@ -65,7 +34,17 @@ namespace gui
 
         internal void NextVideoItem()
         {
-            videoFileList1.NextItem();
+            if (alertListView.SelectedIndices != null && alertListView.SelectedIndices.Count == 1)
+            {
+                var sel = alertListView.SelectedIndices[0];
+                if (sel >= 0 && sel < alertListView.Items.Count -1)
+                {
+                    alertListView.Items[sel].Selected = false;
+                    alertListView.Items[sel + 1].Selected = true;
+                    alertListView.Select();
+                    PlayVideoItem?.Invoke();
+                }
+            }
         }
 
         public SearchAlertPanel()
@@ -73,42 +52,6 @@ namespace gui
             InitializeComponent();
             dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
             dateTimePicker1.Value = DateTime.Now.Date;
-            videoFileList1.DrawItem += VideoFileList1_DrawItem;
-        }
-
-        private void VideoFileList1_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            var alert = Alert;
-            if (alert == null) return;
-
-            var video = videoFileList1[e.Index];
-            if (video == null) return;
-
-            try
-            {
-                e.DrawBackground();
-                if (e.State.HasFlag(DrawItemState.Selected))
-                {
-                    e.Graphics.DrawString(video.ToString(), e.Font, Brushes.White, e.Bounds, StringFormat.GenericDefault);
-                }
-                else
-                {
-                    if (video.BeginTime <= alert.Time && alert.Time <= video.EndTime)
-                    {
-                        e.Graphics.FillRectangle(Brushes.Red, e.Bounds);
-                        e.Graphics.DrawString(video.ToString(), e.Font, Brushes.White, e.Bounds, StringFormat.GenericDefault);
-                    }
-                    else
-                    {
-                        e.Graphics.DrawString(video.ToString(), e.Font, Brushes.Black, e.Bounds, StringFormat.GenericDefault);
-                    }
-                }
-                e.DrawFocusRectangle();
-            }
-            catch
-            {
-
-            }
         }
 
         public void Search()
@@ -175,15 +118,7 @@ namespace gui
             var alert = Alert;
             if (alert == null) return false;
 
-            int AlertBeforeSec = int.Parse(ConfigurationManager.AppSettings["alert.before.sec"]);
-            int AlertAfterSec = int.Parse(ConfigurationManager.AppSettings["alert.after.sec"]);
-
-            var cam = alert.Camera;
-            DateTime from = alert.Time.AddSeconds(-AlertBeforeSec);
-            DateTime to = alert.Time.AddSeconds(AlertAfterSec);
-
-            videoFileList1.Items = cam.SearchVideoFiles(from, to, api.FileType.SDK_RECORD_ALL);
-            videoFileList1.SelectByTime(alert.Time);
+            SelectVideoItem.Invoke(alert.Video());
             return true;
         }
 
@@ -277,5 +212,19 @@ namespace gui
             }
         }
 
+        private void alertListView_DoubleClick(object sender, EventArgs e)
+        {
+            if (SelectAlert())
+                PlayVideoItem?.Invoke();
+        }
+
+        private void buttonExport_Click(object sender, EventArgs e)
+        {
+            StopVideoItem?.Invoke();
+            var alert = Alert;
+            if (alert == null) return;
+
+            VideoExportForm.Instance.Start(alert.Video());
+        }
     }
 }

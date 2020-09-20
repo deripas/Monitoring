@@ -7,5 +7,7 @@ namespace model.video
         double Ratio { get; set; }
 
         PictureBox Canvas { get; }
+
+        void RefreshCanvas();
     }
 }

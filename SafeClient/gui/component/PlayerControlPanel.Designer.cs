@@ -36,8 +36,6 @@
             this.buttonNext = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.checkBoxSound = new System.Windows.Forms.CheckBox();
-            this.buttonNextFrame = new System.Windows.Forms.Button();
-            this.buttonPrevFrame = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -47,7 +45,7 @@
             // 
             this.buttonPlay.Enabled = false;
             this.buttonPlay.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonPlay.Location = new System.Drawing.Point(20, 3);
+            this.buttonPlay.Location = new System.Drawing.Point(44, 3);
             this.buttonPlay.Name = "buttonPlay";
             this.buttonPlay.Size = new System.Drawing.Size(81, 59);
             this.buttonPlay.TabIndex = 6;
@@ -59,7 +57,7 @@
             // 
             this.buttonStop.Enabled = false;
             this.buttonStop.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonStop.Location = new System.Drawing.Point(107, 3);
+            this.buttonStop.Location = new System.Drawing.Point(131, 3);
             this.buttonStop.Name = "buttonStop";
             this.buttonStop.Size = new System.Drawing.Size(81, 59);
             this.buttonStop.TabIndex = 7;
@@ -72,7 +70,7 @@
             this.checkBoxPause.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBoxPause.Enabled = false;
             this.checkBoxPause.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBoxPause.Location = new System.Drawing.Point(194, 3);
+            this.checkBoxPause.Location = new System.Drawing.Point(218, 3);
             this.checkBoxPause.Name = "checkBoxPause";
             this.checkBoxPause.Size = new System.Drawing.Size(81, 59);
             this.checkBoxPause.TabIndex = 8;
@@ -84,7 +82,7 @@
             // 
             this.buttonSlow.Enabled = false;
             this.buttonSlow.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonSlow.Location = new System.Drawing.Point(281, 3);
+            this.buttonSlow.Location = new System.Drawing.Point(305, 3);
             this.buttonSlow.Name = "buttonSlow";
             this.buttonSlow.Size = new System.Drawing.Size(81, 59);
             this.buttonSlow.TabIndex = 9;
@@ -96,7 +94,7 @@
             // 
             this.buttonFast.Enabled = false;
             this.buttonFast.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonFast.Location = new System.Drawing.Point(368, 3);
+            this.buttonFast.Location = new System.Drawing.Point(392, 3);
             this.buttonFast.Name = "buttonFast";
             this.buttonFast.Size = new System.Drawing.Size(81, 59);
             this.buttonFast.TabIndex = 10;
@@ -109,7 +107,7 @@
             this.buttonNext.AutoSize = true;
             this.buttonNext.Enabled = false;
             this.buttonNext.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonNext.Location = new System.Drawing.Point(716, 3);
+            this.buttonNext.Location = new System.Drawing.Point(566, 3);
             this.buttonNext.Name = "buttonNext";
             this.buttonNext.Size = new System.Drawing.Size(81, 59);
             this.buttonNext.TabIndex = 11;
@@ -121,8 +119,6 @@
             // 
             this.flowLayoutPanel1.Controls.Add(this.buttonNext);
             this.flowLayoutPanel1.Controls.Add(this.checkBoxSound);
-            this.flowLayoutPanel1.Controls.Add(this.buttonNextFrame);
-            this.flowLayoutPanel1.Controls.Add(this.buttonPrevFrame);
             this.flowLayoutPanel1.Controls.Add(this.buttonFast);
             this.flowLayoutPanel1.Controls.Add(this.buttonSlow);
             this.flowLayoutPanel1.Controls.Add(this.checkBoxPause);
@@ -130,9 +126,9 @@
             this.flowLayoutPanel1.Controls.Add(this.buttonPlay);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(55, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(130, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(800, 69);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(650, 69);
             this.flowLayoutPanel1.TabIndex = 12;
             // 
             // checkBoxSound
@@ -140,37 +136,13 @@
             this.checkBoxSound.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBoxSound.Enabled = false;
             this.checkBoxSound.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBoxSound.Location = new System.Drawing.Point(629, 3);
+            this.checkBoxSound.Location = new System.Drawing.Point(479, 3);
             this.checkBoxSound.Name = "checkBoxSound";
             this.checkBoxSound.Size = new System.Drawing.Size(81, 59);
             this.checkBoxSound.TabIndex = 15;
             this.checkBoxSound.Text = "🔈";
             this.checkBoxSound.UseVisualStyleBackColor = true;
             this.checkBoxSound.CheckedChanged += new System.EventHandler(this.checkBoxSound_CheckedChanged);
-            // 
-            // buttonNextFrame
-            // 
-            this.buttonNextFrame.Enabled = false;
-            this.buttonNextFrame.Font = new System.Drawing.Font("Bahnschrift", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonNextFrame.Location = new System.Drawing.Point(542, 3);
-            this.buttonNextFrame.Name = "buttonNextFrame";
-            this.buttonNextFrame.Size = new System.Drawing.Size(81, 59);
-            this.buttonNextFrame.TabIndex = 12;
-            this.buttonNextFrame.Text = "⭲";
-            this.buttonNextFrame.UseVisualStyleBackColor = true;
-            this.buttonNextFrame.Click += new System.EventHandler(this.buttonNextFrame_Click);
-            // 
-            // buttonPrevFrame
-            // 
-            this.buttonPrevFrame.Enabled = false;
-            this.buttonPrevFrame.Font = new System.Drawing.Font("Bahnschrift", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPrevFrame.Location = new System.Drawing.Point(455, 3);
-            this.buttonPrevFrame.Name = "buttonPrevFrame";
-            this.buttonPrevFrame.Size = new System.Drawing.Size(81, 59);
-            this.buttonPrevFrame.TabIndex = 13;
-            this.buttonPrevFrame.Text = "⭰";
-            this.buttonPrevFrame.UseVisualStyleBackColor = true;
-            this.buttonPrevFrame.Click += new System.EventHandler(this.buttonPrevFrame_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -211,8 +183,6 @@
         private System.Windows.Forms.Button buttonNext;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button buttonNextFrame;
-        private System.Windows.Forms.Button buttonPrevFrame;
         private System.Windows.Forms.CheckBox checkBoxSound;
     }
 }

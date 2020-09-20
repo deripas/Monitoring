@@ -2,48 +2,57 @@
 using System;
 using System.IO;
 using System.Windows.Forms;
+using NetSDKCS;
 
 namespace gui
 {
     public partial class VideoExportForm : Form
     {
+        private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
+
+        private const int DOWNLOAD_END = -1;
+        private const int DOWNLOAD_FAILED = -2;
+        private static fTimeDownLoadPosCallBack m_DownloadPosCallBack;
+
+        
         public static VideoExportForm Instance = new VideoExportForm();
 
-        private VideoFileModel video;
-        private VideoFileDownloader downloader;
+        private VideoPlayBackSource video;
+        private IntPtr m_DownloadID;
 
         public VideoExportForm()
         {
             InitializeComponent();
-            downloader = new VideoFileDownloader();
             progressBar1.Maximum = 100;
 
             var dir = Directory.CreateDirectory("save");
             saveFileDialog1.InitialDirectory = dir.FullName;
-            saveFileDialog1.DefaultExt = ".avi";
-            saveFileDialog1.Filter = "Avi|*.avi|H264|*.h264";
+            saveFileDialog1.DefaultExt = ".dav";
+            saveFileDialog1.Filter = "|*.dav";
+            
+            m_DownloadPosCallBack = new fTimeDownLoadPosCallBack(DownLoadPosCallBack);
         }
 
-        private void UpdateButton()
+        private void UpdateButton(bool ready)
         {
-            if (!timer1.Enabled)
+            if (ready)
                 buttonSelect.Text = "💾";
             else
                 buttonSelect.Text = "🗙";
 
-            dateTimeFromDate.Enabled = !timer1.Enabled;
-            dateTimeFromTime.Enabled = !timer1.Enabled;
-            dateTimeToDate.Enabled = !timer1.Enabled;
-            dateTimeToTime.Enabled = !timer1.Enabled;
+            dateTimeFromDate.Enabled = ready;
+            dateTimeFromTime.Enabled = ready;
+            dateTimeToDate.Enabled = ready;
+            dateTimeToTime.Enabled = ready;
         }
 
         private void buttonSelect_Click(object sender, System.EventArgs e)
         {
             if (video == null) return;
-            if(timer1.Enabled)
+            if (m_DownloadID != IntPtr.Zero)
             {
                 Cancel();
-                UpdateButton();
+                UpdateButton(true);
                 toolStripStatusLabel1.Text = "Отменено";
                 progressBar1.Value = 0;
                 return;
@@ -58,56 +67,82 @@ namespace gui
             }
 
             saveFileDialog1.FileName = string.Format("{0}_{1}-{2}-{3}_{4}{5}{6}",
-                video.Camera.Name, 
+                video.Name, 
                 from.Day, from.Month, from.Year,
                 from.Hour, from.Minute, from.Second);
 
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                var percent = downloader.Start(video, from, to);
-                if (percent >= 0)
+                m_DownloadID = video.Export(saveFileDialog1.FileName, from, to, m_DownloadPosCallBack);
+                if (IntPtr.Zero == m_DownloadID)
                 {
-                    toolStripStatusLabel1.Text = "Загрузка...";
-                    progressBar1.Maximum = percent + 1;
-                    timer1.Start();
-                    UpdateButton();
-                }
-                else
-                {
+                    saveFileDialog1.Dispose();
                     toolStripStatusLabel1.Text = "Ошибка";
-                    downloader.Stop();
+                    MessageBox.Show(this, NETClient.GetLastError());
+                    return;
                 }
+
+                toolStripStatusLabel1.Text = "Загрузка...";
+                progressBar1.Value = 0;
+                progressBar1.Maximum = 100;
+                UpdateButton(false);
             }
         }
-
-        private void timer1_Tick(object sender, EventArgs e)
+        
+        private void DownLoadPosCallBack(IntPtr lPlayHandle, uint dwTotalSize, uint dwDownLoadSize, int index, NET_RECORDFILE_INFO recordfileinfo, IntPtr dwUser)
         {
-            var pos = downloader.GetPos();
-            if (pos >= 0 && pos < 100)
-                progressBar1.Value = Math.Min(pos + 1, progressBar1.Maximum);
-            else
+            if (lPlayHandle == m_DownloadID)
             {
-                Cancel();
-
-                if (pos == 100)
+                int value = 0;
+                if (DOWNLOAD_END == (int)dwDownLoadSize)
                 {
-                    progressBar1.Value = progressBar1.Maximum;
-                    toolStripStatusLabel1.Text =  "Загрузка завершена";
-
-                    if (!downloader.MoveTo(saveFileDialog1.FileName))
-                        toolStripStatusLabel1.Text = "Ошибка копирования";
-
-                    MessageBox.Show("Загрузка завершена");
-                    progressBar1.Value = 0;
+                    value = DOWNLOAD_END;
+                }
+                else if (DOWNLOAD_FAILED == (int)dwDownLoadSize)
+                {
+                    value = DOWNLOAD_FAILED;
                 }
                 else
                 {
-                    toolStripStatusLabel1.Text = "Ошибка загрузки";
-                    progressBar1.Value = 0;
+                    if (dwDownLoadSize >= dwTotalSize)
+                    {
+                        value = 100;
+                    }
+                    else
+                    {
+                        value = (int)(dwDownLoadSize * 100 / dwTotalSize);
+                    }
                 }
-                UpdateButton();
+                this.BeginInvoke((Action<int>)UpdateProgressBarUI, value);
             }
         }
+        
+        private void UpdateProgressBarUI(int value)
+        {
+            if (m_DownloadID != IntPtr.Zero)
+            {
+                if (DOWNLOAD_END == value)
+                {
+                    progressBar1.Value = 100;
+                    Cancel();
+                    
+                    MessageBox.Show(this, "Загрузка завершена");
+                    toolStripStatusLabel1.Text = "Загрузка завершена";
+                    UpdateButton(true);
+                    progressBar1.Value = 0;
+                    return;
+                }
+                if (DOWNLOAD_FAILED == value)
+                {
+                    MessageBox.Show(this, "Ошибка загрузки");
+                    toolStripStatusLabel1.Text = "Ошибка загрузки";
+                    UpdateButton(true);
+                    return;
+                }
+                progressBar1.Value = value;
+            }
+        }
+
 
         private void VideoExportForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -117,19 +152,22 @@ namespace gui
 
         private void Cancel()
         {
-            downloader.Stop();
-            timer1.Stop();
+            if (m_DownloadID != IntPtr.Zero)
+            {
+                Log.Info("NETClient.StopDownload - {0}",  NETClient.StopDownload(m_DownloadID));
+                m_DownloadID = IntPtr.Zero;
+            }
         }
 
-        internal void Start(VideoFileModel select)
+        internal void Start(VideoPlayBackSource select)
         {
-            if (timer1.Enabled)
+            if (m_DownloadID != IntPtr.Zero)
             {
                 MessageBox.Show("Предыдущая загрузка не завершена");
             }
             else
             {
-                Text = select.Camera.Name;
+                Text = select.Name;
                 video = select;
 
                 dateTimeFromDate.Value = select.BeginTime;

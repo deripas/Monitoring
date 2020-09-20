@@ -22,9 +22,9 @@
 
         #region Код, автоматически созданный конструктором компонентов
 
-        /// <summary> 
-        /// Требуемый метод для поддержки конструктора — не изменяйте 
-        /// содержимое этого метода с помощью редактора кода.
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
@@ -36,7 +36,7 @@
             this.timerPlayBack = new System.Windows.Forms.Timer(this.components);
             this.panelControl.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl
@@ -98,17 +98,16 @@
             this.panelControl.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.trackBar1)).EndInit();
             this.ResumeLayout(false);
-
         }
 
-        #endregion
-
         private System.Windows.Forms.Panel panelControl;
+        private gui.PlayerControlPanel playerControlPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private PlayerControlPanel playerControlPanel1;
-        private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Timer timerPlayBack;
+        private System.Windows.Forms.TrackBar trackBar1;
+
+        #endregion
     }
 }

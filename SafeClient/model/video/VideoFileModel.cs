@@ -1,6 +1,7 @@
 ﻿using api;
 using model.camera;
 using System;
+using NetSDKCS;
 using SDK_HANDLE = System.Int32;
 
 namespace model.video
@@ -9,81 +10,69 @@ namespace model.video
     {
         private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
 
-        private H264_DVR_FILE_DATA data;
-        private FileType fileType;
+        private NET_RECORDFILE_INFO data;
 
-        public CameraModel Camera { get; }
+        private CameraModel camera { get; }
         public DateTime BeginTime { get; }
         public DateTime EndTime { get; }
+        public string Name => camera.Name;
 
-        public VideoFileModel(CameraModel camera, H264_DVR_FILE_DATA data, FileType fileType)
+        public VideoFileModel(CameraModel camera, NET_RECORDFILE_INFO data)
         {
-            this.Camera = camera;
+            this.camera = camera;
             this.data = data;
-            this.fileType = fileType;
 
-            BeginTime = ToDateTime(data.stBeginTime);
-            EndTime = ToDateTime(data.stEndTime);
+            BeginTime = data.starttime.ToDateTime();
+            EndTime = data.endtime.ToDateTime();
         }
 
-        private DateTime ToDateTime(SDK_SYSTEM_TIME t)
+        public IntPtr Play(IntPtr canvas, DateTime startTime, DateTime endTime)
         {
-            return new DateTime(t.year, t.month, t.day, t.hour, t.minute, t.second);
-        }
-
-        public SDK_HANDLE Play(IntPtr canvas)
-        {
-            data.hWnd = canvas;
-            var playHandleId = NetSDK.H264_DVR_PlayBackByName(Camera.LoginId, ref data, null, null, canvas);
-            if (playHandleId >= 0)
-                Log.Info("{0}: H264_DVR_PlayBackByName - OK", this);
+            NET_OUT_PLAY_BACK_BY_TIME_INFO stuOut = new NET_OUT_PLAY_BACK_BY_TIME_INFO();
+            
+            NET_IN_PLAY_BACK_BY_TIME_INFO stuInfo = new NET_IN_PLAY_BACK_BY_TIME_INFO();
+            stuInfo.stStartTime = NET_TIME.FromDateTime(startTime);
+            stuInfo.stStopTime = NET_TIME.FromDateTime(endTime);
+            stuInfo.hWnd = canvas;
+            stuInfo.cbDownLoadPos = null;
+            stuInfo.dwPosUser = IntPtr.Zero;
+            stuInfo.fDownLoadDataCallBack = null;
+            stuInfo.dwDataUser = IntPtr.Zero;
+            stuInfo.nPlayDirection = 0;
+            stuInfo.nWaittime = 5000;
+            
+            var playHandleId = NETClient.PlayBackByTime(camera.LoginId, camera.Channel, stuInfo, ref stuOut);
+            if (playHandleId != IntPtr.Zero)
+                Log.Info("{0}: NETClient.PlayBackByTime - OK", this);
             else
-                Log.Info("{0}: H264_DVR_PlayBackByName -  FAIL {1}", this, NetSDK.GetLastErrorCode());
+                Log.Info("{0}: NETClient.PlayBackByTime -  FAIL {1}", this, NETClient.GetLastError());
 
             return playHandleId;
         }
 
-        internal SDK_HANDLE Export(string file, DateTime from, DateTime to)
+        public IntPtr Export(string file, DateTime from, DateTime to,  fTimeDownLoadPosCallBack m_DownloadPosCallBack)
         {
-            var info = new H264_DVR_FINDINFO();
-            info.nChannelN0 = Camera.Channel;
-            info.startTime = ToDvrTime(from);
-            info.endTime = ToDvrTime(to);
-
-            var downloadHandleId = NetSDK.H264_DVR_GetFileByTime(Camera.LoginId, ref info, file, true, null, 0, null);
-            if (downloadHandleId >= 0)
-                Log.Info("{0}: H264_DVR_GetFileByTime - OK", this);
+            var downloadHandleId = NETClient.DownloadByTime(camera.LoginId, camera.Channel, EM_QUERY_RECORD_TYPE.ALL, from, to, file, m_DownloadPosCallBack, IntPtr.Zero, null, IntPtr.Zero, IntPtr.Zero);
+            if (downloadHandleId != IntPtr.Zero)
+                Log.Info("{0}: NETClient.DownloadByRecordFile - OK", this);
             else
-                Log.Info("{0}: H264_DVR_GetFileByTime -  FAIL {1}", this, NetSDK.GetLastErrorCode());
+                Log.Info("{0}: NETClient.DownloadByRecordFile -  FAIL {1}", this, NETClient.GetLastError());
 
             return downloadHandleId;
         }
 
-        private H264_DVR_TIME ToDvrTime(DateTime t)
-        {
-            H264_DVR_TIME time = new H264_DVR_TIME();
-            time.dwYear = t.Year;
-            time.dwMonth = t.Month;
-            time.dwDay = t.Day;
-            time.dwHour = t.Hour;
-            time.dwMinute = t.Minute;
-            time.dwSecond = t.Second;
-            return time;
-        }
-
         public override string ToString()
         {
-            return string.Format("[{0:HH:mm:ss} - {1:HH:mm:ss}] {2}", BeginTime, EndTime, type(fileType));
+            return $"[{BeginTime:HH:mm:ss} - {EndTime:HH:mm:ss}] {type(data.nRecordFileType)}";
         }
 
-        private string type(FileType type)
+        private string type(byte type)
         {
             switch (type)
             {
-                case FileType.SDK_RECORD_ALARM: return "A";
-                case FileType.SDK_RECORD_DETECT: return "D";
-                case FileType.SDK_RECORD_REGULAR: return "R";
-                case FileType.SDK_RECORD_MANUAL: return "M";
+                case 0: return "R";
+                case 1: return "A";
+                case 2: return "M";
                 default: return "";
             }
         }

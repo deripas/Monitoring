@@ -96,10 +96,7 @@ namespace gui
 
         private void talkToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (talkToolStripMenuItem.Checked)
-                camera?.StartTalk();
-            else
-                camera?.StopTalk();
+
         }
 
         internal void StartPlay(CameraController cameraController)

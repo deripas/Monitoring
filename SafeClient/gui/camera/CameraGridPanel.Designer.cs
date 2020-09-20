@@ -22,9 +22,9 @@
 
         #region Код, автоматически созданный конструктором компонентов
 
-        /// <summary> 
-        /// Требуемый метод для поддержки конструктора — не изменяйте 
-        /// содержимое этого метода с помощью редактора кода.
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
@@ -53,11 +53,10 @@
             this.Size = new System.Drawing.Size(772, 496);
             this.Resize += new System.EventHandler(this.CameraGridPanel_Resize);
             this.ResumeLayout(false);
-
         }
 
-        #endregion
-
         private System.Windows.Forms.TableLayoutPanel table;
+
+        #endregion
     }
 }

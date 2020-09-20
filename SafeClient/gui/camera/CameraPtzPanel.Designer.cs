@@ -22,9 +22,9 @@
 
         #region Код, автоматически созданный конструктором компонентов
 
-        /// <summary> 
-        /// Требуемый метод для поддержки конструктора — не изменяйте 
-        /// содержимое этого метода с помощью редактора кода.
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
@@ -43,8 +43,8 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.buttonSetPos = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -85,7 +85,7 @@
             // button9
             // 
             this.button9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.button9.Location = new System.Drawing.Point(333, 293);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(161, 140);
@@ -99,7 +99,7 @@
             // button8
             // 
             this.button8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.button8.Location = new System.Drawing.Point(168, 293);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(159, 140);
@@ -113,7 +113,7 @@
             // button7
             // 
             this.button7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.button7.Location = new System.Drawing.Point(3, 293);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(159, 140);
@@ -127,7 +127,7 @@
             // button6
             // 
             this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.button6.Location = new System.Drawing.Point(333, 148);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(161, 139);
@@ -141,7 +141,7 @@
             // button4
             // 
             this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.button4.Location = new System.Drawing.Point(3, 148);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(159, 139);
@@ -155,7 +155,7 @@
             // button3
             // 
             this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.button3.Location = new System.Drawing.Point(333, 3);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(161, 139);
@@ -169,7 +169,7 @@
             // button2
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.button2.Location = new System.Drawing.Point(168, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(159, 139);
@@ -183,7 +183,7 @@
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.button1.Location = new System.Drawing.Point(3, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(159, 139);
@@ -206,7 +206,7 @@
             // buttonCenter
             // 
             this.buttonCenter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonCenter.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCenter.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.buttonCenter.Location = new System.Drawing.Point(0, 0);
             this.buttonCenter.Name = "buttonCenter";
             this.buttonCenter.Size = new System.Drawing.Size(159, 139);
@@ -236,7 +236,7 @@
             // button5
             // 
             this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.button5.Location = new System.Drawing.Point(3, 3);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(242, 52);
@@ -250,7 +250,7 @@
             // button10
             // 
             this.button10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.button10.Location = new System.Drawing.Point(251, 3);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(243, 52);
@@ -269,17 +269,9 @@
             this.panel4.Size = new System.Drawing.Size(243, 53);
             this.panel4.TabIndex = 3;
             // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.checkBox1);
-            this.panel5.Location = new System.Drawing.Point(3, 61);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(242, 53);
-            this.panel5.TabIndex = 4;
-            // 
             // buttonSetPos
             // 
-            this.buttonSetPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonSetPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.buttonSetPos.Location = new System.Drawing.Point(3, 8);
             this.buttonSetPos.Name = "buttonSetPos";
             this.buttonSetPos.Size = new System.Drawing.Size(81, 38);
@@ -288,10 +280,18 @@
             this.buttonSetPos.UseVisualStyleBackColor = true;
             this.buttonSetPos.Click += new System.EventHandler(this.buttonSetPos_Click);
             // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.checkBox1);
+            this.panel5.Location = new System.Drawing.Point(3, 61);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(242, 53);
+            this.panel5.TabIndex = 4;
+            // 
             // checkBox1
             // 
             this.checkBox1.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.857143F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.857143F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.checkBox1.Location = new System.Drawing.Point(3, 9);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(87, 38);
@@ -337,30 +337,29 @@
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
-
         }
 
-        #endregion
-
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button buttonCenter;
+        private System.Windows.Forms.Button buttonSetPos;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button buttonCenter;
-        private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button buttonSetPos;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+
+        #endregion
     }
 }
