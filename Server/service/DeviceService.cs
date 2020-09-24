@@ -3,6 +3,7 @@ using SafeServer.dto;
 using SafeServer.service.device;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace SafeServer.service
@@ -81,16 +82,19 @@ where d.siren = m.device;
                     Log.Warn("Ignored [{0}]", dev.Name, ex);
                 }
             }
-
-            DI.Instance.MeasureWriter.Subscribe(map.Values);
-            DI.Instance.AlertWriter.Subscribe(map.Values);
-            DI.Instance.DeviceStatusService.Subscribe(map.Values);
         }
 
-        public void Start()
+        public IObservable<bool> Start()
         {
-            foreach (var dev in map.Values)
-                dev.Init();
+            return Observable.Defer(() =>
+                {
+                    Log.Info("Start Device");
+                    foreach (var dev in map.Values)
+                        dev.Init();
+                    return Observable.Return(true);
+                })
+                .Do(_ => Log.Info("Complete Start Device"), exception => Log.Error(exception, "Error Start Device"))
+                .RetryWhen(o => o.Delay(TimeSpan.FromSeconds(1)));
         }
 
         internal void Dispose()

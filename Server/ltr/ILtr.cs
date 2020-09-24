@@ -1,8 +1,10 @@
-﻿namespace SafeServer.ltr
+﻿using ltrModulesNet;
+
+namespace SafeServer.ltr
 {
     interface ILtr
     {
-        void Start();
+        _LTRNative.LTRERROR Start();
 
         void Stop();
     }

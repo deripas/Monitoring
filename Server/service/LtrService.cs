@@ -5,6 +5,7 @@ using SafeServer.ltr;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -12,16 +13,13 @@ namespace SafeServer.service
 {
     public class LtrService
     {
+        private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
+
         private Dictionary<Slot, ILtr> map;
 
         public LtrService()
         {
             map = new Dictionary<Slot, ILtr>();
-            foreach (var ltr in Ltr())
-            {
-                var slot = new Slot { sn = ltr.Sn, num = ltr.Num };
-                map.Add(slot, create(slot, ltr.Type));
-            }
         }
 
         private ILtr create(Slot slot, string type)
@@ -49,10 +47,22 @@ namespace SafeServer.service
             return db.LTR.ToList();
         }
 
-        public void Start()
+        public IObservable<bool> Start()
         {
-            foreach (var ltr in map.Values)
-                ltr.Start();
+            return map.Values.ToObservable()
+                .SelectMany(ltr =>
+                {
+                    return Observable.Defer(() =>
+                        {
+                            Log.Info("Start LTR {0}", ltr);
+                            var error = ltr.Start();
+                            if(error != _LTRNative.LTRERROR.OK) throw new Exception(error.ToString());
+                            return Observable.Return(error);
+                        })
+                        .Do(_ => Log.Info("Started LTR {0}", ltr), exception => Log.Error(exception, "Error Start LTR {0}", ltr))
+                        .RetryWhen(o => o.Delay(TimeSpan.FromSeconds(1)));
+                })
+                .All(error => error == _LTRNative.LTRERROR.OK);
         }
 
         internal void Dispose()
@@ -68,5 +78,14 @@ namespace SafeServer.service
         [DllImport("ltrapi.dll")]
         public static extern ltrModulesNet._LTRNative.LTRERROR LTR_ServerRestart(ref _LTRNative.TLTR ltr);
 
+        public void Init()
+        {
+            map.Clear();
+            foreach (var ltr in Ltr())
+            {
+                var slot = new Slot { sn = ltr.Sn, num = ltr.Num };
+                map.Add(slot, create(slot, ltr.Type));
+            }
+        }
     }
 }

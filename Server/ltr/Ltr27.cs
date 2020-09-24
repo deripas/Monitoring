@@ -38,12 +38,29 @@ namespace SafeServer.ltr
             _ltr27api.LTR27_Init(ref _module);
         }
 
-        public new void Start()
+        public new _LTRNative.LTRERROR Start()
         {
             Log.Info("{0} Start", this);
-            _ltr27api.LTR27_Open(ref _module, (uint)0x7F000001L, 11111, slot.ToCharArraySn(), (ushort)slot.num);
-            _ltr27api.LTR27_GetConfig(ref _module);
-            _ltr27api.LTR27_GetDescription(ref _module, _ltr27api.LTR27_MODULE_DESCRIPTION);
+            var error = _ltr27api.LTR27_Open(ref _module, (uint)0x7F000001L, 11111, slot.ToCharArraySn(), (ushort)slot.num);
+            if(error != _LTRNative.LTRERROR.OK)
+            {
+                Log.Error("{0} LTR27_Open", this);
+                return error;
+            }   
+            
+            error = _ltr27api.LTR27_GetConfig(ref _module);
+            if(error != _LTRNative.LTRERROR.OK)
+            {
+                Log.Error("{0} LTR27_GetConfig", this);
+                return error;
+            } 
+            
+            error = _ltr27api.LTR27_GetDescription(ref _module, _ltr27api.LTR27_MODULE_DESCRIPTION);
+            if(error != _LTRNative.LTRERROR.OK)
+            {
+                Log.Error("{0} LTR27_GetDescription", this);
+                return error;
+            } 
 
             for (var i = 0; i < _ltr27api.LTR27_MEZZANINE_NUMBER; i++)
             {
@@ -55,10 +72,22 @@ namespace SafeServer.ltr
             }
 
             _module.FrequencyDivisor = 0;
-            _ltr27api.LTR27_SetConfig(ref _module);
-            _ltr27api.LTR27_ADCStart(ref _module);
+            error = _ltr27api.LTR27_SetConfig(ref _module);
+            if(error != _LTRNative.LTRERROR.OK)
+            {
+                Log.Error("{0} LTR27_SetConfig", this);
+                return error;
+            } 
+            
+            error = _ltr27api.LTR27_ADCStart(ref _module);
+            if(error != _LTRNative.LTRERROR.OK)
+            {
+                Log.Error("{0} LTR27_ADCStart", this);
+                return error;
+            } 
 
             base.Start();
+            return _LTRNative.LTRERROR.OK;
         }
 
         public new void Stop()

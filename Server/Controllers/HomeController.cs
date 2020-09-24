@@ -78,7 +78,7 @@ namespace Server.Controllers
                 {
                     id = dev.Id(),
                     name = dev.Name(),
-                    alert = s.alarm > 0,
+                    alert = s != null && s.alarm > 0,
                     main = cam.rtsp + "0",
                     sub = cam.rtsp + "1",
                     value = exist ? dev.RenderStatusValue(s) : "-"

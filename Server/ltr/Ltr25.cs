@@ -48,10 +48,15 @@ namespace SafeServer.ltr
             ltr = new ltr25api();
         }
 
-        public new void Start()
+        public new _LTRNative.LTRERROR Start()
         {
             Log.Info("{0} Start", this);
-            ltr.Open(slot.sn, slot.num);
+            var error = ltr.Open(slot.sn, slot.num);
+            if(error != _LTRNative.LTRERROR.OK)
+            {
+                Log.Error("{0} Open", this);
+                return error;
+            }    
             
             var cfg = ltr.Cfg;
             cfg.DataFmt = DataFmt;
@@ -62,10 +67,22 @@ namespace SafeServer.ltr
                 cfg.Ch[i].Enabled = true;
   
             ltr.Cfg = cfg;
-            ltr.SetADC();
-            ltr.Start();
+            error = ltr.SetADC();
+            if(error != _LTRNative.LTRERROR.OK)
+            {
+                Log.Error("{0} SetADC", this);
+                return error;
+            }    
+            
+            error = ltr.Start();
+            if(error != _LTRNative.LTRERROR.OK)
+            {
+                Log.Error("{0} Start", this);
+                return error;
+            }    
             
             base.Start();
+            return _LTRNative.LTRERROR.OK;
             /*
             IObservable<double> o0 = this[0].ToMean();
             IObservable<double> o1 = this[1].ToMean();

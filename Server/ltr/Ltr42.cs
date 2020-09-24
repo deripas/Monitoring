@@ -30,21 +30,26 @@ namespace SafeServer.ltr
             _indicators = new List<IObservable<BitsOp>>();
         }
 
-        public void Start()
+        public _LTRNative.LTRERROR Start()
         {
             Log.Info("{0} Start", this);
             var error = _ltr42api.LTR42_Open(ref _module, (uint)0x7F000001L, 11111, slot.ToCharArraySn(), slot.num);
             if(error != _LTRNative.LTRERROR.OK)
             {
-                Log.Error("{0} error opent", this);
-                return;
+                Log.Error("{0} LTR42_Open", this);
+                return error;
             }    
             /* Конфигурация меток */
             _module.Marks.SecondMark_Mode = 0; //  Секундная метка внутр. с трансляцией на выход
             _module.Marks.StartMark_Mode = 0; //  Метка СТАРТ внутренняя
             _module.AckEna = true; // подтверждения включены 
-            _ltr42api.LTR42_Config(ref _module);
-
+            error = _ltr42api.LTR42_Config(ref _module);
+            if(error != _LTRNative.LTRERROR.OK)
+            {
+                Log.Error("{0} LTR42_Config", this);
+                return error;
+            }   
+            
             _disposable = _indicators
                 .Merge()
                 .ObserveOn(NewThreadScheduler.Default)
@@ -53,6 +58,7 @@ namespace SafeServer.ltr
                     : val & ~item.Mask)
                 .DistinctUntilChanged()
                 .Subscribe(Write);
+            return _LTRNative.LTRERROR.OK;
         }
 
         public void Stop()
