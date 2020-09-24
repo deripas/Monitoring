@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Reactive.Linq;
 using ltrModulesNet;
-using SafeServer.service.device;
-using static ltrModulesNet.ltr24api;
 
 namespace SafeServer.ltr
 {

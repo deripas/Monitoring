@@ -45,11 +45,10 @@ namespace gui
 
             if (select == null)
             {
+                var copy = grid;
+                Grid(CameraGrid.grid1x1(owner.Id, 0));
                 select = owner;
-                Clear(views.FindAll(v => v != owner));
-                Table(1, 1);
-                owner.MainStream = true;
-                table.Controls.Add(owner);
+                grid = copy;
             }
             else
             {
@@ -93,7 +92,7 @@ namespace gui
                 {
                     var cam = DI.Instance.CameraService[camId];
                     viewControl.Ratio = cam.Ratio;
-                    viewControl.StartPlay(cam);
+                    viewControl.StartPlay(cam, grid.stream);
                     Application.DoEvents();
                 }
                 else
@@ -118,7 +117,6 @@ namespace gui
         private void DoResize()
         {
             var size = TableSize;
-            var loc = new Point((this.Width - size.Width) / 2, (this.Height - size.Height) / 2);
             table?.SetBounds(0, 0, size.Width, size.Height);
         }
     }

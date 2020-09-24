@@ -44,6 +44,8 @@ namespace model.nvr
             }
         }
 
+        public NET_MATRIX_CAMERA_INFO[] CamerasInfo = new NET_MATRIX_CAMERA_INFO[32];
+
         public NvrModel(NvrInfo nvrInfo)
         {
             this.info = nvrInfo;
@@ -65,6 +67,7 @@ namespace model.nvr
                 if (loginId != IntPtr.Zero)
                 {
                     Log.Info("{0}: NETClient.Login - OK {1}", this, loginId);
+                    NETClient.MatrixGetCameras(LoginId, out CamerasInfo, CamerasInfo.Length, 5000);
                     return true;
                 }
 

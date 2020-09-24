@@ -71,9 +71,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1278, 694);
             this.Controls.Add(this.listView1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "DeviceViewForm";
             this.Text = "DeviceViewForm";
+            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DeviceViewForm_FormClosing);
             this.Load += new System.EventHandler(this.DeviceViewForm_Load);
             this.Resize += new System.EventHandler(this.DeviceViewForm_Resize);

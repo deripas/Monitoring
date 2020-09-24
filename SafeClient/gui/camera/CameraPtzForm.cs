@@ -32,6 +32,7 @@ namespace gui
 
         private void CameraPtzForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            cameraPtzPanel1.Start(null);
             e.Cancel = true;
             Hide();
         }

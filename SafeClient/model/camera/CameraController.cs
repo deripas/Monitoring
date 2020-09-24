@@ -44,6 +44,7 @@ namespace model.camera
             }
         }
 
+        public int Id => model.Id;
         public string Name => model.Name;
         public string Stand => model.Stand;
 
@@ -53,9 +54,9 @@ namespace model.camera
             streams = new Dictionary<ICameraView, CameraSreamModel>();
         }
 
-        internal void StartPlay(ICameraView view)
+        internal void StartPlay(ICameraView view, int n_stream)
         {
-            CameraSreamModel stream = new CameraSreamModel(model, view.Canvas);
+            CameraSreamModel stream = new CameraSreamModel(model, view.Canvas, n_stream);
             Log.Debug("{0}: add stream view", stream);
 
             lock (streams)
@@ -136,8 +137,8 @@ namespace model.camera
                 lock (stream)
                 {
                     stream.Stream = streamNum;
-                    stream.StopPlay();
-                    stream.StartPlay();
+                    if (stream.StopPlay())
+                        stream.StartPlay();
                 }
             }
         }
@@ -147,14 +148,9 @@ namespace model.camera
             return streams[view].Stream;
         }
 
-        internal void Ptz(EM_EXTPTZ_ControlType cmd, bool stop)
+        internal CameraPTZ PTZ()
         {
-            model.Ptz(cmd, stop, 4);
-        }
-
-        internal void Preset(int val)
-        {
-            model.Ptz(EM_EXTPTZ_ControlType.POINT_MOVE_CONTROL, false, val);
+            return model.PTZ();
         }
 
         public override string ToString()
@@ -164,6 +160,7 @@ namespace model.camera
 
         public void StopPlay()
         {
+            model.Stop();
             lock (streams)
             {
                 foreach (var kv in streams)
@@ -177,6 +174,7 @@ namespace model.camera
 
         public void StartPlay()
         {
+            model.Start();
             lock (streams)
             {
                 foreach (var kv in streams)

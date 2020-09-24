@@ -36,16 +36,17 @@
             this.cameraPtzPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cameraPtzPanel1.Location = new System.Drawing.Point(0, 0);
             this.cameraPtzPanel1.Name = "cameraPtzPanel1";
-            this.cameraPtzPanel1.Size = new System.Drawing.Size(310, 340);
+            this.cameraPtzPanel1.Size = new System.Drawing.Size(329, 419);
             this.cameraPtzPanel1.TabIndex = 0;
             // 
             // CameraPtzForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(310, 340);
+            this.ClientSize = new System.Drawing.Size(329, 419);
             this.Controls.Add(this.cameraPtzPanel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "CameraPtzForm";
             this.Text = "CameraPtzForm";
             this.TopMost = true;

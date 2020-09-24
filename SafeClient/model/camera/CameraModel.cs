@@ -8,7 +8,15 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Web.ApplicationServices;
 using NetSDKCS;
-using SDK_HANDLE = System.Int32;
+using onvif20_ptz;
+using onvif.services;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
+using System.Net;
+using onvif10_device;
+using onvif10_media;
+using System.Windows.Forms.VisualStyles;
+using System.Threading.Tasks;
 
 namespace model.camera
 {
@@ -16,11 +24,23 @@ namespace model.camera
     {
         private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
 
+
+        public static readonly HttpTransportBindingElement HTTP_BINDING = new HttpTransportBindingElement
+        {
+            AuthenticationScheme = AuthenticationSchemes.Digest
+        };
+        public static readonly TextMessageEncodingBindingElement TXT_BINDING = new TextMessageEncodingBindingElement
+        {
+            MessageVersion = MessageVersion.CreateVersion(EnvelopeVersion.Soap12, AddressingVersion.None)
+        };
+        public static readonly CustomBinding BINDING = new CustomBinding(TXT_BINDING, HTTP_BINDING);
+
         private NvrModel nvr;
         private double ratio = 9D / 16D;
 
         public int Channel { get; }
 
+        public int Id { get; }
         public String Name { get; }
         public String Stand { get; }
 
@@ -60,10 +80,15 @@ namespace model.camera
             }
         }
 
+        private volatile bool started;
+        private volatile String Profile;
+        private volatile Service ptzService;
+
         public CameraModel(NvrModel nvr, CameraInfo info)
         {
             this.nvr = nvr;
             this.Channel = info.channel - 1;
+            Id = info.id;
             Name = info.name;
             Stand = info.stand;
         }
@@ -83,23 +108,17 @@ namespace model.camera
             nvr.Logout();
         }
 
-        internal void Ptz(EM_EXTPTZ_ControlType cmd, bool stop, int speed)
-        {
-            var result = NETClient.PTZControl(LoginId, Channel, cmd, 0, speed, 0, stop,  IntPtr.Zero);
-            Log.Debug("{0}: NETClient.PTZControl cmd={1} value={2} {3}", this, cmd, speed, result);
-        }
-
         public override string ToString()
         {
             return "cam(" + nvr.Ip + " #" + (Channel + 1) + ")";
         }
 
-        internal List<VideoFileModel> SearchVideoFiles(DateTime from, DateTime to, EM_QUERY_RECORD_TYPE type)
+        internal List<VideoFileModel> SearchVideoFiles(System.DateTime from, System.DateTime to, EM_QUERY_RECORD_TYPE type)
         {
             return SearchVideoFilesBatch(from, to, type);
         }
 
-        private List<VideoFileModel> SearchVideoFilesBatch(DateTime from, DateTime to, EM_QUERY_RECORD_TYPE fileType)
+        private List<VideoFileModel> SearchVideoFilesBatch(System.DateTime from, System.DateTime to, EM_QUERY_RECORD_TYPE fileType)
         {
             int fileCount = 0;
             NET_RECORDFILE_INFO[] recordFileArray = new NET_RECORDFILE_INFO[5000];
@@ -108,7 +127,7 @@ namespace model.camera
             return ToList(recordFileArray, fileCount);
         }
 
-        private bool QueryFile(DateTime startTime, DateTime endTime, EM_QUERY_RECORD_TYPE nRecordFileType, ref NET_RECORDFILE_INFO[] infos ,ref int fileCount)
+        private bool QueryFile(System.DateTime startTime, System.DateTime endTime, EM_QUERY_RECORD_TYPE nRecordFileType, ref NET_RECORDFILE_INFO[] infos, ref int fileCount)
         {
             int waitTime = 5000;
             //set stream type 设置码流类型
@@ -120,7 +139,6 @@ namespace model.camera
             return NETClient.QueryRecordFile(LoginId, Channel, nRecordFileType, startTime, endTime, null, ref infos, ref fileCount, waitTime, false);
         }
 
-
         private List<VideoFileModel> ToList(NET_RECORDFILE_INFO[] recordFileArray, int fileCount)
         {
             var result = new List<VideoFileModel>();
@@ -131,9 +149,63 @@ namespace model.camera
             return result;
         }
 
-        internal VideoTimeRangeModel SearchVideo(DateTime from, DateTime to)
+        internal VideoTimeRangeModel SearchVideo(System.DateTime from, System.DateTime to)
         {
             return new VideoTimeRangeModel(this, from, to);
+        }
+
+        internal void Start()
+        {
+            if (started) return;
+            started = true;
+            Task.Factory.StartNew(() =>
+            {
+                string ip = "NA";
+                try
+                {
+                    var info = nvr.CamerasInfo[Channel];
+                    ip = info.stuRemoteDevice.szIp;
+                    string url = string.Format("http://{0}/onvif/device_service", ip);
+                    EndpointAddress DeviceServiceRemoteAddress = new EndpointAddress(url);
+                    DeviceClient Client = new DeviceClient(BINDING, DeviceServiceRemoteAddress);
+                    try
+                    {
+                        var services = Client.GetServices(new GetServicesRequest());
+
+                        ptzService = services.Service.Where(x => x.XAddr.ToLower().Contains("ptz")).First();
+                        var mediaServiceInfo = services.Service.Where(x => x.XAddr.ToLower().Contains("media")).First();
+
+                        MediaClient media = new MediaClient(BINDING, new EndpointAddress(mediaServiceInfo.XAddr));
+                        try
+                        {
+                            var profiles = media.GetProfiles(new GetProfilesRequest());
+                            Profile = profiles.Profiles[0].token;
+                        }
+                        finally
+                        {
+                            media.Close();
+                        }
+                    }
+                    finally
+                    {
+                        Client.Close();
+                    }
+                }
+                catch (Exception e)
+                {
+                    Log.Warn("{0}: error onvif ip={1}", this, ip, e);
+                }
+            });
+        }
+
+        internal void Stop()
+        {
+            started = false;
+        }
+
+        internal CameraPTZ PTZ()
+        {
+            return new CameraPTZ(LoginId, Channel, Profile, ptzService?.XAddr);
         }
     }
 }

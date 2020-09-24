@@ -2,7 +2,7 @@
 {
     public class CameraInfo
     {
-        public long id { get; set; }
+        public int id { get; set; }
         public string name { get; set; }
         public string stand { get; set; }
         public double rate { get; set; }

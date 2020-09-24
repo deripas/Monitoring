@@ -40,11 +40,11 @@ namespace model.camera
         }
 
  
-        public CameraSreamModel(CameraModel camera, PictureBox canvas)
+        public CameraSreamModel(CameraModel camera, PictureBox canvas, int stream)
         {
             this.camera = camera;
             this.canvas = canvas.Handle;
-            stream = EM_RealPlayType.Realplay_1;
+            Stream = stream;
         }
 
         public void StartPlay()
@@ -65,14 +65,18 @@ namespace model.camera
             }
         }
 
-        public void StopPlay()
+        public bool StopPlay()
         {
             camera.StopTalk();
             if (playHandleId != IntPtr.Zero)
             {
-                Log.Info("{0}: NETClient.StopRealPlay - {1}", this, NETClient.StopRealPlay(playHandleId));
-                playHandleId = IntPtr.Zero;
+                var result = NETClient.StopRealPlay(playHandleId);
+                Log.Info("{0}: NETClient.StopRealPlay - {1}", this, result);
+                if (result)
+                    playHandleId = IntPtr.Zero;
+                return result;
             }
+            return true;
         }
 
         public void OpenSound()

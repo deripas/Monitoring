@@ -73,6 +73,12 @@
       <HintPath>packages\NLog.Windows.Forms.4.3.0\lib\net35\NLog.Windows.Forms.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="onvif.services">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Synesis\ONVIF Device Manager\onvif.services.dll</HintPath>
+    </Reference>
+    <Reference Include="onvif.utils">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Synesis\ONVIF Device Manager\onvif.utils.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="Spring.Rest, Version=1.1.1.35040, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
       <HintPath>..\packages\Spring.Rest.1.1.1\lib\net40-client\Spring.Rest.dll</HintPath>
@@ -318,6 +324,7 @@
     <Compile Include="gui\sensor\VibrationSensor.Designer.cs">
       <DependentUpon>VibrationSensor.cs</DependentUpon>
     </Compile>
+    <Compile Include="model\camera\CameraPTZ.cs" />
     <Compile Include="model\device\AlertModel.cs" />
     <Compile Include="model\camera\CameraController.cs" />
     <Compile Include="model\camera\CameraModel.cs" />

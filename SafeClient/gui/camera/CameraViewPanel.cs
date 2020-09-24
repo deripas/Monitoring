@@ -20,6 +20,14 @@ namespace gui
             }
         }
 
+        public int Id
+        {
+            get
+            {
+                return camera.Id;
+            }
+        }
+
         public double Ratio
         {
             get
@@ -99,11 +107,11 @@ namespace gui
 
         }
 
-        internal void StartPlay(CameraController cameraController)
+        internal void StartPlay(CameraController cameraController, int stream)
         {
             StopPlay();
             camera = cameraController;
-            camera.StartPlay(this);
+            camera.StartPlay(this, stream);
             contextMenu.Enabled = true;
             toolTip1.SetToolTip(Canvas, camera.Name);
             canvas.Canvas.Image = null;
@@ -159,7 +167,7 @@ namespace gui
         {
             CameraController cam = (CameraController)cameraToolStripMenuItem.SelectedItem;
             if (cam != camera)
-                StartPlay(cam);
+                StartPlay(cam, camera.GetStream(this));
 
             contextMenu.Hide();
         }

@@ -98,6 +98,9 @@ namespace NetSDKCS
         public static extern bool CLIENT_DHPTZControlEx2(IntPtr lLoginID, int nChannelID, uint dwPTZCommand, int lParam1, int lParam2, int lParam3, bool dwStop, IntPtr param4);
 
         [DllImport(LIBRARYNETSDK)]
+        public static extern bool CLIENT_DHPTZControl(IntPtr lLoginID, int nChannelID, uint dwPTZCommand, int lParam1, int lParam2, int lParam3, bool dwStop);
+
+        [DllImport(LIBRARYNETSDK)]
         public static extern bool CLIENT_OpenSound(IntPtr hPlayHandle);
 
         [DllImport(LIBRARYNETSDK)]

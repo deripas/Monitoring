@@ -33,8 +33,12 @@ namespace SafeServer.ltr
         public void Start()
         {
             Log.Info("{0} Start", this);
-            _ltr42api.LTR42_Open(ref _module, (uint)0x7F000001L, 11111, slot.ToCharArraySn(), slot.num);
-
+            var error = _ltr42api.LTR42_Open(ref _module, (uint)0x7F000001L, 11111, slot.ToCharArraySn(), slot.num);
+            if(error != _LTRNative.LTRERROR.OK)
+            {
+                Log.Error("{0} error opent", this);
+                return;
+            }    
             /* Конфигурация меток */
             _module.Marks.SecondMark_Mode = 0; //  Секундная метка внутр. с трансляцией на выход
             _module.Marks.StartMark_Mode = 0; //  Метка СТАРТ внутренняя

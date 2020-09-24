@@ -47,7 +47,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 781);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(461, 61);
+            this.panel1.Size = new System.Drawing.Size(464, 61);
             this.panel1.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -58,12 +58,12 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(461, 61);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(464, 61);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(286, 10);
+            this.buttonCancel.Location = new System.Drawing.Point(289, 10);
             this.buttonCancel.Margin = new System.Windows.Forms.Padding(10);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(165, 45);
@@ -74,7 +74,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(101, 10);
+            this.buttonSave.Location = new System.Drawing.Point(104, 10);
             this.buttonSave.Margin = new System.Windows.Forms.Padding(10);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(165, 45);
@@ -94,7 +94,7 @@
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 2);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(458, 776);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(461, 776);
             this.flowLayoutPanel2.TabIndex = 1;
             // 
             // baseOption1
@@ -122,11 +122,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(461, 842);
+            this.ClientSize = new System.Drawing.Size(464, 842);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "DeviceEditorForm";
             this.Text = "DeviceEditorForm";
+            this.TopMost = true;
             this.panel1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
