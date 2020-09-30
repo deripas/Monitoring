@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.baseSensor1 = new gui.BaseSensor();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.verticalProgressBar1 = new gui.component.VerticalProgressBar();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -40,52 +40,56 @@
             this.baseSensor1.Description = "";
             this.baseSensor1.Device = null;
             this.baseSensor1.EnabledLed = true;
-            this.baseSensor1.Location = new System.Drawing.Point(3, 3);
+            this.baseSensor1.Location = new System.Drawing.Point(2, 2);
+            this.baseSensor1.Margin = new System.Windows.Forms.Padding(1);
             this.baseSensor1.Max = "maximum";
             this.baseSensor1.Name = "baseSensor1";
-            this.baseSensor1.Size = new System.Drawing.Size(576, 112);
+            this.baseSensor1.Size = new System.Drawing.Size(314, 61);
             this.baseSensor1.TabIndex = 0;
             this.baseSensor1.Title = "Давление";
             this.baseSensor1.Value = "current";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Properties.Resources.bar;
-            this.pictureBox1.Location = new System.Drawing.Point(29, -1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(68, 119);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
             // verticalProgressBar1
             // 
             this.verticalProgressBar1.ForeColor = System.Drawing.Color.Blue;
-            this.verticalProgressBar1.Location = new System.Drawing.Point(58, 13);
+            this.verticalProgressBar1.Location = new System.Drawing.Point(41, 2);
+            this.verticalProgressBar1.Margin = new System.Windows.Forms.Padding(2);
             this.verticalProgressBar1.Name = "verticalProgressBar1";
-            this.verticalProgressBar1.Size = new System.Drawing.Size(26, 90);
+            this.verticalProgressBar1.Size = new System.Drawing.Size(19, 49);
             this.verticalProgressBar1.TabIndex = 2;
             this.verticalProgressBar1.Value = 50;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Properties.Resources.hygrometer_icon;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(33, 44);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
             // PressureSensor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Controls.Add(this.verticalProgressBar1);
             this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.verticalProgressBar1);
             this.Controls.Add(this.baseSensor1);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PressureSensor";
-            this.Size = new System.Drawing.Size(578, 114);
+            this.Size = new System.Drawing.Size(315, 50);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         private gui.BaseSensor baseSensor1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private gui.component.VerticalProgressBar verticalProgressBar1;
 
         #endregion
+
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

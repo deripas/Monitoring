@@ -490,6 +490,8 @@
     <Content Include="NLog.xsd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\hygrometer-icon.jpg" />
+    <None Include="Resources\temperature-ico.png" />
     <None Include="Resources\lmz.jpg" />
     <None Include="Resources\led-green1.png" />
     <None Include="Resources\classic_open.bmp" />

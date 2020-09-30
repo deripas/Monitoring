@@ -153,6 +153,16 @@ namespace Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap hygrometer_icon {
+            get {
+                object obj = ResourceManager.GetObject("hygrometer_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap led_gray {
             get {
                 object obj = ResourceManager.GetObject("led-gray", resourceCulture);
@@ -265,6 +275,16 @@ namespace Properties {
         internal static System.Drawing.Bitmap temperature {
             get {
                 object obj = ResourceManager.GetObject("temperature", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap temperature_ico {
+            get {
+                object obj = ResourceManager.GetObject("temperature_ico", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

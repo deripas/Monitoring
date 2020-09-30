@@ -32,29 +32,42 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // baseSensor1
+            // 
             this.baseSensor1.Alarm = false;
             this.baseSensor1.Description = "";
+            this.baseSensor1.Device = null;
+            this.baseSensor1.EnabledLed = false;
             this.baseSensor1.Location = new System.Drawing.Point(0, 0);
+            this.baseSensor1.Margin = new System.Windows.Forms.Padding(1);
             this.baseSensor1.Max = "maximum";
             this.baseSensor1.Name = "baseSensor1";
-            this.baseSensor1.Size = new System.Drawing.Size(576, 112);
+            this.baseSensor1.Size = new System.Drawing.Size(314, 61);
             this.baseSensor1.TabIndex = 0;
             this.baseSensor1.Title = "Протечка";
             this.baseSensor1.Value = "current";
-            this.pictureBox1.Image = global::Properties.Resources.weather_fog;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(108, 108);
+            this.pictureBox1.Size = new System.Drawing.Size(59, 46);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            // 
+            // LeakSensor
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.baseSensor1);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LeakSensor";
-            this.Size = new System.Drawing.Size(578, 114);
+            this.Size = new System.Drawing.Size(315, 50);
             ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
         }

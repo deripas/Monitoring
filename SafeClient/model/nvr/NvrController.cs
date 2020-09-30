@@ -45,6 +45,10 @@ namespace model.nvr
 
         internal void Disconnect()
         {
+            connect = false;
+            Task.WaitAll(checker);
+            checker = null;
+
             lock (model)
             {
                 model.Logout();
