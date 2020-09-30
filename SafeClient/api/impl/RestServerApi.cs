@@ -17,7 +17,7 @@ namespace api.impl
         public RestServerApi()
         {
             var factory = new WebClientHttpRequestFactory();
-            factory.Timeout = 3000;
+            factory.Timeout = 5000;
 
             template = new RestTemplate(ConfigurationManager.AppSettings["server.url"]);
             template.MessageConverters.Add(new DataContractJsonHttpMessageConverter());

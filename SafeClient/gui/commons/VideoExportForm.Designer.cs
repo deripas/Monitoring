@@ -108,7 +108,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(100, 30);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(160, 30);
             this.toolStripStatusLabel1.Text = "Выберете файл";
             // 
             // VideoExportForm
@@ -126,6 +126,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "VideoExportForm";
             this.Text = "VideoExportForm";
+            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.VideoExportForm_FormClosing);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

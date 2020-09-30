@@ -19,6 +19,7 @@ namespace api.dto
         {
             List<int> cams = new List<int> { 29, 30, 0, 31, 32, 33, 24, 25, 26, 27, 0, 28, 20, 21, 22, 23, 16, 17, 12, 13, 14, 15, 18, 19, 5, 7, 8, 9, 10, 11, 1, 2, 3, 0, 4, 6 };
             List<int> dev = new List<int> { 47, 40, 46, 44, 45, 37, 36, 39, 38, 41, 43, 42, 24, 19, 18, 21, 20, 23, 22, 25, 27, 26 };
+            List<int> control = new List<int>() { 67, 68, 59, 60, 57 };
 
             return new CameraGrid()
             {
@@ -26,7 +27,7 @@ namespace api.dto
                 rows = 6,
                 cams = cams,
                 device = dev,
-                control = new List<int>(),
+                control = control,
                 stream = 1
             };
         }

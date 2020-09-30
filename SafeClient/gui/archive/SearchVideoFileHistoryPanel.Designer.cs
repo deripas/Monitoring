@@ -40,9 +40,10 @@
             this.cameraComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cameraComboBox.FormattingEnabled = true;
-            this.cameraComboBox.Location = new System.Drawing.Point(3, 48);
+            this.cameraComboBox.Location = new System.Drawing.Point(2, 26);
+            this.cameraComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cameraComboBox.Name = "cameraComboBox";
-            this.cameraComboBox.Size = new System.Drawing.Size(346, 32);
+            this.cameraComboBox.Size = new System.Drawing.Size(188, 21);
             this.cameraComboBox.TabIndex = 12;
             this.cameraComboBox.SelectedIndexChanged += new System.EventHandler(this.cameraComboBox_SelectedIndexChanged);
             // 
@@ -52,9 +53,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePicker1.CustomFormat = "dd.MM.yyyy";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(3, 3);
+            this.dateTimePicker1.Location = new System.Drawing.Point(2, 2);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(346, 29);
+            this.dateTimePicker1.Size = new System.Drawing.Size(188, 20);
             this.dateTimePicker1.TabIndex = 11;
             // 
             // tableLayoutPanel1
@@ -66,30 +68,33 @@
             this.tableLayoutPanel1.Controls.Add(this.videoFileList1, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 0F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(352, 632);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(192, 342);
             this.tableLayoutPanel1.TabIndex = 16;
             // 
             // videoFileList1
             // 
             this.videoFileList1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.videoFileList1.Location = new System.Drawing.Point(3, 93);
+            this.videoFileList1.Location = new System.Drawing.Point(1, 49);
+            this.videoFileList1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.videoFileList1.Name = "videoFileList1";
-            this.videoFileList1.Size = new System.Drawing.Size(346, 536);
+            this.videoFileList1.Size = new System.Drawing.Size(190, 292);
             this.videoFileList1.TabIndex = 18;
             // 
             // SearchVideoFileHistoryPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "SearchVideoFileHistoryPanel";
-            this.Size = new System.Drawing.Size(352, 632);
+            this.Size = new System.Drawing.Size(192, 342);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

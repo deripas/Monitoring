@@ -45,9 +45,10 @@
             // 
             this.buttonPlay.Enabled = false;
             this.buttonPlay.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonPlay.Location = new System.Drawing.Point(44, 3);
+            this.buttonPlay.Location = new System.Drawing.Point(21, 2);
+            this.buttonPlay.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonPlay.Name = "buttonPlay";
-            this.buttonPlay.Size = new System.Drawing.Size(81, 59);
+            this.buttonPlay.Size = new System.Drawing.Size(44, 39);
             this.buttonPlay.TabIndex = 6;
             this.buttonPlay.Text = "▶";
             this.buttonPlay.UseVisualStyleBackColor = true;
@@ -57,9 +58,10 @@
             // 
             this.buttonStop.Enabled = false;
             this.buttonStop.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonStop.Location = new System.Drawing.Point(131, 3);
+            this.buttonStop.Location = new System.Drawing.Point(69, 2);
+            this.buttonStop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonStop.Name = "buttonStop";
-            this.buttonStop.Size = new System.Drawing.Size(81, 59);
+            this.buttonStop.Size = new System.Drawing.Size(44, 39);
             this.buttonStop.TabIndex = 7;
             this.buttonStop.Text = "■";
             this.buttonStop.UseVisualStyleBackColor = true;
@@ -70,9 +72,10 @@
             this.checkBoxPause.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBoxPause.Enabled = false;
             this.checkBoxPause.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBoxPause.Location = new System.Drawing.Point(218, 3);
+            this.checkBoxPause.Location = new System.Drawing.Point(117, 2);
+            this.checkBoxPause.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBoxPause.Name = "checkBoxPause";
-            this.checkBoxPause.Size = new System.Drawing.Size(81, 59);
+            this.checkBoxPause.Size = new System.Drawing.Size(44, 39);
             this.checkBoxPause.TabIndex = 8;
             this.checkBoxPause.Text = "⏸";
             this.checkBoxPause.UseVisualStyleBackColor = true;
@@ -82,9 +85,10 @@
             // 
             this.buttonSlow.Enabled = false;
             this.buttonSlow.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonSlow.Location = new System.Drawing.Point(305, 3);
+            this.buttonSlow.Location = new System.Drawing.Point(165, 2);
+            this.buttonSlow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonSlow.Name = "buttonSlow";
-            this.buttonSlow.Size = new System.Drawing.Size(81, 59);
+            this.buttonSlow.Size = new System.Drawing.Size(44, 39);
             this.buttonSlow.TabIndex = 9;
             this.buttonSlow.Text = "⏪";
             this.buttonSlow.UseVisualStyleBackColor = true;
@@ -94,9 +98,10 @@
             // 
             this.buttonFast.Enabled = false;
             this.buttonFast.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonFast.Location = new System.Drawing.Point(392, 3);
+            this.buttonFast.Location = new System.Drawing.Point(213, 2);
+            this.buttonFast.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonFast.Name = "buttonFast";
-            this.buttonFast.Size = new System.Drawing.Size(81, 59);
+            this.buttonFast.Size = new System.Drawing.Size(44, 39);
             this.buttonFast.TabIndex = 10;
             this.buttonFast.Text = "⏩";
             this.buttonFast.UseVisualStyleBackColor = true;
@@ -107,9 +112,10 @@
             this.buttonNext.AutoSize = true;
             this.buttonNext.Enabled = false;
             this.buttonNext.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonNext.Location = new System.Drawing.Point(566, 3);
+            this.buttonNext.Location = new System.Drawing.Point(309, 2);
+            this.buttonNext.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonNext.Name = "buttonNext";
-            this.buttonNext.Size = new System.Drawing.Size(81, 59);
+            this.buttonNext.Size = new System.Drawing.Size(44, 39);
             this.buttonNext.TabIndex = 11;
             this.buttonNext.Text = "⏎";
             this.buttonNext.UseVisualStyleBackColor = true;
@@ -126,9 +132,10 @@
             this.flowLayoutPanel1.Controls.Add(this.buttonPlay);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(130, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(-12, 2);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(650, 69);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(355, 25);
             this.flowLayoutPanel1.TabIndex = 12;
             // 
             // checkBoxSound
@@ -136,9 +143,10 @@
             this.checkBoxSound.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBoxSound.Enabled = false;
             this.checkBoxSound.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBoxSound.Location = new System.Drawing.Point(479, 3);
+            this.checkBoxSound.Location = new System.Drawing.Point(261, 2);
+            this.checkBoxSound.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBoxSound.Name = "checkBoxSound";
-            this.checkBoxSound.Size = new System.Drawing.Size(81, 59);
+            this.checkBoxSound.Size = new System.Drawing.Size(44, 3);
             this.checkBoxSound.TabIndex = 15;
             this.checkBoxSound.Text = "🔈";
             this.checkBoxSound.UseVisualStyleBackColor = true;
@@ -153,19 +161,21 @@
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(911, 75);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(331, 29);
             this.tableLayoutPanel1.TabIndex = 13;
             // 
             // PlayerControlPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "PlayerControlPanel";
-            this.Size = new System.Drawing.Size(911, 75);
+            this.Size = new System.Drawing.Size(497, 44);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);

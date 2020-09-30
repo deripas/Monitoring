@@ -114,6 +114,7 @@
             this.Controls.Add(this.led);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.description);
+            this.DoubleBuffered = true;
             this.Name = "BaseSensor";
             this.Size = new System.Drawing.Size(594, 120);
             this.flowLayoutPanel1.ResumeLayout(false);

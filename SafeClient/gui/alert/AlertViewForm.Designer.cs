@@ -42,23 +42,26 @@
             this.alertPlayerPanel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.alertPlayerPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.alertPlayerPanel1.Location = new System.Drawing.Point(0, 0);
+            this.alertPlayerPanel1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.alertPlayerPanel1.Name = "alertPlayerPanel1";
             this.alertPlayerPanel1.Ratio = 0.75D;
-            this.alertPlayerPanel1.Size = new System.Drawing.Size(900, 840);
+            this.alertPlayerPanel1.Size = new System.Drawing.Size(1035, 679);
             this.alertPlayerPanel1.TabIndex = 0;
             // 
             // searchAlertPanel1
             // 
             this.searchAlertPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.searchAlertPanel1.Location = new System.Drawing.Point(0, 0);
+            this.searchAlertPanel1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.searchAlertPanel1.Name = "searchAlertPanel1";
-            this.searchAlertPanel1.Size = new System.Drawing.Size(451, 840);
+            this.searchAlertPanel1.Size = new System.Drawing.Size(443, 679);
             this.searchAlertPanel1.TabIndex = 1;
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -68,16 +71,18 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.alertPlayerPanel1);
-            this.splitContainer1.Size = new System.Drawing.Size(1355, 840);
-            this.splitContainer1.SplitterDistance = 451;
+            this.splitContainer1.Size = new System.Drawing.Size(1480, 679);
+            this.splitContainer1.SplitterDistance = 443;
+            this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 2;
             // 
             // AlertViewForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1355, 840);
+            this.ClientSize = new System.Drawing.Size(1480, 679);
             this.Controls.Add(this.splitContainer1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AlertViewForm";

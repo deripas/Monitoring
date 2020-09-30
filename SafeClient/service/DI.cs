@@ -1,4 +1,6 @@
 ﻿using api;
+using api.dto;
+using api.dto.client;
 using api.impl;
 
 namespace service
@@ -12,6 +14,7 @@ namespace service
         public IServerApi ServerApi { get; set; }
         public AlarmSoundService AlarmSoundService { get; set; }
         public StatusReaderService StatusReaderService { get; set; }
+        public ClientType Type { get; set; }
         
         
         public void Init()
@@ -21,6 +24,9 @@ namespace service
             DeviceService = new DeviceService(ServerApi);
             StatusReaderService = new StatusReaderService(ServerApi);
             AlarmSoundService = new AlarmSoundService();
+
+            ClientTypeFactory typeFactory = new ClientTypeFactory();
+            Type = typeFactory.Create();
         }
 
         internal void Dispose()

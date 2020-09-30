@@ -11,6 +11,7 @@
       <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.5.1" />
       <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.5.1" />
       <PackageReference Include="System.Reactive" Version="4.4.1" />
+      <PackageReference Include="System.ServiceProcess.ServiceController" Version="4.7.0" />
     </ItemGroup>
 
     <ItemGroup>

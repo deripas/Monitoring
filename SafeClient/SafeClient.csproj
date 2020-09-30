@@ -102,6 +102,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="api\dto\CameraGrid.cs" />
+    <Compile Include="api\dto\client\ClientType.cs" />
+    <Compile Include="api\dto\client\ClientTypeFactory.cs" />
+    <Compile Include="api\dto\client\ClientTypeStand.cs" />
+    <Compile Include="api\dto\client\ClientTypeView.cs" />
     <Compile Include="api\dto\config\Alarm.cs" />
     <Compile Include="api\dto\AlertInfo.cs" />
     <Compile Include="api\dto\CameraInfo.cs" />

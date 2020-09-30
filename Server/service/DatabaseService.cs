@@ -26,8 +26,6 @@ namespace SafeServer.service
         {
             var connection = ConfigurationBinder.GetValue<string>(DI.Instance.Config, "Settings:DbConnection");
             optionsBuilder
-                //.UseLoggerFactory(new NLogLoggerFactory())
-                //.EnableSensitiveDataLogging()
                 .UseNpgsql(connection);
         }
 

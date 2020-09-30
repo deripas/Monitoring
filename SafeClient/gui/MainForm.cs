@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Windows.Forms;
 using api.dto;
 using Properties;
@@ -8,6 +8,8 @@ namespace gui
 {
     public partial class MainForm : Form
     {
+        private CameraGrid[] mode;
+
         public MainForm()
         {
             DI.Instance.Init();
@@ -47,73 +49,52 @@ namespace gui
 
         private void toolStripButton5_Click(object sender, System.EventArgs e)
         {
-            UpdateMode(toolStripButton5, false);
-            try
-            {
-                var gridConf = CameraGrid.grid6x6();
-                grid.Grid(gridConf);
-                sensorPanel1.Set(gridConf.device);
-            }
-            finally
-            {
-                UpdateMode(toolStripButton5, true);
-            }
+            ChangeMode(0);
         }
 
         private void toolStripButton6_Click(object sender, System.EventArgs e)
         {
-            UpdateMode(toolStripButton6, false);
-            try
-            {
-                var gridConf = CameraGrid.grid3x3_1();
-                grid.Grid(gridConf);
-                sensorPanel1.Set(gridConf.device);
-                controlPanel1.Set(gridConf.control);
-            }
-            finally
-            {
-                UpdateMode(toolStripButton6, true);
-            }
+            ChangeMode(1);
         }
 
         private void toolStripButton7_Click(object sender, System.EventArgs e)
         {
-            UpdateMode(toolStripButton7, false);
-            try
-            {
-                var gridConf = CameraGrid.grid3x3_2();
-                grid.Grid(gridConf);
-                sensorPanel1.Set(gridConf.device);
-                controlPanel1.Set(gridConf.control);
-            }
-            finally
-            {
-                UpdateMode(toolStripButton7, true);
-            }
+            ChangeMode(2);
         }
 
         private void toolStripButton8_Click(object sender, System.EventArgs e)
         {
-            UpdateMode(toolStripButton8, false);
+            ChangeMode(3);
+        }
+
+        private void ChangeMode(int index)
+        {
+            UpdateMode(index, false);
             try
             {
-                var gridConf = CameraGrid.grid3x3_3();
-                grid.Grid(gridConf);
-                sensorPanel1.Set(gridConf.device);
-                controlPanel1.Set(gridConf.control);
+                if (index < mode.Length)
+                {
+                    CameraGrid gridConf = mode[index];
+                    grid.Grid(gridConf);
+                    sensorPanel1.Set(gridConf.device);
+                    controlPanel1.Set(gridConf.control);
+                }
             }
             finally
             {
-                UpdateMode(toolStripButton8, true);
+                UpdateMode(index, true);
             }
         }
 
-        private void UpdateMode(ToolStripButton select, bool enable)
+        private void UpdateMode(int index, bool enable)
         {
             ToolStripButton[] array = new ToolStripButton[] { toolStripButton5, toolStripButton6, toolStripButton7, toolStripButton8 };
-            foreach(ToolStripButton button in array)
+            for(int i= 0; i < array.Length; i++)
             {
-                button.Enabled = enable;
+                var button = array[i];
+                var select = array[index];
+
+                button.Enabled = enable && i < mode.Length;
                 button.Checked = button == select;
                 button.Image = button == select
                     ? Resources.led_green
@@ -124,10 +105,13 @@ namespace gui
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            mode = DI.Instance.Type.GetMode();
+            toolStripButton5_Click(null, null);
+
             var count = DI.Instance.ServerApi.FindAlertAll().count;
             if (count > 0)
             {
-                MessageBox.Show("Найдено " + count + " необработанных тревог!", "Внимание", MessageBoxButtons.OK);
+                MessageBox.Show("Найдено необработанных тревог: " + count + "!", "Внимание", MessageBoxButtons.OK);
             }
         }
     }

@@ -58,11 +58,13 @@
             this.AutoScroll = true;
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Controls.Add(this.panel1);
+            this.DoubleBuffered = true;
             this.Name = "SensorPanel";
-            this.Size = new System.Drawing.Size(500, 610);
+            this.Size = new System.Drawing.Size(440, 550);
             this.Load += new System.EventHandler(this.SensorPanel_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
