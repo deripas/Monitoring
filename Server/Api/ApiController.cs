@@ -11,7 +11,7 @@ using SafeServer.service.device;
 
 namespace Server.Api
 {
-  [ApiController]
+    [ApiController]
     [Route("/api")]
     [Produces("application/json")]
     public class ApiController : ControllerBase
