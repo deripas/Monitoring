@@ -43,44 +43,45 @@
             this.canvasPanel1.Name = "canvasPanel1";
             this.canvasPanel1.Ratio = 0.75D;
             this.canvasPanel1.Selected = false;
-            this.canvasPanel1.Size = new System.Drawing.Size(1226, 596);
+            this.canvasPanel1.Size = new System.Drawing.Size(1337, 620);
             this.canvasPanel1.TabIndex = 0;
             // 
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(28, 28);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.speedLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 711);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 740);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1226, 35);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 15, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1337, 37);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // speedLabel
             // 
             this.speedLabel.Name = "speedLabel";
-            this.speedLabel.Size = new System.Drawing.Size(170, 30);
+            this.speedLabel.Size = new System.Drawing.Size(196, 32);
             this.speedLabel.Text = "Файл не выбран";
             // 
             // playerNavigationPanel1
             // 
             this.playerNavigationPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.playerNavigationPanel1.Location = new System.Drawing.Point(0, 596);
+            this.playerNavigationPanel1.Location = new System.Drawing.Point(0, 620);
             this.playerNavigationPanel1.Name = "playerNavigationPanel1";
-            this.playerNavigationPanel1.Size = new System.Drawing.Size(1226, 115);
+            this.playerNavigationPanel1.Size = new System.Drawing.Size(1337, 120);
             this.playerNavigationPanel1.TabIndex = 3;
             this.playerNavigationPanel1.VideoPlayer = null;
             this.playerNavigationPanel1.VisibleTrackBar = true;
             // 
             // VideoPlayerPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.canvasPanel1);
             this.Controls.Add(this.playerNavigationPanel1);
             this.Controls.Add(this.statusStrip1);
             this.Name = "VideoPlayerPanel";
-            this.Size = new System.Drawing.Size(1226, 746);
+            this.Size = new System.Drawing.Size(1337, 777);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);

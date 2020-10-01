@@ -106,6 +106,7 @@ namespace gui
         private void MainForm_Load(object sender, EventArgs e)
         {
             mode = DI.Instance.Type.GetMode();
+            MainLabel.Text = "   «" + DI.Instance.Type.GetTitle() + "»   ";
             toolStripButton5_Click(null, null);
 
             var count = DI.Instance.ServerApi.FindAlertAll().count;
@@ -113,6 +114,13 @@ namespace gui
             {
                 MessageBox.Show("Найдено необработанных тревог: " + count + "!", "Внимание", MessageBoxButtons.OK);
             }
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            AboutForm about = new AboutForm();
+            about.Text = MainLabel.Text;
+            about.ShowDialog();
         }
     }
 }

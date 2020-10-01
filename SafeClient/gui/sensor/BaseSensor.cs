@@ -92,6 +92,7 @@ namespace gui
                 {
                     Description = value.Description;
                     EnabledLed = value.Enable;
+                    this.toolTip2.SetToolTip(this.description, value.Name);
                 }
             }
         }
@@ -114,7 +115,6 @@ namespace gui
                 device.Camera.Selected = false;
                 DI.Instance.AlarmSoundService.Stop();
                 DI.Instance.ServerApi.ResetDeviceAlert(device.Id);
-                toolTip1.Show("Тревога сброшена", led, 3000);
             }
         }
 
@@ -135,9 +135,9 @@ namespace gui
             if(enable && alarm > this.alarm)
             {
                 DI.Instance.AlarmSoundService.Play();
-                this.alarm = alarm;
+                device.Camera.Selected = true;
             }
-            device.Camera.Selected = Alarm;
+            this.alarm = alarm;
             UpdateLed();
         }
     }

@@ -35,9 +35,9 @@
             this.current = new System.Windows.Forms.Label();
             this.description = new System.Windows.Forms.RichTextBox();
             this.led = new System.Windows.Forms.PictureBox();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.led)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -45,18 +45,20 @@
             this.flowLayoutPanel1.Controls.Add(this.name);
             this.flowLayoutPanel1.Controls.Add(this.maximum);
             this.flowLayoutPanel1.Controls.Add(this.current);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(62, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(124, 6);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(225, 19);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(450, 37);
             this.flowLayoutPanel1.TabIndex = 15;
             // 
             // name
             // 
             this.name.AutoSize = true;
-            this.name.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle) ((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.name.Location = new System.Drawing.Point(3, 0);
+            this.name.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.name.Location = new System.Drawing.Point(6, 0);
+            this.name.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.name.Name = "name";
-            this.name.Size = new System.Drawing.Size(59, 18);
+            this.name.Size = new System.Drawing.Size(117, 35);
             this.name.TabIndex = 2;
             this.name.Text = "Датчик";
             // 
@@ -64,10 +66,11 @@
             // 
             this.maximum.AutoSize = true;
             this.maximum.BackColor = System.Drawing.Color.DarkOrange;
-            this.maximum.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.maximum.Location = new System.Drawing.Point(68, 0);
+            this.maximum.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.maximum.Location = new System.Drawing.Point(135, 0);
+            this.maximum.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.maximum.Name = "maximum";
-            this.maximum.Size = new System.Drawing.Size(73, 17);
+            this.maximum.Size = new System.Drawing.Size(144, 35);
             this.maximum.TabIndex = 8;
             this.maximum.Text = "maximum";
             // 
@@ -75,49 +78,57 @@
             // 
             this.current.AutoSize = true;
             this.current.BackColor = System.Drawing.Color.YellowGreen;
-            this.current.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.current.Location = new System.Drawing.Point(147, 0);
+            this.current.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.current.Location = new System.Drawing.Point(291, 0);
+            this.current.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.current.Name = "current";
-            this.current.Size = new System.Drawing.Size(54, 17);
+            this.current.Size = new System.Drawing.Size(108, 35);
             this.current.TabIndex = 9;
             this.current.Text = "current";
             // 
             // description
             // 
-            this.description.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.description.Location = new System.Drawing.Point(65, 25);
+            this.description.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.description.Location = new System.Drawing.Point(130, 48);
+            this.description.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.description.Name = "description";
             this.description.ReadOnly = true;
-            this.description.Size = new System.Drawing.Size(207, 25);
+            this.description.Size = new System.Drawing.Size(410, 44);
             this.description.TabIndex = 14;
             this.description.Text = "";
+            this.toolTip2.SetToolTip(this.description, "text");
             // 
             // led
             // 
-            this.led.Location = new System.Drawing.Point(277, 3);
-            this.led.Margin = new System.Windows.Forms.Padding(2);
+            this.led.Location = new System.Drawing.Point(554, 6);
+            this.led.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.led.Name = "led";
-            this.led.Size = new System.Drawing.Size(33, 29);
+            this.led.Size = new System.Drawing.Size(66, 56);
             this.led.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.led.TabIndex = 16;
             this.led.TabStop = false;
             this.led.MouseClick += new System.Windows.Forms.MouseEventHandler(this.led_MouseClick);
             // 
+            // toolTip2
+            // 
+            this.toolTip2.IsBalloon = true;
+            // 
             // BaseSensor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.led);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.description);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "BaseSensor";
-            this.Size = new System.Drawing.Size(324, 50);
+            this.Size = new System.Drawing.Size(648, 96);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.led)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.Label current;
@@ -126,8 +137,9 @@
         private System.Windows.Forms.PictureBox led;
         private System.Windows.Forms.Label maximum;
         private System.Windows.Forms.Label name;
-        private System.Windows.Forms.ToolTip toolTip1;
 
         #endregion
+
+        private System.Windows.Forms.ToolTip toolTip2;
     }
 }

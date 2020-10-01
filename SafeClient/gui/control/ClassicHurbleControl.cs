@@ -127,9 +127,9 @@ namespace gui
             if (alarm > this.alarm)
             {
                 DI.Instance.AlarmSoundService.Play();
+                device.Camera.Selected = true;
             }
             this.alarm = alarm;
-            device.Camera.Selected = Alarm;
             UpdateLed();
         }
 

@@ -40,6 +40,13 @@ namespace model.camera
 
         public void Preset(int val)
         {
+            if(PTZClient == null)
+            {
+                var result = NETClient.PTZControl(LoginId, Channel, EM_EXTPTZ_ControlType.POINT_MOVE_CONTROL, 0, val, 0, false, IntPtr.Zero);
+                Log.Debug("{0}: NETClient.PTZControl cmd={1} value={2} {3}", this, EM_EXTPTZ_ControlType.POINT_MOVE_CONTROL, val, result);
+                return;
+            }
+
             try
             {
                 PTZClient.GotoPreset(new GotoPresetRequest(Profile, val.ToString(), null));

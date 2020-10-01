@@ -8,5 +8,6 @@ namespace api.dto
     public interface ClientType
     {
         CameraGrid[] GetMode();
+        String GetTitle();
     }
 }

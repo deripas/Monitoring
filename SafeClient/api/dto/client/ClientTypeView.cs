@@ -37,5 +37,10 @@ namespace api.dto.client
             };
         }
 
+        public string GetTitle()
+        {
+            return ConfigurationManager.AppSettings["client.type.view.label"];
+        }
+
     }
 }

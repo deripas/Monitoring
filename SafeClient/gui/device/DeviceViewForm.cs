@@ -1,6 +1,7 @@
 ﻿using api.dto;
 using gui.device;
 using model.device;
+using Properties;
 using service;
 using System;
 using System.Windows.Forms;
@@ -15,6 +16,7 @@ namespace gui
         public DeviceViewForm()
         {
             InitializeComponent();
+            Icon = Resources.AppIcon;
         }
 
         internal void Start()

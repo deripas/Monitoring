@@ -45,9 +45,9 @@
             // 
             this.panel1.Controls.Add(this.flowLayoutPanel1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 781);
+            this.panel1.Location = new System.Drawing.Point(0, 813);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(464, 61);
+            this.panel1.Size = new System.Drawing.Size(506, 64);
             this.panel1.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -58,15 +58,15 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(464, 61);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(506, 64);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(289, 10);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(10);
+            this.buttonCancel.Location = new System.Drawing.Point(315, 10);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(11, 10, 11, 10);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(165, 45);
+            this.buttonCancel.Size = new System.Drawing.Size(180, 47);
             this.buttonCancel.TabIndex = 1;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -74,10 +74,10 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(104, 10);
-            this.buttonSave.Margin = new System.Windows.Forms.Padding(10);
+            this.buttonSave.Location = new System.Drawing.Point(113, 10);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(11, 10, 11, 10);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(165, 45);
+            this.buttonSave.Size = new System.Drawing.Size(180, 47);
             this.buttonSave.TabIndex = 0;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -94,42 +94,42 @@
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 2);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(461, 776);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(503, 808);
             this.flowLayoutPanel2.TabIndex = 1;
             // 
             // baseOption1
             // 
             this.baseOption1.Location = new System.Drawing.Point(3, 3);
             this.baseOption1.Name = "baseOption1";
-            this.baseOption1.Size = new System.Drawing.Size(443, 255);
+            this.baseOption1.Size = new System.Drawing.Size(483, 266);
             this.baseOption1.TabIndex = 0;
             // 
             // alarmOption1
             // 
-            this.alarmOption1.Location = new System.Drawing.Point(3, 264);
+            this.alarmOption1.Location = new System.Drawing.Point(3, 275);
             this.alarmOption1.Name = "alarmOption1";
-            this.alarmOption1.Size = new System.Drawing.Size(445, 257);
+            this.alarmOption1.Size = new System.Drawing.Size(485, 268);
             this.alarmOption1.TabIndex = 1;
             // 
             // measureOption1
             // 
-            this.measureOption1.Location = new System.Drawing.Point(3, 527);
+            this.measureOption1.Location = new System.Drawing.Point(3, 549);
             this.measureOption1.Name = "measureOption1";
-            this.measureOption1.Size = new System.Drawing.Size(428, 239);
+            this.measureOption1.Size = new System.Drawing.Size(467, 249);
             this.measureOption1.TabIndex = 2;
             // 
             // DeviceEditorForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(464, 842);
+            this.ClientSize = new System.Drawing.Size(506, 877);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "DeviceEditorForm";
-            this.Text = "DeviceEditorForm";
+            this.Text = "Редактор";
             this.TopMost = true;
             this.panel1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);

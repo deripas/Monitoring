@@ -55,8 +55,9 @@ namespace api.dto.client
         {
             var dev = service.DI.Instance.DeviceService.DeviceList
                 .Where(device => device.Type.IsSensor())
-                .Where(device => stand.Equals(device.Stand))
+                .Where(device => stand.Equals(device.Stand) || ("ory".Equals(device.Stand) && device.Type == DeviceType.water))
                 .OrderBy(device => device.Type)
+                .ThenBy(device => device.Stand)
                 .ThenBy(device => device.Description)
                 .Select(device => device.Id)
                 .ToList();
@@ -98,7 +99,7 @@ namespace api.dto.client
         {
             var dev = service.DI.Instance.DeviceService.DeviceList
                 .Where(device => device.Type.IsSensor())
-                .Where(device => stand.Equals(device.Stand))
+                .Where(device => stand.Equals(device.Stand) || ("ory".Equals(device.Stand) && device.Type == DeviceType.water))
                 .OrderBy(device => device.Type)
                 .ThenBy(device => device.Stand)
                 .ThenBy(device => device.Description)
@@ -120,6 +121,11 @@ namespace api.dto.client
         {
             var cams = ConfigurationManager.AppSettings["client.type." + stand + "." + mode];
             return cams.Split(',').Select(int.Parse).ToList();
+        }
+
+        public string GetTitle()
+        {
+            return ConfigurationManager.AppSettings["client.type." + stand + ".label"];
         }
     }
 }

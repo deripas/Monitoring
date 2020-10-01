@@ -1,4 +1,5 @@
 ﻿using model.camera;
+using Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,7 @@ namespace gui
         public CameraPtzForm()
         {
             InitializeComponent();
+            Icon = Resources.AppIcon;
         }
 
         internal void Start(CameraController cam)
