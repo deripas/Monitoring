@@ -20,7 +20,7 @@ namespace SafeServer.service.device
 
         public override string RenderStatusValue(DeviceStatus status)
         {
-            return (status.value == 0).ToString();
+            return (status.value == 0) ? "норма" : "тревога";
         }
     }
 }

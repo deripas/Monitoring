@@ -35,33 +35,33 @@
             // aGauge1
             // 
             this.aGauge1.BaseArcColor = System.Drawing.Color.Gray;
-            this.aGauge1.BaseArcRadius = 25;
+            this.aGauge1.BaseArcRadius = 50;
             this.aGauge1.BaseArcStart = 135;
             this.aGauge1.BaseArcSweep = 270;
             this.aGauge1.BaseArcWidth = 2;
-            this.aGauge1.Center = new System.Drawing.Point(25, 25);
-            this.aGauge1.Location = new System.Drawing.Point(2, 2);
-            this.aGauge1.Margin = new System.Windows.Forms.Padding(2);
+            this.aGauge1.Center = new System.Drawing.Point(50, 50);
+            this.aGauge1.Location = new System.Drawing.Point(4, 4);
+            this.aGauge1.Margin = new System.Windows.Forms.Padding(4);
             this.aGauge1.MaxValue = 100F;
             this.aGauge1.MinValue = -100F;
             this.aGauge1.Name = "aGauge1";
             this.aGauge1.NeedleColor1 = System.Windows.Forms.AGaugeNeedleColor.Gray;
             this.aGauge1.NeedleColor2 = System.Drawing.Color.DimGray;
-            this.aGauge1.NeedleRadius = 40;
+            this.aGauge1.NeedleRadius = 90;
             this.aGauge1.NeedleType = System.Windows.Forms.NeedleType.Advance;
             this.aGauge1.NeedleWidth = 2;
             this.aGauge1.ScaleLinesInterColor = System.Drawing.Color.Black;
-            this.aGauge1.ScaleLinesInterInnerRadius = 20;
-            this.aGauge1.ScaleLinesInterOuterRadius = 25;
+            this.aGauge1.ScaleLinesInterInnerRadius = 40;
+            this.aGauge1.ScaleLinesInterOuterRadius = 50;
             this.aGauge1.ScaleLinesInterWidth = 1;
             this.aGauge1.ScaleLinesMajorColor = System.Drawing.Color.Black;
-            this.aGauge1.ScaleLinesMajorInnerRadius = 20;
-            this.aGauge1.ScaleLinesMajorOuterRadius = 25;
+            this.aGauge1.ScaleLinesMajorInnerRadius = 40;
+            this.aGauge1.ScaleLinesMajorOuterRadius = 50;
             this.aGauge1.ScaleLinesMajorStepValue = 100F;
             this.aGauge1.ScaleLinesMajorWidth = 2;
             this.aGauge1.ScaleLinesMinorColor = System.Drawing.Color.Gray;
-            this.aGauge1.ScaleLinesMinorInnerRadius = 20;
-            this.aGauge1.ScaleLinesMinorOuterRadius = 25;
+            this.aGauge1.ScaleLinesMinorInnerRadius = 45;
+            this.aGauge1.ScaleLinesMinorOuterRadius = 50;
             this.aGauge1.ScaleLinesMinorTicks = 9;
             this.aGauge1.ScaleLinesMinorWidth = 1;
             this.aGauge1.ScaleNumbersColor = System.Drawing.Color.Black;
@@ -70,7 +70,7 @@
             this.aGauge1.ScaleNumbersRotation = 0;
             this.aGauge1.ScaleNumbersStartScaleLine = 0;
             this.aGauge1.ScaleNumbersStepScaleLines = 1;
-            this.aGauge1.Size = new System.Drawing.Size(57, 46);
+            this.aGauge1.Size = new System.Drawing.Size(114, 88);
             this.aGauge1.TabIndex = 14;
             this.aGauge1.Text = "aGauge1";
             this.aGauge1.Value = 0F;
@@ -82,24 +82,24 @@
             this.baseSensor1.Device = null;
             this.baseSensor1.EnabledLed = false;
             this.baseSensor1.Location = new System.Drawing.Point(0, 0);
-            this.baseSensor1.Margin = new System.Windows.Forms.Padding(1);
+            this.baseSensor1.Margin = new System.Windows.Forms.Padding(2);
             this.baseSensor1.Max = "maximum";
             this.baseSensor1.Name = "baseSensor1";
-            this.baseSensor1.Size = new System.Drawing.Size(314, 61);
+            this.baseSensor1.Size = new System.Drawing.Size(628, 117);
             this.baseSensor1.TabIndex = 0;
             this.baseSensor1.Title = "Вибрация";
             this.baseSensor1.Value = "current";
             // 
             // VibrationSensor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.aGauge1);
             this.Controls.Add(this.baseSensor1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "VibrationSensor";
-            this.Size = new System.Drawing.Size(315, 50);
+            this.Size = new System.Drawing.Size(630, 96);
             this.ResumeLayout(false);
 
         }

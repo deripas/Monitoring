@@ -39,7 +39,9 @@ namespace Server.Controllers
         {
             var draw = HttpContext.Request.Form["draw"].FirstOrDefault();
             using var db = new DatabaseService();
-            var camera = db.Camera.ToList()
+            var camera = db.Camera
+                .OrderBy(c => c.Name)
+                .ToList()
                 .Select(c =>
                 {
                     return new
@@ -64,24 +66,27 @@ namespace Server.Controllers
             Dictionary<long, DeviceStatus> status = DI.Instance.DeviceStatusService.GetStatuses();
             var draw = HttpContext.Request.Form["draw"].FirstOrDefault();
 
-            var devices =  DI.Instance.DeviceService.Devices;
+            using var db = new DatabaseService();
+            var devices = db.Device
+                .OrderBy(c => c.Name)
+                .ToList();
             var result = new List<object>();
             foreach (var dev in devices)
             {
-                var camId = dev.CameraId();
+                var camId = dev.Camera;
                 if (!camId.HasValue) continue;
 
                 var cam = DI.Instance.CameraService[camId.Value];
                 DeviceStatus s;
-                var exist = status.TryGetValue(dev.Id(), out s);
+                var exist = status.TryGetValue(dev.Id, out s);
                 result.Add(new
                 {
-                    id = dev.Id(),
-                    name = dev.Name(),
+                    id = dev.Id,
+                    name = dev.Name,
                     alert = s != null && s.alarm > 0,
                     main = cam.rtsp + "0",
                     sub = cam.rtsp + "1",
-                    value = exist ? dev.RenderStatusValue(s) : "-"
+                    value = exist ? DI.Instance.DeviceService[dev.Id].RenderStatusValue(s) : "-"
                 });
             }
             return Json(new { draw = draw, recordsFiltered = result.Count, recordsTotal = result.Count, data = result });

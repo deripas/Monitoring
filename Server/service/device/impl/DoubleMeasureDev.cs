@@ -35,7 +35,13 @@ namespace SafeServer.service.device
 
         public override string RenderStatusValue(DeviceStatus status)
         {
-            return status.value.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+            var unit = "";
+            if (device.Type.Equals("pressure"))
+                unit = " бар";
+            if (device.Type.Equals("temperature"))
+                unit = "°C";
+
+            return status.value.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + unit;
         }
     }
 }

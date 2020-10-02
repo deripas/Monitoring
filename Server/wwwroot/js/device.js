@@ -23,13 +23,13 @@
             {
                 "data": null,
                 "render": function (data, type, row, meta) {
-                    return "<a href='" + row.main + "' class='btn btn-info'>Main</a>";
+                    return "<a href='" + row.main + "' class='btn btn-info'>Основной</a>";
                 }
             },
             {
                 "data": null,
                 "render": function (data, type, row, meta) {
-                    return "<a href='" + row.sub + "' class='btn btn-info'>Sub</a>";
+                    return "<a href='" + row.sub + "' class='btn btn-info'>Доп.</a>";
                 }
             }
         ]

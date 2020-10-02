@@ -97,6 +97,7 @@ namespace gui
             }
         }
 
+        private long check;
         private long alarm;
         private bool enable;
         private DeviceController device;
@@ -115,6 +116,8 @@ namespace gui
                 device.Camera.Selected = false;
                 DI.Instance.AlarmSoundService.Stop();
                 DI.Instance.ServerApi.ResetDeviceAlert(device.Id);
+                check = alarm;
+                UpdateLed();
             }
         }
 
@@ -122,7 +125,9 @@ namespace gui
         {
             if (enable)
             {
-                led.Image = Alarm ? Resources.led_red : Resources.led_green;
+                led.Image = Alarm
+                    ? alarm == check ? Resources.led_orange : Resources.led_red 
+                    : Resources.led_green;
             }
             else
             {

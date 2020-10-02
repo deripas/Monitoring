@@ -183,6 +183,16 @@ namespace Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap led_orange {
+            get {
+                object obj = ResourceManager.GetObject("led-orange", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap led_red {
             get {
                 object obj = ResourceManager.GetObject("led-red", resourceCulture);

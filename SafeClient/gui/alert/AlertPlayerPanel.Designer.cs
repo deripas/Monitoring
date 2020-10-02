@@ -50,17 +50,17 @@
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(28, 28);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.speedLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 386);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 743);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 8, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(673, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 16, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1346, 42);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // speedLabel
             // 
             this.speedLabel.Name = "speedLabel";
-            this.speedLabel.Size = new System.Drawing.Size(97, 17);
+            this.speedLabel.Size = new System.Drawing.Size(196, 32);
             this.speedLabel.Text = "Файл не выбран";
             // 
             // chart1
@@ -76,14 +76,15 @@
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(0, 0);
-            this.chart1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chart1.Margin = new System.Windows.Forms.Padding(4);
             this.chart1.Name = "chart1";
+            series1.BorderWidth = 3;
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(673, 67);
+            this.chart1.Size = new System.Drawing.Size(1346, 129);
             this.chart1.TabIndex = 6;
             this.chart1.Text = "chart1";
             this.chart1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.chart1_MouseDown);
@@ -93,20 +94,20 @@
             this.canvasPanel1.BackColor = System.Drawing.Color.Black;
             this.canvasPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.canvasPanel1.Location = new System.Drawing.Point(0, 0);
-            this.canvasPanel1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.canvasPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.canvasPanel1.Name = "canvasPanel1";
             this.canvasPanel1.Ratio = 0.75D;
             this.canvasPanel1.Selected = false;
-            this.canvasPanel1.Size = new System.Drawing.Size(673, 255);
+            this.canvasPanel1.Size = new System.Drawing.Size(1346, 491);
             this.canvasPanel1.TabIndex = 5;
             // 
             // playerNavigationPanel1
             // 
             this.playerNavigationPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.playerNavigationPanel1.Location = new System.Drawing.Point(0, 324);
-            this.playerNavigationPanel1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.playerNavigationPanel1.Location = new System.Drawing.Point(0, 624);
+            this.playerNavigationPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.playerNavigationPanel1.Name = "playerNavigationPanel1";
-            this.playerNavigationPanel1.Size = new System.Drawing.Size(673, 62);
+            this.playerNavigationPanel1.Size = new System.Drawing.Size(1346, 119);
             this.playerNavigationPanel1.TabIndex = 4;
             this.playerNavigationPanel1.VideoPlayer = null;
             this.playerNavigationPanel1.VisibleTrackBar = true;
@@ -115,7 +116,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -126,21 +127,20 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.chart1);
-            this.splitContainer1.Size = new System.Drawing.Size(673, 324);
-            this.splitContainer1.SplitterDistance = 255;
-            this.splitContainer1.SplitterWidth = 2;
+            this.splitContainer1.Size = new System.Drawing.Size(1346, 624);
+            this.splitContainer1.SplitterDistance = 491;
             this.splitContainer1.TabIndex = 7;
             // 
             // AlertPlayerPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.playerNavigationPanel1);
             this.Controls.Add(this.statusStrip1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AlertPlayerPanel";
-            this.Size = new System.Drawing.Size(673, 408);
+            this.Size = new System.Drawing.Size(1346, 785);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
