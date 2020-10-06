@@ -39,6 +39,8 @@ namespace SafeServer.service
                 return new RolletDevice(dev);
             if (dev.Type.Equals("hurble"))
                 return new HurbleDevice(dev);
+            if (dev.Type.Equals("vibration"))
+                return new VibrationDevice(dev);
 
             Log.Warn("Unknown type [{0}] '{1}'", dev.Name, dev.Type);
             return null;

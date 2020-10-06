@@ -499,6 +499,11 @@
     <Content Include="NLog.xsd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\icons8-монитор-сердца-64.png" />
+    <None Include="Resources\icons8-камера-видеонаблюдения-64.png" />
+    <None Include="Resources\icons8-видео-плейлист-64.png" />
+    <None Include="Resources\icons8-автоматический-64.png" />
+    <None Include="Resources\icons8-приборная-панель-64.png" />
     <None Include="Resources\led-red1.png" />
     <None Include="Resources\hygrometer-icon.jpg" />
     <None Include="Resources\temperature-ico.png" />

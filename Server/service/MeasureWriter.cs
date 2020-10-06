@@ -29,13 +29,15 @@ namespace SafeServer.service
 
         private IList<Value> ToBatch(IList<DeviceStatus> statuses)
         {
-            var dic = new Dictionary<long, DeviceStatus>();
+            var dic = new Dictionary<long, Value>();
             foreach (var s in statuses)
-                dic[s.id] = s;
-            
-            return dic.Values
-                .Select(s => new Value {device = s.id, val = s.value, time = DateTime.Now})
-                .ToList();
+            {
+                var val = dic.ContainsKey(s.id)
+                    ? Math.Max(dic[s.id].val, s.value)
+                    : s.value;
+                dic[s.id] = new Value {device = s.id, val = val, time = DateTime.Now};
+            }
+            return dic.Values.ToList();
         }
         
         private void WriteDB(IList<Value> values)

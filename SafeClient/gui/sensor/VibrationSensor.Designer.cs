@@ -42,12 +42,12 @@
             this.aGauge1.Center = new System.Drawing.Point(50, 50);
             this.aGauge1.Location = new System.Drawing.Point(4, 4);
             this.aGauge1.Margin = new System.Windows.Forms.Padding(4);
-            this.aGauge1.MaxValue = 100F;
-            this.aGauge1.MinValue = -100F;
+            this.aGauge1.MaxValue = 10F;
+            this.aGauge1.MinValue = 0F;
             this.aGauge1.Name = "aGauge1";
             this.aGauge1.NeedleColor1 = System.Windows.Forms.AGaugeNeedleColor.Gray;
             this.aGauge1.NeedleColor2 = System.Drawing.Color.DimGray;
-            this.aGauge1.NeedleRadius = 90;
+            this.aGauge1.NeedleRadius = 50;
             this.aGauge1.NeedleType = System.Windows.Forms.NeedleType.Advance;
             this.aGauge1.NeedleWidth = 2;
             this.aGauge1.ScaleLinesInterColor = System.Drawing.Color.Black;
@@ -57,7 +57,7 @@
             this.aGauge1.ScaleLinesMajorColor = System.Drawing.Color.Black;
             this.aGauge1.ScaleLinesMajorInnerRadius = 40;
             this.aGauge1.ScaleLinesMajorOuterRadius = 50;
-            this.aGauge1.ScaleLinesMajorStepValue = 100F;
+            this.aGauge1.ScaleLinesMajorStepValue = 10F;
             this.aGauge1.ScaleLinesMajorWidth = 2;
             this.aGauge1.ScaleLinesMinorColor = System.Drawing.Color.Gray;
             this.aGauge1.ScaleLinesMinorInnerRadius = 45;

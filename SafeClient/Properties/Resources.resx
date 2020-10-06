@@ -196,4 +196,19 @@
   <data name="led-orange" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\led-red1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icons8_автоматический_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-автоматический-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8_видео_плейлист_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-видео-плейлист-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8_камера_видеонаблюдения_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-камера-видеонаблюдения-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8_монитор_сердца_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-монитор-сердца-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8_приборная_панель_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-приборная-панель-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

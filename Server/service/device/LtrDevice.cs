@@ -52,6 +52,11 @@ namespace SafeServer.service.device
             return Ltr27(ch.GetSlot())[ch.index];
         }
         
+        protected static IObservable<Tuple<double[], int>> GetDouble25(Channel ch)
+        {
+            return Ltr25(ch.GetSlot())[ch.index];
+        }
+        
         protected static Ltr41 Ltr41(Slot slot)
         {
             return DI.Instance.LtrService.GetLtr<Ltr41>(slot);

@@ -163,6 +163,56 @@ namespace Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_автоматический_64 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_автоматический_64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_видео_плейлист_64 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_видео_плейлист_64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_камера_видеонаблюдения_64 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_камера_видеонаблюдения_64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_монитор_сердца_64 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_монитор_сердца_64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_приборная_панель_64 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_приборная_панель_64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap led_gray {
             get {
                 object obj = ResourceManager.GetObject("led-gray", resourceCulture);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reactive.Linq;
 using System.Text;
 
@@ -50,6 +51,11 @@ namespace SafeServer.service.device
                     var b = minValue - min * k;
                     return val * k + b;
                 });
+        }
+        
+        public static IObservable<double> FlatMap(this IObservable<Tuple<double[], int>> observable)
+        {
+            return observable.SelectMany(val => val.Item1.Take(val.Item2));
         }
         
         private static Tuple<bool, int> DetectCircle(Tuple<bool, int> seed, Tuple<bool[], int> value)
