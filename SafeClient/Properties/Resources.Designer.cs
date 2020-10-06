@@ -71,6 +71,16 @@ namespace Properties {
         }
         
         /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+        /// </summary>
+        internal static System.Drawing.Icon AppIcon2 {
+            get {
+                object obj = ResourceManager.GetObject("AppIcon2", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap bar {
@@ -193,6 +203,16 @@ namespace Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_камера_видеонаблюдения_96 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_камера_видеонаблюдения_96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_монитор_сердца_64 {
             get {
                 object obj = ResourceManager.GetObject("icons8_монитор_сердца_64", resourceCulture);
@@ -206,6 +226,16 @@ namespace Properties {
         internal static System.Drawing.Bitmap icons8_приборная_панель_64 {
             get {
                 object obj = ResourceManager.GetObject("icons8_приборная_панель_64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_приборная_панель_96 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_приборная_панель_96", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

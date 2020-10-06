@@ -41,6 +41,8 @@ namespace gui
                         return new LeakSensor();
                 case DeviceType.vibration:
                         return new VibrationSensor();
+                case DeviceType.vibration2:
+                        return new VibrationSensor();
                 default:
                     return null;
             }

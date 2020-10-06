@@ -12,7 +12,7 @@ namespace gui
         public VideoViewForm()
         {
             InitializeComponent();
-            Icon = Resources.AppIcon;
+            Icon = Resources.AppIcon2;
             searchVideoFileHistoryPanel1.SelectItem += SearchVideoFileHistoryPanel1_SelectItem;
             searchVideoFileHistoryPanel1.PlayItem += SearchVideoFileHistoryPanel1_PlayItem;
             searchVideoFileHistoryPanel1.StopItem += SearchVideoFileHistoryPanel1_StopItem;

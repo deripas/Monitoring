@@ -41,7 +41,9 @@ namespace SafeServer.service
                 return new HurbleDevice(dev);
             if (dev.Type.Equals("vibration"))
                 return new VibrationDevice(dev);
-
+            if (dev.Type.Equals("vibration2"))
+                return new VibrationDevice2(dev);
+            
             Log.Warn("Unknown type [{0}] '{1}'", dev.Name, dev.Type);
             return null;
         }

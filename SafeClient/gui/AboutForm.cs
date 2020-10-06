@@ -15,7 +15,15 @@ namespace gui
         public AboutForm()
         {
             InitializeComponent();
-            Icon = Resources.AppIcon;
+            Icon = Resources.AppIcon2;
+            try
+            {
+                pictureBox1.Image = Image.FromFile("logo.png");
+            }
+            catch (Exception e)
+            {
+                pictureBox1.Image = Resources.lmz;
+            }
         }
     }
 }

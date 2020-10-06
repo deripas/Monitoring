@@ -4,11 +4,11 @@ using SafeServer.dto;
 
 namespace SafeServer.service.device
 {
-    public class VibrationDevice : AlarmSensorDevice, IMeasureDevice
+    public class VibrationDevice2 : AlarmSensorDevice, IMeasureDevice
     {
         private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
 
-        public VibrationDevice(Device device) : base(device)
+        public VibrationDevice2(Device device) : base(device)
         {
         }
         
@@ -43,7 +43,7 @@ namespace SafeServer.service.device
 
         public override string RenderStatusValue(DeviceStatus status)
         {
-            var unit = " g";
+            var unit = " ?";
             return status.value.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + unit;
         }
     }

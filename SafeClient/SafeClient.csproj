@@ -499,6 +499,9 @@
     <Content Include="NLog.xsd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\icons8-приборная-панель-96.png" />
+    <None Include="Resources\icons8-камера-видеонаблюдения-96.png" />
+    <None Include="Resources\icons8-камера-видеонаблюдения-96.ico" />
     <None Include="Resources\icons8-монитор-сердца-64.png" />
     <None Include="Resources\icons8-камера-видеонаблюдения-64.png" />
     <None Include="Resources\icons8-видео-плейлист-64.png" />

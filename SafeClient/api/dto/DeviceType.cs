@@ -8,6 +8,7 @@
         smoke,
         water,
         vibration,
+        vibration2,
         rollet,
         hurble,
     }
@@ -23,6 +24,7 @@
                 case DeviceType.water:
                 case DeviceType.smoke:
                 case DeviceType.vibration:
+                case DeviceType.vibration2:
                     return true;
                 default:
                     return false;

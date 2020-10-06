@@ -35,11 +35,11 @@
             // aGauge1
             // 
             this.aGauge1.BaseArcColor = System.Drawing.Color.Gray;
-            this.aGauge1.BaseArcRadius = 50;
+            this.aGauge1.BaseArcRadius = 35;
             this.aGauge1.BaseArcStart = 135;
             this.aGauge1.BaseArcSweep = 270;
             this.aGauge1.BaseArcWidth = 2;
-            this.aGauge1.Center = new System.Drawing.Point(50, 50);
+            this.aGauge1.Center = new System.Drawing.Point(35, 35);
             this.aGauge1.Location = new System.Drawing.Point(4, 4);
             this.aGauge1.Margin = new System.Windows.Forms.Padding(4);
             this.aGauge1.MaxValue = 10F;
@@ -47,21 +47,21 @@
             this.aGauge1.Name = "aGauge1";
             this.aGauge1.NeedleColor1 = System.Windows.Forms.AGaugeNeedleColor.Gray;
             this.aGauge1.NeedleColor2 = System.Drawing.Color.DimGray;
-            this.aGauge1.NeedleRadius = 50;
+            this.aGauge1.NeedleRadius = 35;
             this.aGauge1.NeedleType = System.Windows.Forms.NeedleType.Advance;
             this.aGauge1.NeedleWidth = 2;
             this.aGauge1.ScaleLinesInterColor = System.Drawing.Color.Black;
-            this.aGauge1.ScaleLinesInterInnerRadius = 40;
-            this.aGauge1.ScaleLinesInterOuterRadius = 50;
+            this.aGauge1.ScaleLinesInterInnerRadius = 27;
+            this.aGauge1.ScaleLinesInterOuterRadius = 35;
             this.aGauge1.ScaleLinesInterWidth = 1;
             this.aGauge1.ScaleLinesMajorColor = System.Drawing.Color.Black;
-            this.aGauge1.ScaleLinesMajorInnerRadius = 40;
-            this.aGauge1.ScaleLinesMajorOuterRadius = 50;
+            this.aGauge1.ScaleLinesMajorInnerRadius = 37;
+            this.aGauge1.ScaleLinesMajorOuterRadius = 30;
             this.aGauge1.ScaleLinesMajorStepValue = 10F;
             this.aGauge1.ScaleLinesMajorWidth = 2;
             this.aGauge1.ScaleLinesMinorColor = System.Drawing.Color.Gray;
-            this.aGauge1.ScaleLinesMinorInnerRadius = 45;
-            this.aGauge1.ScaleLinesMinorOuterRadius = 50;
+            this.aGauge1.ScaleLinesMinorInnerRadius = 27;
+            this.aGauge1.ScaleLinesMinorOuterRadius = 35;
             this.aGauge1.ScaleLinesMinorTicks = 9;
             this.aGauge1.ScaleLinesMinorWidth = 1;
             this.aGauge1.ScaleNumbersColor = System.Drawing.Color.Black;
