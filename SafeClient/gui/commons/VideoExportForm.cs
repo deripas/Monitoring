@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 using NetSDKCS;
+using Properties;
 
 namespace gui
 {
@@ -23,6 +24,7 @@ namespace gui
         public VideoExportForm()
         {
             InitializeComponent();
+            Icon = Resources.AppIcon2;
             progressBar1.Maximum = 100;
 
             var dir = Directory.CreateDirectory("save");

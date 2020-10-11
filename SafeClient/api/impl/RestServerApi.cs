@@ -149,5 +149,10 @@ namespace api.impl
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public void Mode(Guid clientId, StandMode mode, string stand)
+        {
+            template.Put("/api/stand/{stand}/{mode}/{id}", null, stand, mode.ToString(), clientId);
+        }
     }
 }

@@ -127,5 +127,10 @@ namespace api.dto.client
         {
             return ConfigurationManager.AppSettings["client.type." + stand + ".label"];
         }
+
+        string ClientType.GetType()
+        {
+            return stand;
+        }
     }
 }

@@ -1,12 +1,7 @@
 ﻿using api.dto;
 using model.device;
+using Properties;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace gui.device
@@ -16,6 +11,7 @@ namespace gui.device
         public DeviceEditorForm()
         {
             InitializeComponent();
+            Icon = Resources.AppIcon2;
         }
 
         public DeviceController Device

@@ -20,6 +20,7 @@ namespace SafeServer
         public AlertWriter AlertWriter;
         public DeviceStatusService DeviceStatusService;
         public CameraService CameraService;
+        public ClientModeServise ClientModeServise;
         private IDisposable init;
 
         public void Init()
@@ -28,13 +29,14 @@ namespace SafeServer
                 .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
                 .AddJsonFile("appsettings.json", false)
                 .Build();
-            
+
             MeasureWriter = new MeasureWriter();
             AlertWriter = new AlertWriter();
             DeviceStatusService = new DeviceStatusService();
             DeviceService = new DeviceService();
             CameraService = new CameraService();
             LtrService = new LtrService();
+            ClientModeServise = new ClientModeServise(DeviceService);
 
             init = Observable.Defer(() =>
                 {
@@ -74,6 +76,7 @@ namespace SafeServer
             DeviceService?.Dispose();
             CameraService?.Dispose();
             LtrService?.Dispose();
+            ClientModeServise?.Dispose();
 
             AlertWriter = null;
             MeasureWriter = null;

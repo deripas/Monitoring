@@ -38,6 +38,6 @@ namespace api
         void HurbleOn(int device);
         void HurbleOff(int device);
         void HurbleAuto(int device);
-       
+        void Mode(Guid clientId, StandMode mode, string stand);
     }
 }

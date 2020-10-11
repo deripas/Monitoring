@@ -83,30 +83,6 @@ namespace SafeServer.ltr
             
             base.Start();
             return _LTRNative.LTRERROR.OK;
-            /*
-            IObservable<double> o0 = this[0].ToMean();
-            IObservable<double> o1 = this[1].ToMean();
-            IObservable<double> o2 = this[2].ToMean();
-            IObservable<double> o3 = this[3].ToMean();
-            IObservable<double> o4 = this[4].ToMean();
-            IObservable<double> o5 = this[5].ToMean();
-            IObservable<double> o6 = this[6].ToMean();
-            IObservable<double> o7 = this[6].ToMean();
-            Observable.CombineLatest(o0, o1, o2, o3, o4, o5, o6, o7,
-                (v0, v1, v2, v3, v4, v5, v6, v7) =>
-                {
-                    Log.Info("");
-                    Log.Info("1 - {0:0.0000}", v0 * 1000);
-                    Log.Info("2 - {0:0.0000}", v1 * 1000);
-                    Log.Info("3 - {0:0.0000}", v2 * 1000);
-                    Log.Info("4 - {0:0.0000}", v3 * 1000);
-                    Log.Info("5 - {0:0.0000}", v4 * 1000);
-                    Log.Info("6 - {0:0.0000}", v5 * 1000);
-                    Log.Info("7 - {0:0.0000}", v6 * 1000);
-                    Log.Info("8 - {0:0.0000}", v7 * 1000);
-                    return true;
-                })
-                .Subscribe();*/
         }
 
         public new void Stop()

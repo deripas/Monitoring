@@ -14,6 +14,7 @@ namespace gui
         public SplashScreen()
         {
             InitializeComponent();
+            Icon = Resources.AppIcon2;
             try
             {
                 pictureBox1.Image = Image.FromFile("logo.png");

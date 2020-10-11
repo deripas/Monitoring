@@ -1,6 +1,7 @@
 ﻿﻿using System;
 using System.Windows.Forms;
 using api.dto;
+using api.dto.client;
 using Properties;
 using service;
 
@@ -8,16 +9,19 @@ namespace gui
 {
     public partial class MainForm : Form
     {
-        private CameraGrid[] mode;
+        private CameraGrid[] viewModes;
+        private int viewModeSelected;
 
         public MainForm()
         {
             DI.Instance.Init();
             InitializeComponent();
+            Icon = Resources.AppIcon2;
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            DI.Instance.ServerApi.Mode(DI.Instance.ClientId, StandMode.Close, DI.Instance.Type.GetType());
             DI.Instance.Dispose();
             CameraPtzForm.Instance.Dispose();
             VideoViewForm.Instance.Dispose();
@@ -69,12 +73,13 @@ namespace gui
 
         private void ChangeMode(int index)
         {
+            viewModeSelected = index;
             UpdateMode(index, false);
             try
             {
-                if (index < mode.Length)
+                if (index < viewModes.Length)
                 {
-                    CameraGrid gridConf = mode[index];
+                    CameraGrid gridConf = viewModes[index];
                     grid.Grid(gridConf);
                     sensorPanel1.Set(gridConf.device);
                     controlPanel1.Set(gridConf.control);
@@ -88,31 +93,61 @@ namespace gui
 
         private void UpdateMode(int index, bool enable)
         {
-            ToolStripButton[] array = new ToolStripButton[] { toolStripButton5, toolStripButton6, toolStripButton7, toolStripButton8 };
-            for(int i= 0; i < array.Length; i++)
+            ToolStripButton mode = ModeButton();
+            ToolStripButton[] array = new ToolStripButton[] { 
+                toolStripButton5, 
+                toolStripButton6,
+                toolStripButton7, 
+                toolStripButton8 
+            };
+
+            for (int i= 0; i < array.Length; i++)
             {
                 var button = array[i];
                 var select = array[index];
 
-                button.Enabled = enable && i < mode.Length;
+                button.Enabled = enable && i < viewModes.Length;
                 button.Checked = button == select;
                 button.Image = button == select
-                    ? Resources.led_green
-                    : Resources.led_gray;
+                    ? Resources.icons8_монитор_80_green
+                    : button == mode ? Resources.icons8_монитор_80_blue : Resources.icons8_монитор_80;
             }
             Application.DoEvents();
         }
 
+        private ToolStripButton ModeButton()
+        {
+            switch (DI.Instance.StandMode)
+            {
+                case StandMode.Mode1:
+                    {
+                        return toolStripButton6;
+                    }
+                case StandMode.Mode2:
+                    {
+                        return toolStripButton7;
+                    }
+                default:
+                    {
+                        return toolStripButton8;
+                    }
+            }
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
-            mode = DI.Instance.Type.GetMode();
+            viewModes = DI.Instance.Type.GetMode();
             MainLabel.Text = "   «" + DI.Instance.Type.GetTitle() + "»   ";
+            SetMode(DI.Instance.StandMode);
             toolStripButton5_Click(null, null);
 
-            var count = DI.Instance.ServerApi.FindAlertAll().count;
-            if (count > 0)
+            if (!DI.Instance.IsViewMode)
             {
-                MessageBox.Show("Найдено необработанных тревог: " + count + "!", "Внимание", MessageBoxButtons.OK);
+                var count = DI.Instance.ServerApi.FindAlertAll().count;
+                if (count > 0)
+                {
+                    MessageBox.Show("Найдено необработанных тревог: " + count + "!", "Внимание", MessageBoxButtons.OK);
+                }
             }
         }
 
@@ -121,6 +156,63 @@ namespace gui
             AboutForm about = new AboutForm();
             about.Text = MainLabel.Text;
             about.ShowDialog();
+        }
+
+        private void mode1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetMode(StandMode.Mode1);
+        }
+
+        private void mode2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetMode(StandMode.Mode2);
+        }
+
+        private void mode3ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetMode(StandMode.Mode3);
+        }
+
+        private void SetMode(StandMode mode)
+        {
+            if(DI.Instance.IsViewMode)
+            {
+                modeChangeButton.Enabled = false;
+                return;
+            }
+            DI.Instance.StandMode = mode;
+            Settings.Default.StandMode = mode.ToString();
+            UpdateMode(viewModeSelected, true);
+            switch (mode)
+            {
+                case StandMode.Mode1:
+                    {
+                        mode1ToolStripMenuItem.Checked = true;
+                        mode2ToolStripMenuItem.Checked = false;
+                        mode3ToolStripMenuItem.Checked = false;
+                        break;
+                    }
+                case StandMode.Mode2:
+                    {
+                        mode1ToolStripMenuItem.Checked = false;
+                        mode2ToolStripMenuItem.Checked = true;
+                        mode3ToolStripMenuItem.Checked = false;
+                        break;
+                    }
+                case StandMode.Mode3:
+                    {
+                        mode1ToolStripMenuItem.Checked = false;
+                        mode2ToolStripMenuItem.Checked = false;
+                        mode3ToolStripMenuItem.Checked = true;
+                        break;
+                    }
+            }
+            DI.Instance.ServerApi.Mode(DI.Instance.ClientId, mode, DI.Instance.Type.GetType());
+        }
+
+        private void modeChangeButton_ButtonClick(object sender, EventArgs e)
+        {
+            modeChangeButton.ShowDropDown();
         }
     }
 }

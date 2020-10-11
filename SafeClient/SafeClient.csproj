@@ -101,6 +101,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="api\dto\StandMode.cs" />
     <Compile Include="gui\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -499,9 +500,22 @@
     <Content Include="NLog.xsd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\icons8-камера-видеонаблюдения-96.ico" />
+    <None Include="Resources\icons8-монитор-80.png" />
+    <None Include="Resources\icons8-монитор-96-yellow.png" />
+    <None Include="Resources\icons8-монитор-96-red.png" />
+    <None Include="Resources\icons8-монитор-96-green.png" />
+    <None Include="Resources\icons8-монитор-80-yellow.png" />
+    <None Include="Resources\icons8-монитор-80-red.png" />
+    <None Include="Resources\icons8-монитор-80-green.png" />
+    <None Include="Resources\icons8-монитор-80-blue.png" />
+    <None Include="Resources\icons8-монитор-100-yellow.png" />
+    <None Include="Resources\icons8-монитор-100-red.png" />
+    <None Include="Resources\icons8-монитор-100-green.png" />
+    <None Include="Resources\icons8-монитор-100-blue.png" />
+    <None Include="Resources\icons8-администрирование-64 %282%29.png" />
     <None Include="Resources\icons8-приборная-панель-96.png" />
     <None Include="Resources\icons8-камера-видеонаблюдения-96.png" />
-    <None Include="Resources\icons8-камера-видеонаблюдения-96.ico" />
     <None Include="Resources\icons8-монитор-сердца-64.png" />
     <None Include="Resources\icons8-камера-видеонаблюдения-64.png" />
     <None Include="Resources\icons8-видео-плейлист-64.png" />

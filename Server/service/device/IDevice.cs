@@ -19,5 +19,6 @@ namespace SafeServer.service.device
 
         string RenderStatusValue(DeviceStatus status);
         void Update(Config cfg);
+        void Enable(bool enable);
     }
 }

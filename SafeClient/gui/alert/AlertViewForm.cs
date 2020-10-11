@@ -15,7 +15,7 @@ namespace gui
         public AlertViewForm()
         {
             InitializeComponent();
-            Icon = Resources.AppIcon;
+            Icon = Resources.AppIcon2;
             searchAlertPanel1.SelectVideoItem += SearchAlertPanel1_SelectVideoItem;
             searchAlertPanel1.PlayVideoItem += SearchAlertPanel1_PlayVideoItem;
             searchAlertPanel1.StopVideoItem += SearchAlertPanel1_StopVideoItem;

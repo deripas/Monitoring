@@ -95,9 +95,14 @@ namespace SafeServer.service.device
             device.Version++;
             if (cfg.simple != null)
             {
-                device.Enable = cfg.simple.enable;
+                Enable(cfg.simple.enable);
                 Log.Info("{}({}) enable status {}", device.Name, device.Id, cfg.simple.enable);
             }
+        }
+
+        public override void Enable(bool val)
+        {
+            device.Enable = val;
         }
     }
 }

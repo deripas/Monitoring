@@ -16,7 +16,7 @@ namespace gui
         public DeviceViewForm()
         {
             InitializeComponent();
-            Icon = Resources.AppIcon;
+            Icon = Resources.AppIcon2;
         }
 
         internal void Start()

@@ -263,5 +263,12 @@ namespace Server.Api
                 .Values
                 .ToList();
         }
+
+        [HttpPut]
+        [Route("stand/{stand}/{mode}/{id}")]
+        public void ChangeMode(string stand, string mode, Guid id)
+        {
+            DI.Instance.ClientModeServise.ChangeMode(id, stand, mode);
+        }
     }
 }

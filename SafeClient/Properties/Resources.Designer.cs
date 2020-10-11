@@ -213,6 +213,126 @@ namespace Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_монитор_100_blue {
+            get {
+                object obj = ResourceManager.GetObject("icons8_монитор_100_blue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_монитор_100_green {
+            get {
+                object obj = ResourceManager.GetObject("icons8_монитор_100_green", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_монитор_100_red {
+            get {
+                object obj = ResourceManager.GetObject("icons8_монитор_100_red", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_монитор_100_yellow {
+            get {
+                object obj = ResourceManager.GetObject("icons8_монитор_100_yellow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_монитор_80 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_монитор_80", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_монитор_80_blue {
+            get {
+                object obj = ResourceManager.GetObject("icons8_монитор_80_blue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_монитор_80_green {
+            get {
+                object obj = ResourceManager.GetObject("icons8_монитор_80_green", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_монитор_80_red {
+            get {
+                object obj = ResourceManager.GetObject("icons8_монитор_80_red", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_монитор_80_yellow {
+            get {
+                object obj = ResourceManager.GetObject("icons8_монитор_80_yellow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_монитор_96_green {
+            get {
+                object obj = ResourceManager.GetObject("icons8_монитор_96_green", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_монитор_96_red {
+            get {
+                object obj = ResourceManager.GetObject("icons8_монитор_96_red", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_монитор_96_yellow {
+            get {
+                object obj = ResourceManager.GetObject("icons8_монитор_96_yellow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_монитор_сердца_64 {
             get {
                 object obj = ResourceManager.GetObject("icons8_монитор_сердца_64", resourceCulture);
@@ -286,6 +406,16 @@ namespace Properties {
         internal static System.Drawing.Bitmap lmz {
             get {
                 object obj = ResourceManager.GetObject("lmz", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mode {
+            get {
+                object obj = ResourceManager.GetObject("mode", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

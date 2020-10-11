@@ -17,6 +17,9 @@ namespace SafeServer.dto
         [Column("enable")]
         public bool Enable { get; set; }
 
+        [Column("removed")]
+        public bool Removed { get; set; }
+
         [Column("camera")]
         public int? Camera { get; set; }
 

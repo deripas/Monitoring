@@ -46,6 +46,10 @@ namespace gui
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
+            this.modeChangeButton = new System.Windows.Forms.ToolStripSplitButton();
+            this.mode1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mode2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mode3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grid = new gui.CameraGridPanel();
             this.controlPanel1 = new gui.ControlPanel();
             this.sensorPanel1 = new gui.SensorPanel();
@@ -69,11 +73,12 @@ namespace gui
             this.toolStripButton5,
             this.toolStripButton6,
             this.toolStripButton7,
-            this.toolStripButton8});
+            this.toolStripButton8,
+            this.modeChangeButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-            this.toolStrip1.Size = new System.Drawing.Size(1588, 58);
+            this.toolStrip1.Size = new System.Drawing.Size(1588, 55);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -84,13 +89,13 @@ namespace gui
             this.toolStripButton4.Image = global::Properties.Resources.icons8_камера_видеонаблюдения_96;
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(52, 52);
+            this.toolStripButton4.Size = new System.Drawing.Size(46, 49);
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 58);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 55);
             // 
             // toolStripButton1
             // 
@@ -98,7 +103,7 @@ namespace gui
             this.toolStripButton1.Image = global::Properties.Resources.icons8_видео_плейлист_64;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(52, 52);
+            this.toolStripButton1.Size = new System.Drawing.Size(46, 49);
             this.toolStripButton1.Text = "Архив видео";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -108,7 +113,7 @@ namespace gui
             this.toolStripButton2.Image = global::Properties.Resources.icons8_монитор_сердца_64;
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(52, 52);
+            this.toolStripButton2.Size = new System.Drawing.Size(46, 49);
             this.toolStripButton2.Text = "Архив тревог";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
@@ -118,24 +123,24 @@ namespace gui
             this.toolStripButton3.Image = global::Properties.Resources.icons8_приборная_панель_96;
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(52, 52);
+            this.toolStripButton3.Size = new System.Drawing.Size(46, 49);
             this.toolStripButton3.Text = "Редактор";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 58);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 55);
             // 
             // MainLabel
             // 
             this.MainLabel.Name = "MainLabel";
-            this.MainLabel.Size = new System.Drawing.Size(0, 52);
+            this.MainLabel.Size = new System.Drawing.Size(0, 49);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 58);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 55);
             // 
             // closeButton
             // 
@@ -145,7 +150,7 @@ namespace gui
             this.closeButton.Image = ((System.Drawing.Image)(resources.GetObject("closeButton.Image")));
             this.closeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(51, 52);
+            this.closeButton.Size = new System.Drawing.Size(51, 49);
             this.closeButton.Text = "✕";
             this.closeButton.ToolTipText = "Закрыть";
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
@@ -154,7 +159,7 @@ namespace gui
             // 
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(120, 52);
+            this.toolStripButton5.Size = new System.Drawing.Size(120, 49);
             this.toolStripButton5.Text = "Обзор";
             this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
@@ -162,7 +167,7 @@ namespace gui
             // 
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(193, 52);
+            this.toolStripButton6.Size = new System.Drawing.Size(193, 49);
             this.toolStripButton6.Text = "Испытания";
             this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
@@ -170,7 +175,7 @@ namespace gui
             // 
             this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(175, 52);
+            this.toolStripButton7.Size = new System.Drawing.Size(175, 49);
             this.toolStripButton7.Text = "Град.-ОРУ";
             this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
             // 
@@ -178,18 +183,54 @@ namespace gui
             // 
             this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton8.Name = "toolStripButton8";
-            this.toolStripButton8.Size = new System.Drawing.Size(258, 52);
+            this.toolStripButton8.Size = new System.Drawing.Size(258, 49);
             this.toolStripButton8.Text = "Спящий режим";
             this.toolStripButton8.Click += new System.EventHandler(this.toolStripButton8_Click);
+            // 
+            // modeChangeButton
+            // 
+            this.modeChangeButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.modeChangeButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mode1ToolStripMenuItem,
+            this.mode2ToolStripMenuItem,
+            this.mode3ToolStripMenuItem});
+            this.modeChangeButton.Image = global::Properties.Resources.mode;
+            this.modeChangeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.modeChangeButton.Name = "modeChangeButton";
+            this.modeChangeButton.Size = new System.Drawing.Size(59, 49);
+            this.modeChangeButton.Text = "toolStripSplitButton1";
+            this.modeChangeButton.ToolTipText = "Режим";
+            this.modeChangeButton.ButtonClick += new System.EventHandler(this.modeChangeButton_ButtonClick);
+            // 
+            // mode1ToolStripMenuItem
+            // 
+            this.mode1ToolStripMenuItem.Name = "mode1ToolStripMenuItem";
+            this.mode1ToolStripMenuItem.Size = new System.Drawing.Size(393, 54);
+            this.mode1ToolStripMenuItem.Text = "Испытания";
+            this.mode1ToolStripMenuItem.Click += new System.EventHandler(this.mode1ToolStripMenuItem_Click);
+            // 
+            // mode2ToolStripMenuItem
+            // 
+            this.mode2ToolStripMenuItem.Name = "mode2ToolStripMenuItem";
+            this.mode2ToolStripMenuItem.Size = new System.Drawing.Size(393, 54);
+            this.mode2ToolStripMenuItem.Text = "Град.-ОРУ";
+            this.mode2ToolStripMenuItem.Click += new System.EventHandler(this.mode2ToolStripMenuItem_Click);
+            // 
+            // mode3ToolStripMenuItem
+            // 
+            this.mode3ToolStripMenuItem.Name = "mode3ToolStripMenuItem";
+            this.mode3ToolStripMenuItem.Size = new System.Drawing.Size(393, 54);
+            this.mode3ToolStripMenuItem.Text = "Спящий режим";
+            this.mode3ToolStripMenuItem.Click += new System.EventHandler(this.mode3ToolStripMenuItem_Click);
             // 
             // grid
             // 
             this.grid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grid.Location = new System.Drawing.Point(0, 58);
+            this.grid.Location = new System.Drawing.Point(0, 55);
             this.grid.Margin = new System.Windows.Forms.Padding(2);
             this.grid.Name = "grid";
-            this.grid.Size = new System.Drawing.Size(892, 338);
+            this.grid.Size = new System.Drawing.Size(892, 341);
             this.grid.TabIndex = 0;
             // 
             // controlPanel1
@@ -208,10 +249,10 @@ namespace gui
             this.sensorPanel1.AutoScroll = true;
             this.sensorPanel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.sensorPanel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.sensorPanel1.Location = new System.Drawing.Point(892, 58);
+            this.sensorPanel1.Location = new System.Drawing.Point(892, 55);
             this.sensorPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.sensorPanel1.Name = "sensorPanel1";
-            this.sensorPanel1.Size = new System.Drawing.Size(696, 632);
+            this.sensorPanel1.Size = new System.Drawing.Size(696, 635);
             this.sensorPanel1.TabIndex = 2;
             // 
             // MainForm
@@ -258,5 +299,9 @@ namespace gui
         #endregion
 
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripSplitButton modeChangeButton;
+        private System.Windows.Forms.ToolStripMenuItem mode1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mode2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mode3ToolStripMenuItem;
     }
 }

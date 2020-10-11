@@ -19,7 +19,7 @@ namespace gui
         public CameraPtzForm()
         {
             InitializeComponent();
-            Icon = Resources.AppIcon;
+            Icon = Resources.AppIcon2;
         }
 
         internal void Start(CameraController cam)

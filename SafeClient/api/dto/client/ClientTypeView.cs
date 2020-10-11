@@ -42,5 +42,9 @@ namespace api.dto.client
             return ConfigurationManager.AppSettings["client.type.view.label"];
         }
 
+        string ClientType.GetType()
+        {
+            return "view";
+        }
     }
 }
