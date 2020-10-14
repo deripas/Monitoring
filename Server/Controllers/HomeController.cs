@@ -84,6 +84,7 @@ namespace Server.Controllers
                     id = dev.Id,
                     name = dev.Name,
                     alert = s != null && s.alarm > 0,
+                    enable = dev.Enable && !dev.Removed,
                     main = cam.rtsp + "0",
                     sub = cam.rtsp + "1",
                     value = exist ? DI.Instance.DeviceService[dev.Id].RenderStatusValue(s) : "-"

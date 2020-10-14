@@ -16,7 +16,7 @@ namespace gui
                 device = value;
                 idText.Text = value.Id.ToString();
                 typeText.Text = value.Type.ToString();
-                enableCheckBox.Checked = value.Enable;
+                enableCheckBox.Checked = !value.Removed;
                 descText.Text = value.Description;
             }
         }
@@ -30,14 +30,14 @@ namespace gui
 
         internal void Save(Config config)
         {
-            if (device.Enable != enableCheckBox.Checked
+            if (device.Removed != !enableCheckBox.Checked
                 || !device.Description.Equals(descText.Text))
             {
                 config.simple = new SafeServer.dto.config.Base();
                 config.simple.enable = enableCheckBox.Checked;
                 config.simple.description = descText.Text;
 
-                device.Enable = enableCheckBox.Checked;
+                device.Removed = !enableCheckBox.Checked;
                 device.Description = descText.Text;
             }
         }

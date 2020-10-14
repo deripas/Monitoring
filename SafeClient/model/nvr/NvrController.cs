@@ -46,7 +46,7 @@ namespace model.nvr
         internal void Disconnect()
         {
             connect = false;
-            Task.WaitAll(checker);
+            if (checker != null) Task.WaitAll(checker);
             checker = null;
 
             lock (model)
@@ -58,7 +58,7 @@ namespace model.nvr
         public void Disconnected()
         {
             connect = false;
-            Task.WaitAll(checker);
+            if (checker != null) Task.WaitAll(checker);
             checker = null;
 
             lock (model)

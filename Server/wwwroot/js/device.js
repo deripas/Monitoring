@@ -14,10 +14,14 @@
             {
                 "data": "value",
                 "render": function (data, type, row, meta) {
-                    if (row.alert) 
-                        return "<div class=\"dev-alarm\">" + data + "</div>";
-                    else
-                        return "<div class=\"dev-ok\">" + data + "</div>";
+                    if (row.enable) {
+                        if (row.alert)
+                            return "<div class=\"dev-alarm\">" + data + "</div>";
+                        else
+                            return "<div class=\"dev-ok\">" + data + "</div>";
+                    } else {
+                        return "<div class=\"dev-disable\">" + data + "</div>";
+                    }
                 }
             },
             {

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reactive.Subjects;
 using SafeServer.dto;
 using SafeServer.dto.config;
 using SafeServer.ltr;
@@ -30,6 +29,11 @@ namespace SafeServer.service.device
         public int? CameraId()
         {
             return device.Camera;
+        }
+
+        public bool IsEnable()
+        {
+            return device.Enable && !device.Removed;
         }
 
         public abstract void Init();

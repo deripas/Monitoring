@@ -117,7 +117,8 @@ namespace SafeServer.service.device
             device.Version++;
             if (cfg.simple != null)
             {
-                Enable(cfg.simple.enable);
+                device.Removed = !cfg.simple.enable;
+                enable.OnNext(device.Enable && !device.Removed);
                 Log.Info("{}({}) enable status {}", device.Name, device.Id, cfg.simple.enable);
             }
             if (cfg.alarm != null)
@@ -134,9 +135,8 @@ namespace SafeServer.service.device
 
         public override void Enable(bool val)
         {
-            enable.OnNext(val);
             device.Enable = val;
+            enable.OnNext(device.Enable && !device.Removed);
         }
-
     }
 }

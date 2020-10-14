@@ -86,14 +86,22 @@ namespace model.device
         {
             get
             {
-                return info.enable && info.config != null;
+                return info.enable && !info.removed && info.config != null;
+            }
+        }
+
+        public bool Removed
+        {
+            get
+            {
+                return info.removed && info.config != null;
             }
             set
             {
-                info.enable = value;
+                info.removed = value;
             }
         }
-        
+
         public Config Config
         {
             get
@@ -130,7 +138,7 @@ namespace model.device
                         try
                         {
                             if (changed) view.Set(this);
-                            if (Enable) view.Update(status);
+                            view.Update(status);
                         }
                         catch (Exception e)
                         {

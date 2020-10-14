@@ -42,7 +42,7 @@ namespace gui
             foreach (DeviceController dev in devList)
             {
                 ListViewItem item = new ListViewItem(dev.Name);
-                item.SubItems.Add(dev.Enable.ToString());
+                item.SubItems.Add((!dev.Removed).ToString());
                 item.Tag = dev;
                 item.BackColor = GetColor(dev?.Stand);
                 listView1.Items.Add(item);

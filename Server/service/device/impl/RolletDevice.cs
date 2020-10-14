@@ -95,7 +95,7 @@ namespace SafeServer.service.device
             device.Version++;
             if (cfg.simple != null)
             {
-                Enable(cfg.simple.enable);
+                device.Removed = !cfg.simple.enable;
                 Log.Info("{}({}) enable status {}", device.Name, device.Id, cfg.simple.enable);
             }
         }

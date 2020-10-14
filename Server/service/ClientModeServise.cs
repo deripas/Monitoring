@@ -37,11 +37,13 @@ namespace Server.service
 
             using var db = new DatabaseService();
             var standTP = db.Device
-                .Where(dev => dev.Stand.Equals(stand) && (dev.Type.Equals("temperature") || dev.Type.Equals("pressure")))
-                .ToList();
+                .Where(dev => dev.Removed == false
+                    && dev.Stand.Equals(stand)
+                    && (dev.Type.Equals("temperature") || dev.Type.Equals("pressure")));
             var oryP = db.Device
-                .Where(dev => dev.Stand.Equals("ory") && dev.Type.Equals("pressure"))
-                .ToList();
+                .Where(dev => dev.Removed == false
+                    && dev.Stand.Equals("ory") 
+                    && dev.Type.Equals("pressure"));
 
 
             switch (standMode)
@@ -74,12 +76,15 @@ namespace Server.service
             db.SaveChanges();
         }
 
-        private void Enable(List<Device> list, bool enable)
+        private void Enable(IQueryable<Device> list, bool enable)
         {
-            list.ForEach(dev =>
+            foreach (var dev in list)
             {
                 deviceService[dev.Id].Enable(enable);
-            });
+                dev.Enable = enable;
+                dev.Version++;
+                Log.Info("{}({}) enable status {}", dev.Name, dev.Id, dev.Enable);
+            }
         }
 
         internal void Dispose()

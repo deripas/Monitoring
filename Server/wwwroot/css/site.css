@@ -78,3 +78,7 @@ body {
     color: green;
     font-weight: bold;
 }
+.dev-disable {
+    color: gray;
+    font-weight: bold;
+}

@@ -89,7 +89,7 @@ namespace SafeServer.service.device
 
         public void PowerOn()
         {
-            if (device.Enable)
+            if (IsEnable())
             {
                 Log.Info("{}({}) hurble ON", device.Name, device.Id);
                 mode.OnNext(1);
@@ -98,7 +98,7 @@ namespace SafeServer.service.device
 
         public void PowerOff()
         {
-            if (device.Enable)
+            if (IsEnable())
             {
                 Log.Info("{}({}) hurble OFF", device.Name, device.Id);
                 mode.OnNext(0);
@@ -107,7 +107,7 @@ namespace SafeServer.service.device
 
         public void PowerAuto()
         {
-            if (device.Enable)
+            if (IsEnable())
             {
                 Log.Info("{}({}) hurble AUTO", device.Name, device.Id);
                 mode.OnNext(2);

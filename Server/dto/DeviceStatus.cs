@@ -31,7 +31,7 @@ namespace SafeServer.dto
             return new DeviceStatus
             {
                 id = device.Id,
-                version = device.Enable ? device.Version : -1,
+                version = (device.Enable && !device.Removed) ? device.Version : -1,
                 value = val,
                 alarm = alert
             };
@@ -51,7 +51,7 @@ namespace SafeServer.dto
             return new DeviceStatus
             {
                 id = device.Id,
-                version = device.Enable ? device.Version : -1,
+                version = (device.Enable && !device.Removed) ? device.Version : -1,
                 value =  up 
                     ? dw ? 0 : 2
                     : dw ? 1 : 0

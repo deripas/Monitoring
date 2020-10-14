@@ -10,6 +10,7 @@ namespace api.dto
         public string stand { get; set; }
         public string description { get; set; }
         public bool enable { get; set; }
+        public bool removed { get; set; }
         public int? camera { get; set; }
         public string type { get; set; }
         

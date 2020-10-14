@@ -222,7 +222,6 @@ namespace Server.Api
             device?.PowerOff();
         }
 
-
         [HttpPut]
         [Route("device/{id}/auto")]
         public void HurbleAuto(int id)
@@ -248,7 +247,7 @@ namespace Server.Api
                 old.counter = cfg.counter;
             if (cfg.simple != null)
             {
-                entity.Enable = cfg.simple.enable;
+                entity.Removed = !cfg.simple.enable;
                 entity.Description = cfg.simple.description;
             }
             entity.Version++;
