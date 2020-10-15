@@ -24,30 +24,20 @@ namespace SafeServer.service.device
 
         public override void Init()
         {
-            if (device.Config.encoder != null)
+            if (Config.encoder != null)
             {
-                _(GetBool41(device.Config.encoder)
-                    .ToThresholdRate(device.Config.counter.threshold)
+                _(GetBool41(Config.encoder)
+                    .ToThresholdRate(Config.counter.threshold)
                     .Subscribe((IObserver<bool>)encoder));
             }
             
             var power = mode.CombineLatest(remote, encoder, AgregatePower);
 
-            Sensor(GetBool41(device.Config.sensor)
+            Sensor(GetBool41(Config.sensor)
                 .ToBool()
                 .CombineLatest(power, (b1, b2) => b1 && b2)
-                .Select(v => DeviceStatus.Value(device, v)));
+                .Select(v => DeviceStatus.Value(Id, v)));
             base.Init();
-        }
-
-        public override void Update(Config cfg)
-        {
-            if (cfg.counter != null)
-            {
-                device.Config.counter = cfg.counter;
-                Log.Info("{}({}) cange threshold {}", device.Name, device.Id, cfg.counter.threshold);
-            }
-            base.Update(cfg);
         }
 
         protected bool AgregatePower(int mode, bool remote, bool encoder)
@@ -82,16 +72,11 @@ namespace SafeServer.service.device
                 .CombineLatest(mode, remote, encoder, AgregateStatus);
         }
 
-        public override string RenderStatusValue(DeviceStatus status)
-        {
-            return "?";
-        }
-
         public void PowerOn()
         {
             if (IsEnable())
             {
-                Log.Info("{}({}) hurble ON", device.Name, device.Id);
+                Log.Info("{}({}) hurble ON", Name, Id);
                 mode.OnNext(1);
             }
         }
@@ -100,7 +85,7 @@ namespace SafeServer.service.device
         {
             if (IsEnable())
             {
-                Log.Info("{}({}) hurble OFF", device.Name, device.Id);
+                Log.Info("{}({}) hurble OFF", Name, Id);
                 mode.OnNext(0);
             }
         }
@@ -109,9 +94,28 @@ namespace SafeServer.service.device
         {
             if (IsEnable())
             {
-                Log.Info("{}({}) hurble AUTO", device.Name, device.Id);
+                Log.Info("{}({}) hurble AUTO", Name, Id);
                 mode.OnNext(2);
             }
+        }
+
+        public override void Update(Config cfg)
+        {
+            if (cfg.counter != null)
+            {
+                Config.counter = cfg.counter;
+                Log.Info("{}({}) cange threshold {}", Name, Id, cfg.counter.threshold);
+            }
+            base.Update(cfg);
+        }
+
+        public override string RenderStatusValue(DeviceStatus status)
+        {
+            Control control = (Control)status.value;
+            if (!control.HasFlag(Control.POWER))
+                return "выкл.";
+
+            return (status.alarm <= 0) ? "норма" : "тревога";
         }
     }
 

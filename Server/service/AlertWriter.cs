@@ -20,11 +20,10 @@ namespace SafeServer.service
                 .OfType<IMeasureDevice>()
                 .Select(device => device.Status())
                 .Merge()
-                .Where(status => status.version >= 0)
+                .Where(status => status.alarm > 0 && status.enable)
                 .GroupBy(status => status.id)
                 .SelectMany(group => group
                     .DistinctUntilChanged(status => status.alarm)
-                    .Where(status => status.alarm > 0)
                     .Select(status => new Alert {device = group.Key, value = status.value, time = DateTime.Now, processed = false}))
                 .ObserveOn(ThreadPoolScheduler.Instance)
                 .Subscribe(WriteDB);

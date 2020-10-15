@@ -23,12 +23,13 @@ namespace gui
         public void Set(DeviceController dev)
         {
             device = dev;
-            led.Image = dev.Enable ? Resources.led_green : Resources.led_gray;
-            Enabled = dev.Enable;
         }
 
         public void Update(SensorStatus status)
         {
+            Enabled = status.enable;
+            led.Image = status.enable ? Resources.led_green : Resources.led_gray;
+
             var value = (int)status.value;
             switch (value)
             {

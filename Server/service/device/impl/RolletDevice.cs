@@ -15,22 +15,22 @@ namespace SafeServer.service.device
         
         public RolletDevice(Device dev) : base(dev)
         {
-            var sensorUp = GetBool41(config.sensorUP)
+            var sensorUp = GetBool41(Config.sensorUP)
                 .ToBool()
                 .DistinctUntilChanged();
             
-            var sensorDw = GetBool41(config.sensorDW)
+            var sensorDw = GetBool41(Config.sensorDW)
                 .ToBool()
                 .DistinctUntilChanged();
 
-            Add42(config.motorUP, UP
+            Add42(Config.motorUP, UP
                 .CombineLatest(sensorUp, (cmd, status) =>
                 {
                     if(cmd && status) UP.OnNext(false);
                     return cmd && !status;
                 }));
 
-            Add42(config.motorDW, DW
+            Add42(Config.motorDW, DW
                 .CombineLatest(sensorDw, (cmd, status) =>
                 {
                     if(cmd && status) DW.OnNext(false);
@@ -38,7 +38,13 @@ namespace SafeServer.service.device
                 }));
 
             status = sensorUp
-                    .CombineLatest(sensorDw, (up, dw) => DeviceStatus.Rollet(dev, up, dw))
+                    .CombineLatest(sensorDw, (up, dw) => DeviceStatus.Rollet(Id, up, dw))
+                    .Select(s =>
+                    {
+                        s.enable = IsEnable();
+                        s.version = Version;
+                        return s;
+                    })
                 ;
         }
         
@@ -49,14 +55,14 @@ namespace SafeServer.service.device
 
         public override void Init()
         {
-            Log.Info("{}({}) init", device.Name, device.Id);
+            Log.Info("{}({}) init", Name, Id);
         }
 
         public void Up()
         {
-            if (device.Enable)
+            if (IsEnable())
             {
-                Log.Info("{}({}) rollet UP", device.Name, device.Id);
+                Log.Info("{}({}) rollet UP", Name, Id);
                 DW.OnNext(false);
                 UP.OnNext(true);
             }
@@ -64,9 +70,9 @@ namespace SafeServer.service.device
 
         public void Down()
         {
-            if (device.Enable)
+            if (IsEnable())
             {
-                Log.Info("{}({}) rollet DOWN", device.Name, device.Id);
+                Log.Info("{}({}) rollet DOWN", Name, Id);
                 UP.OnNext(false);
                 DW.OnNext(true);
             }
@@ -74,7 +80,7 @@ namespace SafeServer.service.device
 
         public void Stop()
         {
-            Log.Info("{}({}) rollet STOP", device.Name, device.Id);
+            Log.Info("{}({}) rollet STOP", Name, Id);
             UP.OnNext(false);
             DW.OnNext(false);
         }
@@ -82,27 +88,17 @@ namespace SafeServer.service.device
         public override void Close()
         {
             Stop();
-            Log.Info("{}({}) close", device.Name, device.Id);
+            Log.Info("{}({}) close", Name, Id);
         }
 
         public override string RenderStatusValue(DeviceStatus status)
         {
-            return "?";
-        }
-
-        public override void Update(Config cfg)
-        {
-            device.Version++;
-            if (cfg.simple != null)
+            return status.value switch
             {
-                device.Removed = !cfg.simple.enable;
-                Log.Info("{}({}) enable status {}", device.Name, device.Id, cfg.simple.enable);
-            }
-        }
-
-        public override void Enable(bool val)
-        {
-            device.Enable = val;
+                1 => "закрыт",
+                2 => "открыт",
+                _ => "-",
+            };
         }
     }
 }

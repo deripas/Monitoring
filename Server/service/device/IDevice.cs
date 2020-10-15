@@ -3,23 +3,60 @@ using SafeServer.dto;
 
 namespace SafeServer.service.device
 {
-    public interface IDevice
+    public abstract class IDevice
     {
-        long Id();
+        private bool enable;
+        private bool removed;
 
-        int? CameraId();
+        public long Id { get; set; }
+        public int? CameraId { get; set; }
+        public string Name { get; set; }
+        public string Type { get; set; }
+        public long Version { get; set; }
 
-        string Name();
-
-        void Init();
-
-        void Close();
+        public bool Enable
+        {
+            get => enable;
+            set
+            {
+                enable = value;
+                OnEnableChange(IsEnable());
+            }
+        }
         
-        IObservable<DeviceStatus> Status();
+        public bool Removed
+        {
+            get => removed;
+            set
+            {
+                removed = value;
+                OnEnableChange(IsEnable());
+            }
+        }
 
-        string RenderStatusValue(DeviceStatus status);
-        void Update(Config cfg);
-        void Enable(bool enable);
-        bool IsEnable();
+        public abstract void Init();
+
+        public abstract void Close();
+
+        public abstract IObservable<DeviceStatus> Status();
+
+        public abstract string RenderStatusValue(DeviceStatus status);
+       
+        public abstract void Update(Config cfg);
+
+        public bool IsEnable()
+        {
+            return Enable && !Removed;
+        }
+
+        public virtual void OnEnableChange(bool enable)
+        {
+
+        }
+
+        public override string ToString()
+        {
+            return $"[{Name}]";
+        }
     }
 }

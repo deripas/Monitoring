@@ -7,41 +7,28 @@ namespace SafeServer.service.device
 {
     public abstract class LtrDevice : IDevice
     {
-        protected readonly Device device;
-        protected readonly Config config;
+        private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
+
+        protected readonly Config Config;
         
         protected LtrDevice(Device device)
         {
-            this.device = device;
-            config = device.Config;
+            Id = device.Id;
+            Name = device.Name;
+            Type = device.Type;
+            CameraId = device.Camera;
+            Version = device.Version;
+            Enable = device.Enable;
+            Removed = device.Removed;
+            Config = device.Config;
         }
 
-        public long Id()
+        public override void Update(Config cfg)
         {
-            return device.Id;
+            if (cfg.simple == null) return;
+            Removed = !cfg.simple.enable;
+            Log.Info("{}({}) enable status {}", Name, Id, cfg.simple.enable);
         }
-
-        public string Name()
-        {
-            return device.Name;
-        }
-
-        public int? CameraId()
-        {
-            return device.Camera;
-        }
-
-        public bool IsEnable()
-        {
-            return device.Enable && !device.Removed;
-        }
-
-        public abstract void Init();
-        public abstract void Close();
-        public abstract IObservable<DeviceStatus> Status();
-        public abstract string RenderStatusValue(DeviceStatus status);
-        public abstract void Update(Config cfg);
-        public abstract void Enable(bool enable);
 
         protected static void Add42(Channel ch, IObservable<bool> @in)
         {
@@ -81,11 +68,6 @@ namespace SafeServer.service.device
         protected static Ltr25 Ltr25(Slot slot)
         {
             return DI.Instance.LtrService.GetLtr<Ltr25>(slot);
-        }
-
-        public override string ToString()
-        {
-            return $"[{device.Name}]";
         }
     }
 }

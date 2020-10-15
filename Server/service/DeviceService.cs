@@ -63,7 +63,8 @@ select d.id, name, enable, removed, camera, type, description, version, stand_id
        d.config || json_build_object('siren', json_build_object('sn', m.sn, 'num', m.num, 'index', m.ch - 1))::jsonb as config
 from dev d,
      ltr_device m
-where d.siren = m.device;
+where d.siren = m.device
+order by d.id;
 ";
                 
             map.Clear();

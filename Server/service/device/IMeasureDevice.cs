@@ -1,7 +1,10 @@
-﻿namespace SafeServer.service.device
+﻿using SafeServer.dto;
+using System;
+
+namespace SafeServer.service.device
 {
-    public interface IMeasureDevice : IDevice
+    public interface IMeasureDevice 
     {
-        
+        IObservable<DeviceStatus> Status();
     }
 }

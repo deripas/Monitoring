@@ -22,11 +22,12 @@ namespace gui
         public void Set(DeviceController dev)
         {
             baseSensor1.Device = dev;
-            Enabled = dev.Enable;
         }
 
         public void Update(SensorStatus status)
         {
+            Enabled = status.enable;
+            baseSensor1.EnabledLed = status.enable;
             baseSensor1.SetAlarm(status.alarm);
             pictureBox1.Image = status.value > 0
                 ? Resources.weather_showers_scattered

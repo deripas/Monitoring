@@ -189,7 +189,7 @@ namespace gui
             // 
             // modeChangeButton
             // 
-            this.modeChangeButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.modeChangeButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.modeChangeButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mode1ToolStripMenuItem,
             this.mode2ToolStripMenuItem,
@@ -197,8 +197,8 @@ namespace gui
             this.modeChangeButton.Image = global::Properties.Resources.mode;
             this.modeChangeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.modeChangeButton.Name = "modeChangeButton";
-            this.modeChangeButton.Size = new System.Drawing.Size(59, 49);
-            this.modeChangeButton.Text = "toolStripSplitButton1";
+            this.modeChangeButton.Size = new System.Drawing.Size(309, 49);
+            this.modeChangeButton.Text = "Выбор режима";
             this.modeChangeButton.ToolTipText = "Режим";
             this.modeChangeButton.ButtonClick += new System.EventHandler(this.modeChangeButton_ButtonClick);
             // 

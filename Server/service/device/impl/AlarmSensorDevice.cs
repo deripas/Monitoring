@@ -21,15 +21,15 @@ namespace SafeServer.service.device
         public AlarmSensorDevice(Device device) : base(device)
         {
             _disposables = new List<IDisposable>();
-            enable = new BehaviorSubject<bool>(device.Enable);
+            enable = new BehaviorSubject<bool>(IsEnable());
             reset = new Subject<DeviceStatus>();
             status = new Subject<DeviceStatus>();
             siren = new SirenDev();
-            siren.Config(config.alarm);
+            siren.Config(Config.alarm);
 
-            Add42(config.siren, siren.Siren);
+            Add42(Config.siren, siren.Siren);
 
-            _timer = new Timer(config.alarm.timeout);
+            _timer = new Timer(Config.alarm.timeout);
             _timer.Elapsed += Elapsed;
             _timer.AutoReset = false;
             _timer.Enabled = false;
@@ -38,10 +38,9 @@ namespace SafeServer.service.device
         protected void Sensor(IObservable<DeviceStatus> measure)
         {
             _(measure.Merge(reset)
-                .Scan(DeviceStatus.Reset(device), ValueAgregate)
+                .Scan(DeviceStatus.Reset(Id), ValueAgregate)
                 .CombineLatest(enable, (s, e) =>
                 {
-                    s.version = e ? s.version : -1;
                     s.alarm = e ? s.alarm : 0;
                     s.value = e ? s.value : 0;
                     return s;
@@ -58,29 +57,34 @@ namespace SafeServer.service.device
         {
             if (cur.alarm < 0)
             {
-                return DeviceStatus.Value(device, old.value);
+                return DeviceStatus.Value(Id, old.value);
             }
             else
             {
                 var alert = old.alarm > 0 ? old.alarm : cur.alarm;
-                return DeviceStatus.Value(device, cur.value, alert);
+                return DeviceStatus.Value(Id, cur.value, alert);
             }
         }
 
         public override IObservable<DeviceStatus> Status()
         {
-            return status;
+            return status.Select(s =>
+                  {
+                      s.enable = IsEnable();
+                      s.version = Version;
+                      return s;
+                  });
         }
 
         public override void Init()
         {
             Reset();
-            Log.Info("{}({}) init", device.Name, device.Id);
+            Log.Info("{}({}) init", Name, Id);
         }
 
         public virtual void Reset()
         {
-            reset.OnNext(DeviceStatus.Reset(device));
+            reset.OnNext(DeviceStatus.Reset(Id));
         }
 
         public void ResetAlarm()
@@ -99,7 +103,7 @@ namespace SafeServer.service.device
         {
             _disposables.ForEach(d => d.Dispose());
             _disposables.Clear();
-            Log.Info("{}({}) close", device.Name, device.Id);
+            Log.Info("{}({}) close", Name, Id);
         }
 
         private void Elapsed(object sender, ElapsedEventArgs e)
@@ -114,29 +118,23 @@ namespace SafeServer.service.device
 
         public override void Update(Config cfg)
         {
-            device.Version++;
-            if (cfg.simple != null)
-            {
-                device.Removed = !cfg.simple.enable;
-                enable.OnNext(device.Enable && !device.Removed);
-                Log.Info("{}({}) enable status {}", device.Name, device.Id, cfg.simple.enable);
-            }
+            base.Update(cfg);
+
             if (cfg.alarm != null)
             {
-                device.Config.alarm = cfg.alarm;
+                Config.alarm = cfg.alarm;
                 siren.Config(cfg.alarm);
                 _timer.Interval = cfg.alarm.timeout;
-                Log.Info("{}({}) update alert config {}", device.Name, device.Id, cfg.alarm);
+                Log.Info("{}({}) update alert config {}", Name, Id, cfg.alarm);
             }
             Close();
             Init();
-            Log.Info("{}({}) update configuration", device.Name, device.Id);
+            Log.Info("{}({}) update configuration", Name, Id);
         }
 
-        public override void Enable(bool val)
+        public override void OnEnableChange(bool value)
         {
-            device.Enable = val;
-            enable.OnNext(device.Enable && !device.Removed);
+            enable?.OnNext(value);
         }
     }
 }

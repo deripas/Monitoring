@@ -13,12 +13,12 @@ namespace SafeServer.service.device
 
         public override void Init()
         {
-            var calibr = device.Config.calibr;
-            Sensor(GetDouble27(device.Config.sensor)
+            var calibr = Config.calibr;
+            Sensor(GetDouble27(Config.sensor)
                 .ToMean()
                 .Where(v => v >= 4)
                 .Convert(4, 20, calibr.min, calibr.max)
-                .Select(v => DeviceStatus.Value(device, v, v > calibr.porogMax || v < calibr.porogMin)));
+                .Select(v => DeviceStatus.Value(Id, v, v > calibr.porogMax || v < calibr.porogMin)));
             base.Init();
         }
 
@@ -26,19 +26,18 @@ namespace SafeServer.service.device
         {
             if (cfg.calibr != null)
             {
-                device.Config.calibr = cfg.calibr;
-                Log.Info("{}({}) update calibr config {}", device.Name, device.Id, cfg.calibr);
+                Config.calibr = cfg.calibr;
+                Log.Info("{}({}) update calibr config {}", Name, Id, cfg.calibr);
             }
-
             base.Update(cfg);
         }
 
         public override string RenderStatusValue(DeviceStatus status)
         {
             var unit = "";
-            if (device.Type.Equals("pressure"))
+            if (Type.Equals("pressure"))
                 unit = " бар";
-            if (device.Type.Equals("temperature"))
+            if (Type.Equals("temperature"))
                 unit = "°C";
 
             return status.value.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + unit;

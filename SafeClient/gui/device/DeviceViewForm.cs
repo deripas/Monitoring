@@ -92,7 +92,7 @@ namespace gui
 
                         item.SubItems.Clear();
                         item.Text = dev.Name;
-                        item.SubItems.Add(dev.Enable.ToString());
+                        item.SubItems.Add((!dev.Removed).ToString());
                         item.BackColor = GetColor(dev?.Stand);
                         listView1.Refresh();
                     }

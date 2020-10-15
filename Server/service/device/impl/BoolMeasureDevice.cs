@@ -12,15 +12,15 @@ namespace SafeServer.service.device
 
         public override void Init()
         {
-            Sensor(GetBool41(device.Config.sensor)
+            Sensor(GetBool41(Config.sensor)
                 .ToBool()
-                .Select(v => DeviceStatus.Value(device, v)));
+                .Select(v => DeviceStatus.Value(Id, v)));
             base.Init();
         }
 
         public override string RenderStatusValue(DeviceStatus status)
         {
-            return (status.value == 0) ? "норма" : "тревога";
+            return (status.alarm <= 0) ? "норма" : "тревога";
         }
     }
 }

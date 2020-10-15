@@ -82,14 +82,6 @@ namespace model.device
             }
         }
 
-        public bool Enable
-        {
-            get
-            {
-                return info.enable && !info.removed && info.config != null;
-            }
-        }
-
         public bool Removed
         {
             get
@@ -122,13 +114,6 @@ namespace model.device
 
         public void Update(SensorStatus status)
         {
-            var changed = info.version != status.version;
-            if(changed)
-            {
-                info = DI.Instance.ServerApi.DeviceSingle(Id);
-                Log.Info("device changed {}({})", info.name, info.id);
-            }
-
             if (view != null)
             {
                 var c = view.GetControl();
@@ -137,7 +122,6 @@ namespace model.device
                     {
                         try
                         {
-                            if (changed) view.Set(this);
                             view.Update(status);
                         }
                         catch (Exception e)
@@ -151,19 +135,16 @@ namespace model.device
 
         public void RolletUp()
         {
-            if (Enable)
                 DI.Instance.DeviceService.RolletUp(info.id);
         }
 
         public void RolletDown()
         {
-            if (Enable)
                 DI.Instance.DeviceService.RolletDown(info.id);
         }
 
         public void RolletStop()
         {
-            if (Enable)
                 DI.Instance.DeviceService.RolletStop(info.id);
         }
     }

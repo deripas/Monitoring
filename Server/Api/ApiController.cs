@@ -234,12 +234,12 @@ namespace Server.Api
         [Route("device/{id}/cfg")]
         public void DeviceConfig(long id, Config cfg)
         {
-            DI.Instance.DeviceService[id].Update(cfg);
+            var device = DI.Instance.DeviceService[id];
 
             using var db = new DatabaseService();
             var entity = db.Device.Find(id);
             var old = entity.Config;
-            if(cfg.calibr != null)
+            if (cfg.calibr != null)
                 old.calibr = cfg.calibr;
             if (cfg.alarm != null)
                 old.alarm = cfg.alarm;
@@ -251,6 +251,9 @@ namespace Server.Api
                 entity.Description = cfg.simple.description;
             }
             entity.Version++;
+
+            device.Update(cfg);
+            device.Version = entity.Version;
             db.SaveChanges();
         }
 
@@ -260,6 +263,15 @@ namespace Server.Api
         {
             return DI.Instance.DeviceStatusService.GetStatuses()
                 .Values
+                .OrderBy(s => s.id)
+                .Select(s =>
+                {
+                    var dev = DI.Instance.DeviceService[s.id];
+                    // uddate, get actual state
+                    s.enable = dev.IsEnable();
+                    s.version = dev.Version;
+                    return s;
+                })
                 .ToList();
         }
 

@@ -14,11 +14,11 @@ namespace SafeServer.service.device
         
         public override void Init()
         {
-            var x = GetDouble25(device.Config.sensorX);
-            var y = GetDouble25(device.Config.sensorY);
+            var x = GetDouble25(Config.sensorX);
+            var y = GetDouble25(Config.sensorY);
             var z = x.Zip(y, CalcLen);
                 
-            Sensor(z.Select(v => DeviceStatus.Value(device, v)));
+            Sensor(z.Select(v => DeviceStatus.Value(Id, v)));
             base.Init();
         }
 

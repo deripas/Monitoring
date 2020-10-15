@@ -91,7 +91,6 @@ namespace gui
                 if (value != null)
                 {
                     Description = value.Description;
-                    EnabledLed = value.Enable;
                     this.toolTip2.SetToolTip(this.description, value.Name);
                 }
             }

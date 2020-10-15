@@ -161,16 +161,19 @@ namespace gui
         private void mode1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SetMode(StandMode.Mode1);
+            ChangeMode(1);
         }
 
         private void mode2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SetMode(StandMode.Mode2);
+            ChangeMode(2);
         }
 
         private void mode3ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SetMode(StandMode.Mode3);
+            ChangeMode(3);
         }
 
         private void SetMode(StandMode mode)
@@ -183,6 +186,7 @@ namespace gui
             DI.Instance.StandMode = mode;
             Settings.Default.StandMode = mode.ToString();
             UpdateMode(viewModeSelected, true);
+            var prefix = "";
             switch (mode)
             {
                 case StandMode.Mode1:
@@ -190,6 +194,7 @@ namespace gui
                         mode1ToolStripMenuItem.Checked = true;
                         mode2ToolStripMenuItem.Checked = false;
                         mode3ToolStripMenuItem.Checked = false;
+                        modeChangeButton.Text = prefix + mode1ToolStripMenuItem.Text;
                         break;
                     }
                 case StandMode.Mode2:
@@ -197,6 +202,7 @@ namespace gui
                         mode1ToolStripMenuItem.Checked = false;
                         mode2ToolStripMenuItem.Checked = true;
                         mode3ToolStripMenuItem.Checked = false;
+                        modeChangeButton.Text = prefix + mode2ToolStripMenuItem.Text;
                         break;
                     }
                 case StandMode.Mode3:
@@ -204,6 +210,7 @@ namespace gui
                         mode1ToolStripMenuItem.Checked = false;
                         mode2ToolStripMenuItem.Checked = false;
                         mode3ToolStripMenuItem.Checked = true;
+                        modeChangeButton.Text = prefix + mode3ToolStripMenuItem.Text;
                         break;
                     }
             }

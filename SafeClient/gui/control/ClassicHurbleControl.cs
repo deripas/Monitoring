@@ -61,7 +61,6 @@ namespace gui
                 if (value != null)
                 {
                     Description = value.Description;
-                    EnabledLed = value.Enable;
                 }
             }
         }
@@ -79,22 +78,12 @@ namespace gui
         public void Set(DeviceController dev)
         {
             Device = dev;
-            Enabled = dev.Enable;
         }
 
         public void Update(SensorStatus status)
         {
-            if (status.version < 0)
-            {
-                EnabledLed = false;
-                Enabled = false;
-                return;
-            }
-            if (!Enabled)
-            {
-                EnabledLed = true;
-                Enabled = true;
-            }
+            Enabled = status.enable;
+            EnabledLed = status.enable;
             SetAlarm(status.alarm);
             SetImage((ControlType)status.value);
             SetControll((ControlType)status.value);
@@ -124,6 +113,8 @@ namespace gui
 
         internal void SetAlarm(long alarm)
         {
+            if (!Enabled) return;
+
             if (alarm > this.alarm)
             {
                 DI.Instance.AlarmSoundService.Play();

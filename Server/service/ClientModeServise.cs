@@ -80,10 +80,16 @@ namespace Server.service
         {
             foreach (var dev in list)
             {
-                deviceService[dev.Id].Enable(enable);
+                if (dev.Enable == enable) continue;
+
+                var device = deviceService[dev.Id];
+
                 dev.Enable = enable;
                 dev.Version++;
-                Log.Info("{}({}) enable status {}", dev.Name, dev.Id, dev.Enable);
+
+                device.Enable = dev.Enable;
+                device.Version = dev.Version;
+                Log.Info("{}({}) enable status {} (ver: {})", dev.Name, dev.Id, dev.Enable, dev.Version);
             }
         }
 

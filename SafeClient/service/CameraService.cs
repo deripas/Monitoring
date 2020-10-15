@@ -69,7 +69,7 @@ namespace service
 
             Task.Factory.StartNew(() =>
             {
-                while (!_nvrMap.Values.All(nvr => nvr.Login()))
+                while (!_nvrMap.Values.AsParallel().All(nvr => nvr.Login()))
                 {
                     Thread.Sleep(TimeSpan.FromSeconds(5));
                 }
