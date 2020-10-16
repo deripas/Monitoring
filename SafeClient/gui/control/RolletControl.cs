@@ -10,6 +10,33 @@ namespace gui
     {
         private DeviceController device;
 
+        public DeviceController Device
+        {
+            get => device;
+            set
+            {
+                device = value;
+                if (value != null)
+                {
+                    Description = value.Description;
+                }
+            }
+        }
+
+        public string Description
+        {
+            get
+            {
+                return description.Text;
+            }
+            set
+            {
+                description.Text = value;
+            }
+        }
+
+
+
         public RolletControl()
         {
             InitializeComponent();
@@ -22,7 +49,7 @@ namespace gui
 
         public void Set(DeviceController dev)
         {
-            device = dev;
+            Device = dev;
         }
 
         public void Update(SensorStatus status)

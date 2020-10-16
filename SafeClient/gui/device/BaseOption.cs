@@ -7,17 +7,17 @@ namespace gui
 {
     public partial class BaseOption : UserControl
     {
-        private DeviceController device;
+        private DeviceInfo device;
 
-        public DeviceController Device
+        public DeviceInfo Device
         {
             set
             {
                 device = value;
-                idText.Text = value.Id.ToString();
-                typeText.Text = value.Type.ToString();
-                enableCheckBox.Checked = !value.Removed;
-                descText.Text = value.Description;
+                idText.Text = value.id.ToString();
+                typeText.Text = value.type.ToString();
+                enableCheckBox.Checked = !value.removed;
+                descText.Text = value.description;
             }
         }
 
@@ -28,17 +28,17 @@ namespace gui
             typeText.Enabled = false;
         }
 
-        internal void Save(Config config)
+        internal void Save(Config config, DeviceController dev)
         {
-            if (device.Removed != !enableCheckBox.Checked
-                || !device.Description.Equals(descText.Text))
+            if (device.removed != !enableCheckBox.Checked
+                || !device.description.Equals(descText.Text))
             {
                 config.simple = new SafeServer.dto.config.Base();
                 config.simple.enable = enableCheckBox.Checked;
                 config.simple.description = descText.Text;
 
-                device.Removed = !enableCheckBox.Checked;
-                device.Description = descText.Text;
+                dev.Removed = !enableCheckBox.Checked;
+                dev.Description = descText.Text;
             }
         }
     }

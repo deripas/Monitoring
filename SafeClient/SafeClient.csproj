@@ -101,6 +101,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="api\dto\config\Cfg.cs" />
+    <Compile Include="api\dto\config\Channel.cs" />
     <Compile Include="api\dto\StandMode.cs" />
     <Compile Include="gui\AboutForm.cs">
       <SubType>Form</SubType>

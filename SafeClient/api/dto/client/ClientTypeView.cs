@@ -26,13 +26,21 @@ namespace api.dto.client
                 .Select(device => device.Id)
                 .ToList();
 
+            var control = service.DI.Instance.DeviceService.DeviceList
+                .Where(device => device.Type.IsControll())
+                .OrderBy(device => device.Type)
+                .ThenBy(device => device.Stand)
+                .ThenBy(device => device.Description)
+                .Select(device => device.Id)
+                .ToList();
+
             return new CameraGrid()
             {
                 cols = 6,
                 rows = 6,
                 cams = cams.Split(',').Select(int.Parse).ToList(),
                 device = dev,
-                control = new List<int> { },
+                control = control,
                 stream = 1
             };
         }

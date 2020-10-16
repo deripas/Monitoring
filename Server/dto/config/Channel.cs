@@ -1,4 +1,5 @@
 ﻿using SafeServer.ltr;
+using System.Collections.Generic;
 
 namespace SafeServer.dto.config
 {
@@ -7,6 +8,7 @@ namespace SafeServer.dto.config
         public string sn { get; set; }
         public int num { get; set; }
         public int index { get; set; }
+        public Dictionary<string, string> cfg { get; set; }
 
         public Slot GetSlot()
         {

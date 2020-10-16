@@ -38,13 +38,13 @@ namespace gui
             if (DI.Instance.DeviceService == null) return;
 
             listView1.Items.Clear();
-            var devList = DI.Instance.DeviceService.DeviceList;
-            foreach (DeviceController dev in devList)
+            var devList = DI.Instance.ServerApi.Device();
+            foreach (DeviceInfo dev in devList)
             {
-                ListViewItem item = new ListViewItem(dev.Name);
-                item.SubItems.Add((!dev.Removed).ToString());
+                ListViewItem item = new ListViewItem(dev.name);
+                item.SubItems.Add((!dev.removed).ToString());
                 item.Tag = dev;
-                item.BackColor = GetColor(dev?.Stand);
+                item.BackColor = GetColor(dev?.stand);
                 listView1.Items.Add(item);
             }
             listView1.Refresh();
@@ -76,24 +76,26 @@ namespace gui
             if (listView1.SelectedItems != null && listView1.SelectedItems.Count > 0)
             {
                 var item = listView1.SelectedItems[0];
-                DeviceController dev = (DeviceController)item.Tag;
+                DeviceInfo devInfo = (DeviceInfo)item.Tag;
+                DeviceInfo device = DI.Instance.ServerApi.DeviceSingle(devInfo.id);
+                
                 DeviceEditorForm form = new DeviceEditorForm();
-                form.Device = dev;
+                form.Device = device;
                 form.TopMost = true;
                 form.StartPosition = FormStartPosition.CenterParent;
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     try
                     {
-                        Config cfg = new Config();
-                        form.Save(cfg);
+                        var dev = DI.Instance.DeviceService[device.id];
+                        form.Save(device.config, dev);
 
-                        DI.Instance.ServerApi.DeviceConfig(dev.Id, cfg);
+                        DI.Instance.ServerApi.DeviceConfig(device.id, device.config);
 
                         item.SubItems.Clear();
-                        item.Text = dev.Name;
-                        item.SubItems.Add((!dev.Removed).ToString());
-                        item.BackColor = GetColor(dev?.Stand);
+                        item.Text = device.name;
+                        item.SubItems.Add((!device.removed).ToString());
+                        item.BackColor = GetColor(device?.stand);
                         listView1.Refresh();
                     }
                     catch (Exception ex)

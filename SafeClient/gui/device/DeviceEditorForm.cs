@@ -14,11 +14,11 @@ namespace gui.device
             Icon = Resources.AppIcon2;
         }
 
-        public DeviceController Device
+        public DeviceInfo Device
         {
             set
             {
-                Text = value.Name;
+                Text = value.name;
                 baseOption1.Device = value;
                 alarmOption1.Device = value;
                 measureOption1.Device = value;
@@ -41,9 +41,9 @@ namespace gui.device
             DialogResult = DialogResult.OK;
         }
 
-        public void Save(Config config)
+        public void Save(Config config, DeviceController dev)
         {
-            baseOption1.Save(config);
+            baseOption1.Save(config, dev);
             alarmOption1.Save(config);
             measureOption1.Save(config);
         }

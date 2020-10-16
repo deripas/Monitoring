@@ -46,5 +46,26 @@ namespace SafeServer.service
         {
             return Value.FromSqlRaw("SELECT * FROM measure WHERE device={0} AND (time BETWEEN {1} AND {2}) ORDER BY time", id, from, to).ToList();
         }
+
+        public IQueryable<Device> GetDeviceFull()
+        {
+            var sql = @"
+WITH dev AS (
+    select d.id, name, enable, removed, camera, type, description, version, stand_id, siren,
+           d.config || json_object_agg(m.field, json_build_object('sn', m.sn, 'num', m.num, 'index', m.ch - 1, 'cfg', m.cfg))::jsonb as config
+    from ltr_device m,
+         device d
+    where m.device = d.id
+    group by d.id
+)
+select d.id, name, enable, removed, camera, type, description, version, stand_id, siren, 
+       d.config || json_build_object('siren', json_build_object('sn', m.sn, 'num', m.num, 'index', m.ch - 1))::jsonb as config
+from dev d,
+     ltr_device m
+where d.siren = m.device
+order by d.id;
+";
+            return Device.FromSqlRaw(sql);
+        }
     }
 }

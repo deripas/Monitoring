@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Reactive.Linq;
 using ltrModulesNet;
+using static ltrModulesNet.ltr25api;
 
 namespace SafeServer.ltr
 {
@@ -29,7 +31,7 @@ namespace SafeServer.ltr
         private Slot slot;
         private ltr25api ltr;
 
-        const int EnabledChCnt = 8;
+        const int EnabledChCnt = 6;
         const int RECV_BLOCK_CH_SIZE = 1024;
         private static ltr25api.DataFormat DataFmt = ltr25api.DataFormat.Format20;
         private static int recv_data_cnt = RECV_BLOCK_CH_SIZE * EnabledChCnt;
@@ -56,8 +58,10 @@ namespace SafeServer.ltr
             {
                 Log.Error("{0} Open", this);
                 return error;
-            }    
-            
+            }
+
+            //Teds();
+
             var cfg = ltr.Cfg;
             cfg.DataFmt = DataFmt;
             cfg.FreqCode = ltr25api.FreqCode.Freq_2K4;
@@ -79,10 +83,32 @@ namespace SafeServer.ltr
             {
                 Log.Error("{0} Start", this);
                 return error;
-            }    
-            
+            }
             base.Start();
             return _LTRNative.LTRERROR.OK;
+        }
+
+        private void Teds()
+        {
+            var err = ltr.SetSensorsPowerMode(ltr25api.SensorsPowerModes.TEDS);
+            Log.Info("{0} SetSensorsPowerMode(TEDS) {1}", this, err);
+
+            for (var i = 0; i < EnabledChCnt; i++)
+            {
+                err = ltr.TEDSNodeDetect(i, out TEDS_NODE_INFO devinfo);
+                Log.Info("{0} TEDSNodeDetect {1} {2} {3}", this, err, devinfo.Valid, devinfo.DevFamilyCode);
+
+                byte[] buffer = new byte[1024];
+                err = ltr.TEDSReadData(i, buffer, (uint)buffer.Length, out uint read_size);
+                Log.Info("{0} TEDSReadData {1} {2}", this, err, read_size);
+
+                byte[] data = new byte[read_size];
+                Buffer.BlockCopy(buffer, 0, data, 0, data.Length);
+                File.WriteAllBytes(i + "_teds.bin", data);
+            }
+
+            err = ltr.SetSensorsPowerMode(ltr25api.SensorsPowerModes.ICP);
+            Log.Info("{0} SetSensorsPowerMode(ICP) {1}", this, err);
         }
 
         public new void Stop()

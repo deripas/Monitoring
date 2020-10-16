@@ -6,7 +6,6 @@ namespace SafeServer.dto
     public class DeviceStatus
     {
         public long id { get; set; }
-        public long version { get; set; }
         public bool enable { get; set; }
         public double value { get; set; }
         public long alarm { get; set; }

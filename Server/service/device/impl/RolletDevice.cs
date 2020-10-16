@@ -42,7 +42,6 @@ namespace SafeServer.service.device
                     .Select(s =>
                     {
                         s.enable = IsEnable();
-                        s.version = Version;
                         return s;
                     })
                 ;

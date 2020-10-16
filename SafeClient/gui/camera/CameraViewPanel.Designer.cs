@@ -48,81 +48,93 @@
             // contextMenu
             // 
             this.contextMenu.ImageScalingSize = new System.Drawing.Size(28, 28);
-            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.soundToolStripMenuItem, this.talkToolStripMenuItem, this.streamToolStripMenuItem, this.cameraToolStripMenuItem, this.ratioToolStripMenuItem, this.pTZToolStripMenuItem});
+            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.soundToolStripMenuItem,
+            this.talkToolStripMenuItem,
+            this.streamToolStripMenuItem,
+            this.cameraToolStripMenuItem,
+            this.ratioToolStripMenuItem,
+            this.pTZToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(331, 216);
+            this.contextMenu.Size = new System.Drawing.Size(331, 286);
             this.contextMenu.VisibleChanged += new System.EventHandler(this.contextMenu_VisibleChanged);
             // 
             // soundToolStripMenuItem
             // 
             this.soundToolStripMenuItem.CheckOnClick = true;
             this.soundToolStripMenuItem.Name = "soundToolStripMenuItem";
-            this.soundToolStripMenuItem.Size = new System.Drawing.Size(330, 34);
-            this.soundToolStripMenuItem.Text = "sound";
+            this.soundToolStripMenuItem.Size = new System.Drawing.Size(330, 38);
+            this.soundToolStripMenuItem.Text = "Звук";
             this.soundToolStripMenuItem.Click += new System.EventHandler(this.soundToolStripMenuItem_Click);
             // 
             // talkToolStripMenuItem
             // 
             this.talkToolStripMenuItem.CheckOnClick = true;
             this.talkToolStripMenuItem.Name = "talkToolStripMenuItem";
-            this.talkToolStripMenuItem.Size = new System.Drawing.Size(330, 34);
+            this.talkToolStripMenuItem.Size = new System.Drawing.Size(330, 38);
             this.talkToolStripMenuItem.Text = "talk";
+            this.talkToolStripMenuItem.Visible = false;
             this.talkToolStripMenuItem.Click += new System.EventHandler(this.talkToolStripMenuItem_Click);
             // 
             // streamToolStripMenuItem
             // 
-            this.streamToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.mainToolStripMenuItem, this.subToolStripMenuItem});
+            this.streamToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mainToolStripMenuItem,
+            this.subToolStripMenuItem});
             this.streamToolStripMenuItem.Name = "streamToolStripMenuItem";
-            this.streamToolStripMenuItem.Size = new System.Drawing.Size(330, 34);
-            this.streamToolStripMenuItem.Text = "stream";
+            this.streamToolStripMenuItem.Size = new System.Drawing.Size(330, 38);
+            this.streamToolStripMenuItem.Text = "Поток";
             // 
             // mainToolStripMenuItem
             // 
             this.mainToolStripMenuItem.Name = "mainToolStripMenuItem";
-            this.mainToolStripMenuItem.Size = new System.Drawing.Size(150, 34);
-            this.mainToolStripMenuItem.Text = "main";
+            this.mainToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            this.mainToolStripMenuItem.Text = "Основной";
             this.mainToolStripMenuItem.Click += new System.EventHandler(this.mainToolStripMenuItem_Click);
             // 
             // subToolStripMenuItem
             // 
             this.subToolStripMenuItem.Name = "subToolStripMenuItem";
-            this.subToolStripMenuItem.Size = new System.Drawing.Size(150, 34);
-            this.subToolStripMenuItem.Text = "sub";
+            this.subToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            this.subToolStripMenuItem.Text = "Дополнительный";
             this.subToolStripMenuItem.Click += new System.EventHandler(this.subToolStripMenuItem_Click);
             // 
             // cameraToolStripMenuItem
             // 
             this.cameraToolStripMenuItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cameraToolStripMenuItem.Name = "cameraToolStripMenuItem";
-            this.cameraToolStripMenuItem.Size = new System.Drawing.Size(270, 38);
+            this.cameraToolStripMenuItem.Size = new System.Drawing.Size(270, 40);
+            this.cameraToolStripMenuItem.Visible = false;
             this.cameraToolStripMenuItem.SelectedIndexChanged += new System.EventHandler(this.cameraToolStripMenuItem_SelectedIndexChanged);
             // 
             // ratioToolStripMenuItem
             // 
-            this.ratioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.toolStripMenuItem2, this.toolStripMenuItem3});
+            this.ratioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3});
             this.ratioToolStripMenuItem.Name = "ratioToolStripMenuItem";
-            this.ratioToolStripMenuItem.Size = new System.Drawing.Size(330, 34);
-            this.ratioToolStripMenuItem.Text = "ratio";
+            this.ratioToolStripMenuItem.Size = new System.Drawing.Size(330, 38);
+            this.ratioToolStripMenuItem.Text = "Аспект";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(142, 34);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(359, 44);
             this.toolStripMenuItem2.Text = "4:3";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(142, 34);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(359, 44);
             this.toolStripMenuItem3.Text = "16:9";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // pTZToolStripMenuItem
             // 
             this.pTZToolStripMenuItem.Name = "pTZToolStripMenuItem";
-            this.pTZToolStripMenuItem.Size = new System.Drawing.Size(330, 34);
-            this.pTZToolStripMenuItem.Text = "PTZ";
+            this.pTZToolStripMenuItem.Size = new System.Drawing.Size(330, 38);
+            this.pTZToolStripMenuItem.Text = "Ракурс";
             this.pTZToolStripMenuItem.Click += new System.EventHandler(this.pTZToolStripMenuItem_Click);
             // 
             // toolTip1
@@ -138,20 +150,21 @@
             this.canvas.Name = "canvas";
             this.canvas.Ratio = 0.75D;
             this.canvas.Selected = false;
-            this.canvas.Size = new System.Drawing.Size(679, 566);
+            this.canvas.Size = new System.Drawing.Size(741, 590);
             this.canvas.TabIndex = 0;
             this.canvas.Load += new System.EventHandler(this.canvas_Load);
             // 
             // CameraViewPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.canvas);
             this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "CameraViewPanel";
-            this.Size = new System.Drawing.Size(679, 566);
+            this.Size = new System.Drawing.Size(741, 590);
             this.contextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.ToolStripComboBox cameraToolStripMenuItem;

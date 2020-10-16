@@ -150,7 +150,7 @@ namespace Server.Api
         public Device DeviceSingle(long id)
         {
             using var db = new DatabaseService();
-            return db.Device.Find(id);
+            return db.GetDeviceFull().ToList().Find(dev => dev.Id == id);
         }
 
         [HttpGet]
@@ -269,7 +269,6 @@ namespace Server.Api
                     var dev = DI.Instance.DeviceService[s.id];
                     // uddate, get actual state
                     s.enable = dev.IsEnable();
-                    s.version = dev.Version;
                     return s;
                 })
                 .ToList();
