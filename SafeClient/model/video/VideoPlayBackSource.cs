@@ -9,6 +9,7 @@
         DateTime BeginTime { get; }
         DateTime EndTime { get; }
         string Name { get; }
+        double Ratio { get; }
         
         IntPtr Play(IntPtr canvas, DateTime startTime, DateTime endTime);
 

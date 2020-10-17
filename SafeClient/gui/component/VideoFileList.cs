@@ -99,7 +99,7 @@ namespace gui
 
         private void buttonExport_Click(object sender, EventArgs e)
         {
-            StopItem?.Invoke();
+            //StopItem?.Invoke();
             var select = listBox1.SelectedItem;
             if (select == null) return;
 

@@ -9,6 +9,7 @@ namespace api
         List<NvrInfo> Nvr();
 
         List<CameraInfo> Camera();
+        void SetCameraRatio(int id, double ratio);
 
         List<DeviceInfo> Device();
         DeviceInfo DeviceSingle(int id);

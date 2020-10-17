@@ -74,6 +74,7 @@ namespace gui
 
         internal void SelectVideo(VideoPlayBackSource video)
         {
+            Ratio = video.Ratio;
             playerNavigationPanel1.VideoPlayer = new VideoFilePlayer(this, video);
         }
 

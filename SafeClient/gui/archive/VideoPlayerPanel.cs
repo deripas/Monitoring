@@ -54,6 +54,7 @@ namespace gui
 
         internal void SelectItem(VideoFileModel fileModel)
         {
+            Ratio = fileModel.Ratio;
             playerNavigationPanel1.VideoPlayer = new VideoFilePlayer(this, fileModel);
         }
 

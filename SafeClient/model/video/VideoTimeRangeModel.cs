@@ -15,6 +15,7 @@ namespace model.video
         public DateTime BeginTime { get; }
         public DateTime EndTime { get; }
         public string Name => camera.Name;
+        public double Ratio => camera.Ratio;
 
         public VideoTimeRangeModel(CameraModel camera, DateTime from, DateTime to)
         {

@@ -32,6 +32,16 @@ namespace Server.Api
             return db.Camera.Find(id);
         }
 
+        [HttpPut]
+        [Route("camera/{id}/ratio")]
+        public void SetCameraRatio(int id, double ratio)
+        {
+            using var db = new DatabaseService();
+            var cam = db.Camera.Find(id);
+            cam.Ratio = ratio;
+            db.SaveChanges();
+        }
+
         [HttpGet]
         [Route("nvr")]
         public List<Nvr> Nvr()

@@ -17,6 +17,7 @@ using onvif10_device;
 using onvif10_media;
 using System.Windows.Forms.VisualStyles;
 using System.Threading.Tasks;
+using service;
 
 namespace model.camera
 {
@@ -53,6 +54,7 @@ namespace model.camera
             set
             {
                 ratio = value;
+                DI.Instance.ServerApi.SetCameraRatio(Id, value);
             }
         }
 
@@ -91,6 +93,7 @@ namespace model.camera
             Id = info.id;
             Name = info.name;
             Stand = info.stand;
+            Ratio = info.ratio;
         }
 
         internal void StartTalk()

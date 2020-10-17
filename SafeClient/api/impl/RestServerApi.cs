@@ -34,6 +34,11 @@ namespace api.impl
             return template.GetForObject<List<CameraInfo>>("/api/camera");
         }
 
+        public void SetCameraRatio(int id, double ratio)
+        {
+            tryAction(() => template.Put("/api/camera/{id}/ratio?ratio=" + ratio.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture), null, id));
+        }
+
         public List<DeviceInfo> Device()
         {
             return template.GetForObject<List<DeviceInfo>>("/api/device");

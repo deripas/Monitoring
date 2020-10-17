@@ -220,11 +220,25 @@ namespace gui
 
         private void buttonExport_Click(object sender, EventArgs e)
         {
-            StopVideoItem?.Invoke();
+            //StopVideoItem?.Invoke();
             var alert = Alert;
             if (alert == null) return;
 
             VideoExportForm.Instance.Start(alert.Video());
+        }
+
+        private void toLastAlertToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var alert = DI.Instance.ServerApi.FindLastAlert(true);
+            if (alert.id > 0)
+            {
+                selectAlertId = alert.id;
+                dateTimePicker1.Value = alert.GetDateTime();
+                if (comboBoxDevice.SelectedItem == null)
+                {
+                    comboBoxDevice.SelectedItem = DI.Instance.DeviceService[alert.device];
+                }
+            }
         }
     }
 }

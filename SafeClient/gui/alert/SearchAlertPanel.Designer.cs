@@ -42,6 +42,7 @@
             this.applyAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.findToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toLastAlertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -50,31 +51,31 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 218F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 436F));
             this.tableLayoutPanel1.Controls.Add(this.buttonExport, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.dateTimePicker1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.comboBoxDevice, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.alertListView, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(218, 374);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 77F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(436, 719);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // buttonExport
             // 
             this.buttonExport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonExport.Location = new System.Drawing.Point(2, 336);
-            this.buttonExport.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonExport.Location = new System.Drawing.Point(4, 646);
+            this.buttonExport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonExport.Name = "buttonExport";
-            this.buttonExport.Size = new System.Drawing.Size(214, 36);
+            this.buttonExport.Size = new System.Drawing.Size(428, 69);
             this.buttonExport.TabIndex = 16;
             this.buttonExport.Text = "🖫";
             this.buttonExport.UseVisualStyleBackColor = true;
@@ -86,10 +87,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePicker1.CustomFormat = "dd.MM.yyyy";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(2, 2);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
+            this.dateTimePicker1.Location = new System.Drawing.Point(4, 4);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(214, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(428, 31);
             this.dateTimePicker1.TabIndex = 12;
             // 
             // comboBoxDevice
@@ -101,10 +102,10 @@
             "Все",
             "Температура",
             "Давление"});
-            this.comboBoxDevice.Location = new System.Drawing.Point(2, 26);
-            this.comboBoxDevice.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxDevice.Location = new System.Drawing.Point(4, 50);
+            this.comboBoxDevice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxDevice.Name = "comboBoxDevice";
-            this.comboBoxDevice.Size = new System.Drawing.Size(214, 21);
+            this.comboBoxDevice.Size = new System.Drawing.Size(428, 33);
             this.comboBoxDevice.TabIndex = 15;
             this.comboBoxDevice.SelectedIndexChanged += new System.EventHandler(this.comboBoxDevice_SelectedIndexChanged);
             // 
@@ -120,12 +121,12 @@
             this.alertListView.FullRowSelect = true;
             this.alertListView.GridLines = true;
             this.alertListView.HideSelection = false;
-            this.alertListView.Location = new System.Drawing.Point(2, 50);
-            this.alertListView.Margin = new System.Windows.Forms.Padding(2);
+            this.alertListView.Location = new System.Drawing.Point(4, 96);
+            this.alertListView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.alertListView.MultiSelect = false;
             this.alertListView.Name = "alertListView";
             this.alertListView.RightToLeftLayout = true;
-            this.alertListView.Size = new System.Drawing.Size(214, 282);
+            this.alertListView.Size = new System.Drawing.Size(428, 542);
             this.alertListView.TabIndex = 0;
             this.alertListView.UseCompatibleStateImageBehavior = false;
             this.alertListView.View = System.Windows.Forms.View.Details;
@@ -158,19 +159,19 @@
             this.toolStripMenuItem1,
             this.applyAllToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(213, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(369, 80);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(212, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(368, 38);
             this.toolStripMenuItem1.Text = "Обработать выделенный";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // applyAllToolStripMenuItem
             // 
             this.applyAllToolStripMenuItem.Name = "applyAllToolStripMenuItem";
-            this.applyAllToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.applyAllToolStripMenuItem.Size = new System.Drawing.Size(368, 38);
             this.applyAllToolStripMenuItem.Text = "Обработать ВСЕ ранее";
             this.applyAllToolStripMenuItem.Click += new System.EventHandler(this.applyAllToolStripMenuItem_Click);
             // 
@@ -178,25 +179,33 @@
             // 
             this.contextMenuStrip2.ImageScalingSize = new System.Drawing.Size(28, 28);
             this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.findToolStripMenuItem});
+            this.findToolStripMenuItem,
+            this.toLastAlertToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(288, 26);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(526, 124);
             // 
             // findToolStripMenuItem
             // 
             this.findToolStripMenuItem.Name = "findToolStripMenuItem";
-            this.findToolStripMenuItem.Size = new System.Drawing.Size(287, 22);
+            this.findToolStripMenuItem.Size = new System.Drawing.Size(525, 38);
             this.findToolStripMenuItem.Text = "Перейти к неподтвержденному алерту";
             this.findToolStripMenuItem.Click += new System.EventHandler(this.findToolStripMenuItem_Click);
             // 
+            // toLastAlertToolStripMenuItem
+            // 
+            this.toLastAlertToolStripMenuItem.Name = "toLastAlertToolStripMenuItem";
+            this.toLastAlertToolStripMenuItem.Size = new System.Drawing.Size(525, 38);
+            this.toLastAlertToolStripMenuItem.Text = "Перейти к последнему алерту";
+            this.toLastAlertToolStripMenuItem.Click += new System.EventHandler(this.toLastAlertToolStripMenuItem_Click);
+            // 
             // SearchAlertPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "SearchAlertPanel";
-            this.Size = new System.Drawing.Size(218, 374);
+            this.Size = new System.Drawing.Size(436, 719);
             this.Load += new System.EventHandler(this.SearchAlertPanel_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
@@ -221,5 +230,6 @@
         #endregion
 
         private System.Windows.Forms.Button buttonExport;
+        private System.Windows.Forms.ToolStripMenuItem toLastAlertToolStripMenuItem;
     }
 }
