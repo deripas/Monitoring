@@ -17,6 +17,12 @@ namespace gui
             DI.Instance.Init();
             InitializeComponent();
             Icon = Resources.AppIcon2;
+
+            if (DI.Instance.Type.VideoOnly())
+            {
+                sensorPanel1.Visible = false;
+                controlPanel1.Visible = false;
+            }
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)

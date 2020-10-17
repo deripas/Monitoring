@@ -17,22 +17,29 @@ namespace api.dto.client
         private CameraGrid ViewGrid()
         {
             var cams = ConfigurationManager.AppSettings["client.type.view.0"];
-            var devices = service.DI.Instance.DeviceService.DeviceList;
-            var dev = devices
-                .Where(device => device.Type.IsSensor())
-                .OrderBy(device => device.Type)
-                .ThenBy(device => device.Stand)
-                .ThenBy(device => device.Description)
-                .Select(device => device.Id)
-                .ToList();
+            var deviceEnable = Boolean.Parse(ConfigurationManager.AppSettings["client.type.view.device"]);
 
-            var control = service.DI.Instance.DeviceService.DeviceList
-                .Where(device => device.Type.IsControll())
-                .OrderBy(device => device.Type)
-                .ThenBy(device => device.Stand)
-                .ThenBy(device => device.Description)
-                .Select(device => device.Id)
-                .ToList();
+            List<int> dev = new List<int>();
+            List<int> control = new List<int>();
+
+            if (deviceEnable)
+            {
+                dev = service.DI.Instance.DeviceService.DeviceList
+                    .Where(device => device.Type.IsSensor())
+                    .OrderBy(device => device.Type)
+                    .ThenBy(device => device.Stand)
+                    .ThenBy(device => device.Description)
+                    .Select(device => device.Id)
+                    .ToList();
+
+                control = service.DI.Instance.DeviceService.DeviceList
+                    .Where(device => device.Type.IsControll())
+                    .OrderBy(device => device.Type)
+                    .ThenBy(device => device.Stand)
+                    .ThenBy(device => device.Description)
+                    .Select(device => device.Id)
+                    .ToList();
+            }
 
             return new CameraGrid()
             {
@@ -53,6 +60,11 @@ namespace api.dto.client
         string ClientType.GetType()
         {
             return "view";
+        }
+
+        public bool VideoOnly()
+        {
+            return !Boolean.Parse(ConfigurationManager.AppSettings["client.type.view.device"]);
         }
     }
 }

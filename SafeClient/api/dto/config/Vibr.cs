@@ -5,9 +5,9 @@ using System.Text;
 
 namespace api.dto.config
 {
-    public class Cfg
+    public class Vibr
     {
-        public string sn { get; set; }
-        public double sensitivity { get; set; }
+        public double porog { get; set; }
+        public double scale { get; set; }
     }
 }

@@ -14,13 +14,10 @@ namespace gui
 {
     public partial class AlarmOption : UserControl
     {
-        private DeviceInfo device;
-
         public DeviceInfo Device
         {
             set
             {
-                this.device = value;
                 Alarm config = value.config?.alarm;
                 if (config != null)
                 {
@@ -50,7 +47,6 @@ namespace gui
                     period = Int64.Parse(periodText.Text),
                     timeout = Int64.Parse(timeoutText.Text)
                 };
-                device.config.alarm = config.alarm;
             }
         }
 

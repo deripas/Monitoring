@@ -103,6 +103,7 @@
   <ItemGroup>
     <Compile Include="api\dto\config\Cfg.cs" />
     <Compile Include="api\dto\config\Channel.cs" />
+    <Compile Include="api\dto\config\Vibr.cs" />
     <Compile Include="api\dto\StandMode.cs" />
     <Compile Include="gui\AboutForm.cs">
       <SubType>Form</SubType>
@@ -198,6 +199,12 @@
     </Compile>
     <Compile Include="gui\device\MeasureOption.Designer.cs">
       <DependentUpon>MeasureOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui\device\VibrationOption.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="gui\device\VibrationOption.Designer.cs">
+      <DependentUpon>VibrationOption.cs</DependentUpon>
     </Compile>
     <Compile Include="gui\sensor\BaseSensor.cs">
       <SubType>UserControl</SubType>
@@ -396,6 +403,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="gui\device\MeasureOption.resx">
       <DependentUpon>MeasureOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\device\VibrationOption.resx">
+      <DependentUpon>VibrationOption.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gui\sensor\BaseSensor.resx">
       <DependentUpon>BaseSensor.cs</DependentUpon>

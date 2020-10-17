@@ -10,5 +10,6 @@ namespace api.dto
         CameraGrid[] GetMode();
         String GetTitle();
         String GetType();
+        bool VideoOnly();
     }
 }

@@ -245,6 +245,12 @@ namespace Server.Api
                 old.alarm = cfg.alarm;
             if (cfg.counter != null)
                 old.counter = cfg.counter;
+            if (cfg.vibr != null)
+            {
+                old.vibr = cfg.vibr;
+                db.UpdateLtrChannelCfg(cfg.sensorX);
+                db.UpdateLtrChannelCfg(cfg.sensorY);
+            }
             if (cfg.simple != null)
             {
                 entity.Removed = !cfg.simple.enable;

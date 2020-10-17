@@ -15,9 +15,15 @@ namespace SafeServer.service.device
         
         public override void Init()
         {
-            var x = GetDouble25(Config.sensorX);
-            var y = GetDouble25(Config.sensorY);
-            var z = x.Zip(y, CalcLen);
+            var scale = Config.vibr.scale;
+            var x = GetDouble25(Config.sensorX)
+                .Scale(1000.0 / Config.sensorX.cfg.sensitivity);
+
+            var y = GetDouble25(Config.sensorY)
+                .Scale(1000.0 / Config.sensorY.cfg.sensitivity);
+
+            var z = x.Zip(y, CalcLen)
+                .Select(v => v * scale);
                 
             Sensor(z.Select(v => DeviceStatus.Value(Id, v)));
             base.Init();
@@ -25,10 +31,9 @@ namespace SafeServer.service.device
 
         private static double CalcLen(Tuple<double[], int> x, Tuple<double[], int> y)
         {
-            const int scale = 10;
-            var skoX = Sko(scale, x);
-            var skoY = Sko(scale, y);
-            return CalcLen(skoX, skoY) * 1000;
+            var skoX = Sko(x);
+            var skoY = Sko(y);
+            return CalcLen(skoX, skoY);
         }
 
         private static double CalcLen(double x, double y)
@@ -36,7 +41,7 @@ namespace SafeServer.service.device
             return Math.Sqrt(x * x + y * y);
         }
 
-        private static double Sko(double scale, Tuple<double[], int> a)
+        private static double Sko(Tuple<double[], int> a)
         {
             var n = a.Item2;
             if (n < 1) return 0;
@@ -44,14 +49,14 @@ namespace SafeServer.service.device
             var val = a.Item1.Take(n);
             var mean = val.Sum() / n;
             var sum = val
-                .Select(v => Math.Pow(scale * (v - mean), 2))
+                .Select(v => Math.Pow(v - mean, 2))
                 .Sum();
             return Math.Sqrt(sum / n);
         }
 
         public override string RenderStatusValue(DeviceStatus status)
         {
-            var unit = "мкм";
+            var unit = " мкм";
             return status.value.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + unit;
         }
     }

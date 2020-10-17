@@ -35,8 +35,6 @@ namespace gui
 
         private SensorView createView(DeviceController dev)
         {
-            if (dev.Config == null) return null;
-
             switch (dev.Type)
             {
                 case DeviceType.rollet:

@@ -132,5 +132,10 @@ namespace api.dto.client
         {
             return stand;
         }
+
+        public bool VideoOnly()
+        {
+            return false;
+        }
     }
 }

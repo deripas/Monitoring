@@ -49,6 +49,7 @@ namespace gui
                 Grid(CameraGrid.grid1x1(owner.Id, 0));
                 select = owner;
                 grid = copy;
+                CameraPtzForm.Instance.Hide();
             }
             else
             {

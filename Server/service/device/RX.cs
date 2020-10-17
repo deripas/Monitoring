@@ -42,7 +42,18 @@ namespace SafeServer.service.device
                 return sum / len;
             });
         }
-        
+
+        public static IObservable<Tuple<double[], int>> Scale(this IObservable<Tuple<double[], int>> observable, double scale)
+        {
+            return observable.Select(value =>
+            {
+                var (array, len) = value;
+                for (var i = 0; i < len; i++)
+                    array[i] *= scale;
+                return value;
+            });
+        }
+
         public static IObservable<double> Convert(this IObservable<double> observable, double min, double max, double minValue, double maxValue)
         {
             return observable.Select(val =>

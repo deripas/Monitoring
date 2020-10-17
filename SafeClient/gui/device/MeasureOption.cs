@@ -14,13 +14,10 @@ namespace gui
 {
     public partial class MeasureOption : UserControl
     {
-        private DeviceInfo device;
-
         public DeviceInfo Device
         {
             set
             {
-                this.device = value;
                 Calibr config = value.config?.calibr;
                 if (config != null)
                 {
@@ -50,7 +47,6 @@ namespace gui
                     porogMin = Double.Parse(thresholdMinText.Text),
                     porogMax = Double.Parse(thresholdMaxText.Text)
                 };
-                device.config.calibr = config.calibr;
             }
         }
 

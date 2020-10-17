@@ -36,6 +36,8 @@
             this.baseOption1 = new gui.BaseOption();
             this.alarmOption1 = new gui.AlarmOption();
             this.measureOption1 = new gui.MeasureOption();
+            this.encoderOption1 = new gui.device.EncoderOption();
+            this.vibrationOption1 = new gui.device.VibrationOption();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -45,7 +47,7 @@
             // 
             this.panel1.Controls.Add(this.flowLayoutPanel1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 813);
+            this.panel1.Location = new System.Drawing.Point(0, 1235);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(506, 64);
             this.panel1.TabIndex = 0;
@@ -91,10 +93,12 @@
             this.flowLayoutPanel2.Controls.Add(this.baseOption1);
             this.flowLayoutPanel2.Controls.Add(this.alarmOption1);
             this.flowLayoutPanel2.Controls.Add(this.measureOption1);
+            this.flowLayoutPanel2.Controls.Add(this.encoderOption1);
+            this.flowLayoutPanel2.Controls.Add(this.vibrationOption1);
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 2);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(503, 808);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(503, 1230);
             this.flowLayoutPanel2.TabIndex = 1;
             // 
             // baseOption1
@@ -118,11 +122,25 @@
             this.measureOption1.Size = new System.Drawing.Size(467, 249);
             this.measureOption1.TabIndex = 2;
             // 
+            // encoderOption1
+            // 
+            this.encoderOption1.Location = new System.Drawing.Point(3, 804);
+            this.encoderOption1.Name = "encoderOption1";
+            this.encoderOption1.Size = new System.Drawing.Size(485, 98);
+            this.encoderOption1.TabIndex = 3;
+            // 
+            // vibrationOption1
+            // 
+            this.vibrationOption1.Location = new System.Drawing.Point(3, 908);
+            this.vibrationOption1.Name = "vibrationOption1";
+            this.vibrationOption1.Size = new System.Drawing.Size(485, 301);
+            this.vibrationOption1.TabIndex = 4;
+            // 
             // DeviceEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(506, 877);
+            this.ClientSize = new System.Drawing.Size(506, 1299);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -148,5 +166,7 @@
         private BaseOption baseOption1;
         private AlarmOption alarmOption1;
         private MeasureOption measureOption1;
+        private EncoderOption encoderOption1;
+        private VibrationOption vibrationOption1;
     }
 }

@@ -22,10 +22,14 @@ namespace gui.device
                 baseOption1.Device = value;
                 alarmOption1.Device = value;
                 measureOption1.Device = value;
+                encoderOption1.Device = value;
+                vibrationOption1.Device = value;
 
                 Height = baseOption1.Height +
                     (alarmOption1.Enabled ? alarmOption1.Height : 0) +
                     (measureOption1.Enabled ? measureOption1.Height : 0) +
+                    (encoderOption1.Enabled ? encoderOption1.Height : 0) +
+                    (vibrationOption1.Enabled ? vibrationOption1.Height : 0) +
                     150;
             }
         }
@@ -46,6 +50,8 @@ namespace gui.device
             baseOption1.Save(config, dev);
             alarmOption1.Save(config);
             measureOption1.Save(config);
+            encoderOption1.Save(config);
+            vibrationOption1.Save(config);
         }
     }
 }

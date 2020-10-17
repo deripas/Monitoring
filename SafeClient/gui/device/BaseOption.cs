@@ -7,13 +7,10 @@ namespace gui
 {
     public partial class BaseOption : UserControl
     {
-        private DeviceInfo device;
-
         public DeviceInfo Device
         {
             set
             {
-                device = value;
                 idText.Text = value.id.ToString();
                 typeText.Text = value.type.ToString();
                 enableCheckBox.Checked = !value.removed;
@@ -30,16 +27,14 @@ namespace gui
 
         internal void Save(Config config, DeviceController dev)
         {
-            if (device.removed != !enableCheckBox.Checked
-                || !device.description.Equals(descText.Text))
+            config.simple = new SafeServer.dto.config.Base
             {
-                config.simple = new SafeServer.dto.config.Base();
-                config.simple.enable = enableCheckBox.Checked;
-                config.simple.description = descText.Text;
+                enable = enableCheckBox.Checked,
+                description = descText.Text
+            };
 
-                dev.Removed = !enableCheckBox.Checked;
-                dev.Description = descText.Text;
-            }
+            dev.Removed = !enableCheckBox.Checked;
+            dev.Description = descText.Text;
         }
     }
 }

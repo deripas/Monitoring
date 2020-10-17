@@ -19,6 +19,7 @@ namespace gui
         public void Set(DeviceController dev)
         {
             baseSensor1.Device = dev;
+            baseSensor1.Max = dev.Config.vibr.porog.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
         }
 
         public void Update(SensorStatus status)

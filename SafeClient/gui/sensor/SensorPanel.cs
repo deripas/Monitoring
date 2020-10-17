@@ -66,7 +66,7 @@ namespace gui
             int h = 100;
             foreach (Control c in flowLayoutPanel1.Controls)
                 h += c.Height;
-            panel1.Height = h + flowLayoutPanel1.Controls.Count * 4;
+            panel1.Height = h + flowLayoutPanel1.Controls.Count * 6;
         }
     }
 }

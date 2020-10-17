@@ -9,6 +9,8 @@ using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using Microsoft.Extensions.Configuration;
+using SafeServer.dto.config;
+using Server.dto;
 
 namespace SafeServer.service
 {
@@ -20,6 +22,7 @@ namespace SafeServer.service
         public DbSet<Device> Device { get; set; }
         public DbSet<Value> Value { get; set; }
         public DbSet<LTR> LTR { get; set; }
+        public DbSet<LtrDevice> LtrDev { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -32,6 +35,7 @@ namespace SafeServer.service
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Value>().HasNoKey();
+            modelBuilder.Entity<LtrDevice>().HasKey(d => new { d.Sn, d.Num, d.Ch, d.Device });
         }
 
         public void InsertValues(IList<Value> batch)
@@ -66,6 +70,14 @@ where d.siren = m.device
 order by d.id;
 ";
             return Device.FromSqlRaw(sql);
+        }
+
+        internal void UpdateLtrChannelCfg(Channel ch)
+        {
+            foreach(var ltr_dev in LtrDev.Where(m => (m.Sn == ch.sn) && (m.Num == ch.num) && (m.Ch == ch.index + 1)))
+            {
+                ltr_dev.Cfg = ch.cfg;
+            }
         }
     }
 }

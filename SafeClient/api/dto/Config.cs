@@ -25,5 +25,6 @@ namespace api.dto
         public Alarm alarm { get; set; }
         public Calibr calibr { get; set; }
         public Encoder counter { get; set; }
+        public Vibr vibr { get; set; }
     }
 }

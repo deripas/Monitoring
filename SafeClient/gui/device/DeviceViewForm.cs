@@ -43,7 +43,7 @@ namespace gui
             {
                 ListViewItem item = new ListViewItem(dev.name);
                 item.SubItems.Add((!dev.removed).ToString());
-                item.Tag = dev;
+                item.Tag = dev.id;
                 item.BackColor = GetColor(dev?.stand);
                 listView1.Items.Add(item);
             }
@@ -76,9 +76,10 @@ namespace gui
             if (listView1.SelectedItems != null && listView1.SelectedItems.Count > 0)
             {
                 var item = listView1.SelectedItems[0];
-                DeviceInfo devInfo = (DeviceInfo)item.Tag;
-                DeviceInfo device = DI.Instance.ServerApi.DeviceSingle(devInfo.id);
-                
+                int deviceId = (int)item.Tag;
+                var device = DI.Instance.ServerApi.DeviceSingle(deviceId);
+                var controller = DI.Instance.DeviceService[deviceId];
+
                 DeviceEditorForm form = new DeviceEditorForm();
                 form.Device = device;
                 form.TopMost = true;
@@ -87,14 +88,13 @@ namespace gui
                 {
                     try
                     {
-                        var dev = DI.Instance.DeviceService[device.id];
-                        form.Save(device.config, dev);
-
+                        form.Save(device.config, controller);
                         DI.Instance.ServerApi.DeviceConfig(device.id, device.config);
 
                         item.SubItems.Clear();
                         item.Text = device.name;
                         item.SubItems.Add((!device.removed).ToString());
+                        item.Tag = device.id;
                         item.BackColor = GetColor(device?.stand);
                         listView1.Refresh();
                     }
