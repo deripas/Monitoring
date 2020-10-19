@@ -20,7 +20,7 @@ namespace model.camera
 
         private CameraModel model;
         private bool select;
-        private Dictionary<ICameraView, CameraSreamModel> streams;
+        private static Dictionary<ICameraView, CameraSreamModel> streams = new Dictionary<ICameraView, CameraSreamModel>();
 
         public double Ratio {
             get => model.Ratio;
@@ -56,7 +56,6 @@ namespace model.camera
         public CameraController(NvrModel model, CameraInfo info)
         {
             this.model = new CameraModel(model, info);
-            streams = new Dictionary<ICameraView, CameraSreamModel>();
         }
 
         internal void StartPlay(ICameraView view, int n_stream)
@@ -86,6 +85,10 @@ namespace model.camera
                     view.Canvas.Invalidate();
                     Log.Debug("{0}: remove stream view", stream);
                 }
+                else
+                {
+                    Log.Warn("{0}: unknown view", view);
+                }
             }
         }
 
@@ -108,24 +111,36 @@ namespace model.camera
 
         internal bool Sound(CameraViewPanel view)
         {
-            return streams[view]?.Sound == true;
+            lock (streams)
+            {
+                return streams[view]?.Sound == true;
+            }
         }
 
         internal void OpenSound(CameraViewPanel view)
         {
-            DI.Instance.CameraService.CloseSound();
-            streams[view]?.OpenSound();
+            lock (streams)
+            {
+                DI.Instance.CameraService.CloseSound();
+                streams[view]?.OpenSound();
+            }
         }
 
         internal void CloseSound()
         {
-            foreach (var camera in streams.Values)
-                camera.CloseSound();
+            lock (streams)
+            {
+                foreach (var camera in streams.Values)
+                    camera.CloseSound();
+            }
         }
 
         internal void CloseSound(CameraViewPanel view)
         {
-            streams[view]?.CloseSound();
+            lock (streams)
+            {
+                streams[view]?.CloseSound();
+            }
         }
 
         internal bool Talk()
@@ -135,22 +150,28 @@ namespace model.camera
 
         internal void SetStream(CameraViewPanel view, int streamNum)
         {
-            Log.Debug("{0}: change stream number to {1}", view, streamNum);
-            if (streams.ContainsKey(view))
+            lock (streams)
             {
-                var stream = streams[view];
-                lock (stream)
+                Log.Debug("{0}: change stream number to {1}", view, streamNum);
+                if (streams.ContainsKey(view))
                 {
-                    stream.Stream = streamNum;
-                    if (stream.StopPlay())
-                        stream.StartPlay();
+                    var stream = streams[view];
+                    lock (stream)
+                    {
+                        stream.Stream = streamNum;
+                        if (stream.StopPlay())
+                            stream.StartPlay();
+                    }
                 }
             }
         }
 
         internal int GetStream(CameraViewPanel view)
         {
-            return streams[view].Stream;
+            lock (streams)
+            {
+                return streams[view].Stream;
+            }
         }
 
         internal CameraPTZ PTZ()
