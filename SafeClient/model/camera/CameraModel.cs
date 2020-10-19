@@ -38,6 +38,7 @@ namespace model.camera
 
         private NvrModel nvr;
         private double ratio = 9D / 16D;
+        private bool ptzEnable = true;
 
         public int Channel { get; }
 
@@ -56,6 +57,11 @@ namespace model.camera
                 ratio = value;
                 DI.Instance.ServerApi.SetCameraRatio(Id, value);
             }
+        }
+
+        public bool PtzEnable
+        {
+            get => ptzEnable;
         }
 
         public IntPtr LoginId
@@ -94,6 +100,7 @@ namespace model.camera
             Name = info.name;
             Stand = info.stand;
             Ratio = info.ratio;
+            ptzEnable = info.ptz;
         }
 
         internal void StartTalk()

@@ -152,7 +152,7 @@ namespace Server.Api
         public List<Device> Device()
         {
             using var db = new DatabaseService();
-            return db.Device.OrderBy(d => d.Stand).ThenBy(d => d.Type).ToList();
+            return db.Device.OrderBy(d => d.Stand).ThenBy(d => d.Type).ThenBy(d => d.Name).ToList();
         }
 
         [HttpGet]

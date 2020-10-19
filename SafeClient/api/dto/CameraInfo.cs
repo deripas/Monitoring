@@ -7,6 +7,7 @@
         public string stand { get; set; }
         public double rate { get; set; }
         public double ratio { get; set; }
+        public bool ptz { get; set; }
         public int nvr { get; set; }
         public int channel { get; set; }
         public bool enable { get; set; }

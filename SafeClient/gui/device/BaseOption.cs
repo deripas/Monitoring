@@ -35,6 +35,7 @@ namespace gui
 
             dev.Removed = !enableCheckBox.Checked;
             dev.Description = descText.Text;
+            dev.Refresh();
         }
     }
 }

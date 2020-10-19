@@ -58,7 +58,7 @@
             this.tableLayoutPanel1.Controls.Add(this.alertListView, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
@@ -73,7 +73,7 @@
             this.buttonExport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonExport.Location = new System.Drawing.Point(4, 646);
-            this.buttonExport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonExport.Margin = new System.Windows.Forms.Padding(4);
             this.buttonExport.Name = "buttonExport";
             this.buttonExport.Size = new System.Drawing.Size(428, 69);
             this.buttonExport.TabIndex = 16;
@@ -88,10 +88,11 @@
             this.dateTimePicker1.CustomFormat = "dd.MM.yyyy";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(4, 4);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(428, 31);
             this.dateTimePicker1.TabIndex = 12;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // comboBoxDevice
             // 
@@ -103,7 +104,7 @@
             "Температура",
             "Давление"});
             this.comboBoxDevice.Location = new System.Drawing.Point(4, 50);
-            this.comboBoxDevice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxDevice.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxDevice.Name = "comboBoxDevice";
             this.comboBoxDevice.Size = new System.Drawing.Size(428, 33);
             this.comboBoxDevice.TabIndex = 15;
@@ -122,7 +123,7 @@
             this.alertListView.GridLines = true;
             this.alertListView.HideSelection = false;
             this.alertListView.Location = new System.Drawing.Point(4, 96);
-            this.alertListView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.alertListView.Margin = new System.Windows.Forms.Padding(4);
             this.alertListView.MultiSelect = false;
             this.alertListView.Name = "alertListView";
             this.alertListView.RightToLeftLayout = true;
@@ -150,7 +151,7 @@
             // 
             this.columnHeader3.Text = "Обработан";
             this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader3.Width = 120;
+            this.columnHeader3.Width = 200;
             // 
             // contextMenuStrip1
             // 
@@ -182,7 +183,7 @@
             this.findToolStripMenuItem,
             this.toLastAlertToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(526, 124);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(526, 80);
             // 
             // findToolStripMenuItem
             // 
@@ -203,7 +204,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SearchAlertPanel";
             this.Size = new System.Drawing.Size(436, 719);
             this.Load += new System.EventHandler(this.SearchAlertPanel_Load);

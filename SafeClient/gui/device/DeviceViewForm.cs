@@ -42,7 +42,7 @@ namespace gui
             foreach (DeviceInfo dev in devList)
             {
                 ListViewItem item = new ListViewItem(dev.name);
-                item.SubItems.Add((!dev.removed).ToString());
+                item.SubItems.Add((!dev.removed).ToRus());
                 item.Tag = dev.id;
                 item.BackColor = GetColor(dev?.stand);
                 listView1.Items.Add(item);
@@ -93,7 +93,7 @@ namespace gui
 
                         item.SubItems.Clear();
                         item.Text = device.name;
-                        item.SubItems.Add((!device.removed).ToString());
+                        item.SubItems.Add((!controller.Removed).ToRus());
                         item.Tag = device.id;
                         item.BackColor = GetColor(device?.stand);
                         listView1.Refresh();

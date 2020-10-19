@@ -67,14 +67,18 @@ namespace gui
         private void Search()
         {
             var cam = (CameraController)cameraComboBox.SelectedItem;
-            var video = cam.SearchVideoFiles(dateTimePicker1.Value.Date, EM_QUERY_RECORD_TYPE.ALL);
-            if (video.Count == 0)
-                MessageBox.Show("Не найдено");
+            if (cam == null) return;
 
+            var video = cam.SearchVideoFiles(dateTimePicker1.Value.Date, EM_QUERY_RECORD_TYPE.ALL);
             videoFileList1.Items = video;
         }
 
         private void cameraComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Search();
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             Search();
         }

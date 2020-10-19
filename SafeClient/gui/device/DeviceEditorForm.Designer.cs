@@ -47,7 +47,7 @@
             // 
             this.panel1.Controls.Add(this.flowLayoutPanel1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 1235);
+            this.panel1.Location = new System.Drawing.Point(0, 1333);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(506, 64);
             this.panel1.TabIndex = 0;
@@ -98,7 +98,7 @@
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 2);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(503, 1230);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(503, 1328);
             this.flowLayoutPanel2.TabIndex = 1;
             // 
             // baseOption1
@@ -119,19 +119,19 @@
             // 
             this.measureOption1.Location = new System.Drawing.Point(3, 549);
             this.measureOption1.Name = "measureOption1";
-            this.measureOption1.Size = new System.Drawing.Size(467, 249);
+            this.measureOption1.Size = new System.Drawing.Size(467, 292);
             this.measureOption1.TabIndex = 2;
             // 
             // encoderOption1
             // 
-            this.encoderOption1.Location = new System.Drawing.Point(3, 804);
+            this.encoderOption1.Location = new System.Drawing.Point(3, 847);
             this.encoderOption1.Name = "encoderOption1";
             this.encoderOption1.Size = new System.Drawing.Size(485, 98);
             this.encoderOption1.TabIndex = 3;
             // 
             // vibrationOption1
             // 
-            this.vibrationOption1.Location = new System.Drawing.Point(3, 908);
+            this.vibrationOption1.Location = new System.Drawing.Point(3, 951);
             this.vibrationOption1.Name = "vibrationOption1";
             this.vibrationOption1.Size = new System.Drawing.Size(485, 301);
             this.vibrationOption1.TabIndex = 4;
@@ -140,7 +140,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(506, 1299);
+            this.ClientSize = new System.Drawing.Size(506, 1397);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;

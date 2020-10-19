@@ -23,10 +23,10 @@ namespace gui
                 {
                     Visible = true;
                     Enabled = true;
-                    timeoutText.Text = config.timeout.ToString();
                     countText.Text = config.count.ToString();
-                    periodText.Text = config.period.ToString();
-                    delayText.Text = config.delay.ToString();
+                    timeoutText.Text = (config.timeout / 1000).ToString();
+                    periodText.Text = (config.period / 1000).ToString();
+                    delayText.Text = (config.delay / 1000).ToString();
                 }
                 else
                 {
@@ -43,9 +43,9 @@ namespace gui
                 config.alarm = new Alarm
                 {
                     count = Int64.Parse(countText.Text),
-                    delay = Int64.Parse(delayText.Text),
-                    period = Int64.Parse(periodText.Text),
-                    timeout = Int64.Parse(timeoutText.Text)
+                    delay = Int64.Parse(delayText.Text) * 1000,
+                    period = Int64.Parse(periodText.Text) * 1000,
+                    timeout = Int64.Parse(timeoutText.Text) * 1000
                 };
             }
         }

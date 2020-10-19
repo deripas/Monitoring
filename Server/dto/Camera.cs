@@ -23,6 +23,9 @@ namespace SafeServer.dto
         [Column("ratio")]
         public double Ratio { get; set; }
 
+        [Column("ptz")]
+        public bool ptz { get; set; }
+
         [Column("dvr")]
         public int nvr { get; set; }
 

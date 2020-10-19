@@ -115,6 +115,18 @@ namespace gui
             contextMenu.Enabled = true;
             toolTip1.SetToolTip(Canvas, camera.Name);
             canvas.Canvas.Image = null;
+
+            if (Math.Abs(camera.Ratio - 3D / 4D) < 0.1)
+            {
+                toolStripMenuItem2.Checked = true;
+                toolStripMenuItem3.Checked = false;
+            }
+            if (Math.Abs(camera.Ratio - 9D / 16D) < 0.1)
+            {
+                toolStripMenuItem2.Checked = false;
+                toolStripMenuItem3.Checked = true;
+            }
+            pTZToolStripMenuItem.Enabled = camera.PtzEnable;
         }
 
         internal void Empty()
@@ -154,6 +166,8 @@ namespace gui
             var ratio = 3D / 4D;
             camera.Ratio = ratio;
             canvas.Ratio = ratio;
+            toolStripMenuItem2.Checked = true;
+            toolStripMenuItem3.Checked = false;
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
@@ -161,6 +175,8 @@ namespace gui
             var ratio = 9D / 16D;
             camera.Ratio = ratio;
             canvas.Ratio = ratio;
+            toolStripMenuItem2.Checked = false;
+            toolStripMenuItem3.Checked = true;
         }
 
         private void cameraToolStripMenuItem_SelectedIndexChanged(object sender, EventArgs e)

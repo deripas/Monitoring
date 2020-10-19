@@ -147,5 +147,10 @@ namespace model.device
         {
                 DI.Instance.DeviceService.RolletStop(info.id);
         }
+
+        public void Refresh()
+        {
+            view?.Set(this);
+        }
     }
 }

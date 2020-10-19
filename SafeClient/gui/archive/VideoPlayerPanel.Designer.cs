@@ -43,17 +43,18 @@
             this.canvasPanel1.Name = "canvasPanel1";
             this.canvasPanel1.Ratio = 0.75D;
             this.canvasPanel1.Selected = false;
-            this.canvasPanel1.Size = new System.Drawing.Size(1337, 620);
+            this.canvasPanel1.Size = new System.Drawing.Size(1337, 599);
             this.canvasPanel1.TabIndex = 0;
             // 
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(28, 28);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.speedLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 740);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.speedLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 735);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 15, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1337, 37);
+            this.statusStrip1.Size = new System.Drawing.Size(1337, 42);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -66,9 +67,9 @@
             // playerNavigationPanel1
             // 
             this.playerNavigationPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.playerNavigationPanel1.Location = new System.Drawing.Point(0, 620);
+            this.playerNavigationPanel1.Location = new System.Drawing.Point(0, 599);
             this.playerNavigationPanel1.Name = "playerNavigationPanel1";
-            this.playerNavigationPanel1.Size = new System.Drawing.Size(1337, 120);
+            this.playerNavigationPanel1.Size = new System.Drawing.Size(1337, 136);
             this.playerNavigationPanel1.TabIndex = 3;
             this.playerNavigationPanel1.VideoPlayer = null;
             this.playerNavigationPanel1.VisibleTrackBar = true;
@@ -86,6 +87,7 @@
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         private gui.CanvasPanel canvasPanel1;

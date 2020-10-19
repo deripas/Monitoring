@@ -368,6 +368,7 @@
     <Compile Include="service\CameraService.cs" />
     <Compile Include="service\DI.cs" />
     <Compile Include="service\StatusReaderService.cs" />
+    <Compile Include="service\Util.cs" />
     <EmbeddedResource Include="gui\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>

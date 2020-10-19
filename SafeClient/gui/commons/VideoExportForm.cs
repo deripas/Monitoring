@@ -19,6 +19,7 @@ namespace gui
         public static VideoExportForm Instance = new VideoExportForm();
 
         private VideoPlayBackSource video;
+        private Action<string, DateTime, DateTime> callback;
         private IntPtr m_DownloadID;
 
         public VideoExportForm()
@@ -84,7 +85,7 @@ namespace gui
                     return;
                 }
 
-                toolStripStatusLabel1.Text = "Загрузка...";
+                toolStripStatusLabel1.Text = "Выгрузка...";
                 progressBar1.Value = 0;
                 progressBar1.Maximum = 100;
                 UpdateButton(false);
@@ -127,17 +128,21 @@ namespace gui
                 {
                     progressBar1.Value = 100;
                     Cancel();
-                    
-                    MessageBox.Show(this, "Загрузка завершена");
-                    toolStripStatusLabel1.Text = "Загрузка завершена";
+
+                    DateTime from = dateTimeFromDate.Value.Date + dateTimeFromTime.Value.TimeOfDay;
+                    DateTime to = dateTimeToDate.Value.Date + dateTimeToTime.Value.TimeOfDay;
+                    callback.Invoke(saveFileDialog1.FileName, from, to);
+
+                    MessageBox.Show(this, "Выгрузка завершена");
+                    toolStripStatusLabel1.Text = "Выгрузка завершена";
                     UpdateButton(true);
                     progressBar1.Value = 0;
                     return;
                 }
                 if (DOWNLOAD_FAILED == value)
                 {
-                    MessageBox.Show(this, "Ошибка загрузки");
-                    toolStripStatusLabel1.Text = "Ошибка загрузки";
+                    MessageBox.Show(this, "Ошибка выгрузки");
+                    toolStripStatusLabel1.Text = "Ошибка выгрузки";
                     UpdateButton(true);
                     return;
                 }
@@ -161,21 +166,23 @@ namespace gui
             }
         }
 
-        internal void Start(VideoPlayBackSource select)
+        internal void Start(VideoPlayBackSource select, Action<string, DateTime, DateTime> callback)
         {
             if (m_DownloadID != IntPtr.Zero)
             {
-                MessageBox.Show("Предыдущая загрузка не завершена");
+                MessageBox.Show("Предыдущая выгрузка не завершена");
             }
             else
             {
                 Text = select.Name;
                 video = select;
+                this.callback = callback;
 
                 dateTimeFromDate.Value = select.BeginTime;
                 dateTimeFromTime.Value = select.BeginTime;
                 dateTimeToDate.Value = select.EndTime;
                 dateTimeToTime.Value = select.EndTime;
+                toolStripStatusLabel1.Text = "Выбeрите файл";
             }
 
             if (Visible)

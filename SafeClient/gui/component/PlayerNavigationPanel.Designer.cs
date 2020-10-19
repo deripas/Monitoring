@@ -36,7 +36,7 @@
             this.timerPlayBack = new System.Windows.Forms.Timer(this.components);
             this.panelControl.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl
@@ -45,7 +45,7 @@
             this.panelControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl.Location = new System.Drawing.Point(0, 0);
             this.panelControl.Name = "panelControl";
-            this.panelControl.Size = new System.Drawing.Size(1059, 115);
+            this.panelControl.Size = new System.Drawing.Size(1155, 135);
             this.panelControl.TabIndex = 2;
             // 
             // tableLayoutPanel1
@@ -60,15 +60,16 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1059, 115);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1155, 135);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // playerControlPanel1
             // 
             this.playerControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.playerControlPanel1.Location = new System.Drawing.Point(3, 37);
+            this.playerControlPanel1.Location = new System.Drawing.Point(4, 44);
+            this.playerControlPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.playerControlPanel1.Name = "playerControlPanel1";
-            this.playerControlPanel1.Size = new System.Drawing.Size(1053, 75);
+            this.playerControlPanel1.Size = new System.Drawing.Size(1147, 87);
             this.playerControlPanel1.Sound = false;
             this.playerControlPanel1.TabIndex = 1;
             // 
@@ -78,7 +79,7 @@
             this.trackBar1.Location = new System.Drawing.Point(3, 3);
             this.trackBar1.Maximum = 1000;
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(1053, 28);
+            this.trackBar1.Size = new System.Drawing.Size(1149, 34);
             this.trackBar1.TabIndex = 2;
             this.trackBar1.TickFrequency = 10;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
@@ -90,16 +91,17 @@
             // 
             // PlayerNavigationPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panelControl);
             this.Name = "PlayerNavigationPanel";
-            this.Size = new System.Drawing.Size(1059, 115);
+            this.Size = new System.Drawing.Size(1155, 135);
             this.panelControl.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.Panel panelControl;

@@ -84,7 +84,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(1346, 129);
+            this.chart1.Size = new System.Drawing.Size(1346, 127);
             this.chart1.TabIndex = 6;
             this.chart1.Text = "chart1";
             this.chart1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.chart1_MouseDown);
@@ -98,16 +98,16 @@
             this.canvasPanel1.Name = "canvasPanel1";
             this.canvasPanel1.Ratio = 0.75D;
             this.canvasPanel1.Selected = false;
-            this.canvasPanel1.Size = new System.Drawing.Size(1346, 491);
+            this.canvasPanel1.Size = new System.Drawing.Size(1346, 478);
             this.canvasPanel1.TabIndex = 5;
             // 
             // playerNavigationPanel1
             // 
             this.playerNavigationPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.playerNavigationPanel1.Location = new System.Drawing.Point(0, 624);
+            this.playerNavigationPanel1.Location = new System.Drawing.Point(0, 609);
             this.playerNavigationPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.playerNavigationPanel1.Name = "playerNavigationPanel1";
-            this.playerNavigationPanel1.Size = new System.Drawing.Size(1346, 119);
+            this.playerNavigationPanel1.Size = new System.Drawing.Size(1346, 134);
             this.playerNavigationPanel1.TabIndex = 4;
             this.playerNavigationPanel1.VideoPlayer = null;
             this.playerNavigationPanel1.VisibleTrackBar = true;
@@ -127,8 +127,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.chart1);
-            this.splitContainer1.Size = new System.Drawing.Size(1346, 624);
-            this.splitContainer1.SplitterDistance = 491;
+            this.splitContainer1.Size = new System.Drawing.Size(1346, 609);
+            this.splitContainer1.SplitterDistance = 478;
             this.splitContainer1.TabIndex = 7;
             // 
             // AlertPlayerPanel

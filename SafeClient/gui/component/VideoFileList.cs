@@ -103,7 +103,7 @@ namespace gui
             var select = listBox1.SelectedItem;
             if (select == null) return;
 
-            VideoExportForm.Instance.Start((VideoFileModel)select);
+            VideoExportForm.Instance.Start((VideoFileModel)select, (path, f, t) => { });
         }
     }
 }

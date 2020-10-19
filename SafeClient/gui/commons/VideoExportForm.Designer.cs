@@ -110,7 +110,7 @@
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(185, 32);
-            this.toolStripStatusLabel1.Text = "Выберете файл";
+            this.toolStripStatusLabel1.Text = "Выбeрите файл";
             // 
             // VideoExportForm
             // 

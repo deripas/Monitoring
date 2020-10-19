@@ -37,24 +37,22 @@
             this.maxText = new System.Windows.Forms.TextBox();
             this.minText = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.thresholdMaxText);
-            this.groupBox2.Controls.Add(this.thresholdMinText);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.maxText);
             this.groupBox2.Controls.Add(this.minText);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Location = new System.Drawing.Point(0, 6);
+            this.groupBox2.Location = new System.Drawing.Point(7, 6);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.groupBox2.Size = new System.Drawing.Size(460, 233);
+            this.groupBox2.Size = new System.Drawing.Size(460, 132);
             this.groupBox2.TabIndex = 46;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Калибровка";
@@ -62,7 +60,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(60, 177);
+            this.label2.Location = new System.Drawing.Point(53, 79);
             this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(125, 25);
@@ -71,7 +69,7 @@
             // 
             // thresholdMaxText
             // 
-            this.thresholdMaxText.Location = new System.Drawing.Point(200, 134);
+            this.thresholdMaxText.Location = new System.Drawing.Point(193, 36);
             this.thresholdMaxText.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.thresholdMaxText.Name = "thresholdMaxText";
             this.thresholdMaxText.Size = new System.Drawing.Size(246, 31);
@@ -79,7 +77,7 @@
             // 
             // thresholdMinText
             // 
-            this.thresholdMinText.Location = new System.Drawing.Point(200, 177);
+            this.thresholdMinText.Location = new System.Drawing.Point(193, 79);
             this.thresholdMinText.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.thresholdMinText.Name = "thresholdMinText";
             this.thresholdMinText.Size = new System.Drawing.Size(246, 31);
@@ -98,7 +96,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(60, 134);
+            this.label1.Location = new System.Drawing.Point(53, 36);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(135, 25);
@@ -131,15 +129,33 @@
             this.label6.TabIndex = 40;
             this.label6.Text = "Мин.";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.thresholdMaxText);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.thresholdMinText);
+            this.groupBox1.Location = new System.Drawing.Point(7, 150);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox1.Size = new System.Drawing.Size(460, 124);
+            this.groupBox1.TabIndex = 47;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Тревога";
+            // 
             // MeasureOption
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "MeasureOption";
-            this.Size = new System.Drawing.Size(485, 249);
+            this.Size = new System.Drawing.Size(485, 284);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -155,5 +171,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox thresholdMaxText;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

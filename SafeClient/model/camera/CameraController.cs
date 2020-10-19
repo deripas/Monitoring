@@ -27,6 +27,11 @@ namespace model.camera
             set => model.Ratio = value;
         }
 
+        public bool PtzEnable
+        {
+            get => model.PtzEnable;
+        }
+
         public bool Selected
         {
             get
@@ -56,11 +61,11 @@ namespace model.camera
 
         internal void StartPlay(ICameraView view, int n_stream)
         {
-            CameraSreamModel stream = new CameraSreamModel(model, view.Canvas, n_stream);
-            Log.Debug("{0}: add stream view", stream);
-
             lock (streams)
             {
+                CameraSreamModel stream = new CameraSreamModel(model, view.Canvas, n_stream);
+                Log.Debug("{0}: add stream view", stream);
+
                 view.Selected = select;
                 streams.Add(view, stream);
             }

@@ -38,7 +38,7 @@
             // 
             this.groupBox2.Controls.Add(this.valueText);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(12, -2);
+            this.groupBox2.Location = new System.Drawing.Point(7, 6);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);

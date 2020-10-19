@@ -7,6 +7,9 @@ using System.Configuration;
 using System.Drawing;
 using System.Collections.Generic;
 using NetSDKCS;
+using System.Text;
+using System.IO;
+using System.Globalization;
 
 namespace gui
 {
@@ -92,7 +95,7 @@ namespace gui
             {
                 ListViewItem item = new ListViewItem(alert.Device.Name);
                 item.SubItems.Add(String.Format("{0:HH:mm:ss}", alert.Time));
-                item.SubItems.Add(alert.Processed.ToString());
+                item.SubItems.Add(alert.Processed.ToRus());
                 item.Tag = alert;
                 alertListView.Items.Add(item);
 
@@ -224,7 +227,31 @@ namespace gui
             var alert = Alert;
             if (alert == null) return;
 
-            VideoExportForm.Instance.Start(alert.Video());
+            VideoExportForm.Instance.Start(alert.Video(), (path, from, to) =>
+            {
+                try
+                {
+                    var chart = DI.Instance.DeviceService.Chart(alert, from, to);
+                    var x = chart.X;
+                    var y = chart.Y;
+
+                    var csv = new StringBuilder();
+                    for (int i = 0; i < x.Count; i++)
+                    {
+                        var newLine = string.Format("{0};{1};{2:0.00000}", x[i].ToShortDateString(),x[i].ToLongTimeString(), y[i]);
+                        csv.AppendLine(newLine);
+                    }
+
+                    var dir = Path.GetDirectoryName(path);
+                    var file = Path.GetFileNameWithoutExtension(path) + ".scv";
+                    var full = Path.Combine(dir, file);
+                    File.WriteAllText(full, csv.ToString());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, "Ошибка сохранения CSV");
+                }
+            });
         }
 
         private void toLastAlertToolStripMenuItem_Click(object sender, EventArgs e)
