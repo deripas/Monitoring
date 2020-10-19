@@ -20,7 +20,8 @@ namespace model.camera
 
         private CameraModel model;
         private bool select;
-        private static Dictionary<ICameraView, CameraSreamModel> streams = new Dictionary<ICameraView, CameraSreamModel>();
+        private Dictionary<ICameraView, CameraSreamModel> streams;
+        private static object Lock = new object();
 
         public double Ratio {
             get => model.Ratio;
@@ -40,7 +41,7 @@ namespace model.camera
             }
             set
             {
-                lock (streams)
+                lock (Lock)
                 {
                     foreach (var kv in streams)
                         kv.Key.Selected = value;
@@ -56,11 +57,12 @@ namespace model.camera
         public CameraController(NvrModel model, CameraInfo info)
         {
             this.model = new CameraModel(model, info);
+            streams = new Dictionary<ICameraView, CameraSreamModel>();
         }
 
         internal void StartPlay(ICameraView view, int n_stream)
         {
-            lock (streams)
+            lock (Lock)
             {
                 CameraSreamModel stream = new CameraSreamModel(model, view.Canvas, n_stream);
                 Log.Debug("{0}: add stream view", stream);
@@ -72,7 +74,7 @@ namespace model.camera
 
         internal void StopPlay(ICameraView view)
         {
-            lock (streams)
+            lock (Lock)
             {
                 if (streams.ContainsKey(view))
                 {
@@ -111,7 +113,7 @@ namespace model.camera
 
         internal bool Sound(CameraViewPanel view)
         {
-            lock (streams)
+            lock (Lock)
             {
                 return streams[view]?.Sound == true;
             }
@@ -119,7 +121,7 @@ namespace model.camera
 
         internal void OpenSound(CameraViewPanel view)
         {
-            lock (streams)
+            lock (Lock)
             {
                 DI.Instance.CameraService.CloseSound();
                 streams[view]?.OpenSound();
@@ -128,7 +130,7 @@ namespace model.camera
 
         internal void CloseSound()
         {
-            lock (streams)
+            lock (Lock)
             {
                 foreach (var camera in streams.Values)
                     camera.CloseSound();
@@ -137,7 +139,7 @@ namespace model.camera
 
         internal void CloseSound(CameraViewPanel view)
         {
-            lock (streams)
+            lock (Lock)
             {
                 streams[view]?.CloseSound();
             }
@@ -150,7 +152,7 @@ namespace model.camera
 
         internal void SetStream(CameraViewPanel view, int streamNum)
         {
-            lock (streams)
+            lock (Lock)
             {
                 Log.Debug("{0}: change stream number to {1}", view, streamNum);
                 if (streams.ContainsKey(view))
@@ -187,7 +189,7 @@ namespace model.camera
         public void StopPlay()
         {
             model.Stop();
-            lock (streams)
+            lock (Lock)
             {
                 foreach (var kv in streams)
                 {
@@ -201,7 +203,7 @@ namespace model.camera
         public void StartPlay()
         {
             model.Start();
-            lock (streams)
+            lock (Lock)
             {
                 foreach (var kv in streams)
                 {
