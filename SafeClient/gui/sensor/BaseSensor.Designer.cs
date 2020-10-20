@@ -46,7 +46,7 @@
             this.flowLayoutPanel1.Controls.Add(this.maximum);
             this.flowLayoutPanel1.Controls.Add(this.current);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(124, 6);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(6);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(450, 37);
             this.flowLayoutPanel1.TabIndex = 15;
@@ -66,11 +66,11 @@
             // 
             this.maximum.AutoSize = true;
             this.maximum.BackColor = System.Drawing.Color.DarkOrange;
-            this.maximum.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.maximum.Font = new System.Drawing.Font("Arial", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.maximum.Location = new System.Drawing.Point(135, 0);
             this.maximum.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.maximum.Name = "maximum";
-            this.maximum.Size = new System.Drawing.Size(144, 35);
+            this.maximum.Size = new System.Drawing.Size(129, 32);
             this.maximum.TabIndex = 8;
             this.maximum.Text = "maximum";
             // 
@@ -78,11 +78,11 @@
             // 
             this.current.AutoSize = true;
             this.current.BackColor = System.Drawing.Color.YellowGreen;
-            this.current.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.current.Location = new System.Drawing.Point(291, 0);
+            this.current.Font = new System.Drawing.Font("Arial", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.current.Location = new System.Drawing.Point(276, 0);
             this.current.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.current.Name = "current";
-            this.current.Size = new System.Drawing.Size(108, 35);
+            this.current.Size = new System.Drawing.Size(100, 32);
             this.current.TabIndex = 9;
             this.current.Text = "current";
             // 
@@ -90,7 +90,7 @@
             // 
             this.description.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.description.Location = new System.Drawing.Point(130, 48);
-            this.description.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.description.Margin = new System.Windows.Forms.Padding(6);
             this.description.Name = "description";
             this.description.ReadOnly = true;
             this.description.Size = new System.Drawing.Size(410, 44);
@@ -101,7 +101,7 @@
             // led
             // 
             this.led.Location = new System.Drawing.Point(554, 6);
-            this.led.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.led.Margin = new System.Windows.Forms.Padding(4);
             this.led.Name = "led";
             this.led.Size = new System.Drawing.Size(66, 56);
             this.led.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -121,7 +121,7 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.description);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BaseSensor";
             this.Size = new System.Drawing.Size(648, 96);
             this.flowLayoutPanel1.ResumeLayout(false);

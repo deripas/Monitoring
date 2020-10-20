@@ -74,7 +74,7 @@ namespace gui
                     break;
                 default:
                     pictureIcon.Image = Resources.rollet_move;
-                    led.Image = Resources.led_red;
+                    led.Image = Resources.led_orange;
                     buttonDown.Enabled = true;
                     buttonUp.Enabled = true;
                     break;

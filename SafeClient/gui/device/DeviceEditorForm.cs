@@ -52,6 +52,8 @@ namespace gui.device
             measureOption1.Save(config);
             encoderOption1.Save(config);
             vibrationOption1.Save(config);
+
+            dev.Refresh(config);
         }
     }
 }

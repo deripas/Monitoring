@@ -15,7 +15,8 @@ namespace SafeServer.service.device
         
         public override void Init()
         {
-            var scale = Config.vibr.scale;
+            var vibr = Config.vibr;
+            var scale = vibr.scale;
             var x = GetDouble25(Config.sensorX)
                 .Scale(1000.0 / Config.sensorX.cfg.sensitivity);
 
@@ -25,7 +26,7 @@ namespace SafeServer.service.device
             var z = x.Zip(y, CalcLen)
                 .Select(v => v * scale);
                 
-            Sensor(z.Select(v => DeviceStatus.Value(Id, v)));
+            Sensor(z.Select(v => DeviceStatus.Value(Id, v, v > vibr.porog)));
             base.Init();
         }
 

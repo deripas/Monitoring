@@ -248,16 +248,16 @@ namespace Server.Api
 
             using var db = new DatabaseService();
             var entity = db.Device.Find(id);
-            var old = entity.Config;
+            var config = new Config();
             if (cfg.calibr != null)
-                old.calibr = cfg.calibr;
+                config.calibr = cfg.calibr;
             if (cfg.alarm != null)
-                old.alarm = cfg.alarm;
+                config.alarm = cfg.alarm;
             if (cfg.counter != null)
-                old.counter = cfg.counter;
+                config.counter = cfg.counter;
             if (cfg.vibr != null)
             {
-                old.vibr = cfg.vibr;
+                config.vibr = cfg.vibr;
                 db.UpdateLtrChannelCfg(cfg.sensorX);
                 db.UpdateLtrChannelCfg(cfg.sensorY);
             }
@@ -266,11 +266,12 @@ namespace Server.Api
                 entity.Removed = !cfg.simple.enable;
                 entity.Description = cfg.simple.description;
             }
+            entity.Config = config;
             entity.Version++;
-
-            device.Update(cfg);
-            device.Version = entity.Version;
             db.SaveChanges();
+
+            device.Version = entity.Version;
+            device.Update(cfg);
         }
 
         [HttpGet]

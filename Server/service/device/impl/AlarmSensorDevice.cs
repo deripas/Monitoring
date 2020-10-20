@@ -83,7 +83,7 @@ namespace SafeServer.service.device
 
         public virtual void Reset()
         {
-            reset.OnNext(DeviceStatus.Reset(Id));
+            reset?.OnNext(DeviceStatus.Reset(Id));
         }
 
         public void ResetAlarm()
@@ -133,6 +133,7 @@ namespace SafeServer.service.device
 
         public override void OnEnableChange(bool value)
         {
+            Reset();
             enable?.OnNext(value);
         }
     }

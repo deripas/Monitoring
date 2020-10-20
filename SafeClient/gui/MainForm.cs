@@ -1,9 +1,11 @@
 ﻿﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using api.dto;
 using api.dto.client;
 using Properties;
 using service;
+using Tulpep.NotificationWindow;
 
 namespace gui
 {
@@ -152,7 +154,13 @@ namespace gui
                 var count = DI.Instance.ServerApi.FindAlertAll().count;
                 if (count > 0)
                 {
-                    MessageBox.Show("Найдено необработанных тревог: " + count + "!", "Внимание", MessageBoxButtons.OK);
+                    PopupNotifier popup = new PopupNotifier();
+                    popup.TitleText = "Внимание";
+                    popup.TitleFont = new Font("Segoe UI Black", 24F, FontStyle.Bold);
+                    popup.ContentText = "Найдено необработанных тревог: " + count + "!";
+                    popup.ContentFont = new Font("Segoe UI Black", 20F);
+                    popup.Size = new Size(1600, 200);
+                    popup.Popup();
                 }
             }
         }
@@ -184,7 +192,10 @@ namespace gui
 
         private void SetMode(StandMode mode)
         {
-            if(DI.Instance.IsViewMode)
+            DI.Instance.AlarmSoundService.Stop();
+            DI.Instance.CameraService.ResetSelected();
+
+            if (DI.Instance.IsViewMode)
             {
                 modeChangeButton.Enabled = false;
                 return;

@@ -17,7 +17,7 @@ namespace SafeClient
             if (Environment.OSVersion.Version.Major >= 6)
                 SetProcessDPIAware();
 
-            //Application.EnableVisualStyles();
+            Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new SplashScreen());
         }

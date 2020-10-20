@@ -135,21 +135,22 @@ namespace model.device
 
         public void RolletUp()
         {
-                DI.Instance.DeviceService.RolletUp(info.id);
+            DI.Instance.DeviceService.RolletUp(info.id);
         }
 
         public void RolletDown()
         {
-                DI.Instance.DeviceService.RolletDown(info.id);
+            DI.Instance.DeviceService.RolletDown(info.id);
         }
 
         public void RolletStop()
         {
-                DI.Instance.DeviceService.RolletStop(info.id);
+            DI.Instance.DeviceService.RolletStop(info.id);
         }
 
-        public void Refresh()
+        public void Refresh(Config config)
         {
+            info.config = config;
             view?.Set(this);
         }
     }

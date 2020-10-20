@@ -67,7 +67,7 @@ namespace SafeServer.service
                 }
                 catch (Exception ex)
                 {
-                    Log.Warn("Ignored [{0}]", dev.Name, ex);
+                    Log.Warn(ex, "Ignored [{0}]", dev.Name);
                 }
             }
         }

@@ -145,5 +145,13 @@ namespace service
 
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         static extern bool SetDllDirectory(string lpPathName);
+
+        internal void ResetSelected()
+        {
+            foreach(var camera in CameraList)
+            {
+                camera.Selected = false;
+            }
+        }
     }
 }
