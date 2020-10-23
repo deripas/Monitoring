@@ -57,6 +57,7 @@ namespace model.camera
             if (playHandleId != IntPtr.Zero)
             {
                 Log.Info("{0}: NETClient.StartRealPlay - OK", this);
+                sound = false;
             }
             else
             {

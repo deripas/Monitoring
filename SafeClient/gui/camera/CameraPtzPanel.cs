@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Windows.Forms;
 using api;
 using model.camera;
@@ -14,6 +15,15 @@ namespace gui
         public CameraPtzPanel()
         {
             InitializeComponent();
+
+            try
+            {
+                buttonSetPos.Visible = Boolean.Parse(ConfigurationManager.AppSettings["gui.ptz.pin"]);
+            }
+            catch (Exception e)
+            {
+                // ignore
+            }
         }
 
         internal void Start(CameraController cameraController)

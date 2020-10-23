@@ -73,7 +73,6 @@ namespace gui
             var size = ViewSize;
             var loc = new Point((this.Width - size.Width) / 2, (this.Height - size.Height) / 2);
             panel?.SetBounds(loc.X, loc.Y, size.Width, size.Height);
-            //canvas?.SetBounds(0, 0, size.Width, size.Height);
             canvas?.SetBounds((int)(dxy.X * size.Width), (int)(dxy.Y * size.Height), (int)(scale * size.Width), (int)(scale * size.Height));
         }
 
@@ -89,17 +88,13 @@ namespace gui
             
             scale += e.Delta * 0.001f;
             if (scale < 1) scale = 1;
+            if (scale > 4.5) scale = 4.5;
 
             var viewScale = new Rectangle((int)(dxy.X * sizeOrig.Width), (int)(dxy.Y * sizeOrig.Height), (int)(scale * sizeOrig.Width), (int)(scale * sizeOrig.Height));
-
-            // scale by center
-            var p0 = new Point((sizeOrig.Width - viewScale.Width) / 2, (sizeOrig.Height - viewScale.Height) / 2);
-
             var dx = viewScaleOld.X + (viewScaleOld.Width - viewScale.Width) / 2;
             var dy = viewScaleOld.Y + (viewScaleOld.Height - viewScale.Height) / 2;
             dxy.X = (float)(dx) / sizeOrig.Width;
             dxy.Y = (float)(dy) / sizeOrig.Height;
-            //canvas?.SetBounds((int)(dxy.X * sizeOrig.Width), (int)(dxy.Y * sizeOrig.Height), viewScale.Width, viewScale.Height);
             correctSetBounds();
         }
 
@@ -118,6 +113,8 @@ namespace gui
 
             dxy.X = (float)(dx) / size.Width;
             dxy.Y = (float)(dy) / size.Height;
+
+            Log.Info("dx={0}, dy={1}, w={2}, h={3} scale={4}", dx, dy, w, h, scale);
             canvas?.SetBounds(dx, dy, w, h);
         }
 

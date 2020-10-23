@@ -66,7 +66,6 @@ namespace gui
         public CameraViewPanel()
         {
             InitializeComponent();
-            canvas.Canvas.Image = Resources.no_image;
             canvas.Canvas.MouseDoubleClick += Canvas_MouseDoubleClick;
             canvas.Canvas.MouseClick += Canvas_MouseClick;
 
@@ -74,7 +73,10 @@ namespace gui
 
         private void Canvas_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            DoubleClick?.Invoke(this);
+            if (camera != null)
+            {
+                DoubleClick?.Invoke(this);
+            }
         }
 
         private void Canvas_MouseClick(object sender, MouseEventArgs e)
@@ -143,7 +145,6 @@ namespace gui
 
         internal void StopPlay()
         {
-            canvas.Canvas.Image = Resources.no_image;
             Selected = false;
             camera?.StopPlay(this);
             camera = null;
