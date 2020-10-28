@@ -27,6 +27,11 @@ namespace gui
                     timeoutText.Text = (config.timeout / 1000).ToString();
                     periodText.Text = (config.period / 1000).ToString();
                     delayText.Text = (config.delay / 1000).ToString();
+
+                    var enable = value.config.siren != null;
+                    countText.Enabled = enable;
+                    periodText.Enabled = enable;
+                    delayText.Enabled = enable;
                 }
                 else
                 {

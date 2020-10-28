@@ -22,10 +22,13 @@ namespace SafeServer.service.device
             _disposables = new List<IDisposable>();
             reset = new Subject<DeviceStatus>();
             status = new Subject<DeviceStatus>();
-            siren = new SirenDev();
-            siren.Config(Config.alarm);
 
-            Add42(Config.siren, siren.Siren);
+            if (Config.siren != null)
+            {
+                siren = new SirenDev();
+                siren.Config(Config.alarm);
+                Add42(Config.siren, siren.Siren);
+            }
 
             _timer = new Timer(Config.alarm.timeout);
             _timer.Elapsed += Elapsed;
@@ -72,7 +75,7 @@ namespace SafeServer.service.device
             _(status
                 .DistinctUntilChanged(s => s.alarm)
                 .Where(s => s.alarm > 0)
-                .Subscribe(s => siren.Play(true)));
+                .Subscribe(s => siren?.Play(true)));
             Log.Info("{}({}) init", Name, Id);
         }
 
@@ -84,14 +87,14 @@ namespace SafeServer.service.device
         public void ResetAlarm()
         {
             Log.Info("{0} Reset Alarm", this);
-            siren.Play(false);
+            siren?.Play(false);
             if (!_timer.Enabled)
                 _timer.Start();
         }
 
         public void Peak()
         {
-            siren.Peak();
+            siren?.Peak();
         }
 
         public override void Close()
@@ -118,7 +121,7 @@ namespace SafeServer.service.device
             if (cfg.alarm != null)
             {
                 Config.alarm = cfg.alarm;
-                siren.Config(cfg.alarm);
+                siren?.Config(cfg.alarm);
                 _timer.Interval = cfg.alarm.timeout;
                 Log.Info("{}({}) update alert config {}", Name, Id, cfg.alarm);
             }

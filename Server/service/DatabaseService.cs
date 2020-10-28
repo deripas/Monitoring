@@ -55,19 +55,53 @@ namespace SafeServer.service
         {
             var sql = @"
 WITH dev AS (
-    select d.id, name, enable, removed, camera, type, description, version, stand_id, siren,
+    select d.id,
+           name,
+           enable,
+           removed,
+           camera,
+           type,
+           description,
+           version,
+           stand_id,
+           siren,
            d.config || json_object_agg(m.field, json_build_object('sn', m.sn, 'num', m.num, 'index', m.ch - 1, 'cfg', m.cfg))::jsonb as config
     from ltr_device m,
          device d
     where m.device = d.id
     group by d.id
 )
-select d.id, name, enable, removed, camera, type, description, version, stand_id, siren, 
-       d.config || json_build_object('siren', json_build_object('sn', m.sn, 'num', m.num, 'index', m.ch - 1))::jsonb as config
-from dev d,
-     ltr_device m
-where d.siren = m.device
-order by d.id;
+    (
+        select d.id,
+               name,
+               enable,
+               removed,
+               camera,
+               type,
+               description,
+               version,
+               stand_id,
+               siren,
+               d.config || json_build_object('siren', json_build_object('sn', m.sn, 'num', m.num, 'index', m.ch - 1))::jsonb as config
+        from dev d,
+             ltr_device m
+        where d.siren = m.device)
+union all
+(
+    select d.id,
+           name,
+           enable,
+           removed,
+           camera,
+           type,
+           description,
+           version,
+           stand_id,
+           siren,
+           d.config
+    from dev d
+    where d.siren is null)
+order by id;
 ";
             return Device.FromSqlRaw(sql);
         }
