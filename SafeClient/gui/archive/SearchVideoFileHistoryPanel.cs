@@ -50,6 +50,7 @@ namespace gui
         public SearchVideoFileHistoryPanel()
         {
             InitializeComponent();
+            videoFileList1.RefreshList += Search;
         }
 
         internal void Start(CameraController cam)

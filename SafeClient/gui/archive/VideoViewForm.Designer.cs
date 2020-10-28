@@ -28,40 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.searchVideoFileHistoryPanel1 = new gui.SearchVideoFileHistoryPanel();
             this.videoPlayerPanel1 = new gui.VideoPlayerPanel();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // searchVideoFileHistoryPanel1
-            // 
-            this.searchVideoFileHistoryPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.searchVideoFileHistoryPanel1.Location = new System.Drawing.Point(0, 0);
-            this.searchVideoFileHistoryPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.searchVideoFileHistoryPanel1.Name = "searchVideoFileHistoryPanel1";
-            this.searchVideoFileHistoryPanel1.Size = new System.Drawing.Size(728, 1327);
-            this.searchVideoFileHistoryPanel1.TabIndex = 0;
-            // 
-            // videoPlayerPanel1
-            // 
-            this.videoPlayerPanel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.videoPlayerPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.videoPlayerPanel1.Location = new System.Drawing.Point(0, 0);
-            this.videoPlayerPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.videoPlayerPanel1.Name = "videoPlayerPanel1";
-            this.videoPlayerPanel1.Ratio = 0.75D;
-            this.videoPlayerPanel1.Size = new System.Drawing.Size(1832, 1327);
-            this.videoPlayerPanel1.TabIndex = 0;
-            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -75,13 +55,33 @@
             this.splitContainer1.SplitterDistance = 728;
             this.splitContainer1.TabIndex = 2;
             // 
+            // searchVideoFileHistoryPanel1
+            // 
+            this.searchVideoFileHistoryPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.searchVideoFileHistoryPanel1.Location = new System.Drawing.Point(0, 0);
+            this.searchVideoFileHistoryPanel1.Margin = new System.Windows.Forms.Padding(2);
+            this.searchVideoFileHistoryPanel1.Name = "searchVideoFileHistoryPanel1";
+            this.searchVideoFileHistoryPanel1.Size = new System.Drawing.Size(728, 1327);
+            this.searchVideoFileHistoryPanel1.TabIndex = 0;
+            // 
+            // videoPlayerPanel1
+            // 
+            this.videoPlayerPanel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.videoPlayerPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.videoPlayerPanel1.Location = new System.Drawing.Point(0, 0);
+            this.videoPlayerPanel1.Margin = new System.Windows.Forms.Padding(2);
+            this.videoPlayerPanel1.Name = "videoPlayerPanel1";
+            this.videoPlayerPanel1.Ratio = 0.75D;
+            this.videoPlayerPanel1.Size = new System.Drawing.Size(1832, 1327);
+            this.videoPlayerPanel1.TabIndex = 0;
+            // 
             // VideoViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2564, 1327);
             this.Controls.Add(this.splitContainer1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "VideoViewForm";

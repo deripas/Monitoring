@@ -14,14 +14,12 @@ namespace SafeServer.service.device
         private readonly SirenDev siren;
         private readonly Subject<DeviceStatus> reset;
         private readonly Subject<DeviceStatus> status;
-        private readonly BehaviorSubject<bool> enable;
         private readonly Timer _timer;
         private readonly List<IDisposable> _disposables;
 
         public AlarmSensorDevice(Device device) : base(device)
         {
             _disposables = new List<IDisposable>();
-            enable = new BehaviorSubject<bool>(IsEnable());
             reset = new Subject<DeviceStatus>();
             status = new Subject<DeviceStatus>();
             siren = new SirenDev();
@@ -39,21 +37,10 @@ namespace SafeServer.service.device
         {
             _(measure.Merge(reset)
                 .Scan(DeviceStatus.Reset(Id), ValueAgregate)
-                .CombineLatest(enable, (s, e) =>
-                {
-                    s.alarm = e ? s.alarm : 0;
-                    s.value = e ? s.value : 0;
-                    return s;
-                })
                 .Subscribe(status));
-
-            _(status
-                .DistinctUntilChanged(s => s.alarm)
-                .Where(s => s.alarm > 0)
-                .Subscribe(s => siren.Play(true)));
         }
 
-        protected virtual DeviceStatus ValueAgregate(DeviceStatus old, DeviceStatus cur)
+        private DeviceStatus ValueAgregate(DeviceStatus old, DeviceStatus cur)
         {
             if (cur.alarm < 0)
             {
@@ -71,6 +58,10 @@ namespace SafeServer.service.device
             return status.Select(s =>
                   {
                       s.enable = IsEnable();
+                      if (s.enable) return s;
+                      
+                      s.value = 0;
+                      s.alarm = 0;
                       return s;
                   });
         }
@@ -78,6 +69,10 @@ namespace SafeServer.service.device
         public override void Init()
         {
             Reset();
+            _(status
+                .DistinctUntilChanged(s => s.alarm)
+                .Where(s => s.alarm > 0)
+                .Subscribe(s => siren.Play(true)));
             Log.Info("{}({}) init", Name, Id);
         }
 
@@ -88,6 +83,7 @@ namespace SafeServer.service.device
 
         public void ResetAlarm()
         {
+            Log.Info("{0} Reset Alarm", this);
             siren.Play(false);
             if (!_timer.Enabled)
                 _timer.Start();
@@ -134,7 +130,6 @@ namespace SafeServer.service.device
         public override void OnEnableChange(bool value)
         {
             Reset();
-            enable?.OnNext(value);
         }
     }
 }

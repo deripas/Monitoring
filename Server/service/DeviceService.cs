@@ -78,7 +78,16 @@ namespace SafeServer.service
                 {
                     Log.Info("Start Device");
                     foreach (var dev in map.Values)
-                        dev.Init();
+                    {
+                        try
+                        {
+                            dev.Init();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(e, "Error Init Device {0}", dev);
+                        }
+                    }
                     return Observable.Return(true);
                 })
                 .Do(_ => Log.Info("Complete Start Device"), exception => Log.Error(exception, "Error Start Device"))

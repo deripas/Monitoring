@@ -1,4 +1,5 @@
-﻿using System;
+﻿using service;
+using System;
 using System.Windows.Forms;
 
 namespace gui
@@ -47,6 +48,12 @@ namespace gui
             checkBoxSound.Enabled = running && SoundEvent != null;
         }
 
+        private void UpdateSound()
+        {
+            if (checkBoxSound.Checked)
+                checkBoxSound_CheckedChanged(null, null);
+        }
+
         private String SoundSymbol(bool sound)
         {
             return sound ? "🔊" : "🔈";
@@ -64,16 +71,17 @@ namespace gui
 
         private void buttonPlay_Click(object sender, EventArgs e)
         {
-            UpdateButtons(true);
+            DI.Instance.CameraService.CloseSound();
+
             Play?.Invoke(true);
-            if (checkBoxSound.Checked)
-                checkBoxSound_CheckedChanged(null, null);
+            UpdateButtons(true);
+            UpdateSound();
         }
 
         private void buttonStop_Click(object sender, EventArgs e)
         {
-            UpdateButtons(false);
             Play?.Invoke(false);
+            UpdateButtons(false);
         }
 
         private void buttonSlow_Click(object sender, EventArgs e)

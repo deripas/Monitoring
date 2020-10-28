@@ -13,8 +13,52 @@ namespace gui
         {
             set
             {
-                listBox1.Items.Clear();
-                listBox1.Items.AddRange(value.ToArray());
+                if (value.Count == 0)
+                {
+                    listBox1.Items.Clear();
+                    return;
+                }
+                if (listBox1.Items.Count == 0)
+                {
+                    listBox1.Items.AddRange(value.ToArray());
+                    return;
+                }
+
+                if (listBox1.Items.Count > value.Count)
+                {
+                    listBox1.Items.Clear();
+                    listBox1.Items.AddRange(value.ToArray());
+                    return;
+                }
+
+                if (listBox1.Items[0].ToString().Equals(value[0].ToString()))
+                {
+                    // merge case
+                    var i = 0;
+                    while (i < listBox1.Items.Count
+                        && listBox1.Items[i].ToString().Equals(value[i].ToString()))
+                    { 
+                        i++;
+                    }
+
+                    while (i < listBox1.Items.Count)
+                    {
+                        listBox1.Items[i] = value[i];
+                        i++;
+                    }
+
+                    var n = value.Count - i;
+                    if (n > 0)
+                    {
+                        listBox1.Items.AddRange(value.GetRange(i, n).ToArray());
+                    }
+
+                }
+                else
+                {
+                    listBox1.Items.Clear();
+                    listBox1.Items.AddRange(value.ToArray());
+                }
             }
         }
 
@@ -46,6 +90,7 @@ namespace gui
         public event Action<VideoFileModel> SelectItem;
         public event Action PlayItem;
         public event Action StopItem;
+        public event Action RefreshList;
 
         public VideoFileList()
         {
@@ -104,6 +149,11 @@ namespace gui
             if (select == null) return;
 
             VideoExportForm.Instance.Start((VideoFileModel)select, (path, f, t) => { });
+        }
+
+        private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RefreshList?.Invoke();
         }
     }
 }

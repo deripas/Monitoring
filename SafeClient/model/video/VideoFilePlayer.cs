@@ -85,12 +85,15 @@ namespace model.video
         
         public void Start(DateTime startTime, DateTime endTime)
         {
+            var currentSound = Sound;
             Stop();
             m_OsdTime = NET_TIME.FromDateTime(startTime);
             m_PlayBackID = source.Play(view.Canvas.Handle, startTime, endTime);
             ShowSpeed(PlayBackType.Normal);
             if (Pause)            
                 PlayBackControl(PlayBackType.Pause);
+
+            Sound = currentSound;
         }
 
         public void Stop()
