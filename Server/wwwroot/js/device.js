@@ -5,7 +5,7 @@
         "serverSide": true, 
         "filter": false,  
         "ajax": {
-            "url": "/Home/DeviceTable",
+            "url": $("#url").val(),
             "type": "POST",
             "datatype": "json"
         },

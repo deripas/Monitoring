@@ -27,19 +27,40 @@ namespace Server.Controllers
 
         public IActionResult Camera()
         {
-            return View();
+            MyModel model = new MyModel();
+            return View("Camera", model);
+        }
+
+        public IActionResult CameraStand(string stand)
+        {
+            MyModel model = new MyModel
+            {
+                stand = stand
+            };
+            return View("Camera", model);
         }
 
         public IActionResult Device()
         {
-            return View();
+            MyModel model = new MyModel();
+            return View("Device", model);
         }
 
-        public IActionResult CameraTable()
+        public IActionResult DeviceStand(string stand)
+        {
+            MyModel model = new MyModel
+            {
+                stand = stand
+            };
+            return View("Device", model);
+        }
+
+        public IActionResult CameraTable(string? stand)
         {
             var draw = HttpContext.Request.Form["draw"].FirstOrDefault();
             using var db = new DatabaseService();
             var camera = db.Camera
+                .Where(c => stand == null || c.Stand.Equals(stand))
                 .OrderBy(c => c.Name)
                 .ToList()
                 .Select(c =>
@@ -61,13 +82,14 @@ namespace Server.Controllers
             });
         }
 
-        public IActionResult DeviceTable()
+        public IActionResult DeviceTable(string? stand)
         {
             Dictionary<long, DeviceStatus> status = DI.Instance.DeviceStatusService.GetStatuses();
             var draw = HttpContext.Request.Form["draw"].FirstOrDefault();
 
             using var db = new DatabaseService();
             var devices = db.Device
+                .Where(c => stand == null || c.Stand.Equals(stand))
                 .OrderBy(c => c.Name)
                 .ToList();
             var result = new List<object>();

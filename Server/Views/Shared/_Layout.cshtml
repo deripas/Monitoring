@@ -19,11 +19,45 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Camera">Камеры</a>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Камеры<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Camera">Все</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CameraStand" asp-route-stand="bks">БКС</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CameraStand" asp-route-stand="mks">МКС</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CameraStand" asp-route-stand="kes">КЭС</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CameraStand" asp-route-stand="ory">ОРУ</a>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Device">Датчики</a>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Датчики<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Device">Все</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="DeviceStand" asp-route-stand="bks">БКС</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="DeviceStand" asp-route-stand="mks">МКС</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="DeviceStand" asp-route-stand="kes">КЭС</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="DeviceStand" asp-route-stand="ory">ОРУ</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
