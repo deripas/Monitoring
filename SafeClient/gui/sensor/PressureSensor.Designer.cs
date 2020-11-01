@@ -31,7 +31,7 @@
             this.baseSensor1 = new gui.BaseSensor();
             this.verticalProgressBar1 = new gui.component.VerticalProgressBar();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // baseSensor1
@@ -40,8 +40,8 @@
             this.baseSensor1.Description = "";
             this.baseSensor1.Device = null;
             this.baseSensor1.EnabledLed = true;
-            this.baseSensor1.Location = new System.Drawing.Point(4, 4);
-            this.baseSensor1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.baseSensor1.Location = new System.Drawing.Point(0, 0);
+            this.baseSensor1.Margin = new System.Windows.Forms.Padding(2);
             this.baseSensor1.Max = "maximum";
             this.baseSensor1.Name = "baseSensor1";
             this.baseSensor1.Size = new System.Drawing.Size(628, 117);
@@ -53,7 +53,7 @@
             // 
             this.verticalProgressBar1.ForeColor = System.Drawing.Color.Blue;
             this.verticalProgressBar1.Location = new System.Drawing.Point(82, 4);
-            this.verticalProgressBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.verticalProgressBar1.Margin = new System.Windows.Forms.Padding(4);
             this.verticalProgressBar1.Name = "verticalProgressBar1";
             this.verticalProgressBar1.Size = new System.Drawing.Size(38, 94);
             this.verticalProgressBar1.TabIndex = 2;
@@ -63,7 +63,7 @@
             // 
             this.pictureBox1.Image = global::Properties.Resources.hygrometer_icon;
             this.pictureBox1.Location = new System.Drawing.Point(6, 6);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(66, 85);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -78,11 +78,12 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.verticalProgressBar1);
             this.Controls.Add(this.baseSensor1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "PressureSensor";
             this.Size = new System.Drawing.Size(630, 96);
-            ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         private gui.BaseSensor baseSensor1;

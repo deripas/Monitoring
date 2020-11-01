@@ -183,20 +183,20 @@
             this.findToolStripMenuItem,
             this.toLastAlertToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(526, 80);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(523, 124);
             // 
             // findToolStripMenuItem
             // 
             this.findToolStripMenuItem.Name = "findToolStripMenuItem";
-            this.findToolStripMenuItem.Size = new System.Drawing.Size(525, 38);
-            this.findToolStripMenuItem.Text = "Перейти к неподтвержденному алерту";
+            this.findToolStripMenuItem.Size = new System.Drawing.Size(522, 38);
+            this.findToolStripMenuItem.Text = "Перейти к неподтвержденной тревоге";
             this.findToolStripMenuItem.Click += new System.EventHandler(this.findToolStripMenuItem_Click);
             // 
             // toLastAlertToolStripMenuItem
             // 
             this.toLastAlertToolStripMenuItem.Name = "toLastAlertToolStripMenuItem";
-            this.toLastAlertToolStripMenuItem.Size = new System.Drawing.Size(525, 38);
-            this.toLastAlertToolStripMenuItem.Text = "Перейти к последнему алерту";
+            this.toLastAlertToolStripMenuItem.Size = new System.Drawing.Size(522, 38);
+            this.toLastAlertToolStripMenuItem.Text = "Перейти к последней тревоге";
             this.toLastAlertToolStripMenuItem.Click += new System.EventHandler(this.toLastAlertToolStripMenuItem_Click);
             // 
             // SearchAlertPanel

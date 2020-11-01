@@ -208,7 +208,7 @@ namespace gui
             {
                 selectAlertId = alert.id;
                 dateTimePicker1.Value = alert.GetDateTime();
-                if(comboBoxDevice.SelectedItem == null)
+                //if(comboBoxDevice.SelectedItem == null)
                 {
                     comboBoxDevice.SelectedItem = DI.Instance.DeviceService[alert.device];
                 }
@@ -261,7 +261,7 @@ namespace gui
             {
                 selectAlertId = alert.id;
                 dateTimePicker1.Value = alert.GetDateTime();
-                if (comboBoxDevice.SelectedItem == null)
+                //if (comboBoxDevice.SelectedItem == null)
                 {
                     comboBoxDevice.SelectedItem = DI.Instance.DeviceService[alert.device];
                 }
