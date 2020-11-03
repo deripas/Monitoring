@@ -118,7 +118,6 @@ namespace gui
             if (alarm > this.alarm)
             {
                 DI.Instance.AlarmSoundService.Play();
-                device.Camera.Selected = true;
             }
             this.alarm = alarm;
             UpdateLed();
@@ -142,7 +141,6 @@ namespace gui
 
             if (Alarm)
             {
-                device.Camera.Selected = false;
                 DI.Instance.AlarmSoundService.Stop();
                 DI.Instance.ServerApi.ResetDeviceAlert(device.Id);
             }

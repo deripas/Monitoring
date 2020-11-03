@@ -153,5 +153,13 @@ namespace service
                 camera.Selected = false;
             }
         }
+
+        internal void Selected(ICollection<CameraController> selected)
+        {
+            foreach (var camera in CameraList)
+            {
+                camera.Selected = selected.Contains(camera);
+            }
+        }
     }
 }

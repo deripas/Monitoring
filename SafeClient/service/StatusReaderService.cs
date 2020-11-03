@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using api;
+using model.camera;
 
 namespace service
 {
@@ -26,10 +28,18 @@ namespace service
             {
                 var serverApi = (IServerApi)obj;
                 var statuses = serverApi.Statuses();
+                var cameraSelected = new HashSet<CameraController>();
                 foreach (var status in statuses)
                 {
-                    DI.Instance.DeviceService[status.id]?.Update(status);
+                    var dev = DI.Instance.DeviceService[status.id];
+                    dev?.Update(status);
+
+                    if (status.alarm > 0)
+                    {
+                        cameraSelected.Add(dev?.Camera);
+                    }
                 }
+                DI.Instance.CameraService.Selected(cameraSelected);
             }
             catch (Exception e)
             {
