@@ -31,7 +31,7 @@ namespace SafeServer.ltr
         private Slot slot;
         private ltr25api ltr;
 
-        const int EnabledChCnt = 6;
+        const int EnabledChCnt = 8;
         const int RECV_BLOCK_CH_SIZE = 1024;
         private static ltr25api.DataFormat DataFmt = ltr25api.DataFormat.Format20;
         private static int recv_data_cnt = RECV_BLOCK_CH_SIZE * EnabledChCnt;

@@ -72,10 +72,15 @@ namespace SafeServer.service.device
         public override void Init()
         {
             Reset();
-            _(status
+            _(
+                Status()
                 .DistinctUntilChanged(s => s.alarm)
                 .Where(s => s.alarm > 0)
-                .Subscribe(s => siren?.Play(true)));
+                .Subscribe(s =>
+                {
+                    Log.Info("{0} Start Alarm", this);
+                    siren?.Play(true);
+                }));
             Log.Info("{}({}) init", Name, Id);
         }
 
@@ -86,7 +91,7 @@ namespace SafeServer.service.device
 
         public void ResetAlarm()
         {
-            Log.Info("{0} Reset Alarm", this);
+            Log.Info("{0} Stop Alarm", this);
             siren?.Play(false);
             if (!_timer.Enabled)
                 _timer.Start();
@@ -106,6 +111,7 @@ namespace SafeServer.service.device
 
         private void Elapsed(object sender, ElapsedEventArgs e)
         {
+            Log.Info("{0} Restore device status", this);
             Reset();
         }
 

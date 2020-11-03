@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reactive.Subjects;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using SafeServer.dto.config;
 
@@ -8,6 +9,9 @@ namespace SafeServer.service.device
 {
     public class SirenDev
     {
+        private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
+
+
         private Subject<bool> siren;
         private volatile Thread _timer;
         private volatile bool _runnig;
@@ -29,6 +33,7 @@ namespace SafeServer.service.device
             period = config.period;
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void Play(bool value)
         {
             if (value && !_runnig)
@@ -55,15 +60,16 @@ namespace SafeServer.service.device
 
         private void TimerCallback()
         {
+            var c = count;
             while (_runnig)
             {
-                if (count <= 0)
+                if (c <= 0)
                 {
                     Off();
                     break;
                 }
 
-                count--;
+                c--;
 
                 On();
                 if (delay > 1) Thread.Sleep(delay);
