@@ -39,11 +39,21 @@ namespace service
                         cameraSelected.Add(dev?.Camera);
                     }
                 }
-                DI.Instance.CameraService.Selected(cameraSelected);
+                DI.Instance.Invoke(new Action(() =>
+                {
+                    try
+                    {
+                        DI.Instance.CameraService.Selected(cameraSelected);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e, "error camera select update");
+                    }
+                }));
             }
             catch (Exception e)
             {
-                Log.Warn(e.Message);
+                Log.Warn(e, e.Message);
             }
         }
     }

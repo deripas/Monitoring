@@ -133,6 +133,12 @@ namespace api.impl
             return template.GetForObject<AlertInfo>(uri);
         }
 
+        public AlertInfo FindLastAlert()
+        {
+            var uri = string.Format("/api/alert/find-last");
+            return template.GetForObject<AlertInfo>(uri);
+        }
+
         public void ResetDevice(long device)
         {
             tryAction(() => template.Put("/api/device/{id}/reset", null, device ));

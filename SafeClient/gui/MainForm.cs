@@ -16,7 +16,7 @@ namespace gui
 
         public MainForm()
         {
-            DI.Instance.Init();
+            DI.Instance.Init(this);
             InitializeComponent();
             Icon = Resources.AppIcon2;
 

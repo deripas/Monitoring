@@ -1,0 +1,1 @@
+﻿UPDATE public.device SET config = '{"alarm": {"count": 3, "delay": 1000, "period": 2000, "timeout": 1000}}' WHERE id = 57;

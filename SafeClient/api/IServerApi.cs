@@ -24,6 +24,7 @@ namespace api
         CountResult FindAlertAll(long id);
         CountResult FindAlertAll();
         AlertInfo FindLastAlert(bool processed);
+        AlertInfo FindLastAlert();
 
         void ResetDevice(long id);
         void ResetDeviceAlert(long id);

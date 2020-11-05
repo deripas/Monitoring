@@ -161,11 +161,18 @@ namespace gui
             if (alert == null) return;
 
             var count = DI.Instance.ServerApi.FindAlertAll(alert.ID).count;
-            DialogResult dialogResult = MessageBox.Show("Найдено " + count + " тревог", "Внимание" , MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            if (count > 0)
             {
-                DI.Instance.ServerApi.ProcessAlertAll(alert.ID);
-                Search();
+                DialogResult dialogResult = MessageBox.Show("Найдено " + count + " тревог", "Внимание", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    DI.Instance.ServerApi.ProcessAlertAll(alert.ID);
+                    Search();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Тревог не найдено", "Внимание", MessageBoxButtons.OK);
             }
         }
 
@@ -256,7 +263,7 @@ namespace gui
 
         private void toLastAlertToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var alert = DI.Instance.ServerApi.FindLastAlert(true);
+            var alert = DI.Instance.ServerApi.FindLastAlert();
             if (alert.id > 0)
             {
                 selectAlertId = alert.id;

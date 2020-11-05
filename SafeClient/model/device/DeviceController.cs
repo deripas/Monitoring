@@ -126,7 +126,7 @@ namespace model.device
                         }
                         catch (Exception e)
                         {
-                            Log.Error("error update", e);
+                            Log.Error(e, "error update");
                         }
 
                     }));

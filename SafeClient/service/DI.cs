@@ -4,6 +4,7 @@ using api.dto.client;
 using api.impl;
 using Properties;
 using System;
+using System.Windows.Forms;
 
 namespace service
 {
@@ -21,6 +22,7 @@ namespace service
         public ClientType Type { get; set; }
         public StandMode StandMode { get; set; }
         public Guid ClientId { get; set; }
+        public Form Main { get; set; }
 
         public bool IsViewMode
         {
@@ -30,8 +32,9 @@ namespace service
             }
         }
 
-        public void Init()
+        public void Init(Form main)
         {
+            Main = main;
             if (EMPTY.Equals(Settings.Default.id))
             {
                 Settings.Default.id = Guid.NewGuid();
@@ -57,6 +60,11 @@ namespace service
             CameraService.Dispose();
             DeviceService.Dispose();
             AlarmSoundService.Dispose();
+        }
+
+        public void Invoke(Action action)
+        {
+            Main.Invoke(action);
         }
     }
 }

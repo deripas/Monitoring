@@ -137,14 +137,24 @@ namespace Server.Api
 
         [HttpGet]
         [Route("alert/find-last")]
-        public Alert FindLastAlert(bool processed)
+        public Alert FindLastAlert(bool? processed)
         {
             using var db = new DatabaseService();
-            Alert alert = db.Alert
-                .Where(a => a.processed == processed)
-                .OrderByDescending(x => x.time)
-                .FirstOrDefault();
-            return alert ?? SafeServer.dto.Alert.NULL;
+            if (processed != null)
+            {
+                Alert alert = db.Alert
+                    .Where(a => a.processed == processed)
+                    .OrderByDescending(x => x.time)
+                    .FirstOrDefault();
+                return alert ?? SafeServer.dto.Alert.NULL;
+            }
+            else
+            {
+                Alert alert = db.Alert
+                    .OrderByDescending(x => x.time)
+                    .FirstOrDefault();
+                return alert ?? SafeServer.dto.Alert.NULL;
+            }
         }
 
         [HttpGet]

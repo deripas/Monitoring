@@ -11,6 +11,7 @@ namespace gui
     public partial class ClassicHurbleControl : UserControl, SensorView
     {
         private DeviceController device;
+        private long check;
         private long alarm;
         private bool enable;
         private ControlType last = ControlType.NULL;
@@ -78,6 +79,7 @@ namespace gui
         public void Set(DeviceController dev)
         {
             Device = dev;
+            modeAuto.Enabled = dev.Config.counter != null;
         }
 
         public void Update(SensorStatus status)
@@ -127,7 +129,9 @@ namespace gui
         {
             if (enable)
             {
-                led.Image = Alarm ? Resources.led_red : Resources.led_green;
+                led.Image = Alarm
+                    ? alarm == check ? Resources.led_orange : Resources.led_red
+                    : Resources.led_green;
             }
             else
             {
@@ -143,6 +147,8 @@ namespace gui
             {
                 DI.Instance.AlarmSoundService.Stop();
                 DI.Instance.ServerApi.ResetDeviceAlert(device.Id);
+                check = alarm;
+                UpdateLed();
             }
         }
 
