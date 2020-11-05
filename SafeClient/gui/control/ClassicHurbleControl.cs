@@ -5,11 +5,15 @@ using api.dto;
 using Properties;
 using service;
 using System.CodeDom;
+using System.Threading.Tasks;
 
 namespace gui
 {
     public partial class ClassicHurbleControl : UserControl, SensorView
     {
+        private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
+
+
         private DeviceController device;
         private long check;
         private long alarm;
@@ -89,7 +93,6 @@ namespace gui
             SetAlarm(status.alarm);
             SetImage((ControlType)status.value);
             SetControll((ControlType)status.value);
-            last = (ControlType)status.value;
         }
 
         internal void SetImage(ControlType type)
@@ -108,9 +111,13 @@ namespace gui
 
         internal void SetControll(ControlType type)
         {
-            if (type.HasFlag(ControlType.ON)) modeoOn.Checked = true;
-            if (type.HasFlag(ControlType.OFF)) modeOff.Checked = true;
-            if (type.HasFlag(ControlType.AUTO)) modeAuto.Checked = true;
+            if (last != type)
+            {
+                if (type.HasFlag(ControlType.ON)) modeoOn.Checked = true;
+                if (type.HasFlag(ControlType.OFF)) modeOff.Checked = true;
+                if (type.HasFlag(ControlType.AUTO)) modeAuto.Checked = true;
+                last = type;
+            }
         }
 
         internal void SetAlarm(long alarm)
@@ -145,10 +152,12 @@ namespace gui
 
             if (Alarm)
             {
-                DI.Instance.AlarmSoundService.Stop();
-                DI.Instance.ServerApi.ResetDeviceAlert(device.Id);
                 check = alarm;
                 UpdateLed();
+                Task.Factory.StartNew(new Action(() => {
+                    DI.Instance.AlarmSoundService.Stop();
+                    DI.Instance.ServerApi.ResetDeviceAlert(device.Id);
+                }));
             }
         }
 

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using model.device;
 using System;
+using System.Threading.Tasks;
 
 namespace gui
 {
@@ -112,10 +113,12 @@ namespace gui
 
             if (Alarm)
             {
-                DI.Instance.AlarmSoundService.Stop();
-                DI.Instance.ServerApi.ResetDeviceAlert(device.Id);
                 check = alarm;
                 UpdateLed();
+                Task.Factory.StartNew(new Action(() => {
+                    DI.Instance.AlarmSoundService.Stop();
+                    DI.Instance.ServerApi.ResetDeviceAlert(device.Id);
+                }));
             }
         }
 
