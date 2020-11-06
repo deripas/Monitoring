@@ -288,17 +288,24 @@ namespace Server.Api
         [Route("status")]
         public List<DeviceStatus> Statuses()
         {
-            return DI.Instance.DeviceStatusService.GetStatuses()
-                .Values
-                .OrderBy(s => s.id)
-                .Select(s =>
-                {
-                    var dev = DI.Instance.DeviceService[s.id];
-                    // uddate, get actual state
-                    s.enable = dev.IsEnable();
-                    return s;
-                })
-                .ToList();
+            try
+            {
+                return DI.Instance.DeviceStatusService.GetStatuses()
+                    .Values
+                    .OrderBy(s => s.id)
+                    .Select(s =>
+                    {
+                        var dev = DI.Instance.DeviceService[s.id];
+                        // uddate, get actual state
+                        s.enable = dev.IsEnable();
+                        return s;
+                    })
+                    .ToList();
+            }
+            catch (Exception e)
+            {
+                return new List<DeviceStatus>();
+            }
         }
 
         [HttpPut]
