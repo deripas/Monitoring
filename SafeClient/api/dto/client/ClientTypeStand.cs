@@ -17,7 +17,7 @@ namespace api.dto.client
 
             control = service.DI.Instance.DeviceService.DeviceList
                 .Where(device => device.Type.IsControll())
-                .Where(device => stand.Equals(device.Stand))
+                .Where(device => stand.Equals(device.Stand) || "ory".Equals(device.Stand))
                 .OrderBy(device => device.Type)
                 .ThenBy(device => device.Description)
                 .Select(device => device.Id)

@@ -280,6 +280,9 @@ namespace Server.Api
             entity.Version++;
             db.SaveChanges();
 
+            if (device is AlarmSensorDevice sensorDevice)
+                sensorDevice.ResetAlarm();
+            
             device.Version = entity.Version;
             device.Update(cfg);
         }

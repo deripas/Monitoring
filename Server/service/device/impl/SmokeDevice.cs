@@ -1,6 +1,7 @@
 ﻿using System.Reactive.Subjects;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using SafeServer.dto;
 
 namespace SafeServer.service.device
@@ -8,9 +9,11 @@ namespace SafeServer.service.device
     public class SmokeDevice : BoolMeasureDevice
     {
         private readonly Subject<bool> power = new Subject<bool>();
+        private int resetTimeout;
 
         public SmokeDevice(Device device) : base(device)
         {
+            resetTimeout = ConfigurationBinder.GetValue<int>(DI.Instance.Config, "Settings:PowerResetTimeout");
             Add42(device.Config.power, power);
         }
 
@@ -20,7 +23,7 @@ namespace SafeServer.service.device
             Task.Run(() =>
             {
                 power.OnNext(false);
-                Thread.Sleep(100);
+                Thread.Sleep(resetTimeout);
                 power.OnNext(true);
             });
         }
