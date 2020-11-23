@@ -17,6 +17,11 @@ namespace SafeServer.service.device
             Add42(device.Config.power, power);
         }
 
+        public override DeviceStatus ToStatus(bool v)
+        {
+            return DeviceStatus.Value(Id, !v);
+        }
+
         public override void Reset()
         {
             base.Reset();

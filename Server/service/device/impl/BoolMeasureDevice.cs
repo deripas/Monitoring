@@ -14,8 +14,13 @@ namespace SafeServer.service.device
         {
             Sensor(GetBool41(Config.sensor)
                 .ToBool()
-                .Select(v => DeviceStatus.Value(Id, v)));
+                .Select(v => ToStatus(v)));
             base.Init();
+        }
+
+        public virtual DeviceStatus ToStatus(bool v)
+        {
+            return DeviceStatus.Value(Id, v);
         }
 
         public override string RenderStatusValue(DeviceStatus status)
