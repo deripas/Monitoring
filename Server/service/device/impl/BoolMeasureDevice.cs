@@ -14,11 +14,11 @@ namespace SafeServer.service.device
         {
             Sensor(GetBool41(Config.sensor)
                 .ToBool()
-                .Select(v => ToStatus(v)));
+                .Select(ToStatus));
             base.Init();
         }
 
-        public virtual DeviceStatus ToStatus(bool v)
+        protected virtual DeviceStatus ToStatus(bool v)
         {
             return DeviceStatus.Value(Id, v);
         }

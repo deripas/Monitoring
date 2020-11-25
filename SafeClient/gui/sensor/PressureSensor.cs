@@ -24,7 +24,9 @@ namespace gui
             var config = dev.Config?.calibr;
             if (config != null)
             {
-                baseSensor1.Max = config.porogMax.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+                var max = config.porogMax.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+                var min = config.porogMin.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+                baseSensor1.Max = min + "/" + max;
                 verticalProgressBar1.Maximum = (int) config.max;
                 verticalProgressBar1.Minimum = (int) config.min;
             }

@@ -13,10 +13,20 @@ namespace SafeServer.service.device
             return observable.Select(value =>
             {
                 var (array, len) = value;
-                var result = false;
+                var falseCount = 0;
+                var trueCount = 0;
                 for (var i = 0; i < len; i++)
-                    result = result || array[i];
-                return result;
+                {
+                    if (array[i])
+                    {
+                        trueCount++;
+                    }
+                    else
+                    {
+                        falseCount++;
+                    }
+                }
+                return trueCount > falseCount;
             });
         }
         

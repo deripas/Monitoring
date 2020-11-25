@@ -8,8 +8,10 @@ namespace SafeServer.service.device
 {
     public class SmokeDevice : BoolMeasureDevice
     {
+        private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
+
         private readonly Subject<bool> power = new Subject<bool>();
-        private int resetTimeout;
+        private readonly int resetTimeout;
 
         public SmokeDevice(Device device) : base(device)
         {
@@ -17,7 +19,7 @@ namespace SafeServer.service.device
             Add42(device.Config.power, power);
         }
 
-        public override DeviceStatus ToStatus(bool v)
+        protected override DeviceStatus ToStatus(bool v)
         {
             return DeviceStatus.Value(Id, !v);
         }
