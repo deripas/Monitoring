@@ -1,4 +1,5 @@
-﻿using System;
+﻿using model.camera;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,6 @@ namespace api.dto
         String GetTitle();
         String GetType();
         bool VideoOnly();
+        bool PtzEnable(CameraController cam);
     }
 }

@@ -191,7 +191,14 @@ namespace gui
 
         private void pTZToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CameraPtzForm.Instance.Start(camera);
+            if (DI.Instance.Type.PtzEnable(camera))
+            {
+                CameraPtzForm.Instance.Start(camera);
+            }
+            else
+            {
+                MessageBox.Show("Управление камерой недоступно", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void canvas_Load(object sender, EventArgs e)

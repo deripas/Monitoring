@@ -1,4 +1,5 @@
-﻿using System;
+﻿using model.camera;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -65,6 +66,11 @@ namespace api.dto.client
         public bool VideoOnly()
         {
             return !Boolean.Parse(ConfigurationManager.AppSettings["client.type.view.device"]);
+        }
+
+        public bool PtzEnable(CameraController cam)
+        {
+            return true;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using model.camera;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -136,6 +137,11 @@ namespace api.dto.client
         public bool VideoOnly()
         {
             return false;
+        }
+
+        public bool PtzEnable(CameraController cam)
+        {
+            return stand.Equals(cam.Stand) || "ory".Equals(cam.Stand);
         }
     }
 }
