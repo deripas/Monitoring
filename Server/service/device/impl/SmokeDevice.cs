@@ -26,12 +26,13 @@ namespace SafeServer.service.device
 
         public override void Reset()
         {
-            base.Reset();
             Task.Run(() =>
             {
                 power.OnNext(false);
                 Thread.Sleep(resetTimeout);
                 power.OnNext(true);
+                Thread.Sleep(resetTimeout);
+                base.Reset();
             });
         }
         
