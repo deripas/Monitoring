@@ -1,0 +1,47 @@
+select d.id, d.type, d.name, m.field, CONCAT(m.sn, ':', m.num, ':', m.ch)
+from ltr_device m,
+     device d
+where m.device = d.id
+order by d.type, d.id, m.field;
+
+select d.id, d.type, d.name, m.field, json_build_object('sn', m.sn, 'num', m.num, 'index', m.ch - 1)
+from ltr_device m,
+     device d
+where m.device = d.id
+order by d.type, d.id, m.field;
+
+select d.id,
+       d.type,
+       d.name,
+       d.siren,
+       d.config || json_object_agg(m.field, json_build_object('sn', m.sn, 'num', m.num, 'index', m.ch - 1))::jsonb as config
+from ltr_device m,
+     device d
+where m.device = d.id
+group by d.id, d.type, d.name;
+
+select d.*,
+       d.config || json_object_agg(m.field, json_build_object('sn', m.sn, 'num', m.num, 'index', m.ch - 1))::jsonb as config
+from ltr_device m,
+     device d
+where m.device = d.id
+group by d.id;
+
+WITH dev AS (
+    select d.id, name, enable, camera, type, description, version, stand_id, siren,
+           d.config || json_object_agg(m.field, json_build_object('sn', m.sn, 'num', m.num, 'index', m.ch - 1))::jsonb as config
+    from ltr_device m,
+         device d
+    where m.device = d.id
+    group by d.id
+)
+select d.id, name, enable, camera, type, description, version, stand_id, siren, 
+       d.config || json_build_object('siren', json_build_object('sn', m.sn, 'num', m.num, 'index', m.ch - 1))::jsonb as config
+from dev d,
+     ltr_device m
+where d.siren = m.device;
+
+alter table ltr_device
+	add cfg jsonb default '{}';
+	
+	update camera set rtsp = FORMAT('rtsp://%s:%s@%s:554/cam/realmonitor?channel=%s&subtype=', n.login, n.password, n.ip, channel) from nvr n where dvr = n.id;
