@@ -144,6 +144,7 @@ namespace gui
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            this.Text = DI.Instance.Type.GetTitle();
             viewModes = DI.Instance.Type.GetMode();
             MainLabel.Text = "   «" + DI.Instance.Type.GetTitle() + "»   ";
             SetMode(DI.Instance.StandMode);
@@ -237,6 +238,11 @@ namespace gui
         private void modeChangeButton_ButtonClick(object sender, EventArgs e)
         {
             modeChangeButton.ShowDropDown();
+        }
+
+        private void toolStripButton9_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

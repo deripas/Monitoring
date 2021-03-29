@@ -34,5 +34,10 @@ namespace gui
             baseSensor1.Value = status.value.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
             aGauge1.Value = aGauge1.MaxValue * (float) status.value / MaxValue;
         }
+
+        private void aGauge1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            baseSensor1.ShowEditForm();
+        }
     }
 }

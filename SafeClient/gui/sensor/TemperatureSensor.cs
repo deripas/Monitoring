@@ -41,5 +41,10 @@ namespace gui
             if (value < verticalProgressBar1.Minimum) value = verticalProgressBar1.Minimum;
             verticalProgressBar1.Value = value;
         }
+
+        private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            baseSensor1.ShowEditForm();
+        }
     }
 }

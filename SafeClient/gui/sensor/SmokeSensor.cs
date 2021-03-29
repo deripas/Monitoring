@@ -12,6 +12,7 @@ namespace gui
             InitializeComponent();
             baseSensor1.Value = "";
             baseSensor1.Max = "";
+            pictureBox1.Image = Resources.no_fire;
         }
 
         public Control GetControl()
@@ -32,6 +33,11 @@ namespace gui
             pictureBox1.Image = status.alarm > 0
                 ? Resources.fire
                 : Resources.no_fire;
+        }
+
+        private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            baseSensor1.ShowEditForm();
         }
     }
 }

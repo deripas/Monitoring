@@ -74,6 +74,7 @@
             this.aGauge1.TabIndex = 14;
             this.aGauge1.Text = "aGauge1";
             this.aGauge1.Value = 0F;
+            this.aGauge1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.aGauge1_MouseDoubleClick);
             // 
             // baseSensor1
             // 

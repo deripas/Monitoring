@@ -53,6 +53,7 @@ namespace gui
             this.grid = new gui.CameraGridPanel();
             this.controlPanel1 = new gui.ControlPanel();
             this.sensorPanel1 = new gui.SensorPanel();
+            this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,6 +75,7 @@ namespace gui
             this.toolStripButton6,
             this.toolStripButton7,
             this.toolStripButton8,
+            this.toolStripButton9,
             this.modeChangeButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -255,6 +257,19 @@ namespace gui
             this.sensorPanel1.Size = new System.Drawing.Size(696, 635);
             this.sensorPanel1.TabIndex = 2;
             // 
+            // toolStripButton9
+            // 
+            this.toolStripButton9.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton9.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.toolStripButton9.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton9.Image")));
+            this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton9.Name = "toolStripButton9";
+            this.toolStripButton9.Size = new System.Drawing.Size(50, 49);
+            this.toolStripButton9.Text = "🗕";
+            this.toolStripButton9.ToolTipText = "Свернуть";
+            this.toolStripButton9.Click += new System.EventHandler(this.toolStripButton9_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -303,5 +318,6 @@ namespace gui
         private System.Windows.Forms.ToolStripMenuItem mode1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mode2ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mode3ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton toolStripButton9;
     }
 }

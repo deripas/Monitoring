@@ -80,32 +80,14 @@ namespace gui
                 var device = DI.Instance.ServerApi.DeviceSingle(deviceId);
                 var controller = DI.Instance.DeviceService[deviceId];
 
-                DeviceEditorForm form = new DeviceEditorForm();
-                form.Device = device;
-                form.TopMost = true;
-                form.StartPosition = FormStartPosition.CenterParent;
-                if (form.ShowDialog(this) == DialogResult.OK)
+                if (ShowEditorForm(this, deviceId))
                 {
-                    try
-                    {
-                        form.Save(device.config, controller);
-                        DI.Instance.ServerApi.DeviceConfig(device.id, device.config);
-
-                        item.SubItems.Clear();
-                        item.Text = device.name;
-                        item.SubItems.Add((!controller.Removed).ToRus());
-                        item.Tag = device.id;
-                        item.BackColor = GetColor(device?.stand);
-                        listView1.Refresh();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(this, ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    finally
-                    {
-                        form.Close();
-                    }
+                    item.SubItems.Clear();
+                    item.Text = device.name;
+                    item.SubItems.Add((!controller.Removed).ToRus());
+                    item.Tag = device.id;
+                    item.BackColor = GetColor(device?.stand);
+                    listView1.Refresh();
                 }
             }
         }
@@ -113,6 +95,35 @@ namespace gui
         private void DeviceViewForm_Resize(object sender, EventArgs e)
         {
             columnHeader1.Width = Math.Max(600, listView1.Width - columnHeader2.Width - SystemInformation.VerticalScrollBarWidth - 4);
+        }
+
+        public static bool ShowEditorForm(IWin32Window owner, int deviceId)
+        {
+            var device = DI.Instance.ServerApi.DeviceSingle(deviceId);
+            var controller = DI.Instance.DeviceService[deviceId];
+
+            DeviceEditorForm form = new DeviceEditorForm();
+            form.Device = device;
+            form.TopMost = true;
+            form.StartPosition = FormStartPosition.CenterParent;
+            if (form.ShowDialog(owner) == DialogResult.OK)
+            {
+                try
+                {
+                    form.Save(device.config, controller);
+                    DI.Instance.ServerApi.DeviceConfig(device.id, device.config);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(owner, ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    form.Close();
+                }
+            }
+            return false;
         }
     }
 }

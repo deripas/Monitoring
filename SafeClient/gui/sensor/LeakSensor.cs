@@ -12,6 +12,7 @@ namespace gui
             InitializeComponent();
             baseSensor1.Value = "";
             baseSensor1.Max = "";
+            pictureBox1.Image = Resources.weather_fog;
         }
 
         public Control GetControl()
@@ -32,6 +33,11 @@ namespace gui
             pictureBox1.Image = status.value > 0
                 ? Resources.weather_showers_scattered
                 : Resources.weather_fog;
+        }
+
+        private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            baseSensor1.ShowEditForm();
         }
     }
 }

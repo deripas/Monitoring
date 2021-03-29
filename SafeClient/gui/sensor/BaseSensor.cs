@@ -145,5 +145,11 @@ namespace gui
             this.alarm = alarm;
             UpdateLed();
         }
+
+        public void ShowEditForm()
+        {
+            if (device == null) return;
+            DeviceViewForm.ShowEditorForm(this, device.Id);
+        }
     }
 }
