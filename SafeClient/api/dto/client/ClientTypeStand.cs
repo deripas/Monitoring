@@ -141,7 +141,8 @@ namespace api.dto.client
 
         public bool PtzEnable(CameraController cam)
         {
-            return stand.Equals(cam.Stand) || "ory".Equals(cam.Stand);
+            //return stand.Equals(cam.Stand) || "ory".Equals(cam.Stand);
+            return true;
         }
     }
 }
