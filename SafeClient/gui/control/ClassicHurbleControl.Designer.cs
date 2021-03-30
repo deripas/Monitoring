@@ -57,17 +57,17 @@
             // name
             // 
             this.name.AutoSize = true;
-            this.name.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.name.Font = new System.Drawing.Font("Arial", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.name.Location = new System.Drawing.Point(6, 0);
             this.name.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.name.Name = "name";
-            this.name.Size = new System.Drawing.Size(159, 32);
+            this.name.Size = new System.Drawing.Size(121, 24);
             this.name.TabIndex = 2;
             this.name.Text = "Оптоствор";
             // 
             // description
             // 
-            this.description.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.description.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.description.Location = new System.Drawing.Point(157, 44);
             this.description.Margin = new System.Windows.Forms.Padding(6);
             this.description.Name = "description";
@@ -114,6 +114,7 @@
             this.flowLayoutPanel2.Controls.Add(this.modeAuto);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.857143F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 25);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(222, 88);
@@ -124,7 +125,7 @@
             this.modeOff.AutoSize = true;
             this.modeOff.Location = new System.Drawing.Point(3, 3);
             this.modeOff.Name = "modeOff";
-            this.modeOff.Size = new System.Drawing.Size(88, 29);
+            this.modeOff.Size = new System.Drawing.Size(79, 24);
             this.modeOff.TabIndex = 0;
             this.modeOff.TabStop = true;
             this.modeOff.Text = "выкл.";
@@ -134,9 +135,9 @@
             // modeoOn
             // 
             this.modeoOn.AutoSize = true;
-            this.modeoOn.Location = new System.Drawing.Point(3, 38);
+            this.modeoOn.Location = new System.Drawing.Point(3, 33);
             this.modeoOn.Name = "modeoOn";
-            this.modeoOn.Size = new System.Drawing.Size(74, 29);
+            this.modeoOn.Size = new System.Drawing.Size(67, 24);
             this.modeoOn.TabIndex = 1;
             this.modeoOn.TabStop = true;
             this.modeoOn.Text = "вкл.";
@@ -146,9 +147,9 @@
             // modeAuto
             // 
             this.modeAuto.AutoSize = true;
-            this.modeAuto.Location = new System.Drawing.Point(97, 3);
+            this.modeAuto.Location = new System.Drawing.Point(88, 3);
             this.modeAuto.Name = "modeAuto";
-            this.modeAuto.Size = new System.Drawing.Size(80, 29);
+            this.modeAuto.Size = new System.Drawing.Size(74, 24);
             this.modeAuto.TabIndex = 2;
             this.modeAuto.TabStop = true;
             this.modeAuto.Text = "авто";
