@@ -48,13 +48,13 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(124, 6);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(6);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(450, 37);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(595, 37);
             this.flowLayoutPanel1.TabIndex = 15;
             // 
             // name
             // 
             this.name.AutoSize = true;
-            this.name.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.name.Font = new System.Drawing.Font("Arial", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.name.Location = new System.Drawing.Point(6, 0);
             this.name.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.name.Name = "name";
@@ -70,7 +70,7 @@
             this.maximum.Location = new System.Drawing.Point(135, 0);
             this.maximum.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.maximum.Name = "maximum";
-            this.maximum.Size = new System.Drawing.Size(129, 32);
+            this.maximum.Size = new System.Drawing.Size(150, 35);
             this.maximum.TabIndex = 8;
             this.maximum.Text = "maximum";
             // 
@@ -79,28 +79,29 @@
             this.current.AutoSize = true;
             this.current.BackColor = System.Drawing.Color.YellowGreen;
             this.current.Font = new System.Drawing.Font("Arial", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.current.Location = new System.Drawing.Point(276, 0);
+            this.current.Location = new System.Drawing.Point(297, 0);
             this.current.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.current.Name = "current";
-            this.current.Size = new System.Drawing.Size(100, 32);
+            this.current.Size = new System.Drawing.Size(53, 35);
             this.current.TabIndex = 9;
-            this.current.Text = "current";
+            this.current.Text = "val";
             // 
             // description
             // 
-            this.description.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.description.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.description.Location = new System.Drawing.Point(130, 48);
             this.description.Margin = new System.Windows.Forms.Padding(6);
             this.description.Name = "description";
             this.description.ReadOnly = true;
-            this.description.Size = new System.Drawing.Size(410, 44);
+            this.description.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.description.Size = new System.Drawing.Size(481, 44);
             this.description.TabIndex = 14;
             this.description.Text = "";
             this.toolTip2.SetToolTip(this.description, "text");
             // 
             // led
             // 
-            this.led.Location = new System.Drawing.Point(554, 6);
+            this.led.Location = new System.Drawing.Point(621, 4);
             this.led.Margin = new System.Windows.Forms.Padding(4);
             this.led.Name = "led";
             this.led.Size = new System.Drawing.Size(66, 56);
@@ -123,7 +124,7 @@
             this.DoubleBuffered = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BaseSensor";
-            this.Size = new System.Drawing.Size(648, 96);
+            this.Size = new System.Drawing.Size(700, 96);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.led)).EndInit();

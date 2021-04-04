@@ -139,7 +139,7 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Датчик";
-            this.columnHeader1.Width = 200;
+            this.columnHeader1.Width = 500;
             // 
             // columnHeader2
             // 
@@ -160,19 +160,19 @@
             this.toolStripMenuItem1,
             this.applyAllToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(369, 80);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(407, 92);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(368, 38);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(406, 44);
             this.toolStripMenuItem1.Text = "Обработать выделенный";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // applyAllToolStripMenuItem
             // 
             this.applyAllToolStripMenuItem.Name = "applyAllToolStripMenuItem";
-            this.applyAllToolStripMenuItem.Size = new System.Drawing.Size(368, 38);
+            this.applyAllToolStripMenuItem.Size = new System.Drawing.Size(406, 44);
             this.applyAllToolStripMenuItem.Text = "Обработать ВСЕ ранее";
             this.applyAllToolStripMenuItem.Click += new System.EventHandler(this.applyAllToolStripMenuItem_Click);
             // 
@@ -183,19 +183,19 @@
             this.findToolStripMenuItem,
             this.toLastAlertToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(523, 124);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(575, 92);
             // 
             // findToolStripMenuItem
             // 
             this.findToolStripMenuItem.Name = "findToolStripMenuItem";
-            this.findToolStripMenuItem.Size = new System.Drawing.Size(522, 38);
+            this.findToolStripMenuItem.Size = new System.Drawing.Size(574, 44);
             this.findToolStripMenuItem.Text = "Перейти к неподтвержденной тревоге";
             this.findToolStripMenuItem.Click += new System.EventHandler(this.findToolStripMenuItem_Click);
             // 
             // toLastAlertToolStripMenuItem
             // 
             this.toLastAlertToolStripMenuItem.Name = "toLastAlertToolStripMenuItem";
-            this.toLastAlertToolStripMenuItem.Size = new System.Drawing.Size(522, 38);
+            this.toLastAlertToolStripMenuItem.Size = new System.Drawing.Size(574, 44);
             this.toLastAlertToolStripMenuItem.Text = "Перейти к последней тревоге";
             this.toLastAlertToolStripMenuItem.Click += new System.EventHandler(this.toLastAlertToolStripMenuItem_Click);
             // 

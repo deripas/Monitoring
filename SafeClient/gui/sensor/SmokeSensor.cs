@@ -27,7 +27,8 @@ namespace gui
 
         public void Update(SensorStatus status)
         {
-            Enabled = status.enable;
+            //Enabled = status.enable;
+            baseSensor1.Enabled = status.enable;
             baseSensor1.EnabledLed = status.enable;
             baseSensor1.SetAlarm(status.alarm);
             pictureBox1.Image = status.alarm > 0

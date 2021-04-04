@@ -86,7 +86,7 @@
             this.baseSensor1.Margin = new System.Windows.Forms.Padding(2);
             this.baseSensor1.Max = "maximum";
             this.baseSensor1.Name = "baseSensor1";
-            this.baseSensor1.Size = new System.Drawing.Size(628, 117);
+            this.baseSensor1.Size = new System.Drawing.Size(700, 117);
             this.baseSensor1.TabIndex = 0;
             this.baseSensor1.Title = "Вибрация";
             this.baseSensor1.Value = "current";
@@ -100,7 +100,7 @@
             this.Controls.Add(this.baseSensor1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "VibrationSensor";
-            this.Size = new System.Drawing.Size(630, 96);
+            this.Size = new System.Drawing.Size(690, 92);
             this.ResumeLayout(false);
 
         }

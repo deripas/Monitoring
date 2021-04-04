@@ -63,10 +63,10 @@ namespace gui
 
         private void CorrectSize()
         {
-            int h = 100;
+            int h = 50;
             foreach (Control c in flowLayoutPanel1.Controls)
-                h += c.Height;
-            panel1.Height = h + flowLayoutPanel1.Controls.Count * 6;
+                h += (c.Height + 6);
+            panel1.Height = h;
         }
     }
 }

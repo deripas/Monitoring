@@ -43,40 +43,41 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.name);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(155, 1);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(6);
+            this.flowLayoutPanel1.Font = new System.Drawing.Font("Arial Narrow", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(169, 1);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(228, 35);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(249, 36);
             this.flowLayoutPanel1.TabIndex = 19;
             // 
             // name
             // 
             this.name.AutoSize = true;
             this.name.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.name.Location = new System.Drawing.Point(6, 0);
-            this.name.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.name.Location = new System.Drawing.Point(7, 0);
+            this.name.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.name.Name = "name";
-            this.name.Size = new System.Drawing.Size(109, 32);
+            this.name.Size = new System.Drawing.Size(120, 35);
             this.name.TabIndex = 2;
             this.name.Text = "Роллет";
             // 
             // description
             // 
             this.description.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.description.Location = new System.Drawing.Point(155, 39);
-            this.description.Margin = new System.Windows.Forms.Padding(6);
+            this.description.Location = new System.Drawing.Point(169, 41);
+            this.description.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.description.Name = "description";
             this.description.ReadOnly = true;
-            this.description.Size = new System.Drawing.Size(228, 87);
+            this.description.Size = new System.Drawing.Size(248, 90);
             this.description.TabIndex = 18;
             this.description.Text = "";
             // 
             // pictureIcon
             // 
             this.pictureIcon.Image = global::Properties.Resources.rollet_move;
-            this.pictureIcon.Location = new System.Drawing.Point(13, 17);
+            this.pictureIcon.Location = new System.Drawing.Point(14, 18);
             this.pictureIcon.Name = "pictureIcon";
-            this.pictureIcon.Size = new System.Drawing.Size(133, 109);
+            this.pictureIcon.Size = new System.Drawing.Size(145, 114);
             this.pictureIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureIcon.TabIndex = 21;
             this.pictureIcon.TabStop = false;
@@ -84,9 +85,9 @@
             // led
             // 
             this.led.Image = global::Properties.Resources.led_green;
-            this.led.Location = new System.Drawing.Point(637, 48);
+            this.led.Location = new System.Drawing.Point(695, 50);
             this.led.Name = "led";
-            this.led.Size = new System.Drawing.Size(69, 59);
+            this.led.Size = new System.Drawing.Size(75, 61);
             this.led.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.led.TabIndex = 20;
             this.led.TabStop = false;
@@ -95,9 +96,9 @@
             // buttonUp
             // 
             this.buttonUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonUp.Location = new System.Drawing.Point(428, 17);
+            this.buttonUp.Location = new System.Drawing.Point(467, 18);
             this.buttonUp.Name = "buttonUp";
-            this.buttonUp.Size = new System.Drawing.Size(154, 45);
+            this.buttonUp.Size = new System.Drawing.Size(168, 47);
             this.buttonUp.TabIndex = 22;
             this.buttonUp.Text = "🢁";
             this.buttonUp.UseVisualStyleBackColor = true;
@@ -106,9 +107,9 @@
             // buttonDown
             // 
             this.buttonDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonDown.Location = new System.Drawing.Point(428, 68);
+            this.buttonDown.Location = new System.Drawing.Point(467, 71);
             this.buttonDown.Name = "buttonDown";
-            this.buttonDown.Size = new System.Drawing.Size(154, 45);
+            this.buttonDown.Size = new System.Drawing.Size(168, 47);
             this.buttonDown.TabIndex = 23;
             this.buttonDown.Text = "🢃";
             this.buttonDown.UseVisualStyleBackColor = true;
@@ -116,7 +117,7 @@
             // 
             // RolletControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.buttonDown);
@@ -126,7 +127,7 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.description);
             this.Name = "RolletControl";
-            this.Size = new System.Drawing.Size(719, 132);
+            this.Size = new System.Drawing.Size(784, 137);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureIcon)).EndInit();
