@@ -26,7 +26,7 @@ namespace SafeServer.service.device
 
         public override void Reset()
         {
-            Task.Run(() =>
+            Task.Factory.StartNew(() =>
             {
                 power.OnNext(false);
                 Thread.Sleep(resetTimeout);
