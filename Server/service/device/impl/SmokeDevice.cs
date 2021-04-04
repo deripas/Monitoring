@@ -31,7 +31,6 @@ namespace SafeServer.service.device
                 power.OnNext(false);
                 Thread.Sleep(resetTimeout);
                 power.OnNext(true);
-                Thread.Sleep(resetTimeout);
                 base.Reset();
             });
         }
